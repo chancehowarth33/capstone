@@ -53,6 +53,10 @@ module	VGA_Controller(	//	Host Side
 						oVGA_V_SYNC,
 						oVGA_SYNC,
 						oVGA_BLANK,
+						// Scan coordinates for downstream processing
+						oVGA_X,
+						oVGA_Y,
+						oVGA_ACTIVE,
 
 						//	Control Signal
 						iCLK,
@@ -91,6 +95,9 @@ output	reg			oVGA_H_SYNC;
 output	reg			oVGA_V_SYNC;
 output	reg			oVGA_SYNC;
 output	reg			oVGA_BLANK;
+output	reg	[9:0]	oVGA_X;
+output	reg	[9:0]	oVGA_Y;
+output	reg			oVGA_ACTIVE;
 
 wire		[9:0]	mVGA_R;
 wire		[9:0]	mVGA_G;
@@ -138,7 +145,10 @@ always@(posedge iCLK or negedge iRST_N)
 				oVGA_BLANK <= 0;
 				oVGA_SYNC <= 0;
 				oVGA_H_SYNC <= 0;
-				oVGA_V_SYNC <= 0; 
+				oVGA_V_SYNC <= 0;
+				oVGA_X      <= 0;
+				oVGA_Y      <= 0;
+				oVGA_ACTIVE <= 0;
 			end
 		else
 			begin
@@ -148,7 +158,11 @@ always@(posedge iCLK or negedge iRST_N)
 				oVGA_BLANK <= mVGA_BLANK;
 				oVGA_SYNC <= mVGA_SYNC;
 				oVGA_H_SYNC <= mVGA_H_SYNC;
-				oVGA_V_SYNC <= mVGA_V_SYNC;				
+				oVGA_V_SYNC <= mVGA_V_SYNC;
+				oVGA_X      <= (H_Cont >= X_START && H_Cont < X_START+H_SYNC_ACT) ? H_Cont - X_START : 13'd0;
+				oVGA_Y      <= (V_Cont >= Y_START && V_Cont < Y_START+V_SYNC_ACT) ? V_Cont - Y_START : 13'd0;
+				oVGA_ACTIVE <= (H_Cont >= X_START && H_Cont < X_START+H_SYNC_ACT &&
+				                V_Cont >= Y_START && V_Cont < Y_START+V_SYNC_ACT) ? 1'b1 : 1'b0;
 			end               
 	end
 
