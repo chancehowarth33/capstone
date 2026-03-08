@@ -758,7 +758,6 @@ set_global_assignment -name VERILOG_FILE overlay.v
 set_global_assignment -name QIP_FILE Sdram_WR_FIFO.qip
 set_global_assignment -name QIP_FILE Sdram_RD_FIFO.qip
 set_global_assignment -name QIP_FILE sdram_pll.qip
-set_global_assignment -name SYSTEMVERILOG_FILE image_processing.sv
 set_global_assignment -name VERILOG_FILE DE1_SoC_CAMERA.v
 set_global_assignment -name VERILOG_FILE v/VGA_Controller.v
 set_global_assignment -name VERILOG_FILE v/SEG7_LUT.v
