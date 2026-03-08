@@ -30,16 +30,11 @@ module color_detect (
     wire frame_start = !vsync && vsync_prev;
 
     // ---------------------------------------------------------------
-    // Color match: bright green object
-    //   G must exceed a minimum brightness threshold
-    //   G must be dominant over both R and B by a margin
-    // Relax thresholds if crosshair never moves (too strict).
-    // Tighten if crosshair jumps around on non-target areas (too loose).
-    // ---------------------------------------------------------------
+    // Color match: Orange ball with RGB value of (255, 56, 0)
     wire match = active
-              && (G > 10'd450)
-              && (G > R + 10'd100)
-              && (G > B + 10'd100);
+          && (R > 10'd600)
+          && (R > G + 10'd350)
+          && (B < 10'd80);
 
     always @(posedge clk) begin
         vsync_prev <= vsync;
