@@ -234,42 +234,15 @@ RAW2RGB u4 (
 );
 
 //=============================================================================
-// u5 — 7-segment: HEX1/0 = hand X, HEX3/2 = hand Y, HEX4 = detected flag
+// u5 — 7-segment: show detected block coordinates and detected flag
+// HEX5/4 = hand_y, HEX3/2 = hand_x, HEX1 = detected flag, HEX0 = unused
 //=============================================================================
-
-// Accumulate a 16x16 box around screen center and average
-reg [15:0] sum_R, sum_G, sum_B;
-reg [7:0]  pix_count;
-reg [9:0]  stable_R, stable_G, stable_B;
-
-always @(posedge VGA_CLK) begin
-    // On vsync falling edge, commit the average and reset accumulators
-    if (!VGA_VS) begin
-        if (pix_count > 0) begin
-            stable_R <= sum_R / pix_count;
-            stable_G <= sum_G / pix_count;
-            stable_B <= sum_B / pix_count;
-        end
-        sum_R     <= 0;
-        sum_G     <= 0;
-        sum_B     <= 0;
-        pix_count <= 0;
-    end
-    // Accumulate pixels in a 16x16 box at screen center (312-328, 232-248)
-    else if (oVGA_X >= 10'd312 && oVGA_X <= 10'd328 &&
-             oVGA_Y >= 10'd232 && oVGA_Y <= 10'd248) begin
-        sum_R     <= sum_R + oVGA_R;
-        sum_G     <= sum_G + oVGA_G;
-        sum_B     <= sum_B + oVGA_B;
-        pix_count <= pix_count + 1;
-    end
-end
 
 SEG7_LUT_6 u5 (
     .oSEG0(HEX0), .oSEG1(HEX1),
     .oSEG2(HEX2), .oSEG3(HEX3),
     .oSEG4(HEX4), .oSEG5(HEX5),
-    .iDIG ({stable_G[7:0], stable_B[7:0], stable_R[7:0]})
+    .iDIG ({2'b00, hand_y, 2'b00, hand_x})
 );
 
 //=============================================================================
@@ -378,18 +351,28 @@ VGA_Controller u1 (
 // u_detect — color centroid tracker
 //=============================================================================
 
+wire [9:0] dbg_avgR;
+wire [9:0] dbg_avgG;
+wire [9:0] dbg_avgB;
+wire [7:0] dbg_count;
+
 color_detect u_detect (
-    .clk     (VGA_CTRL_CLK),
-    .vsync   (VGA_VS),
-    .active  (oVGA_ACTIVE),
-    .R       (oVGA_R),
-    .G       (oVGA_G),
-    .B       (oVGA_B),
-    .vga_x   (oVGA_X),
-    .vga_y   (oVGA_Y),
-    .hand_x  (hand_x),
-    .hand_y  (hand_y),
-    .detected(hand_detected)
+    .clk      (VGA_CTRL_CLK),
+    .rst_n    (DLY_RST_2),
+    .vsync    (VGA_VS),
+    .active   (oVGA_ACTIVE),
+    .R        (oVGA_R),
+    .G        (oVGA_G),
+    .B        (oVGA_B),
+    .vga_x    (oVGA_X),
+    .vga_y    (oVGA_Y),
+    .hand_x   (hand_x),
+    .hand_y   (hand_y),
+    .detected (hand_detected),
+    .dbg_avgR (dbg_avgR),
+    .dbg_avgG (dbg_avgG),
+    .dbg_avgB (dbg_avgB),
+    .dbg_count(dbg_count)
 );
 
 //=============================================================================
