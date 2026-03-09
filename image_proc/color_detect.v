@@ -8,19 +8,13 @@ module color_detect (
     input  [9:0] B,
     input  [9:0] vga_x,
     input  [9:0] vga_y,
-
     output reg [9:0] hand_x,
     output reg [9:0] hand_y,
     output reg [9:0] box_left,
     output reg [9:0] box_right,
     output reg [9:0] box_top,
     output reg [9:0] box_bottom,
-    output reg       detected,
-
-    output reg [9:0] dbg_avgR,
-    output reg [9:0] dbg_avgG,
-    output reg [9:0] dbg_avgB,
-    output reg [7:0] dbg_count
+    output reg       detected
 );
 
     parameter NUM_BLOCK_COLS   = 20;
@@ -103,11 +97,6 @@ module color_detect (
             box_bottom     <= 10'd0;
             detected       <= 1'b0;
 
-            dbg_avgR       <= 10'd0;
-            dbg_avgG       <= 10'd0;
-            dbg_avgB       <= 10'd0;
-            dbg_count      <= 8'd0;
-
             centroid_sum_x <= 16'd0;
             centroid_sum_y <= 16'd0;
             match_count    <= 8'd0;
@@ -129,8 +118,6 @@ module color_detect (
             vsync_prev <= vsync;
 
             if (vsync_fall) begin
-                dbg_count <= match_count;
-
                 if (match_count >= MIN_MATCH_BLOCKS) begin
                     detected   <= 1'b1;
                     hand_x     <= centroid_sum_x / match_count;
@@ -171,10 +158,6 @@ module color_detect (
                 sum_B[block_col] <= next_sum_B;
 
                 if (end_of_block) begin
-                    dbg_avgR <= avgR;
-                    dbg_avgG <= avgG;
-                    dbg_avgB <= avgB;
-
                     if ((avgR > 10'd350) &&
                         (avgR > (avgG + 10'd100)) &&
                         (avgB < 10'd300)) begin
