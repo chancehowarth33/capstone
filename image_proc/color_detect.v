@@ -18,6 +18,7 @@ module color_detect (
 );
 
     parameter NUM_BLOCK_COLS = 20;
+    parameter MIN_MATCH_BLOCKS = 2;
 
     integer i;
 
@@ -88,12 +89,15 @@ module color_detect (
             vsync_prev <= vsync;
 
             if (vsync_fall) begin
-                detected  <= frame_detected;
                 dbg_count <= frame_count;
 
-                if (!frame_detected) begin
-                    hand_x <= 10'd0;
-                    hand_y <= 10'd0;
+                if (frame_count >= MIN_MATCH_BLOCKS) begin
+                    detected <= 1'b1;
+                end
+                else begin
+                    detected <= 1'b0;
+                    hand_x   <= 10'd0;
+                    hand_y   <= 10'd0;
                 end
 
                 frame_detected <= 1'b0;

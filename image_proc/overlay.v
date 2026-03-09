@@ -1,50 +1,57 @@
-// overlay.v
-// Draws a crosshair and filled dot at the detected hand centroid.
-// All other pixels pass through unchanged from the camera feed.
-// When no hand is detected, the camera feed passes through unmodified.
-
 module overlay (
-    input  [9:0] R_in, G_in, B_in,  // pixel from VGA_Controller (camera feed)
-    input  [9:0] vga_x, vga_y,       // current scan position
-    input  [9:0] hand_x, hand_y,     // centroid from color_detect
-    input        detected,            // if low, passthrough only
-    output reg [9:0] R_out, G_out, B_out
+    input  [9:0] R_in,
+    input  [9:0] G_in,
+    input  [9:0] B_in,
+    input  [9:0] vga_x,
+    input  [9:0] vga_y,
+    input  [9:0] hand_x,
+    input  [9:0] hand_y,
+    input        detected,
+    output [9:0] R_out,
+    output [9:0] G_out,
+    output [9:0] B_out
 );
 
-    // crosshair: 7-pixel-thick horizontal and vertical lines
-    wire on_h_line = (vga_y >= hand_y - 10'd3) && (vga_y <= hand_y + 10'd3);
-    wire on_v_line = (vga_x >= hand_x - 10'd3) && (vga_x <= hand_x + 10'd3);
+    parameter HALF_W = 10'd24;
+    parameter HALF_H = 10'd24;
+    parameter THICK  = 10'd2;
 
-    // filled dot at the centroid center (41x41 pixels)
-    wire on_dot = (vga_x >= hand_x - 10'd20) && (vga_x <= hand_x + 10'd20)
-               && (vga_y >= hand_y - 10'd20) && (vga_y <= hand_y + 10'd20);
+    wire [9:0] left_x;
+    wire [9:0] right_x;
+    wire [9:0] top_y;
+    wire [9:0] bot_y;
 
-    always @(*) begin
-        if (!detected) begin
+    wire on_top;
+    wire on_bottom;
+    wire on_left;
+    wire on_right;
+    wire on_box;
 
-            // no detection — show camera feed unmodified
-            R_out = R_in;
-            G_out = G_in;
-            B_out = B_in;
-        end else if (on_dot) begin
+    assign left_x  = hand_x - HALF_W;
+    assign right_x = hand_x + HALF_W;
+    assign top_y   = hand_y - HALF_H;
+    assign bot_y   = hand_y + HALF_H;
 
-            // white dot at centroid (visible against orange ball)
-            R_out = 10'h3FF;
-            G_out = 10'h3FF;
-            B_out = 10'h3FF;
-        end else if (on_h_line || on_v_line) begin
+    assign on_top =
+        (vga_y >= top_y) && (vga_y < top_y + THICK) &&
+        (vga_x >= left_x) && (vga_x <= right_x);
 
-            // white crosshair lines
-            R_out = 10'h3FF;
-            G_out = 10'h3FF;
-            B_out = 10'h3FF;
-        end else begin
-            
-            // normal camera passthrough
-            R_out = R_in;
-            G_out = G_in;
-            B_out = B_in;
-        end
-    end
+    assign on_bottom =
+        (vga_y <= bot_y) && (vga_y > bot_y - THICK) &&
+        (vga_x >= left_x) && (vga_x <= right_x);
+
+    assign on_left =
+        (vga_x >= left_x) && (vga_x < left_x + THICK) &&
+        (vga_y >= top_y) && (vga_y <= bot_y);
+
+    assign on_right =
+        (vga_x <= right_x) && (vga_x > right_x - THICK) &&
+        (vga_y >= top_y) && (vga_y <= bot_y);
+
+    assign on_box = detected && (on_top || on_bottom || on_left || on_right);
+
+    assign R_out = on_box ? 10'h3FF : R_in;
+    assign G_out = on_box ? 10'h3FF : G_in;
+    assign B_out = on_box ? 10'h3FF : B_in;
 
 endmodule

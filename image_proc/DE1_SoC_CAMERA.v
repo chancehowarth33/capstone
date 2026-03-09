@@ -380,17 +380,17 @@ color_detect u_detect (
 //=============================================================================
 
 overlay u_overlay (
-    .R_in    (oVGA_R),
-    .G_in    (oVGA_G),
-    .B_in    (oVGA_B),
-    .vga_x   (oVGA_X),
-    .vga_y   (oVGA_Y),
-    .hand_x  (hand_x),
-    .hand_y  (hand_y),
-    .detected(hand_detected),
-    .R_out   (final_R),
-    .G_out   (final_G),
-    .B_out   (final_B)
+    .R_in     (oVGA_R),
+    .G_in     (oVGA_G),
+    .B_in     (oVGA_B),
+    .vga_x    (oVGA_X),
+    .vga_y    (oVGA_Y),
+    .hand_x   (hand_x),
+    .hand_y   (hand_y),
+    .detected (hand_detected),
+    .R_out    (final_R),
+    .G_out    (final_G),
+    .B_out    (final_B)
 );
 
 endmodule
