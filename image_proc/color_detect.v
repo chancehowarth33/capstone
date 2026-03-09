@@ -32,9 +32,9 @@ module color_detect (
     // ---------------------------------------------------------------
     // Color match: Orange ball with RGB value of (255, 56, 0)
     wire match = active
-          && (R > 10'd600)
-          && (R > G + 10'd350)
-          && (B < 10'd80);
+          && (R > 10'd500)
+          && (R > G + 10'd200)
+          && (B < 10'd150);
 
     always @(posedge clk) begin
         vsync_prev <= vsync;
