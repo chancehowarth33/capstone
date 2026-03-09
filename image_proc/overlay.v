@@ -6,20 +6,18 @@ module overlay (
     input  [9:0] vga_y,
     input  [9:0] hand_x,
     input  [9:0] hand_y,
+    input  [9:0] box_left,
+    input  [9:0] box_right,
+    input  [9:0] box_top,
+    input  [9:0] box_bottom,
     input        detected,
     output [9:0] R_out,
     output [9:0] G_out,
     output [9:0] B_out
 );
 
-    parameter HALF_W = 10'd24;
-    parameter HALF_H = 10'd24;
-    parameter THICK  = 10'd2;
-
-    wire [9:0] left_x;
-    wire [9:0] right_x;
-    wire [9:0] top_y;
-    wire [9:0] bot_y;
+    parameter BOX_THICK = 10'd2;
+    parameter DOT_R     = 10'd4;
 
     wire on_top;
     wire on_bottom;
@@ -27,31 +25,37 @@ module overlay (
     wire on_right;
     wire on_box;
 
-    assign left_x  = hand_x - HALF_W;
-    assign right_x = hand_x + HALF_W;
-    assign top_y   = hand_y - HALF_H;
-    assign bot_y   = hand_y + HALF_H;
+    wire signed [10:0] dx;
+    wire signed [10:0] dy;
+    wire [21:0] dist2;
+    wire on_dot;
 
     assign on_top =
-        (vga_y >= top_y) && (vga_y < top_y + THICK) &&
-        (vga_x >= left_x) && (vga_x <= right_x);
+        (vga_y >= box_top) && (vga_y < box_top + BOX_THICK) &&
+        (vga_x >= box_left) && (vga_x <= box_right);
 
     assign on_bottom =
-        (vga_y <= bot_y) && (vga_y > bot_y - THICK) &&
-        (vga_x >= left_x) && (vga_x <= right_x);
+        (vga_y <= box_bottom) && (vga_y > box_bottom - BOX_THICK) &&
+        (vga_x >= box_left) && (vga_x <= box_right);
 
     assign on_left =
-        (vga_x >= left_x) && (vga_x < left_x + THICK) &&
-        (vga_y >= top_y) && (vga_y <= bot_y);
+        (vga_x >= box_left) && (vga_x < box_left + BOX_THICK) &&
+        (vga_y >= box_top) && (vga_y <= box_bottom);
 
     assign on_right =
-        (vga_x <= right_x) && (vga_x > right_x - THICK) &&
-        (vga_y >= top_y) && (vga_y <= bot_y);
+        (vga_x <= box_right) && (vga_x > box_right - BOX_THICK) &&
+        (vga_y >= box_top) && (vga_y <= box_bottom);
 
-    assign on_box = detected && (on_top || on_bottom || on_left || on_right);
+    assign on_box = on_top || on_bottom || on_left || on_right;
 
-    assign R_out = on_box ? 10'h3FF : R_in;
-    assign G_out = on_box ? 10'h3FF : G_in;
-    assign B_out = on_box ? 10'h3FF : B_in;
+    assign dx = $signed({1'b0, vga_x}) - $signed({1'b0, hand_x});
+    assign dy = $signed({1'b0, vga_y}) - $signed({1'b0, hand_y});
+
+    assign dist2 = dx*dx + dy*dy;
+    assign on_dot = (dist2 <= (DOT_R * DOT_R));
+
+    assign R_out = (detected && (on_box || on_dot)) ? 10'h3FF : R_in;
+    assign G_out = (detected && (on_box || on_dot)) ? 10'h3FF : G_in;
+    assign B_out = (detected && (on_box || on_dot)) ? 10'h3FF : B_in;
 
 endmodule

@@ -351,28 +351,25 @@ VGA_Controller u1 (
 // u_detect — color centroid tracker
 //=============================================================================
 
-wire [9:0] dbg_avgR;
-wire [9:0] dbg_avgG;
-wire [9:0] dbg_avgB;
-wire [7:0] dbg_count;
+wire [9:0] box_left, box_right, box_top, box_bottom;
 
 color_detect u_detect (
-    .clk      (VGA_CTRL_CLK),
-    .rst_n    (DLY_RST_2),
-    .vsync    (VGA_VS),
-    .active   (oVGA_ACTIVE),
-    .R        (oVGA_R),
-    .G        (oVGA_G),
-    .B        (oVGA_B),
-    .vga_x    (oVGA_X),
-    .vga_y    (oVGA_Y),
-    .hand_x   (hand_x),
-    .hand_y   (hand_y),
-    .detected (hand_detected),
-    .dbg_avgR (dbg_avgR),
-    .dbg_avgG (dbg_avgG),
-    .dbg_avgB (dbg_avgB),
-    .dbg_count(dbg_count)
+    .clk       (VGA_CTRL_CLK),
+    .rst_n     (DLY_RST_2),
+    .vsync     (VGA_VS),
+    .active    (oVGA_ACTIVE),
+    .R         (oVGA_R),
+    .G         (oVGA_G),
+    .B         (oVGA_B),
+    .vga_x     (oVGA_X),
+    .vga_y     (oVGA_Y),
+    .hand_x    (hand_x),
+    .hand_y    (hand_y),
+    .box_left  (box_left),
+    .box_right (box_right),
+    .box_top   (box_top),
+    .box_bottom(box_bottom),
+    .detected  (hand_detected)
 );
 
 //=============================================================================
@@ -380,17 +377,21 @@ color_detect u_detect (
 //=============================================================================
 
 overlay u_overlay (
-    .R_in     (oVGA_R),
-    .G_in     (oVGA_G),
-    .B_in     (oVGA_B),
-    .vga_x    (oVGA_X),
-    .vga_y    (oVGA_Y),
-    .hand_x   (hand_x),
-    .hand_y   (hand_y),
-    .detected (hand_detected),
-    .R_out    (final_R),
-    .G_out    (final_G),
-    .B_out    (final_B)
+    .R_in      (oVGA_R),
+    .G_in      (oVGA_G),
+    .B_in      (oVGA_B),
+    .vga_x     (oVGA_X),
+    .vga_y     (oVGA_Y),
+    .hand_x    (hand_x),
+    .hand_y    (hand_y),
+    .box_left  (box_left),
+    .box_right (box_right),
+    .box_top   (box_top),
+    .box_bottom(box_bottom),
+    .detected  (hand_detected),
+    .R_out     (final_R),
+    .G_out     (final_G),
+    .B_out     (final_B)
 );
 
 endmodule
