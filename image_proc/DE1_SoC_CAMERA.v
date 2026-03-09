@@ -237,11 +237,21 @@ RAW2RGB u4 (
 // u5 — 7-segment: HEX1/0 = hand X, HEX3/2 = hand Y, HEX4 = detected flag
 //=============================================================================
 
+reg [9:0] sample_R, sample_G, sample_B;
+
+always @(posedge VGA_CLK) begin
+    if (oVGA_X == 10'd320 && oVGA_Y == 10'd240) begin
+        sample_R <= oVGA_R;
+        sample_G <= oVGA_G;
+        sample_B <= oVGA_B;
+    end
+end
+
 SEG7_LUT_6 u5 (
-    .oSEG0(HEX0), .oSEG1(HEX1),
-    .oSEG2(HEX2), .oSEG3(HEX3),
-    .oSEG4(HEX4), .oSEG5(HEX5),
-    .iDIG ({4'b0, hand_detected, 3'b0, hand_y[7:0], hand_x[7:0]})
+    .oSEG0(HEX0), .oSEG1(HEX1),   // shows R value in hex
+    .oSEG2(HEX2), .oSEG3(HEX3),   // shows B value in hex
+    .oSEG4(HEX4), .oSEG5(HEX5),   // shows G value in hex
+    .iDIG({sample_G[7:0], sample_B[7:0], sample_R[7:0]})
 );
 
 //=============================================================================
