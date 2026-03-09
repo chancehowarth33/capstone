@@ -237,21 +237,39 @@ RAW2RGB u4 (
 // u5 — 7-segment: HEX1/0 = hand X, HEX3/2 = hand Y, HEX4 = detected flag
 //=============================================================================
 
-reg [9:0] sample_R, sample_G, sample_B;
+// Accumulate a 16x16 box around screen center and average
+reg [15:0] sum_R, sum_G, sum_B;
+reg [7:0]  pix_count;
+reg [9:0]  stable_R, stable_G, stable_B;
 
 always @(posedge VGA_CLK) begin
-    if (oVGA_X == 10'd320 && oVGA_Y == 10'd240) begin
-        sample_R <= oVGA_R;
-        sample_G <= oVGA_G;
-        sample_B <= oVGA_B;
+    // On vsync falling edge, commit the average and reset accumulators
+    if (!VGA_VS) begin
+        if (pix_count > 0) begin
+            stable_R <= sum_R / pix_count;
+            stable_G <= sum_G / pix_count;
+            stable_B <= sum_B / pix_count;
+        end
+        sum_R     <= 0;
+        sum_G     <= 0;
+        sum_B     <= 0;
+        pix_count <= 0;
+    end
+    // Accumulate pixels in a 16x16 box at screen center (312-328, 232-248)
+    else if (oVGA_X >= 10'd312 && oVGA_X <= 10'd328 &&
+             oVGA_Y >= 10'd232 && oVGA_Y <= 10'd248) begin
+        sum_R     <= sum_R + oVGA_R;
+        sum_G     <= sum_G + oVGA_G;
+        sum_B     <= sum_B + oVGA_B;
+        pix_count <= pix_count + 1;
     end
 end
 
 SEG7_LUT_6 u5 (
-    .oSEG0(HEX0), .oSEG1(HEX1),   // shows R value in hex
-    .oSEG2(HEX2), .oSEG3(HEX3),   // shows B value in hex
-    .oSEG4(HEX4), .oSEG5(HEX5),   // shows G value in hex
-    .iDIG({sample_G[7:0], sample_B[7:0], sample_R[7:0]})
+    .oSEG0(HEX0), .oSEG1(HEX1),
+    .oSEG2(HEX2), .oSEG3(HEX3),
+    .oSEG4(HEX4), .oSEG5(HEX5),
+    .iDIG ({stable_G[7:0], stable_B[7:0], stable_R[7:0]})
 );
 
 //=============================================================================
