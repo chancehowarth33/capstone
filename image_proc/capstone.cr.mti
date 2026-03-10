@@ -1,0 +1,22 @@
+C:/Users/aniko/OneDrive/Desktop/ECE554/capstone/image_proc/color_detect.v {1 {vlog -work work -stats=none C:/Users/aniko/OneDrive/Desktop/ECE554/capstone/image_proc/color_detect.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module color_detect
+
+Top level modules:
+	color_detect
+
+} {} {}} C:/Users/aniko/OneDrive/Desktop/ECE554/capstone/image_proc/color_overlay_tb.v {1 {vlog -work work -stats=none C:/Users/aniko/OneDrive/Desktop/ECE554/capstone/image_proc/color_overlay_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module color_overlay_tb
+
+Top level modules:
+	color_overlay_tb
+
+} {} {}} C:/Users/aniko/OneDrive/Desktop/ECE554/capstone/image_proc/overlay.v {1 {vlog -work work -stats=none C:/Users/aniko/OneDrive/Desktop/ECE554/capstone/image_proc/overlay.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module overlay
+
+Top level modules:
+	overlay
+
+} {} {}}
