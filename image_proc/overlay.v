@@ -19,27 +19,18 @@ module overlay (
 
     parameter THICK = 10'd2;
 
-    // Center 32x32 calibration box:
-    // x = 304..335
-    // y = 224..255
     wire [9:0] cal_left   = 10'd304;
     wire [9:0] cal_right  = 10'd335;
     wire [9:0] cal_top    = 10'd224;
     wire [9:0] cal_bottom = 10'd255;
 
-    wire cal_on_top;
-    wire cal_on_bottom;
-    wire cal_on_left;
-    wire cal_on_right;
+    wire cal_on_top, cal_on_bottom, cal_on_left, cal_on_right;
     wire cal_box_on;
+    wire cal_dot_on;
 
-    wire trk_on_top;
-    wire trk_on_bottom;
-    wire trk_on_left;
-    wire trk_on_right;
+    wire trk_on_top, trk_on_bottom, trk_on_left, trk_on_right;
     wire trk_box_on;
 
-    // Calibration box
     assign cal_on_top =
         (vga_y >= cal_top) && (vga_y < cal_top + THICK) &&
         (vga_x >= cal_left) && (vga_x <= cal_right);
@@ -58,7 +49,11 @@ module overlay (
 
     assign cal_box_on = cal_on_top || cal_on_bottom || cal_on_left || cal_on_right;
 
-    // Tracking box
+    // small dot centered at (320,240), i.e. middle of the center active 32x32 block
+    assign cal_dot_on =
+        (vga_x >= 10'd318) && (vga_x <= 10'd321) &&
+        (vga_y >= 10'd238) && (vga_y <= 10'd241);
+
     assign trk_on_top =
         (vga_y >= box_top) && (vga_y < box_top + THICK) &&
         (vga_x >= box_left) && (vga_x <= box_right);
@@ -77,8 +72,8 @@ module overlay (
 
     assign trk_box_on = detected && (trk_on_top || trk_on_bottom || trk_on_left || trk_on_right);
 
-    assign R_out = (calibrate ? cal_box_on : trk_box_on) ? 10'h3FF : R_in;
-    assign G_out = (calibrate ? cal_box_on : trk_box_on) ? 10'h3FF : G_in;
-    assign B_out = (calibrate ? cal_box_on : trk_box_on) ? 10'h3FF : B_in;
+    assign R_out = (calibrate ? (cal_box_on || cal_dot_on) : trk_box_on) ? 10'h3FF : R_in;
+    assign G_out = (calibrate ? (cal_box_on || cal_dot_on) : trk_box_on) ? 10'h3FF : G_in;
+    assign B_out = (calibrate ? (cal_box_on || cal_dot_on) : trk_box_on) ? 10'h3FF : B_in;
 
 endmodule

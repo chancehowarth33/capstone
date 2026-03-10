@@ -194,7 +194,8 @@ wire auto_start;
 assign D5M_TRIGGER  = 1'b1;
 assign D5M_RESET_N  = DLY_RST_1;
 assign VGA_CTRL_CLK = VGA_CLK;
-assign LEDR         = Y_Cont[9:0];
+assign LEDR[0] = cal_valid; // debug: indicates when a new center block RGB value is captured in calibration mode
+assign LEDR[9:1] = 9'b0; // turn off other LEDs
 assign auto_start   = (KEY[0] && DLY_RST_3 && !DLY_RST_4) ? 1'b1 : 1'b0;
 
 // Route overlay output to VGA DAC (top 8 of 10 bits)
@@ -269,10 +270,14 @@ RAW2RGB u4 (
 
 // used to show the center average color values for debugging
 wire [9:0] center_avgR, center_avgG, center_avgB;
+wire [9:0] cal_sample_R, cal_sample_G, cal_sample_B;
+wire       cal_valid;
 wire [23:0] hex_data;
 
 assign hex_data = calibrate
-                ? {center_avgR[9:2], center_avgG[9:2], center_avgB[9:2]}
+                ? (cal_valid
+                    ? {cal_sample_R[9:2], cal_sample_G[9:2], cal_sample_B[9:2]}
+                    : {center_avgR[9:2],  center_avgG[9:2],  center_avgB[9:2]})
                 : {2'b00, hand_y, 2'b00, hand_x};
 
 SEG7_LUT_6 u5 (
@@ -395,27 +400,31 @@ wire calibrate;
 assign calibrate = SW[8];
 
 color_detect u_detect (
-    .clk        (VGA_CTRL_CLK),
-    .rst_n      (DLY_RST_2),
-    .vsync      (VGA_VS),
-    .active     (oVGA_ACTIVE),
-    .calibrate  (calibrate),
+    .clk         (VGA_CTRL_CLK),
+    .rst_n       (DLY_RST_2),
+    .vsync       (VGA_VS),
+    .active      (oVGA_ACTIVE),
+    .calibrate   (calibrate),
     .capture_btn_n(KEY[1]),
-    .R          (oVGA_R),
-    .G          (oVGA_G),
-    .B          (oVGA_B),
-    .vga_x      (oVGA_X),
-    .vga_y      (oVGA_Y),
-    .hand_x     (hand_x),
-    .hand_y     (hand_y),
-    .box_left   (box_left),
-    .box_right  (box_right),
-    .box_top    (box_top),
-    .box_bottom (box_bottom),
-    .detected   (hand_detected),
-    .center_avgR(center_avgR),
-    .center_avgG(center_avgG),
-    .center_avgB(center_avgB)
+    .R           (oVGA_R),
+    .G           (oVGA_G),
+    .B           (oVGA_B),
+    .vga_x       (oVGA_X),
+    .vga_y       (oVGA_Y),
+    .hand_x      (hand_x),
+    .hand_y      (hand_y),
+    .box_left    (box_left),
+    .box_right   (box_right),
+    .box_top     (box_top),
+    .box_bottom  (box_bottom),
+    .detected    (hand_detected),
+    .center_avgR (center_avgR),
+    .center_avgG (center_avgG),
+    .center_avgB (center_avgB),
+    .cal_sample_R(cal_sample_R),
+    .cal_sample_G(cal_sample_G),
+    .cal_sample_B(cal_sample_B),
+    .cal_valid   (cal_valid)
 );
 
 //=============================================================================

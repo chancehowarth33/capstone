@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Tue Mar 10 13:20:18 2026
+Analysis & Synthesis Status : Successful - Tue Mar 10 16:30:00 2026
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : DE1_SoC_CAMERA
 Top-level Entity Name : DE1_SoC_CAMERA
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 2445
+Total registers : 2436
 Total pins : 226
 Total virtual pins : 0
 Total block memory bits : 62,416

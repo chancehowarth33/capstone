@@ -4,7 +4,7 @@ module color_detect (
     input        vsync,
     input        active,
     input        calibrate,
-    input        capture_btn_n,   // connect to KEY[1], active-low
+    input        capture_btn_n,   // KEY[1], active-low
     input  [9:0] R,
     input  [9:0] G,
     input  [9:0] B,
@@ -19,13 +19,16 @@ module color_detect (
     output reg       detected,
     output reg [9:0] center_avgR,
     output reg [9:0] center_avgG,
-    output reg [9:0] center_avgB
+    output reg [9:0] center_avgB,
+    output reg [9:0] cal_sample_R,
+    output reg [9:0] cal_sample_G,
+    output reg [9:0] cal_sample_B,
+    output reg       cal_valid
 );
 
     parameter NUM_BLOCK_COLS   = 20;
     parameter MIN_MATCH_BLOCKS = 2;
 
-    // tolerance around captured calibration RGB
     parameter TOL_R = 10'd80;
     parameter TOL_G = 10'd80;
     parameter TOL_B = 10'd80;
@@ -64,11 +67,9 @@ module color_detect (
     reg [9:0] frame_min_y;
     reg [9:0] frame_max_y;
 
-    // stored calibrated reference color
     reg [9:0] cal_R;
     reg [9:0] cal_G;
     reg [9:0] cal_B;
-    reg       cal_valid;
 
     wire [19:0] cur_sum_R;
     wire [19:0] cur_sum_G;
@@ -138,6 +139,11 @@ module color_detect (
             center_avgG    <= 10'd0;
             center_avgB    <= 10'd0;
 
+            cal_sample_R   <= 10'd0;
+            cal_sample_G   <= 10'd0;
+            cal_sample_B   <= 10'd0;
+            cal_valid      <= 1'b0;
+
             centroid_sum_x <= 16'd0;
             centroid_sum_y <= 16'd0;
             match_count    <= 8'd0;
@@ -147,14 +153,13 @@ module color_detect (
             frame_min_y    <= 10'd479;
             frame_max_y    <= 10'd0;
 
-            vsync_prev     <= 1'b0;
-            capture_prev   <= 1'b1;
-            capture_pending<= 1'b0;
+            vsync_prev      <= 1'b0;
+            capture_prev    <= 1'b1;
+            capture_pending <= 1'b0;
 
-            cal_R          <= 10'd0;
-            cal_G          <= 10'd0;
-            cal_B          <= 10'd0;
-            cal_valid      <= 1'b0;
+            cal_R           <= 10'd0;
+            cal_G           <= 10'd0;
+            cal_B           <= 10'd0;
 
             for (i = 0; i < NUM_BLOCK_COLS; i = i + 1) begin
                 sum_R[i] <= 20'd0;
@@ -166,8 +171,6 @@ module color_detect (
             vsync_prev   <= vsync;
             capture_prev <= capture_btn_n;
 
-            // if button pressed during calibration mode, arm a capture.
-            // actual capture happens when the center block completes.
             if (calibrate && capture_fall)
                 capture_pending <= 1'b1;
 
@@ -212,24 +215,25 @@ module color_detect (
                 sum_B[block_col] <= next_sum_B;
 
                 if (end_of_block) begin
-                    // Always expose live center-box RGB for HEX display
                     if (is_center_block) begin
                         center_avgR <= avgR;
                         center_avgG <= avgG;
                         center_avgB <= avgB;
 
-                        // If capture requested during calibration mode,
-                        // save this center block as the new reference color.
                         if (calibrate && capture_pending) begin
                             cal_R           <= avgR;
                             cal_G           <= avgG;
                             cal_B           <= avgB;
+
+                            cal_sample_R    <= avgR;
+                            cal_sample_G    <= avgG;
+                            cal_sample_B    <= avgB;
+
                             cal_valid       <= 1'b1;
                             capture_pending <= 1'b0;
                         end
                     end
 
-                    // Only track in normal mode
                     if (!calibrate && color_match) begin
                         centroid_sum_x <= centroid_sum_x + block_center_x;
                         centroid_sum_y <= centroid_sum_y + block_center_y;
