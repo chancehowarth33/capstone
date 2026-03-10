@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC_CAMERA
-Tue Mar 10 13:20:18 2026
+Tue Mar 10 16:30:00 2026
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -124,13 +124,13 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Tue Mar 10 13:20:18 2026           ;
+; Analysis & Synthesis Status     ; Successful - Tue Mar 10 16:30:00 2026           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; DE1_SoC_CAMERA                                  ;
 ; Top-level Entity Name           ; DE1_SoC_CAMERA                                  ;
 ; Family                          ; Cyclone V                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                             ;
-; Total registers                 ; 2445                                            ;
+; Total registers                 ; 2436                                            ;
 ; Total pins                      ; 226                                             ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 62,416                                          ;
@@ -244,14 +244,12 @@ on the Quartus Prime software download page.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
+;     Processor 2            ;   0.1%      ;
 ;     Processor 3            ;   0.0%      ;
 ;     Processor 4            ;   0.0%      ;
 ;     Processor 5            ;   0.0%      ;
 ;     Processor 6            ;   0.0%      ;
-;     Processor 7            ;   0.0%      ;
-;     Processor 8            ;   0.0%      ;
-;     Processors 9-12        ;   0.0%      ;
+;     Processors 7-12        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -323,16 +321,16 @@ on the Quartus Prime software download page.
 +---------------------------------------------+-----------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                             ;
 +---------------------------------------------+-----------------------------------------------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 1740                                                                              ;
+; Estimate of Logic utilization (ALMs needed) ; 1739                                                                              ;
 ;                                             ;                                                                                   ;
-; Combinational ALUT usage for logic          ; 2400                                                                              ;
+; Combinational ALUT usage for logic          ; 2396                                                                              ;
 ;     -- 7 input functions                    ; 14                                                                                ;
-;     -- 6 input functions                    ; 641                                                                               ;
-;     -- 5 input functions                    ; 297                                                                               ;
-;     -- 4 input functions                    ; 353                                                                               ;
-;     -- <=3 input functions                  ; 1095                                                                              ;
+;     -- 6 input functions                    ; 642                                                                               ;
+;     -- 5 input functions                    ; 306                                                                               ;
+;     -- 4 input functions                    ; 374                                                                               ;
+;     -- <=3 input functions                  ; 1060                                                                              ;
 ;                                             ;                                                                                   ;
-; Dedicated logic registers                   ; 2445                                                                              ;
+; Dedicated logic registers                   ; 2436                                                                              ;
 ;                                             ;                                                                                   ;
 ; I/O pins                                    ; 226                                                                               ;
 ; Total MLAB memory bits                      ; 0                                                                                 ;
@@ -345,7 +343,7 @@ on the Quartus Prime software download page.
 ;                                             ;                                                                                   ;
 ; Maximum fan-out node                        ; sdram_pll:u6|sdram_pll_0002:sdram_pll_inst|altera_pll:altera_pll_i|outclk_wire[3] ;
 ; Maximum fan-out                             ; 1555                                                                              ;
-; Total fan-out                               ; 22264                                                                             ;
+; Total fan-out                               ; 22258                                                                             ;
 ; Average fan-out                             ; 4.09                                                                              ;
 +---------------------------------------------+-----------------------------------------------------------------------------------+
 
@@ -355,8 +353,8 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node                                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                        ; Entity Name         ; Library Name ;
 +--------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |DE1_SoC_CAMERA                                              ; 2400 (26)           ; 2445 (14)                 ; 62416             ; 0          ; 226  ; 0            ; |DE1_SoC_CAMERA                                                                                                                                                                            ; DE1_SoC_CAMERA      ; work         ;
-;    |CCD_Capture:u3|                                          ; 37 (37)             ; 42 (42)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|CCD_Capture:u3                                                                                                                                                             ; CCD_Capture         ; work         ;
+; |DE1_SoC_CAMERA                                              ; 2396 (26)           ; 2436 (14)                 ; 62416             ; 0          ; 226  ; 0            ; |DE1_SoC_CAMERA                                                                                                                                                                            ; DE1_SoC_CAMERA      ; work         ;
+;    |CCD_Capture:u3|                                          ; 28 (28)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|CCD_Capture:u3                                                                                                                                                             ; CCD_Capture         ; work         ;
 ;    |I2C_CCD_Config:u8|                                       ; 196 (140)           ; 133 (95)                  ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8                                                                                                                                                          ; I2C_CCD_Config      ; work         ;
 ;       |I2C_Controller:u0|                                    ; 56 (56)             ; 38 (38)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0                                                                                                                                        ; I2C_Controller      ; work         ;
 ;    |RAW2RGB:u4|                                              ; 61 (46)             ; 66 (55)                   ; 30672             ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|RAW2RGB:u4                                                                                                                                                                 ; RAW2RGB             ; work         ;
@@ -442,7 +440,7 @@ on the Quartus Prime software download page.
 ;       |command:u_command|                                    ; 54 (54)             ; 49 (49)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command                                                                                                                                         ; command             ; work         ;
 ;       |control_interface:u_control_interface|                ; 75 (75)             ; 59 (59)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|control_interface:u_control_interface                                                                                                                     ; control_interface   ; work         ;
 ;    |VGA_Controller:u1|                                       ; 65 (65)             ; 83 (83)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|VGA_Controller:u1                                                                                                                                                          ; VGA_Controller      ; work         ;
-;    |color_detect:u_detect|                                   ; 1211 (699)          ; 1355 (1355)               ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect                                                                                                                                                      ; color_detect        ; work         ;
+;    |color_detect:u_detect|                                   ; 1214 (702)          ; 1355 (1355)               ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect                                                                                                                                                      ; color_detect        ; work         ;
 ;       |lpm_divide:Div0|                                      ; 256 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div0                                                                                                                                      ; lpm_divide          ; work         ;
 ;          |lpm_divide_obm:auto_generated|                     ; 256 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div0|lpm_divide_obm:auto_generated                                                                                                        ; lpm_divide_obm      ; work         ;
 ;             |sign_div_unsign_ulh:divider|                    ; 256 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div0|lpm_divide_obm:auto_generated|sign_div_unsign_ulh:divider                                                                            ; sign_div_unsign_ulh ; work         ;
@@ -451,7 +449,7 @@ on the Quartus Prime software download page.
 ;          |lpm_divide_obm:auto_generated|                     ; 256 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div1|lpm_divide_obm:auto_generated                                                                                                        ; lpm_divide_obm      ; work         ;
 ;             |sign_div_unsign_ulh:divider|                    ; 256 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div1|lpm_divide_obm:auto_generated|sign_div_unsign_ulh:divider                                                                            ; sign_div_unsign_ulh ; work         ;
 ;                |alt_u_div_20f:divider|                       ; 256 (256)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div1|lpm_divide_obm:auto_generated|sign_div_unsign_ulh:divider|alt_u_div_20f:divider                                                      ; alt_u_div_20f       ; work         ;
-;    |overlay:u_overlay|                                       ; 83 (83)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|overlay:u_overlay                                                                                                                                                          ; overlay             ; work         ;
+;    |overlay:u_overlay|                                       ; 85 (85)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|overlay:u_overlay                                                                                                                                                          ; overlay             ; work         ;
 ;    |sdram_pll:u6|                                            ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|sdram_pll:u6                                                                                                                                                               ; sdram_pll           ; sdram_pll    ;
 ;       |sdram_pll_0002:sdram_pll_inst|                        ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|sdram_pll:u6|sdram_pll_0002:sdram_pll_inst                                                                                                                                 ; sdram_pll_0002      ; sdram_pll    ;
 ;          |altera_pll:altera_pll_i|                           ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|sdram_pll:u6|sdram_pll_0002:sdram_pll_inst|altera_pll:altera_pll_i                                                                                                         ; altera_pll          ; work         ;
@@ -707,6 +705,30 @@ Encoding Type:  One-Hot
 ; Sdram_Control:u7|mLENGTH[4]                                                                                                                               ; Merged with Sdram_Control:u7|mLENGTH[6]                                     ;
 ; Sdram_Control:u7|mADDR[0..2]                                                                                                                              ; Merged with Sdram_Control:u7|mADDR[3]                                       ;
 ; Sdram_Control:u7|control_interface:u_control_interface|SADDR[0..2]                                                                                        ; Merged with Sdram_Control:u7|control_interface:u_control_interface|SADDR[3] ;
+; color_detect:u_detect|cal_sample_B[5]                                                                                                                     ; Merged with color_detect:u_detect|cal_B[5]                                  ;
+; color_detect:u_detect|cal_sample_B[4]                                                                                                                     ; Merged with color_detect:u_detect|cal_B[4]                                  ;
+; color_detect:u_detect|cal_sample_B[3]                                                                                                                     ; Merged with color_detect:u_detect|cal_B[3]                                  ;
+; color_detect:u_detect|cal_sample_B[2]                                                                                                                     ; Merged with color_detect:u_detect|cal_B[2]                                  ;
+; color_detect:u_detect|cal_sample_B[9]                                                                                                                     ; Merged with color_detect:u_detect|cal_B[9]                                  ;
+; color_detect:u_detect|cal_sample_B[8]                                                                                                                     ; Merged with color_detect:u_detect|cal_B[8]                                  ;
+; color_detect:u_detect|cal_sample_B[7]                                                                                                                     ; Merged with color_detect:u_detect|cal_B[7]                                  ;
+; color_detect:u_detect|cal_sample_B[6]                                                                                                                     ; Merged with color_detect:u_detect|cal_B[6]                                  ;
+; color_detect:u_detect|cal_sample_G[5]                                                                                                                     ; Merged with color_detect:u_detect|cal_G[5]                                  ;
+; color_detect:u_detect|cal_sample_G[4]                                                                                                                     ; Merged with color_detect:u_detect|cal_G[4]                                  ;
+; color_detect:u_detect|cal_sample_G[3]                                                                                                                     ; Merged with color_detect:u_detect|cal_G[3]                                  ;
+; color_detect:u_detect|cal_sample_G[2]                                                                                                                     ; Merged with color_detect:u_detect|cal_G[2]                                  ;
+; color_detect:u_detect|cal_sample_G[9]                                                                                                                     ; Merged with color_detect:u_detect|cal_G[9]                                  ;
+; color_detect:u_detect|cal_sample_G[8]                                                                                                                     ; Merged with color_detect:u_detect|cal_G[8]                                  ;
+; color_detect:u_detect|cal_sample_G[7]                                                                                                                     ; Merged with color_detect:u_detect|cal_G[7]                                  ;
+; color_detect:u_detect|cal_sample_G[6]                                                                                                                     ; Merged with color_detect:u_detect|cal_G[6]                                  ;
+; color_detect:u_detect|cal_sample_R[5]                                                                                                                     ; Merged with color_detect:u_detect|cal_R[5]                                  ;
+; color_detect:u_detect|cal_sample_R[4]                                                                                                                     ; Merged with color_detect:u_detect|cal_R[4]                                  ;
+; color_detect:u_detect|cal_sample_R[3]                                                                                                                     ; Merged with color_detect:u_detect|cal_R[3]                                  ;
+; color_detect:u_detect|cal_sample_R[2]                                                                                                                     ; Merged with color_detect:u_detect|cal_R[2]                                  ;
+; color_detect:u_detect|cal_sample_R[9]                                                                                                                     ; Merged with color_detect:u_detect|cal_R[9]                                  ;
+; color_detect:u_detect|cal_sample_R[8]                                                                                                                     ; Merged with color_detect:u_detect|cal_R[8]                                  ;
+; color_detect:u_detect|cal_sample_R[7]                                                                                                                     ; Merged with color_detect:u_detect|cal_R[7]                                  ;
+; color_detect:u_detect|cal_sample_R[6]                                                                                                                     ; Merged with color_detect:u_detect|cal_R[6]                                  ;
 ; color_detect:u_detect|box_right[1..4]                                                                                                                     ; Merged with color_detect:u_detect|box_right[0]                              ;
 ; color_detect:u_detect|box_top[1..4]                                                                                                                       ; Merged with color_detect:u_detect|box_top[0]                                ;
 ; color_detect:u_detect|box_bottom[1..4]                                                                                                                    ; Merged with color_detect:u_detect|box_bottom[0]                             ;
@@ -729,9 +751,9 @@ Encoding Type:  One-Hot
 ; Sdram_Control:u7|control_interface:u_control_interface|SADDR[3]                                                                                           ; Stuck at GND due to stuck port data_in                                      ;
 ; I2C_CCD_Config:u8|mSetup_ST~9                                                                                                                             ; Lost fanout                                                                 ;
 ; I2C_CCD_Config:u8|mSetup_ST~10                                                                                                                            ; Lost fanout                                                                 ;
-; CCD_Capture:u3|Y_Cont[10..15]                                                                                                                             ; Lost fanout                                                                 ;
+; CCD_Capture:u3|Y_Cont[1..15]                                                                                                                              ; Lost fanout                                                                 ;
 ; I2C_CCD_Config:u8|LUT_INDEX[5]                                                                                                                            ; Stuck at GND due to stuck port data_in                                      ;
-; Total Number of Removed Registers = 118                                                                                                                   ;                                                                             ;
+; Total Number of Removed Registers = 151                                                                                                                   ;                                                                             ;
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
 
 
@@ -741,7 +763,10 @@ Encoding Type:  One-Hot
 ; Register name                        ; Reason for Removal        ; Registers Removed due to This Register                                           ;
 +--------------------------------------+---------------------------+----------------------------------------------------------------------------------+
 ; CCD_Capture:u3|Y_Cont[15]            ; Lost Fanouts              ; CCD_Capture:u3|Y_Cont[14], CCD_Capture:u3|Y_Cont[13], CCD_Capture:u3|Y_Cont[12], ;
-;                                      ;                           ; CCD_Capture:u3|Y_Cont[11], CCD_Capture:u3|Y_Cont[10]                             ;
+;                                      ;                           ; CCD_Capture:u3|Y_Cont[11], CCD_Capture:u3|Y_Cont[10], CCD_Capture:u3|Y_Cont[9],  ;
+;                                      ;                           ; CCD_Capture:u3|Y_Cont[8], CCD_Capture:u3|Y_Cont[7], CCD_Capture:u3|Y_Cont[6],    ;
+;                                      ;                           ; CCD_Capture:u3|Y_Cont[5], CCD_Capture:u3|Y_Cont[4], CCD_Capture:u3|Y_Cont[3],    ;
+;                                      ;                           ; CCD_Capture:u3|Y_Cont[2], CCD_Capture:u3|Y_Cont[1]                               ;
 ; Sdram_Control:u7|rWR1_ADDR[3]        ; Stuck at GND              ; Sdram_Control:u7|mADDR[3],                                                       ;
 ;                                      ; due to stuck port data_in ; Sdram_Control:u7|control_interface:u_control_interface|SADDR[3]                  ;
 ; I2C_CCD_Config:u8|mI2C_DATA[31]      ; Stuck at VCC              ; I2C_CCD_Config:u8|I2C_Controller:u0|SD[31]                                       ;
@@ -772,12 +797,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 2445  ;
-; Number of registers using Synchronous Clear  ; 1574  ;
+; Total registers                              ; 2436  ;
+; Number of registers using Synchronous Clear  ; 1565  ;
 ; Number of registers using Synchronous Load   ; 16    ;
-; Number of registers using Asynchronous Clear ; 2315  ;
+; Number of registers using Asynchronous Clear ; 2306  ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 1742  ;
+; Number of registers using Clock Enable       ; 1733  ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -802,6 +827,7 @@ Encoding Type:  One-Hot
 ; color_detect:u_detect|frame_min_y[0]                                                                                                                             ; 2       ;
 ; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[0]                                                                                                                ; 18      ;
 ; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[1]                                                                                                                ; 21      ;
+; color_detect:u_detect|capture_prev                                                                                                                               ; 1       ;
 ; Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_nv6:rdptr_g1p|counter5a0  ; 10      ;
 ; Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_nv6:rdptr_g1p|counter5a0  ; 10      ;
 ; I2C_CCD_Config:u8|I2C_Controller:u0|END                                                                                                                          ; 5       ;
@@ -814,7 +840,6 @@ Encoding Type:  One-Hot
 ; Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_nv6:rdptr_g1p|counter5a0 ; 9       ;
 ; Sdram_Control:u7|rRD2_ADDR[20]                                                                                                                                   ; 4       ;
 ; Sdram_Control:u7|rWR2_ADDR[20]                                                                                                                                   ; 4       ;
-; color_detect:u_detect|capture_prev                                                                                                                               ; 1       ;
 ; Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_jdc:wrptr_g1p|parity9     ; 2       ;
 ; Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_jdc:wrptr_g1p|parity9     ; 2       ;
 ; Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_jdc:wrptr_g1p|counter8a0 ; 9       ;
@@ -832,58 +857,60 @@ Encoding Type:  One-Hot
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                 ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
-; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|Y_Cont[15]                                        ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|BA[0]                         ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|centroid_sum_y[5]                          ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[0][7]                                ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[1][7]                                ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[2][16]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[3][5]                                ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[4][9]                                ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[5][12]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[6][1]                                ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[7][14]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[8][15]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[9][15]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[10][15]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[11][0]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[12][9]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[13][5]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[14][2]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[15][15]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[16][7]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[17][11]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[18][0]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[19][12]                              ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[7]                             ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_y[7]                             ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_x[5]                             ;
-; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|control_interface:u_control_interface|timer[12] ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|command_delay[6]              ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[13]                            ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|X_Cont[2]                                         ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[9]                         ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[7]                         ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|rp_shift[0]                   ;
-; 5:1                ; 19 bits   ; 57 LEs        ; 38 LEs               ; 19 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mADDR[10]                                       ;
-; 5:1                ; 20 bits   ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|RAW2RGB:u4|mCCD_B[4]                                             ;
-; 64:1               ; 4 bits    ; 168 LEs       ; 56 LEs               ; 112 LEs                ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mI2C_DATA[3]                                   ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|CMD[0]                                          ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mWR                                             ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mRD                                             ;
-; 7:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|ST[9]                                           ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[1]                ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[6]                             ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_y[6]                             ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[7]                             ;
-; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |DE1_SoC_CAMERA|RAW2RGB:u4|Add0                                                  ;
-; 20:1               ; 60 bits   ; 780 LEs       ; 780 LEs              ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|color_detect:u_detect|Mux1                                       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|BA[1]                        ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|centroid_sum_y[10]                        ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[0][18]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[1][15]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[2][3]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[3][6]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[4][14]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[5][19]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[6][9]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[7][1]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[8][5]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[9][10]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[10][10]                             ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[11][7]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[12][10]                             ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[13][6]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[14][4]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[15][4]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[16][12]                             ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[17][7]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[18][12]                             ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[19][7]                              ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[7]                            ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_y[5]                            ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_x[5]                            ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|control_interface:u_control_interface|timer[7] ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|command_delay[1]             ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|Y_Cont[0]                                        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[13]                           ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[3]                        ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[4]                        ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|rp_shift[0]                  ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|X_Cont[6]                                        ;
+; 5:1                ; 19 bits   ; 57 LEs        ; 38 LEs               ; 19 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mADDR[16]                                      ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|RAW2RGB:u4|mCCD_B[8]                                            ;
+; 64:1               ; 4 bits    ; 168 LEs       ; 56 LEs               ; 112 LEs                ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mI2C_DATA[12]                                 ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|CMD[1]                                         ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|WR_MASK[1]                                     ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|RD_MASK[0]                                     ;
+; 7:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|ST[0]                                          ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[4]               ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[6]                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_y[6]                            ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[8]                            ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[10]                                                    ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[12]                                                    ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |DE1_SoC_CAMERA|RAW2RGB:u4|Add0                                                 ;
+; 20:1               ; 60 bits   ; 780 LEs       ; 780 LEs              ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|color_detect:u_detect|Mux40                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1924,15 +1951,18 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "color_detect:u_detect"                                                                           ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port              ; Type   ; Severity ; Details                                                                             ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-; center_avgR[1..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; center_avgG[1..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; center_avgB[1..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "color_detect:u_detect"                                                                            ;
++--------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port               ; Type   ; Severity ; Details                                                                             ;
++--------------------+--------+----------+-------------------------------------------------------------------------------------+
+; center_avgR[1..0]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; center_avgG[1..0]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; center_avgB[1..0]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; cal_sample_R[1..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; cal_sample_G[1..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; cal_sample_B[1..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -2127,37 +2157,37 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 2445                        ;
+; arriav_ff             ; 2436                        ;
 ;     CLR               ; 484                         ;
 ;     CLR SCLR          ; 148                         ;
 ;     CLR SLD           ; 1                           ;
 ;     ENA               ; 47                          ;
 ;     ENA CLR           ; 275                         ;
-;     ENA CLR SCLR      ; 1407                        ;
+;     ENA CLR SCLR      ; 1398                        ;
 ;     ENA SCLR          ; 2                           ;
 ;     ENA SLD           ; 11                          ;
 ;     SCLR              ; 17                          ;
 ;     SLD               ; 4                           ;
 ;     plain             ; 49                          ;
 ; arriav_io_obuf        ; 62                          ;
-; arriav_lcell_comb     ; 2407                        ;
-;     arith             ; 655                         ;
+; arriav_lcell_comb     ; 2403                        ;
+;     arith             ; 645                         ;
 ;         0 data inputs ; 47                          ;
-;         1 data inputs ; 315                         ;
+;         1 data inputs ; 305                         ;
 ;         2 data inputs ; 61                          ;
 ;         3 data inputs ; 36                          ;
 ;         4 data inputs ; 94                          ;
 ;         5 data inputs ; 102                         ;
 ;     extend            ; 14                          ;
 ;         7 data inputs ; 14                          ;
-;     normal            ; 1628                        ;
+;     normal            ; 1634                        ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 53                          ;
-;         2 data inputs ; 319                         ;
-;         3 data inputs ; 165                         ;
-;         4 data inputs ; 253                         ;
-;         5 data inputs ; 195                         ;
-;         6 data inputs ; 641                         ;
+;         1 data inputs ; 54                          ;
+;         2 data inputs ; 310                         ;
+;         3 data inputs ; 148                         ;
+;         4 data inputs ; 274                         ;
+;         5 data inputs ; 204                         ;
+;         6 data inputs ; 642                         ;
 ;     shared            ; 110                         ;
 ;         0 data inputs ; 6                           ;
 ;         2 data inputs ; 98                          ;
@@ -2167,7 +2197,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; stratixv_ram_block    ; 86                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 32.80                       ;
-; Average LUT depth     ; 8.10                        ;
+; Average LUT depth     ; 8.12                        ;
 +-----------------------+-----------------------------+
 
 
@@ -2186,7 +2216,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Tue Mar 10 13:20:03 2026
+    Info: Processing started: Tue Mar 10 16:29:45 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC_CAMERA -c DE1_SoC_CAMERA
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -2240,14 +2270,14 @@ Warning (10034): Output port "FAN_CTRL" at DE1_SoC_CAMERA.v(87) has no driver Fi
 Warning (10034): Output port "FPGA_I2C_SCLK" at DE1_SoC_CAMERA.v(90) has no driver File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 90
 Warning (10034): Output port "IRDA_TXD" at DE1_SoC_CAMERA.v(106) has no driver File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 106
 Warning (10034): Output port "TD_RESET_N" at DE1_SoC_CAMERA.v(127) has no driver File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 127
-Info (12128): Elaborating entity "Reset_Delay" for hierarchy "Reset_Delay:u2" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 227
-Info (12128): Elaborating entity "CCD_Capture" for hierarchy "CCD_Capture:u3" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 246
+Info (12128): Elaborating entity "Reset_Delay" for hierarchy "Reset_Delay:u2" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 228
+Info (12128): Elaborating entity "CCD_Capture" for hierarchy "CCD_Capture:u3" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 247
 Warning (10036): Verilog HDL or VHDL warning at CCD_Capture.v(164): object "ifval_fedge" assigned a value but never read File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/CCD_Capture.v Line: 164
 Warning (10036): Verilog HDL or VHDL warning at CCD_Capture.v(165): object "y_cnt_d" assigned a value but never read File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/CCD_Capture.v Line: 165
 Warning (10230): Verilog HDL assignment warning at CCD_Capture.v(125): truncated value with size 32 to match size of target (16) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/CCD_Capture.v Line: 125
 Warning (10230): Verilog HDL assignment warning at CCD_Capture.v(129): truncated value with size 32 to match size of target (16) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/CCD_Capture.v Line: 129
 Warning (10230): Verilog HDL assignment warning at CCD_Capture.v(185): truncated value with size 32 to match size of target (1) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/CCD_Capture.v Line: 185
-Info (12128): Elaborating entity "RAW2RGB" for hierarchy "RAW2RGB:u4" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 263
+Info (12128): Elaborating entity "RAW2RGB" for hierarchy "RAW2RGB:u4" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 264
 Info (12128): Elaborating entity "Line_Buffer1" for hierarchy "RAW2RGB:u4|Line_Buffer1:u0" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/RAW2RGB.v Line: 83
 Info (12128): Elaborating entity "altshift_taps" for hierarchy "RAW2RGB:u4|Line_Buffer1:u0|altshift_taps:ALTSHIFT_TAPS_component" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/Line_Buffer1.v Line: 79
 Info (12130): Elaborated megafunction instantiation "RAW2RGB:u4|Line_Buffer1:u0|altshift_taps:ALTSHIFT_TAPS_component" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/Line_Buffer1.v Line: 79
@@ -2270,9 +2300,9 @@ Info (12128): Elaborating entity "cntr_7of" for hierarchy "RAW2RGB:u4|Line_Buffe
 Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_qac.tdf
     Info (12023): Found entity 1: cmpr_qac File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/db/cmpr_qac.tdf Line: 23
 Info (12128): Elaborating entity "cmpr_qac" for hierarchy "RAW2RGB:u4|Line_Buffer1:u0|altshift_taps:ALTSHIFT_TAPS_component|shift_taps_lv51:auto_generated|cntr_7of:cntr1|cmpr_qac:cmpr4" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/db/cntr_7of.tdf Line: 36
-Info (12128): Elaborating entity "SEG7_LUT_6" for hierarchy "SEG7_LUT_6:u5" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 283
+Info (12128): Elaborating entity "SEG7_LUT_6" for hierarchy "SEG7_LUT_6:u5" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 288
 Info (12128): Elaborating entity "SEG7_LUT" for hierarchy "SEG7_LUT_6:u5|SEG7_LUT:u0" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/SEG7_LUT_6.v Line: 47
-Info (12128): Elaborating entity "sdram_pll" for hierarchy "sdram_pll:u6" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 296
+Info (12128): Elaborating entity "sdram_pll" for hierarchy "sdram_pll:u6" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 301
 Info (12128): Elaborating entity "sdram_pll_0002" for hierarchy "sdram_pll:u6|sdram_pll_0002:sdram_pll_inst" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/sdram_pll.v Line: 25
 Info (12128): Elaborating entity "altera_pll" for hierarchy "sdram_pll:u6|sdram_pll_0002:sdram_pll_inst|altera_pll:altera_pll_i" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/sdram_pll/sdram_pll_0002.v Line: 94
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "wire_to_nowhere_64" into its bus
@@ -2338,7 +2368,7 @@ Info (12133): Instantiated megafunction "sdram_pll:u6|sdram_pll_0002:sdram_pll_i
     Info (12134): Parameter "duty_cycle17" = "50"
     Info (12134): Parameter "pll_type" = "General"
     Info (12134): Parameter "pll_subtype" = "General"
-Info (12128): Elaborating entity "Sdram_Control" for hierarchy "Sdram_Control:u7" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 347
+Info (12128): Elaborating entity "Sdram_Control" for hierarchy "Sdram_Control:u7" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 352
 Warning (10230): Verilog HDL assignment warning at Sdram_Control.v(385): truncated value with size 32 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 385
 Warning (10240): Verilog HDL Always Construct warning at Sdram_Control.v(423): inferring latch(es) for variable "rWR1_MAX_ADDR", which holds its previous value in one or more paths through the always construct File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 423
 Warning (10240): Verilog HDL Always Construct warning at Sdram_Control.v(423): inferring latch(es) for variable "rWR2_MAX_ADDR", which holds its previous value in one or more paths through the always construct File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 423
@@ -2568,7 +2598,7 @@ Info (12128): Elaborating entity "alt_synch_pipe_bpl" for hierarchy "Sdram_Contr
 Info (12021): Found 1 design units, including 1 entities, in source file db/dffpipe_se9.tdf
     Info (12023): Found entity 1: dffpipe_se9 File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/db/dffpipe_se9.tdf Line: 25
 Info (12128): Elaborating entity "dffpipe_se9" for hierarchy "Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_bpl:ws_dgrp|dffpipe_se9:dffpipe8" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/db/alt_synch_pipe_bpl.tdf Line: 35
-Info (12128): Elaborating entity "I2C_CCD_Config" for hierarchy "I2C_CCD_Config:u8" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 361
+Info (12128): Elaborating entity "I2C_CCD_Config" for hierarchy "I2C_CCD_Config:u8" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 366
 Warning (10230): Verilog HDL assignment warning at I2C_CCD_Config.v(86): truncated value with size 32 to match size of target (1) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/I2C_CCD_Config.v Line: 86
 Warning (10230): Verilog HDL assignment warning at I2C_CCD_Config.v(87): truncated value with size 32 to match size of target (1) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/I2C_CCD_Config.v Line: 87
 Warning (10230): Verilog HDL assignment warning at I2C_CCD_Config.v(109): truncated value with size 32 to match size of target (25) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/I2C_CCD_Config.v Line: 109
@@ -2579,7 +2609,7 @@ Info (12128): Elaborating entity "I2C_Controller" for hierarchy "I2C_CCD_Config:
 Warning (10230): Verilog HDL assignment warning at I2C_Controller.v(71): truncated value with size 32 to match size of target (1) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/I2C_Controller.v Line: 71
 Warning (10230): Verilog HDL assignment warning at I2C_Controller.v(70): truncated value with size 32 to match size of target (1) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/I2C_Controller.v Line: 70
 Warning (10230): Verilog HDL assignment warning at I2C_Controller.v(83): truncated value with size 32 to match size of target (7) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/I2C_Controller.v Line: 83
-Info (12128): Elaborating entity "VGA_Controller" for hierarchy "VGA_Controller:u1" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 385
+Info (12128): Elaborating entity "VGA_Controller" for hierarchy "VGA_Controller:u1" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 390
 Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(128): truncated value with size 32 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/VGA_Controller.v Line: 128
 Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(131): truncated value with size 32 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/VGA_Controller.v Line: 131
 Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(134): truncated value with size 32 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/VGA_Controller.v Line: 134
@@ -2587,19 +2617,19 @@ Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(162): trunca
 Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(163): truncated value with size 32 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/VGA_Controller.v Line: 163
 Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(198): truncated value with size 32 to match size of target (13) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/VGA_Controller.v Line: 198
 Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(224): truncated value with size 32 to match size of target (13) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/VGA_Controller.v Line: 224
-Info (12128): Elaborating entity "color_detect" for hierarchy "color_detect:u_detect" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 419
-Warning (10230): Verilog HDL assignment warning at color_detect.v(177): truncated value with size 16 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 177
-Warning (10230): Verilog HDL assignment warning at color_detect.v(178): truncated value with size 16 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 178
-Info (12128): Elaborating entity "overlay" for hierarchy "overlay:u_overlay" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 443
+Info (12128): Elaborating entity "color_detect" for hierarchy "color_detect:u_detect" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 428
+Warning (10230): Verilog HDL assignment warning at color_detect.v(180): truncated value with size 16 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 180
+Warning (10230): Verilog HDL assignment warning at color_detect.v(181): truncated value with size 16 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 181
+Info (12128): Elaborating entity "overlay" for hierarchy "overlay:u_overlay" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 452
 Warning (14284): Synthesized away the following node(s):
     Warning (14285): Synthesized away the following RAM node(s):
         Warning (14320): Synthesized away node "Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|altsyncram_86d1:fifo_ram|q_b[15]" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/db/altsyncram_86d1.tdf Line: 522
         Warning (14320): Synthesized away node "Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|altsyncram_86d1:fifo_ram|q_b[15]" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/db/altsyncram_86d1.tdf Line: 522
 Info (278001): Inferred 2 megafunctions from design logic
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "color_detect:u_detect|Div0" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 177
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "color_detect:u_detect|Div1" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 178
-Info (12130): Elaborated megafunction instantiation "color_detect:u_detect|lpm_divide:Div0" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 177
-Info (12133): Instantiated megafunction "color_detect:u_detect|lpm_divide:Div0" with the following parameter: File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 177
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "color_detect:u_detect|Div0" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 180
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "color_detect:u_detect|Div1" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 181
+Info (12130): Elaborated megafunction instantiation "color_detect:u_detect|lpm_divide:Div0" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 180
+Info (12133): Instantiated megafunction "color_detect:u_detect|lpm_divide:Div0" with the following parameter: File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 180
     Info (12134): Parameter "LPM_WIDTHN" = "16"
     Info (12134): Parameter "LPM_WIDTHD" = "8"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -2668,11 +2698,20 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "FAN_CTRL" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 87
     Warning (13410): Pin "FPGA_I2C_SCLK" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 90
     Warning (13410): Pin "IRDA_TXD" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 106
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 112
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 112
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 112
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 112
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 112
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 112
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 112
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 112
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 112
     Warning (13410): Pin "TD_RESET_N" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 127
     Warning (13410): Pin "VGA_SYNC_N" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 137
     Warning (13410): Pin "D5M_TRIGGER" is stuck at VCC File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 149
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 25 registers lost all their fanouts during netlist optimizations.
+Info (17049): 34 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 12 node(s), including 0 DDIO, 4 PLL, 0 transceiver and 0 LCELL
 Warning: RST port on the PLL is not properly connected on instance sdram_pll:u6|sdram_pll_0002:sdram_pll_inst|altera_pll:altera_pll_i|general[1].gpll. The reset port on the PLL should be connected. If the PLL loses lock for any reason, you might need to manually reset the PLL in order to re-establish lock to the reference clock. File: c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altera_pll.v Line: 749
@@ -2708,16 +2747,16 @@ Warning (21074): Design contains 24 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "TD_HS" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 126
     Warning (15610): No output dependent on input pin "TD_VS" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 128
     Warning (15610): No output dependent on input pin "D5M_STROBE" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 148
-Info (21057): Implemented 4463 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 4459 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 48 input pins
     Info (21059): Implemented 116 output pins
     Info (21060): Implemented 62 bidirectional pins
-    Info (21061): Implemented 4147 logic cells
+    Info (21061): Implemented 4143 logic cells
     Info (21064): Implemented 86 RAM segments
     Info (21065): Implemented 4 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 141 warnings
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 150 warnings
     Info: Peak virtual memory: 4979 megabytes
-    Info: Processing ended: Tue Mar 10 13:20:18 2026
+    Info: Processing ended: Tue Mar 10 16:30:00 2026
     Info: Elapsed time: 00:00:15
     Info: Total CPU time (on all processors): 00:00:27
 
