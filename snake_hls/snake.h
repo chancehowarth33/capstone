@@ -1,8 +1,6 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
-#include <ac_int.h>
-
 //-----------------------------------------------------------------------------
 // Grid parameters
 // The VGA output is 640x480. We reuse the same 32x32 block grid as
@@ -28,28 +26,48 @@
 #define SPEED_DIV     15    // snake moves at ~4 steps per second
 
 //-----------------------------------------------------------------------------
-// HLS-friendly fixed-width integer types
+// Types
+//   __SYNTHESIS__ is defined by Catapult during HLS — use exact-width ac_int.
+//   Without it (plain g++ testbench) fall back to standard C++ types.
 //-----------------------------------------------------------------------------
-typedef ac_int<5,  false> col_t;    // 0-19  (5 bits)
-typedef ac_int<4,  false> row_t;    // 0-14  (4 bits)
-typedef ac_int<8,  false> len_t;    // 0-255 (covers MAX_LENGTH=300, use 9 if needed)
-typedef ac_int<10, false> pix_t;    // 0-639 / 0-479 pixel coordinate
-typedef ac_int<10, false> rgb_t;    // 10-bit color channel
-typedef ac_int<4,  false> spd_t;    // frame divider counter
+#ifdef __SYNTHESIS__
+  #include <ac_int.h>
+  typedef ac_int<5,  false> col_t;     // 0-19  grid column
+  typedef ac_int<4,  false> row_t;     // 0-14  grid row
+  typedef ac_int<8,  false> len_t;     // snake length (≤ MAX_LENGTH=300)
+  typedef ac_int<10, false> pix_t;     // pixel coordinate 0-639 / 0-479
+  typedef ac_int<10, false> rgb_t;     // 10-bit colour channel
+  typedef ac_int<4,  false> spd_t;     // frame-divider counter
+  typedef ac_int<2,  false> dir_t;     // direction (2 bits)
+  typedef ac_int<1,  false> state_t;   // game state (1 bit)
+  typedef ac_int<16, false> lfsr_t;    // 16-bit LFSR
+  typedef ac_int<11, true>  sdelta_t;  // signed hand-position delta
+  typedef ac_int<9,  false> len9_t;    // 9-bit length counter (covers 300)
+#else
+  typedef unsigned int   col_t;
+  typedef unsigned int   row_t;
+  typedef unsigned int   len_t;
+  typedef unsigned int   pix_t;
+  typedef unsigned int   rgb_t;
+  typedef unsigned int   spd_t;
+  typedef unsigned int   dir_t;
+  typedef unsigned int   state_t;
+  typedef unsigned short lfsr_t;       // 16-bit LFSR
+  typedef int            sdelta_t;     // signed hand-position delta
+  typedef unsigned int   len9_t;
+#endif
 
 //-----------------------------------------------------------------------------
-// Direction
+// Direction constants
 //-----------------------------------------------------------------------------
-typedef ac_int<2, false> dir_t;
 #define DIR_UP    ((dir_t)0)
 #define DIR_DOWN  ((dir_t)1)
 #define DIR_LEFT  ((dir_t)2)
 #define DIR_RIGHT ((dir_t)3)
 
 //-----------------------------------------------------------------------------
-// Game state
+// Game-state constants
 //-----------------------------------------------------------------------------
-typedef ac_int<1, false> state_t;
 #define STATE_RUNNING   ((state_t)0)
 #define STATE_GAME_OVER ((state_t)1)
 
