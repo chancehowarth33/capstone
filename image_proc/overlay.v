@@ -30,6 +30,7 @@ module overlay (
 
     wire trk_on_top, trk_on_bottom, trk_on_left, trk_on_right;
     wire trk_box_on;
+    wire trk_dot_on;
 
     assign cal_on_top =
         (vga_y >= cal_top) && (vga_y < cal_top + THICK) &&
@@ -49,7 +50,7 @@ module overlay (
 
     assign cal_box_on = cal_on_top || cal_on_bottom || cal_on_left || cal_on_right;
 
-    // small dot centered at (320,240), i.e. middle of the center active 32x32 block
+    // center dot for calibration box at (320,240)
     assign cal_dot_on =
         (vga_x >= 10'd318) && (vga_x <= 10'd321) &&
         (vga_y >= 10'd238) && (vga_y <= 10'd241);
@@ -72,8 +73,13 @@ module overlay (
 
     assign trk_box_on = detected && (trk_on_top || trk_on_bottom || trk_on_left || trk_on_right);
 
-    assign R_out = (calibrate ? (cal_box_on || cal_dot_on) : trk_box_on) ? 10'h3FF : R_in;
-    assign G_out = (calibrate ? (cal_box_on || cal_dot_on) : trk_box_on) ? 10'h3FF : G_in;
-    assign B_out = (calibrate ? (cal_box_on || cal_dot_on) : trk_box_on) ? 10'h3FF : B_in;
+    // center dot at filtered hand_x/hand_y
+    assign trk_dot_on = detected &&
+        (vga_x >= (hand_x - 10'd2)) && (vga_x <= (hand_x + 10'd2)) &&
+        (vga_y >= (hand_y - 10'd2)) && (vga_y <= (hand_y + 10'd2));
+
+    assign R_out = (calibrate ? (cal_box_on || cal_dot_on) : (trk_box_on || trk_dot_on)) ? 10'h3FF : R_in;
+    assign G_out = (calibrate ? (cal_box_on || cal_dot_on) : (trk_box_on || trk_dot_on)) ? 10'h3FF : G_in;
+    assign B_out = (calibrate ? (cal_box_on || cal_dot_on) : (trk_box_on || trk_dot_on)) ? 10'h3FF : B_in;
 
 endmodule

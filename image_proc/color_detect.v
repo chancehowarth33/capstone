@@ -27,10 +27,10 @@ module color_detect (
 );
 
     parameter NUM_BLOCK_COLS   = 20;
-    parameter MIN_MATCH_BLOCKS = 2;
+    parameter MIN_MATCH_BLOCKS = 1;
 
     parameter TOL_R = 10'd80;
-    parameter TOL_G = 10'd80;
+    parameter TOL_G = 10'd100;
     parameter TOL_B = 10'd80;
 
     integer i;

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC_CAMERA
-Tue Mar 10 16:30:00 2026
+Tue Mar 10 16:50:12 2026
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -124,7 +124,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Tue Mar 10 16:30:00 2026           ;
+; Analysis & Synthesis Status     ; Successful - Tue Mar 10 16:50:12 2026           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; DE1_SoC_CAMERA                                  ;
 ; Top-level Entity Name           ; DE1_SoC_CAMERA                                  ;
@@ -249,7 +249,9 @@ on the Quartus Prime software download page.
 ;     Processor 4            ;   0.0%      ;
 ;     Processor 5            ;   0.0%      ;
 ;     Processor 6            ;   0.0%      ;
-;     Processors 7-12        ;   0.0%      ;
+;     Processor 7            ;   0.0%      ;
+;     Processor 8            ;   0.0%      ;
+;     Processors 9-12        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -321,14 +323,14 @@ on the Quartus Prime software download page.
 +---------------------------------------------+-----------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                             ;
 +---------------------------------------------+-----------------------------------------------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 1739                                                                              ;
+; Estimate of Logic utilization (ALMs needed) ; 1750                                                                              ;
 ;                                             ;                                                                                   ;
-; Combinational ALUT usage for logic          ; 2396                                                                              ;
+; Combinational ALUT usage for logic          ; 2440                                                                              ;
 ;     -- 7 input functions                    ; 14                                                                                ;
-;     -- 6 input functions                    ; 642                                                                               ;
-;     -- 5 input functions                    ; 306                                                                               ;
-;     -- 4 input functions                    ; 374                                                                               ;
-;     -- <=3 input functions                  ; 1060                                                                              ;
+;     -- 6 input functions                    ; 641                                                                               ;
+;     -- 5 input functions                    ; 320                                                                               ;
+;     -- 4 input functions                    ; 372                                                                               ;
+;     -- <=3 input functions                  ; 1093                                                                              ;
 ;                                             ;                                                                                   ;
 ; Dedicated logic registers                   ; 2436                                                                              ;
 ;                                             ;                                                                                   ;
@@ -343,8 +345,8 @@ on the Quartus Prime software download page.
 ;                                             ;                                                                                   ;
 ; Maximum fan-out node                        ; sdram_pll:u6|sdram_pll_0002:sdram_pll_inst|altera_pll:altera_pll_i|outclk_wire[3] ;
 ; Maximum fan-out                             ; 1555                                                                              ;
-; Total fan-out                               ; 22258                                                                             ;
-; Average fan-out                             ; 4.09                                                                              ;
+; Total fan-out                               ; 22378                                                                             ;
+; Average fan-out                             ; 4.08                                                                              ;
 +---------------------------------------------+-----------------------------------------------------------------------------------+
 
 
@@ -353,7 +355,7 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node                                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                        ; Entity Name         ; Library Name ;
 +--------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |DE1_SoC_CAMERA                                              ; 2396 (26)           ; 2436 (14)                 ; 62416             ; 0          ; 226  ; 0            ; |DE1_SoC_CAMERA                                                                                                                                                                            ; DE1_SoC_CAMERA      ; work         ;
+; |DE1_SoC_CAMERA                                              ; 2440 (26)           ; 2436 (14)                 ; 62416             ; 0          ; 226  ; 0            ; |DE1_SoC_CAMERA                                                                                                                                                                            ; DE1_SoC_CAMERA      ; work         ;
 ;    |CCD_Capture:u3|                                          ; 28 (28)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|CCD_Capture:u3                                                                                                                                                             ; CCD_Capture         ; work         ;
 ;    |I2C_CCD_Config:u8|                                       ; 196 (140)           ; 133 (95)                  ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8                                                                                                                                                          ; I2C_CCD_Config      ; work         ;
 ;       |I2C_Controller:u0|                                    ; 56 (56)             ; 38 (38)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0                                                                                                                                        ; I2C_Controller      ; work         ;
@@ -449,7 +451,7 @@ on the Quartus Prime software download page.
 ;          |lpm_divide_obm:auto_generated|                     ; 256 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div1|lpm_divide_obm:auto_generated                                                                                                        ; lpm_divide_obm      ; work         ;
 ;             |sign_div_unsign_ulh:divider|                    ; 256 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div1|lpm_divide_obm:auto_generated|sign_div_unsign_ulh:divider                                                                            ; sign_div_unsign_ulh ; work         ;
 ;                |alt_u_div_20f:divider|                       ; 256 (256)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div1|lpm_divide_obm:auto_generated|sign_div_unsign_ulh:divider|alt_u_div_20f:divider                                                      ; alt_u_div_20f       ; work         ;
-;    |overlay:u_overlay|                                       ; 85 (85)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|overlay:u_overlay                                                                                                                                                          ; overlay             ; work         ;
+;    |overlay:u_overlay|                                       ; 129 (129)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|overlay:u_overlay                                                                                                                                                          ; overlay             ; work         ;
 ;    |sdram_pll:u6|                                            ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|sdram_pll:u6                                                                                                                                                               ; sdram_pll           ; sdram_pll    ;
 ;       |sdram_pll_0002:sdram_pll_inst|                        ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|sdram_pll:u6|sdram_pll_0002:sdram_pll_inst                                                                                                                                 ; sdram_pll_0002      ; sdram_pll    ;
 ;          |altera_pll:altera_pll_i|                           ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|sdram_pll:u6|sdram_pll_0002:sdram_pll_inst|altera_pll:altera_pll_i                                                                                                         ; altera_pll          ; work         ;
@@ -817,14 +819,14 @@ Encoding Type:  One-Hot
 ; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[4]                                                                                                                ; 14      ;
 ; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[3]                                                                                                                ; 23      ;
 ; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[2]                                                                                                                ; 19      ;
-; color_detect:u_detect|frame_min_x[9]                                                                                                                             ; 2       ;
-; color_detect:u_detect|frame_min_x[6]                                                                                                                             ; 2       ;
-; color_detect:u_detect|frame_min_x[5]                                                                                                                             ; 2       ;
-; color_detect:u_detect|frame_min_x[0]                                                                                                                             ; 3       ;
 ; color_detect:u_detect|frame_min_y[8]                                                                                                                             ; 3       ;
 ; color_detect:u_detect|frame_min_y[7]                                                                                                                             ; 3       ;
 ; color_detect:u_detect|frame_min_y[6]                                                                                                                             ; 3       ;
 ; color_detect:u_detect|frame_min_y[0]                                                                                                                             ; 2       ;
+; color_detect:u_detect|frame_min_x[9]                                                                                                                             ; 2       ;
+; color_detect:u_detect|frame_min_x[6]                                                                                                                             ; 2       ;
+; color_detect:u_detect|frame_min_x[5]                                                                                                                             ; 2       ;
+; color_detect:u_detect|frame_min_x[0]                                                                                                                             ; 3       ;
 ; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[0]                                                                                                                ; 18      ;
 ; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[1]                                                                                                                ; 21      ;
 ; color_detect:u_detect|capture_prev                                                                                                                               ; 1       ;
@@ -1863,10 +1865,10 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Parameter Name   ; Value      ; Type                               ;
 +------------------+------------+------------------------------------+
 ; NUM_BLOCK_COLS   ; 20         ; Signed Integer                     ;
-; MIN_MATCH_BLOCKS ; 2          ; Signed Integer                     ;
-; TOL_R            ; 0001010000 ; Unsigned Binary                    ;
-; TOL_G            ; 0001010000 ; Unsigned Binary                    ;
-; TOL_B            ; 0001010000 ; Unsigned Binary                    ;
+; MIN_MATCH_BLOCKS ; 1          ; Signed Integer                     ;
+; TOL_R            ; 0001100100 ; Unsigned Binary                    ;
+; TOL_G            ; 0001100100 ; Unsigned Binary                    ;
+; TOL_B            ; 0001100100 ; Unsigned Binary                    ;
 +------------------+------------+------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -2170,24 +2172,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     SLD               ; 4                           ;
 ;     plain             ; 49                          ;
 ; arriav_io_obuf        ; 62                          ;
-; arriav_lcell_comb     ; 2403                        ;
-;     arith             ; 645                         ;
+; arriav_lcell_comb     ; 2447                        ;
+;     arith             ; 679                         ;
 ;         0 data inputs ; 47                          ;
-;         1 data inputs ; 305                         ;
-;         2 data inputs ; 61                          ;
+;         1 data inputs ; 337                         ;
+;         2 data inputs ; 63                          ;
 ;         3 data inputs ; 36                          ;
 ;         4 data inputs ; 94                          ;
 ;         5 data inputs ; 102                         ;
 ;     extend            ; 14                          ;
 ;         7 data inputs ; 14                          ;
-;     normal            ; 1634                        ;
+;     normal            ; 1644                        ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 54                          ;
-;         2 data inputs ; 310                         ;
+;         2 data inputs ; 309                         ;
 ;         3 data inputs ; 148                         ;
-;         4 data inputs ; 274                         ;
-;         5 data inputs ; 204                         ;
-;         6 data inputs ; 642                         ;
+;         4 data inputs ; 272                         ;
+;         5 data inputs ; 218                         ;
+;         6 data inputs ; 641                         ;
 ;     shared            ; 110                         ;
 ;         0 data inputs ; 6                           ;
 ;         2 data inputs ; 98                          ;
@@ -2216,7 +2218,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Tue Mar 10 16:29:45 2026
+    Info: Processing started: Tue Mar 10 16:49:57 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC_CAMERA -c DE1_SoC_CAMERA
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -2747,17 +2749,17 @@ Warning (21074): Design contains 24 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "TD_HS" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 126
     Warning (15610): No output dependent on input pin "TD_VS" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 128
     Warning (15610): No output dependent on input pin "D5M_STROBE" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 148
-Info (21057): Implemented 4459 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 4503 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 48 input pins
     Info (21059): Implemented 116 output pins
     Info (21060): Implemented 62 bidirectional pins
-    Info (21061): Implemented 4143 logic cells
+    Info (21061): Implemented 4187 logic cells
     Info (21064): Implemented 86 RAM segments
     Info (21065): Implemented 4 PLLs
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 150 warnings
-    Info: Peak virtual memory: 4979 megabytes
-    Info: Processing ended: Tue Mar 10 16:30:00 2026
+    Info: Peak virtual memory: 4997 megabytes
+    Info: Processing ended: Tue Mar 10 16:50:12 2026
     Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:27
+    Info: Total CPU time (on all processors): 00:00:28
 
 
