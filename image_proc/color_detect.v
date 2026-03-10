@@ -157,6 +157,7 @@ module color_detect (
                 sum_G[block_col] <= next_sum_G;
                 sum_B[block_col] <= next_sum_B;
 
+                // need to adjust color sensitivity thresholds for different lighting conditions
                 if (end_of_block) begin
                     if ((avgR > 10'd350) &&
                         (avgR > (avgG + 10'd100)) &&
