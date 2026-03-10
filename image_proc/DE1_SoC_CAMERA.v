@@ -2,18 +2,45 @@
 // Hand tracking PoC — D5M camera feed with color-based centroid detection
 // and crosshair overlay on VGA output.
 //
-// SW[0]  : camera exposure decrease
-// SW[8]  : calibrate mode (show fixed box instead of tracking box)
-// SW[9]  : zoom mode
-// KEY[0] : reset
-// KEY[1] : exposure adjust
-// KEY[2] : stop capture
-// KEY[3] : start capture
+// SW[0]  : exposure direction select
+//          0 = increase exposure when KEY[1] is pressed
+//          1 = decrease exposure when KEY[1] is pressed
 //
-// HEX0/1 : hand X coordinate (0-639)
-// HEX2/3 : hand Y coordinate (0-479)
-// HEX4   : shows detected flag
-// LEDR   : Y frame counter (debug)
+// SW[8]  : calibration mode enable
+//          0 = normal tracking mode
+//          1 = calibration mode
+//              - draw a fixed 32x32 box in the center of the screen
+//              - HEX displays the average RGB value of that center block
+//              - KEY[1] captures the current RGB values for calibration
+//
+// SW[9]  : camera zoom mode
+//          0 = normal sensor window
+//          1 = zoomed / cropped sensor window
+//
+// KEY[0] : system reset
+//
+// KEY[1] : dual function button
+//          normal mode (SW[8] = 0):
+//              adjust exposure step in the direction selected by SW[0]
+//          calibration mode (SW[8] = 1):
+//              capture the RGB value of the center 32x32 block
+//
+// KEY[2] : stop camera capture
+// KEY[3] : start camera capture
+//
+// HEX display behavior:
+//
+// normal mode:
+//      HEX5 HEX4 HEX3 HEX2 HEX1 HEX0
+//      show hand position from color tracking
+//      HEX3 HEX2 HEX1 HEX0 = hand_x / hand_y values
+//
+// calibration mode:
+//      HEX5 HEX4 = center block average R
+//      HEX3 HEX2 = center block average G
+//      HEX1 HEX0 = center block average B
+//
+// LEDR : debug display (currently shows Y_Cont[9:0])
 
 module DE1_SoC_CAMERA(
 
@@ -325,7 +352,7 @@ Sdram_Control u7 (
 I2C_CCD_Config u8 (
     .iCLK           (CLOCK2_50),
     .iRST_N         (DLY_RST_2),
-    .iEXPOSURE_ADJ  (KEY[1]),
+    .iEXPOSURE_ADJ  (calibrate ? 1'b1 : KEY[1]), // calibration mode uses KEY[1] to capture center block RGB values instead of adjusting exposure
     .iEXPOSURE_DEC_p(SW[0]),
     .iZOOM_MODE_SW  (SW[9]),
     .I2C_SCLK       (D5M_SCLK),
