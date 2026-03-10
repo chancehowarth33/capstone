@@ -183,6 +183,7 @@ wire [9:0] hand_x, hand_y;
 wire       hand_detected;
 
 wire [9:0] final_R, final_G, final_B;
+wire VGA_CTRL_CLK;
 
 wire auto_start;
 
@@ -388,12 +389,18 @@ VGA_Controller u1 (
 //=============================================================================
 
 wire [9:0] box_left, box_right, box_top, box_bottom;
+// when calibrate is high, show a fixed box in the center of the screen for camera calibration. 
+// otherwise, show the tracking box and crosshair based on detected hand position.
+wire calibrate;
+assign calibrate = SW[8];
 
 color_detect u_detect (
     .clk        (VGA_CTRL_CLK),
     .rst_n      (DLY_RST_2),
     .vsync      (VGA_VS),
     .active     (oVGA_ACTIVE),
+    .calibrate  (calibrate),
+    .capture_btn_n(KEY[1]),
     .R          (oVGA_R),
     .G          (oVGA_G),
     .B          (oVGA_B),
@@ -415,10 +422,6 @@ color_detect u_detect (
 // u_overlay — crosshair renderer
 //=============================================================================
 
-// when calibrate is high, show a fixed box in the center of the screen for camera calibration. 
-// otherwise, show the tracking box and crosshair
-wire calibrate;
-assign calibrate = SW[8];
 
 overlay u_overlay (
     .R_in      (oVGA_R),
