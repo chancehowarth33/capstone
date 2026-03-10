@@ -3,6 +3,7 @@
 // and crosshair overlay on VGA output.
 //
 // SW[0]  : camera exposure decrease
+// SW[8]  : calibrate mode (show fixed box instead of tracking box)
 // SW[9]  : zoom mode
 // KEY[0] : reset
 // KEY[1] : exposure adjust
@@ -238,11 +239,19 @@ RAW2RGB u4 (
 // HEX5/4 = hand_y, HEX3/2 = hand_x, HEX1 = detected flag, HEX0 = unused
 //=============================================================================
 
+// used to show the center average color values for debugging
+wire [9:0] center_avgR, center_avgG, center_avgB;
+wire [23:0] hex_data;
+
+assign hex_data = calibrate
+                ? {center_avgR[9:2], center_avgG[9:2], center_avgB[9:2]}
+                : {2'b00, hand_y, 2'b00, hand_x};
+
 SEG7_LUT_6 u5 (
     .oSEG0(HEX0), .oSEG1(HEX1),
     .oSEG2(HEX2), .oSEG3(HEX3),
     .oSEG4(HEX4), .oSEG5(HEX5),
-    .iDIG ({2'b00, hand_y, 2'b00, hand_x})
+    .iDIG (hex_data)
 );
 
 //=============================================================================
@@ -354,27 +363,35 @@ VGA_Controller u1 (
 wire [9:0] box_left, box_right, box_top, box_bottom;
 
 color_detect u_detect (
-    .clk       (VGA_CTRL_CLK),
-    .rst_n     (DLY_RST_2),
-    .vsync     (VGA_VS),
-    .active    (oVGA_ACTIVE),
-    .R         (oVGA_R),
-    .G         (oVGA_G),
-    .B         (oVGA_B),
-    .vga_x     (oVGA_X),
-    .vga_y     (oVGA_Y),
-    .hand_x    (hand_x),
-    .hand_y    (hand_y),
-    .box_left  (box_left),
-    .box_right (box_right),
-    .box_top   (box_top),
-    .box_bottom(box_bottom),
-    .detected  (hand_detected)
+    .clk        (VGA_CTRL_CLK),
+    .rst_n      (DLY_RST_2),
+    .vsync      (VGA_VS),
+    .active     (oVGA_ACTIVE),
+    .R          (oVGA_R),
+    .G          (oVGA_G),
+    .B          (oVGA_B),
+    .vga_x      (oVGA_X),
+    .vga_y      (oVGA_Y),
+    .hand_x     (hand_x),
+    .hand_y     (hand_y),
+    .box_left   (box_left),
+    .box_right  (box_right),
+    .box_top    (box_top),
+    .box_bottom (box_bottom),
+    .detected   (hand_detected),
+    .center_avgR(center_avgR),
+    .center_avgG(center_avgG),
+    .center_avgB(center_avgB)
 );
 
 //=============================================================================
 // u_overlay — crosshair renderer
 //=============================================================================
+
+// when calibrate is high, show a fixed box in the center of the screen for camera calibration. 
+// otherwise, show the tracking box and crosshair
+wire calibrate;
+assign calibrate = SW[8];
 
 overlay u_overlay (
     .R_in      (oVGA_R),
@@ -389,6 +406,7 @@ overlay u_overlay (
     .box_top   (box_top),
     .box_bottom(box_bottom),
     .detected  (hand_detected),
+    .calibrate (calibrate),
     .R_out     (final_R),
     .G_out     (final_G),
     .B_out     (final_B)

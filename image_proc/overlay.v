@@ -11,51 +11,74 @@ module overlay (
     input  [9:0] box_top,
     input  [9:0] box_bottom,
     input        detected,
+    input        calibrate,
     output [9:0] R_out,
     output [9:0] G_out,
     output [9:0] B_out
 );
 
-    parameter BOX_THICK = 10'd2;
-    parameter DOT_R     = 10'd4;
+    parameter THICK = 10'd2;
 
-    wire on_top;
-    wire on_bottom;
-    wire on_left;
-    wire on_right;
-    wire on_box;
+    // Center 32x32 calibration box:
+    // x = 304..335
+    // y = 224..255
+    wire [9:0] cal_left   = 10'd304;
+    wire [9:0] cal_right  = 10'd335;
+    wire [9:0] cal_top    = 10'd224;
+    wire [9:0] cal_bottom = 10'd255;
 
-    wire signed [10:0] dx;
-    wire signed [10:0] dy;
-    wire [21:0] dist2;
-    wire on_dot;
+    wire cal_on_top;
+    wire cal_on_bottom;
+    wire cal_on_left;
+    wire cal_on_right;
+    wire cal_box_on;
 
-    assign on_top =
-        (vga_y >= box_top) && (vga_y < box_top + BOX_THICK) &&
+    wire trk_on_top;
+    wire trk_on_bottom;
+    wire trk_on_left;
+    wire trk_on_right;
+    wire trk_box_on;
+
+    // Calibration box
+    assign cal_on_top =
+        (vga_y >= cal_top) && (vga_y < cal_top + THICK) &&
+        (vga_x >= cal_left) && (vga_x <= cal_right);
+
+    assign cal_on_bottom =
+        (vga_y <= cal_bottom) && (vga_y > cal_bottom - THICK) &&
+        (vga_x >= cal_left) && (vga_x <= cal_right);
+
+    assign cal_on_left =
+        (vga_x >= cal_left) && (vga_x < cal_left + THICK) &&
+        (vga_y >= cal_top) && (vga_y <= cal_bottom);
+
+    assign cal_on_right =
+        (vga_x <= cal_right) && (vga_x > cal_right - THICK) &&
+        (vga_y >= cal_top) && (vga_y <= cal_bottom);
+
+    assign cal_box_on = cal_on_top || cal_on_bottom || cal_on_left || cal_on_right;
+
+    // Tracking box
+    assign trk_on_top =
+        (vga_y >= box_top) && (vga_y < box_top + THICK) &&
         (vga_x >= box_left) && (vga_x <= box_right);
 
-    assign on_bottom =
-        (vga_y <= box_bottom) && (vga_y > box_bottom - BOX_THICK) &&
+    assign trk_on_bottom =
+        (vga_y <= box_bottom) && (vga_y > box_bottom - THICK) &&
         (vga_x >= box_left) && (vga_x <= box_right);
 
-    assign on_left =
-        (vga_x >= box_left) && (vga_x < box_left + BOX_THICK) &&
+    assign trk_on_left =
+        (vga_x >= box_left) && (vga_x < box_left + THICK) &&
         (vga_y >= box_top) && (vga_y <= box_bottom);
 
-    assign on_right =
-        (vga_x <= box_right) && (vga_x > box_right - BOX_THICK) &&
+    assign trk_on_right =
+        (vga_x <= box_right) && (vga_x > box_right - THICK) &&
         (vga_y >= box_top) && (vga_y <= box_bottom);
 
-    assign on_box = on_top || on_bottom || on_left || on_right;
+    assign trk_box_on = detected && (trk_on_top || trk_on_bottom || trk_on_left || trk_on_right);
 
-    assign dx = $signed({1'b0, vga_x}) - $signed({1'b0, hand_x});
-    assign dy = $signed({1'b0, vga_y}) - $signed({1'b0, hand_y});
-
-    assign dist2 = dx*dx + dy*dy;
-    assign on_dot = (dist2 <= (DOT_R * DOT_R));
-
-    assign R_out = (detected && (on_box || on_dot)) ? 10'h3FF : R_in;
-    assign G_out = (detected && (on_box || on_dot)) ? 10'h3FF : G_in;
-    assign B_out = (detected && (on_box || on_dot)) ? 10'h3FF : B_in;
+    assign R_out = (calibrate ? cal_box_on : trk_box_on) ? 10'h3FF : R_in;
+    assign G_out = (calibrate ? cal_box_on : trk_box_on) ? 10'h3FF : G_in;
+    assign B_out = (calibrate ? cal_box_on : trk_box_on) ? 10'h3FF : B_in;
 
 endmodule

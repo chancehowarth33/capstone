@@ -14,7 +14,10 @@ module color_detect (
     output reg [9:0] box_right,
     output reg [9:0] box_top,
     output reg [9:0] box_bottom,
-    output reg       detected
+    output reg       detected,
+    output reg [9:0] center_avgR,
+    output reg [9:0] center_avgG,
+    output reg [9:0] center_avgB
 );
 
     parameter NUM_BLOCK_COLS   = 20;
@@ -25,6 +28,7 @@ module color_detect (
     wire [4:0] block_col;
     wire [3:0] block_row;
     wire       end_of_block;
+    wire       is_center_block;
 
     wire [9:0] block_center_x;
     wire [9:0] block_center_y;
@@ -64,6 +68,7 @@ module color_detect (
     assign block_col      = vga_x[9:5];
     assign block_row      = vga_y[8:5];
     assign end_of_block   = (vga_x[4:0] == 5'd31) && (vga_y[4:0] == 5'd31);
+    assign is_center_block = (block_col == 5'd10) && (block_row == 4'd7);
 
     assign block_center_x = {block_col, 5'd16};
     assign block_center_y = {block_row, 5'd16};
@@ -96,6 +101,10 @@ module color_detect (
             box_top        <= 10'd0;
             box_bottom     <= 10'd0;
             detected       <= 1'b0;
+
+            center_avgR    <= 10'd0;
+            center_avgG    <= 10'd0;
+            center_avgB    <= 10'd0;
 
             centroid_sum_x <= 16'd0;
             centroid_sum_y <= 16'd0;
@@ -157,8 +166,13 @@ module color_detect (
                 sum_G[block_col] <= next_sum_G;
                 sum_B[block_col] <= next_sum_B;
 
-                // need to adjust color sensitivity thresholds for different lighting conditions
                 if (end_of_block) begin
+                    if (is_center_block) begin
+                        center_avgR <= avgR;
+                        center_avgG <= avgG;
+                        center_avgB <= avgB;
+                    end
+
                     if ((avgR > 10'd350) &&
                         (avgR > (avgG + 10'd100)) &&
                         (avgB < 10'd300)) begin

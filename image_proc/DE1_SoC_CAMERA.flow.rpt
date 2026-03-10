@@ -1,5 +1,5 @@
 Flow report for DE1_SoC_CAMERA
-Mon Mar  9 18:12:40 2026
+Tue Mar 10 12:15:41 2026
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,15 +41,15 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Flow Summary                                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Flow Status                     ; Successful - Mon Mar  9 18:12:31 2026           ;
+; Flow Status                     ; Successful - Tue Mar 10 12:15:32 2026           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; DE1_SoC_CAMERA                                  ;
 ; Top-level Entity Name           ; DE1_SoC_CAMERA                                  ;
 ; Family                          ; Cyclone V                                       ;
 ; Device                          ; 5CSEMA5F31C6                                    ;
 ; Timing Models                   ; Final                                           ;
-; Logic utilization (in ALMs)     ; 1,281 / 32,070 ( 4 % )                          ;
-; Total registers                 ; 2426                                            ;
+; Logic utilization (in ALMs)     ; 1,561 / 32,070 ( 5 % )                          ;
+; Total registers                 ; 2532                                            ;
 ; Total pins                      ; 226 / 457 ( 49 % )                              ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 62,416 / 4,065,280 ( 2 % )                      ;
@@ -68,7 +68,7 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/09/2026 18:07:29 ;
+; Start date & time ; 03/10/2026 12:09:03 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DE1_SoC_CAMERA      ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ on the Quartus Prime software download page.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 234059080024403.177309764820236        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 234059080024403.177316254311768        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; MISC_FILE                           ; v/Line_Buffer1.bsf                     ; --            ; --          ; --         ;
@@ -100,11 +100,11 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 4963 MB             ; 00:00:19                           ;
-; Fitter               ; 00:04:42     ; 1.1                     ; 7536 MB             ; 00:25:54                           ;
-; Assembler            ; 00:00:05     ; 1.0                     ; 5256 MB             ; 00:00:04                           ;
-; Timing Analyzer      ; 00:00:08     ; 2.4                     ; 5483 MB             ; 00:00:15                           ;
-; Total                ; 00:05:06     ; --                      ; --                  ; 00:26:32                           ;
+; Analysis & Synthesis ; 00:00:15     ; 1.0                     ; 4963 MB             ; 00:00:26                           ;
+; Fitter               ; 00:06:04     ; 1.1                     ; 7541 MB             ; 00:32:58                           ;
+; Assembler            ; 00:00:05     ; 1.0                     ; 5256 MB             ; 00:00:05                           ;
+; Timing Analyzer      ; 00:00:07     ; 2.6                     ; 5499 MB             ; 00:00:16                           ;
+; Total                ; 00:06:31     ; --                      ; --                  ; 00:33:45                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
