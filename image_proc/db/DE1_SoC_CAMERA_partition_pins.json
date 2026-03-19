@@ -448,6 +448,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "SW[7]",
+					"strict" : false
+				},
+				{
 					"name" : "CLOCK_50",
 					"strict" : false
 				},

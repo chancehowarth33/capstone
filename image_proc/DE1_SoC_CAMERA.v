@@ -6,6 +6,10 @@
 //          0 = increase exposure when KEY[1] is pressed
 //          1 = decrease exposure when KEY[1] is pressed
 //
+// SW[7]  : game mode
+//          0 = normal camera/overlay view
+//          1 = black screen with white dot at tracked position
+//
 // SW[8]  : calibration mode enable
 //          0 = normal tracking mode
 //          1 = calibration mode
@@ -179,13 +183,33 @@ wire [9:0] oVGA_R, oVGA_G, oVGA_B;
 wire [9:0] oVGA_X, oVGA_Y;
 wire       oVGA_ACTIVE;
 
+
+// Game logic wires and instantiations
 wire [9:0] hand_x, hand_y;
 wire       hand_detected;
 
 wire [9:0] final_R, final_G, final_B;
 wire VGA_CTRL_CLK;
-
 wire auto_start;
+
+// color detect  and overlay wires
+
+wire [9:0] box_left, box_right, box_top, box_bottom;
+// when calibrate is high, show a fixed box in the center of the screen for camera calibration. 
+// otherwise, show the tracking box and crosshair based on detected hand position.
+wire calibrate;
+assign calibrate = SW[8];
+
+// game overlay wires
+
+// when SW[7] is high, override VGA input to the overlay and show a white dot at the detected hand position on a black background
+wire game_mode;
+assign game_mode = SW[7];
+
+// Instantiate new RGB values for game mode output from the overlay
+wire [9:0] game_R, game_G, game_B;
+wire [9:0] mux_R, mux_G, mux_B;
+
 
 //=============================================================================
 // Static assignments
@@ -199,9 +223,19 @@ assign LEDR[9:1] = 9'b0; // turn off other LEDs
 assign auto_start   = (KEY[0] && DLY_RST_3 && !DLY_RST_4) ? 1'b1 : 1'b0;
 
 // Route overlay output to VGA DAC (top 8 of 10 bits)
-assign VGA_R = final_R[9:2];
+/*assign VGA_R = final_R[9:2];
 assign VGA_G = final_G[9:2];
 assign VGA_B = final_B[9:2];
+*/
+
+// New overlay bit select to include game mode output
+assign mux_R = game_mode ? game_R : final_R;
+assign mux_G = game_mode ? game_G : final_G;
+assign mux_B = game_mode ? game_B : final_B;
+
+assign VGA_R = mux_R[9:2];
+assign VGA_G = mux_G[9:2];
+assign VGA_B = mux_B[9:2];
 
 //=============================================================================
 // Camera input latch
@@ -393,12 +427,6 @@ VGA_Controller u1 (
 // u_detect — color centroid tracker
 //=============================================================================
 
-wire [9:0] box_left, box_right, box_top, box_bottom;
-// when calibrate is high, show a fixed box in the center of the screen for camera calibration. 
-// otherwise, show the tracking box and crosshair based on detected hand position.
-wire calibrate;
-assign calibrate = SW[8];
-
 color_detect u_detect (
     .clk         (VGA_CTRL_CLK),
     .rst_n       (DLY_RST_2),
@@ -450,5 +478,25 @@ overlay u_overlay (
     .G_out     (final_G),
     .B_out     (final_B)
 );
+
+
+// Game mode proof of-concept game where white dot is drawn at the detected hand position on a black background
+
+
+// instantiation of the game overlay module
+game_overlay u_game (
+    .vga_x    (oVGA_X),
+    .vga_y    (oVGA_Y),
+    .hand_x   (hand_x),
+    .hand_y   (hand_y),
+    .detected (hand_detected),
+    .R_out    (game_R),
+    .G_out    (game_G),
+    .B_out    (game_B)
+);
+
+
+
+
 
 endmodule
