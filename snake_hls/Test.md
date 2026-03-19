@@ -19,3 +19,6 @@ Step 3 — Compile and run
 g++ snake.cpp snake_tb.cpp -I. -o snake_test && ./snake_test
 
 This compiles snake.cpp and snake_tb.cpp into an executable called snake_test, then runs it immediately if compilation succeeds.
+
+Testing the catapult. In WSL mount run this:
+ g++ -D__SYNTHESIS__ -c snake.cpp -I. -o snake_synth.o    
