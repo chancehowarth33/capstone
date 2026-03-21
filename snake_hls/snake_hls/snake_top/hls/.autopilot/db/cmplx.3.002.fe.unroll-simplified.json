@@ -1,0 +1,57 @@
+{
+  "0": {
+    "basicblocks": 56,
+    "calls": "1 1",
+    "control_depth": 2,
+    "def_use_depth": 5,
+    "file": "snake.cpp",
+    "fileloc": 48,
+    "instructions": 309,
+    "loads": {
+      "G": 20,
+      "L": 4
+    },
+    "memory_accesses": 10,
+    "name": "snake_top",
+    "stores": {
+      "G": 29,
+      "T": 5
+    },
+    "total_instructions": 411
+  },
+  "1": {
+    "basicblocks": 10,
+    "calls": "2",
+    "control_depth": 4,
+    "def_use_depth": 4,
+    "file": "snake.cpp",
+    "fileloc": 22,
+    "instructions": 39,
+    "loads": {
+      "G": 2,
+      "L": 1
+    },
+    "memory_accesses": 5,
+    "name": "spawn_food",
+    "stores": {
+      "G": 2,
+      "L": 4
+    },
+    "total_instructions": 51
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "",
+    "control_depth": 0,
+    "def_use_depth": 6,
+    "file": "snake.cpp",
+    "fileloc": 7,
+    "instructions": 12,
+    "memory_accesses": 0,
+    "name": "lfsr_step",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 12
+  }
+}

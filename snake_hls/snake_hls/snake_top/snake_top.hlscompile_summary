@@ -1,0 +1,245 @@
+<ENTRY>
+{
+ "thisFile": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\snake_top.hlscompile_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "03/21/26 02:23:45",
+ "timestampMillis": "1774077825438",
+ "buildStep": {
+  "cmdId": "14b0f12c-c294-4ad6-91dc-adebdfd14c55",
+  "name": "v++",
+  "logFile": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\logs\\snake_top.steps.log",
+  "commandLine": "C:/AMDDesignTools/2025.2/Vitis/bin/unwrapped/win64.o/v++.exe  -c --mode hls --config C:\\Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\hls_config.cfg --work_dir snake_top ",
+  "args": [
+   "-c",
+   "--mode",
+   "hls",
+   "--config",
+   "C:\\Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\hls_config.cfg",
+   "--work_dir",
+   "snake_top"
+  ],
+  "iniFiles": [
+   {
+    "path": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\hls_config.cfg",
+    "content": "part=xc7z010clg225-1\n\n[hls]\nflow_target=vivado\npackage.output.format=ip_catalog\npackage.output.syn=false\nsyn.top=snake_top\nsyn.file=../snake.cpp\ntb.file=../snake_tb.cpp\nclock=25ns"
+   }
+  ],
+  "cwd": "C:\\Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "03/21/26 02:23:45",
+ "timestampMillis": "1774077825440",
+ "status": {
+  "cmdId": "14b0f12c-c294-4ad6-91dc-adebdfd14c55",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "03/21/26 02:23:49",
+ "timestampMillis": "1774077829365",
+ "buildSummary": {
+  "hardwarePlatform": "",
+  "hardwareDsa": "",
+  "platformDirectory": "",
+  "runtime": "",
+  "systemConfig": "",
+  "flow": "BF_COMPILE",
+  "target": "TT_HW",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "snake_top",
+     "file": "",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "2025.2"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "03/21/26 02:23:49",
+ "timestampMillis": "1774077829366",
+ "buildStep": {
+  "cmdId": "bf9da834-4f7a-4c9e-b164-fc04587c903a",
+  "name": "",
+  "logFile": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\hls\\hls.log",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "C:\\Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "03/21/26 02:23:49",
+ "timestampMillis": "1774077829367",
+ "status": {
+  "cmdId": "bf9da834-4f7a-4c9e-b164-fc04587c903a",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "03/21/26 02:23:49",
+ "timestampMillis": "1774077829367",
+ "report": {
+  "path": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\hls\\hls_data.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "HLS_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "03/21/26 02:23:49",
+ "timestampMillis": "1774077829368",
+ "report": {
+  "path": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\hls\\syn\\report\\csynth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "HLS_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "03/21/26 02:23:49",
+ "timestampMillis": "1774077829369",
+ "report": {
+  "path": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\hls\\syn\\report\\csynth.xml",
+  "name": "",
+  "fileType": "XML",
+  "reportType": "HLS_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "03/21/26 02:24:17",
+ "timestampMillis": "1774077857499",
+ "report": {
+  "path": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_DATAFLOW",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "03/21/26 02:24:17",
+ "timestampMillis": "1774077857500",
+ "report": {
+  "path": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_FUNCTION_CALL_GRAPH",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "03/21/26 02:24:17",
+ "timestampMillis": "1774077857501",
+ "report": {
+  "path": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\hls",
+  "name": "",
+  "fileType": "DIR",
+  "reportType": "HLS_SCHEDULE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "03/21/26 02:24:17",
+ "timestampMillis": "1774077857501",
+ "status": {
+  "cmdId": "bf9da834-4f7a-4c9e-b164-fc04587c903a",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "03/21/26 02:24:17",
+ "timestampMillis": "1774077857631",
+ "status": {
+  "cmdId": "14b0f12c-c294-4ad6-91dc-adebdfd14c55",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "03/21/26 02:24:17",
+ "timestampMillis": "1774077857658",
+ "report": {
+  "path": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\reports\\v++_compile_snake_top_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "03/21/26 02:24:17",
+ "timestampMillis": "1774077857659",
+ "report": {
+  "path": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\reports\\.db\\v++_compile_snake_top_guidance.pb3",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>

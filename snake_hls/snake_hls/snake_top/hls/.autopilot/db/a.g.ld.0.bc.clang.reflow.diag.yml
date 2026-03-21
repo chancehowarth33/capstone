@@ -1,0 +1,333 @@
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+DebugLoc:        { File: ../snake.cpp, Line: 28, Column: 16 }
+Function:        _ZL10spawn_foodR7ap_uintILi16EEPA15_b
+Args:            
+  - Callee:          'lfsr_step(ap_uint<16>)'
+    DebugLoc:        { File: ../snake.cpp, Line: 8, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          'spawn_food(ap_uint<16>&, bool (*) [15])'
+    DebugLoc:        { File: ../snake.cpp, Line: 23, Column: 0 }
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+DebugLoc:        { File: ../snake.cpp, Line: 220, Column: 35 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - Callee:          'spawn_food(ap_uint<16>&, bool (*) [15])'
+    DebugLoc:        { File: ../snake.cpp, Line: 23, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          'snake_top(ap_uint<10>, ap_uint<10>, bool, ap_uint<10>, ap_uint<10>, bool, bool, ap_uint<10>&, ap_uint<10>&, ap_uint<10>&)'
+    DebugLoc:        { File: ../snake.cpp, Line: 59, Column: 0 }
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+DebugLoc:        { File: ../snake.cpp, Line: 28, Column: 16 }
+Function:        _ZL10spawn_foodR7ap_uintILi16EEPA15_b
+Args:            
+  - Callee:          'lfsr_step(ap_uint<16>)'
+    DebugLoc:        { File: ../snake.cpp, Line: 8, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          'spawn_food(ap_uint<16>&, bool (*) [15])'
+    DebugLoc:        { File: ../snake.cpp, Line: 23, Column: 0 }
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+DebugLoc:        { File: ../snake.cpp, Line: 100, Column: 19 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - Callee:          'spawn_food(ap_uint<16>&, bool (*) [15])'
+    DebugLoc:        { File: ../snake.cpp, Line: 23, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          'snake_top(ap_uint<10>, ap_uint<10>, bool, ap_uint<10>, ap_uint<10>, bool, bool, ap_uint<10>&, ap_uint<10>&, ap_uint<10>&)'
+    DebugLoc:        { File: ../snake.cpp, Line: 59, Column: 0 }
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Missed
+Pass:            inline
+Name:            NeverInline
+Function:        apatb_snake_top_ir
+Args:            
+  - Callee:          'snake_top(ap_uint<10>, ap_uint<10>, bool, ap_uint<10>, ap_uint<10>, bool, bool, ap_uint<10>&, ap_uint<10>&, ap_uint<10>&)'
+    DebugLoc:        { File: ../snake.cpp, Line: 59, Column: 0 }
+  - String:          ' not inlined into '
+  - Caller:          apatb_snake_top_ir
+  - String:          ' because it should never be inlined (cost=never)'
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: ../snake.cpp, Line: 23, Column: 0 }
+Function:        _ZL10spawn_foodR7ap_uintILi16EEPA15_b
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'lfsr_step(ap_uint<16>)'
+    DebugLoc:        { File: ../snake.cpp, Line: 8, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'spawn_food(ap_uint<16>&, bool (*) [15])'
+    DebugLoc:        { File: ../snake.cpp, Line: 23, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: ../snake.cpp, Line: 59, Column: 0 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'spawn_food(ap_uint<16>&, bool (*) [15])'
+    DebugLoc:        { File: ../snake.cpp, Line: 23, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'snake_top(ap_uint<10>, ap_uint<10>, bool, ap_uint<10>, ap_uint<10>, bool, bool, ap_uint<10>&, ap_uint<10>&, ap_uint<10>&)'
+    DebugLoc:        { File: ../snake.cpp, Line: 59, Column: 0 }
+  - String:          ''''
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: ../snake.cpp, Line: 27, Column: 22 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        VITIS_LOOP_27_1
+  - String:          ' '
+  - LoopLoc:         '../snake.cpp:27:22'
+  - String:          ' '
+  - Function:        'snake_top(ap_uint<10>, ap_uint<10>, bool, ap_uint<10>, ap_uint<10>, bool, bool, ap_uint<10>&, ap_uint<10>&, ap_uint<10>&)'
+    DebugLoc:        { File: ../snake.cpp, Line: 59, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: ../snake.cpp, Line: 27, Column: 22 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        VITIS_LOOP_27_1
+  - String:          ' '
+  - LoopLoc:         '../snake.cpp:27:22'
+  - String:          ' '
+  - Function:        'snake_top(ap_uint<10>, ap_uint<10>, bool, ap_uint<10>, ap_uint<10>, bool, bool, ap_uint<10>&, ap_uint<10>&, ap_uint<10>&)'
+    DebugLoc:        { File: ../snake.cpp, Line: 59, Column: 0 }
+  - String:          ' '
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: ../snake.cpp, Line: 27, Column: 22 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_27_1
+  - String:          '''('
+  - LoopLoc:         '../snake.cpp:27:22'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: ../snake.cpp, Line: 27, Column: 22 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_27_1
+  - String:          '''('
+  - LoopLoc:         '../snake.cpp:27:22'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !HLSReportInfo
+Pass:            reflow-auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'Pipelining loop< '
+  - LoopName:        VITIS_LOOP_74_2
+  - String:          '> at '
+  - LoopLoc:         '../snake.cpp:74:30'
+  - String:          ' due to pipeline_loops threshold'
+...
+--- !Passed
+Pass:            reflow-auto-loop-pipeline
+Name:            AutoParallelPerformanceDrivenVerbosePassed
+DebugLoc:        { File: ../snake.cpp, Line: 74, Column: 30 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - PragmaType:      pipeline
+  - String:          ' '
+  - PragmaOptions:   ' '
+  - String:          ' '
+  - PragmaIsAuto:    '1'
+  - String:          ' '
+  - PragmaFunction:  snake_top
+  - String:          ' '
+  - PragmaInferReason: config_compile -pipeline_loops 64
+  - LoopName:        VITIS_LOOP_74_2
+  - String:          ' '
+  - LoopLoc:         '../snake.cpp:74:30'
+    DebugLoc:        { File: ../snake.cpp, Line: 74, Column: 30 }
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            reflow-auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'Pipelining loop< '
+  - LoopName:        VITIS_LOOP_85_3
+  - String:          '> at '
+  - LoopLoc:         '../snake.cpp:85:26'
+  - String:          ' due to pipeline_loops threshold'
+...
+--- !Passed
+Pass:            reflow-auto-loop-pipeline
+Name:            AutoParallelPerformanceDrivenVerbosePassed
+DebugLoc:        { File: ../snake.cpp, Line: 85, Column: 26 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - PragmaType:      pipeline
+  - String:          ' '
+  - PragmaOptions:   ' '
+  - String:          ' '
+  - PragmaIsAuto:    '1'
+  - String:          ' '
+  - PragmaFunction:  snake_top
+  - String:          ' '
+  - PragmaInferReason: config_compile -pipeline_loops 64
+  - LoopName:        VITIS_LOOP_85_3
+  - String:          ' '
+  - LoopLoc:         '../snake.cpp:85:26'
+    DebugLoc:        { File: ../snake.cpp, Line: 85, Column: 26 }
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            reflow-auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'Pipelining loop< '
+  - LoopName:        VITIS_LOOP_94_4
+  - String:          '> at '
+  - LoopLoc:         '../snake.cpp:94:26'
+  - String:          ' due to pipeline_loops threshold'
+...
+--- !Passed
+Pass:            reflow-auto-loop-pipeline
+Name:            AutoParallelPerformanceDrivenVerbosePassed
+DebugLoc:        { File: ../snake.cpp, Line: 94, Column: 26 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - PragmaType:      pipeline
+  - String:          ' '
+  - PragmaOptions:   ' '
+  - String:          ' '
+  - PragmaIsAuto:    '1'
+  - String:          ' '
+  - PragmaFunction:  snake_top
+  - String:          ' '
+  - PragmaInferReason: config_compile -pipeline_loops 64
+  - LoopName:        VITIS_LOOP_94_4
+  - String:          ' '
+  - LoopLoc:         '../snake.cpp:94:26'
+    DebugLoc:        { File: ../snake.cpp, Line: 94, Column: 26 }
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            reflow-auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'Pipelining loop< '
+  - LoopName:        VITIS_LOOP_27_1
+  - String:          '> at '
+  - LoopLoc:         '../snake.cpp:27:22'
+  - String:          ' due to pipeline_loops threshold'
+...
+--- !Passed
+Pass:            reflow-auto-loop-pipeline
+Name:            AutoParallelPerformanceDrivenVerbosePassed
+DebugLoc:        { File: ../snake.cpp, Line: 27, Column: 22 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - PragmaType:      pipeline
+  - String:          ' '
+  - PragmaOptions:   ' '
+  - String:          ' '
+  - PragmaIsAuto:    '1'
+  - String:          ' '
+  - PragmaFunction:  snake_top
+  - String:          ' '
+  - PragmaInferReason: config_compile -pipeline_loops 64
+  - LoopName:        VITIS_LOOP_27_1
+  - String:          ' '
+  - LoopLoc:         '../snake.cpp:27:22'
+    DebugLoc:        { File: ../snake.cpp, Line: 27, Column: 22 }
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            reflow-auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'Pipelining loop< '
+  - LoopName:        VITIS_LOOP_207_5
+  - String:          '> at '
+  - LoopLoc:         '../snake.cpp:207:39'
+  - String:          ' due to pipeline_loops threshold'
+...
+--- !Passed
+Pass:            reflow-auto-loop-pipeline
+Name:            AutoParallelPerformanceDrivenVerbosePassed
+DebugLoc:        { File: ../snake.cpp, Line: 207, Column: 39 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - PragmaType:      pipeline
+  - String:          ' '
+  - PragmaOptions:   ' '
+  - String:          ' '
+  - PragmaIsAuto:    '1'
+  - String:          ' '
+  - PragmaFunction:  snake_top
+  - String:          ' '
+  - PragmaInferReason: config_compile -pipeline_loops 64
+  - LoopName:        VITIS_LOOP_207_5
+  - String:          ' '
+  - LoopLoc:         '../snake.cpp:207:39'
+    DebugLoc:        { File: ../snake.cpp, Line: 207, Column: 39 }
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            reflow-auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'Pipelining loop< '
+  - LoopName:        VITIS_LOOP_27_1
+  - String:          '> at '
+  - LoopLoc:         '../snake.cpp:27:22'
+  - String:          ' due to pipeline_loops threshold'
+...
+--- !Passed
+Pass:            reflow-auto-loop-pipeline
+Name:            AutoParallelPerformanceDrivenVerbosePassed
+DebugLoc:        { File: ../snake.cpp, Line: 27, Column: 22 }
+Function:        _Z9snake_top7ap_uintILi10EES0_bS0_S0_bbRS0_S1_S1_
+Args:            
+  - PragmaType:      pipeline
+  - String:          ' '
+  - PragmaOptions:   ' '
+  - String:          ' '
+  - PragmaIsAuto:    '1'
+  - String:          ' '
+  - PragmaFunction:  snake_top
+  - String:          ' '
+  - PragmaInferReason: config_compile -pipeline_loops 64
+  - LoopName:        VITIS_LOOP_27_1
+  - String:          ' '
+  - LoopLoc:         '../snake.cpp:27:22'
+    DebugLoc:        { File: ../snake.cpp, Line: 27, Column: 22 }
+  - String:          ' '
+...
