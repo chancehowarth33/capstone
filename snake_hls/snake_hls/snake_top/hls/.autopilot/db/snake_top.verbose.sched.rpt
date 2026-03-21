@@ -1,0 +1,474 @@
+
+
+================================================================
+== Vitis HLS Report for 'snake_top'
+================================================================
+* Date:           Sat Mar 21 02:24:12 2026
+
+* Version:        2025.2 (Build 6295257 on Nov 12 2025)
+* Project:        snake_top
+* Solution:       hls (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z010-clg225-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+-----------+------------+
+    |  Clock |  Target  | Estimated | Uncertainty|
+    +--------+----------+-----------+------------+
+    |ap_clk  |  25.00 ns|  13.484 ns|     6.75 ns|
+    +--------+----------+-----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        2|      613|  50.000 ns|  15.325 us|    3|  614|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 15
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 14 8 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 15 
+8 --> 9 14 
+9 --> 10 14 
+10 --> 11 
+11 --> 12 
+12 --> 13 14 
+13 --> 14 
+14 --> 15 
+15 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 8.49>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%rst_n_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %rst_n"   --->   Operation 16 'read' 'rst_n_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%vsync_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %vsync"   --->   Operation 17 'read' 'vsync_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%vga_y_read = read i10 @_ssdm_op_Read.ap_auto.i10, i10 %vga_y"   --->   Operation 18 'read' 'vga_y_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%vga_x_read = read i10 @_ssdm_op_Read.ap_auto.i10, i10 %vga_x"   --->   Operation 19 'read' 'vga_x_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%detected_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %detected"   --->   Operation 20 'read' 'detected_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%hand_y_read = read i10 @_ssdm_op_Read.ap_auto.i10, i10 %hand_y"   --->   Operation 21 'read' 'hand_y_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%hand_x_read = read i10 @_ssdm_op_Read.ap_auto.i10, i10 %hand_x"   --->   Operation 22 'read' 'hand_x_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%c_7_loc = alloca i64 1"   --->   Operation 23 'alloca' 'c_7_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%r_6_loc = alloca i64 1"   --->   Operation 24 'alloca' 'r_6_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%or_ln14_1_loc = alloca i64 1"   --->   Operation 25 'alloca' 'or_ln14_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%c_6_loc = alloca i64 1"   --->   Operation 26 'alloca' 'c_6_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%r_5_loc = alloca i64 1"   --->   Operation 27 'alloca' 'r_5_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%or_ln_loc = alloca i64 1"   --->   Operation 28 'alloca' 'or_ln_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%spectopmodule_ln48 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_1" [../snake.cpp:48]   --->   Operation 29 'spectopmodule' 'spectopmodule_ln48' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i10 %hand_x"   --->   Operation 30 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i10 %hand_x, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 31 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i10 %hand_y"   --->   Operation 32 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i10 %hand_y, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 33 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %detected"   --->   Operation 34 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %detected, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 35 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i10 %vga_x"   --->   Operation 36 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i10 %vga_x, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 37 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i10 %vga_y"   --->   Operation 38 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i10 %vga_y, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 39 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %vsync"   --->   Operation 40 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %vsync, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 41 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i1 %rst_n"   --->   Operation 42 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %rst_n, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 43 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i10 %R_out"   --->   Operation 44 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i10 %R_out, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 45 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 46 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i10 %G_out"   --->   Operation 46 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i10 %G_out, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 47 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 48 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i10 %B_out"   --->   Operation 48 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 49 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i10 %B_out, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0, i32 0, i32 0"   --->   Operation 49 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "%st_direction_load = load i2 %st_direction" [../snake.cpp:136]   --->   Operation 50 'load' 'st_direction_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%st_frame_count_load = load i4 %st_frame_count" [../snake.cpp:148]   --->   Operation 51 'load' 'st_frame_count_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%st_food_col_load = load i5 %st_food_col" [../snake.cpp:180]   --->   Operation 52 'load' 'st_food_col_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%st_food_row_load = load i4 %st_food_row" [../snake.cpp:181]   --->   Operation 53 'load' 'st_food_row_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%br_ln71 = br i1 %rst_n_read, void %for.inc.preheader, void %if.end" [../snake.cpp:71]   --->   Operation 54 'br' 'br_ln71' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 55 [2/2] (0.00ns)   --->   "%call_ln0 = call void @snake_top_Pipeline_VITIS_LOOP_73_1_VITIS_LOOP_74_2, i1 %grid"   --->   Operation 55 'call' 'call_ln0' <Predicate = (!rst_n_read)> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
+ST_1 : Operation 56 [1/1] (0.00ns)   --->   "%vsync_prev_load = load i1 %vsync_prev" [../snake.cpp:109]   --->   Operation 56 'load' 'vsync_prev_load' <Predicate = (rst_n_read)> <Delay = 0.00>
+ST_1 : Operation 57 [1/1] (1.58ns)   --->   "%store_ln110 = store i1 %vsync_read, i1 %vsync_prev" [../snake.cpp:110]   --->   Operation 57 'store' 'store_ln110' <Predicate = (rst_n_read)> <Delay = 1.58>
+ST_1 : Operation 58 [1/1] (0.00ns)   --->   "%st_game_over_load = load i1 %st_game_over" [../snake.cpp:112]   --->   Operation 58 'load' 'st_game_over_load' <Predicate = (rst_n_read)> <Delay = 0.00>
+ST_1 : Operation 59 [1/1] (0.00ns) (grouped into LUT with out node and_ln112)   --->   "%or_ln112 = or i1 %st_game_over_load, i1 %vsync_read" [../snake.cpp:112]   --->   Operation 59 'or' 'or_ln112' <Predicate = (rst_n_read)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 60 [1/1] (0.00ns) (grouped into LUT with out node and_ln112)   --->   "%xor_ln112 = xor i1 %or_ln112, i1 1" [../snake.cpp:112]   --->   Operation 60 'xor' 'xor_ln112' <Predicate = (rst_n_read)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 61 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln112 = and i1 %vsync_prev_load, i1 %xor_ln112" [../snake.cpp:112]   --->   Operation 61 'and' 'and_ln112' <Predicate = (rst_n_read)> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 62 [1/1] (1.58ns)   --->   "%br_ln112 = br i1 %and_ln112, void %if.end245_ifconv, void %if.then58" [../snake.cpp:112]   --->   Operation 62 'br' 'br_ln112' <Predicate = (rst_n_read)> <Delay = 1.58>
+ST_1 : Operation 63 [1/1] (1.58ns)   --->   "%br_ln119 = br i1 %detected_read, void %if.end113, void %if.then59" [../snake.cpp:119]   --->   Operation 63 'br' 'br_ln119' <Predicate = (rst_n_read & and_ln112)> <Delay = 1.58>
+ST_1 : Operation 64 [1/1] (0.00ns)   --->   "%zext_ln121 = zext i10 %hand_x_read" [../snake.cpp:121]   --->   Operation 64 'zext' 'zext_ln121' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 0.00>
+ST_1 : Operation 65 [1/1] (1.73ns)   --->   "%dx = add i11 %zext_ln121, i11 1728" [../snake.cpp:121]   --->   Operation 65 'add' 'dx' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%zext_ln122 = zext i10 %hand_y_read" [../snake.cpp:122]   --->   Operation 66 'zext' 'zext_ln122' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 0.00>
+ST_1 : Operation 67 [1/1] (1.73ns)   --->   "%dy = add i11 %zext_ln122, i11 1808" [../snake.cpp:122]   --->   Operation 67 'add' 'dy' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 68 [1/1] (0.00ns) (grouped into LUT with out node icmp_ln129)   --->   "%tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i11.i32, i11 %dx, i32 10" [../snake.cpp:124]   --->   Operation 68 'bitselect' 'tmp' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 0.00>
+ST_1 : Operation 69 [1/1] (1.73ns)   --->   "%abs_dx = sub i11 320, i11 %zext_ln121" [../snake.cpp:124]   --->   Operation 69 'sub' 'abs_dx' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 70 [1/1] (0.00ns) (grouped into LUT with out node icmp_ln129)   --->   "%abs_dx_1 = select i1 %tmp, i11 %abs_dx, i11 %dx" [../snake.cpp:124]   --->   Operation 70 'select' 'abs_dx_1' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 71 [1/1] (0.00ns) (grouped into LUT with out node icmp_ln129)   --->   "%tmp_11 = bitselect i1 @_ssdm_op_BitSelect.i1.i11.i32, i11 %dy, i32 10" [../snake.cpp:125]   --->   Operation 71 'bitselect' 'tmp_11' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 0.00>
+ST_1 : Operation 72 [1/1] (1.73ns)   --->   "%abs_dy = sub i11 240, i11 %zext_ln122" [../snake.cpp:125]   --->   Operation 72 'sub' 'abs_dy' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 73 [1/1] (0.00ns) (grouped into LUT with out node icmp_ln129)   --->   "%abs_dy_1 = select i1 %tmp_11, i11 %abs_dy, i11 %dy" [../snake.cpp:125]   --->   Operation 73 'select' 'abs_dy_1' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 74 [1/1] (1.63ns) (out node of the LUT)   --->   "%icmp_ln129 = icmp_sgt  i11 %abs_dx_1, i11 %abs_dy_1" [../snake.cpp:129]   --->   Operation 74 'icmp' 'icmp_ln129' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 1.63> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 75 [1/1] (1.63ns)   --->   "%icmp_ln130 = icmp_sgt  i11 %dx, i11 0" [../snake.cpp:130]   --->   Operation 75 'icmp' 'icmp_ln130' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 1.63> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 76 [1/1] (0.00ns) (grouped into LUT with out node new_dir_2)   --->   "%new_dir = select i1 %icmp_ln130, i2 3, i2 2" [../snake.cpp:130]   --->   Operation 76 'select' 'new_dir' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 77 [1/1] (1.63ns)   --->   "%new_dir_1 = icmp_sgt  i11 %dy, i11 0" [../snake.cpp:132]   --->   Operation 77 'icmp' 'new_dir_1' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 1.63> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 78 [1/1] (0.00ns) (grouped into LUT with out node new_dir_2)   --->   "%zext_ln132 = zext i1 %new_dir_1" [../snake.cpp:132]   --->   Operation 78 'zext' 'zext_ln132' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 0.00>
+ST_1 : Operation 79 [1/1] (0.99ns) (out node of the LUT)   --->   "%new_dir_2 = select i1 %icmp_ln129, i2 %new_dir, i2 %zext_ln132" [../snake.cpp:129]   --->   Operation 79 'select' 'new_dir_2' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 0.99> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 80 [1/1] (1.56ns)   --->   "%icmp_ln136 = icmp_eq  i2 %new_dir_2, i2 0" [../snake.cpp:136]   --->   Operation 80 'icmp' 'icmp_ln136' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 1.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.56> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 81 [1/1] (1.56ns)   --->   "%icmp_ln136_1 = icmp_eq  i2 %st_direction_load, i2 1" [../snake.cpp:136]   --->   Operation 81 'icmp' 'icmp_ln136_1' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 1.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.56> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 82 [1/1] (0.97ns)   --->   "%and_ln136 = and i1 %icmp_ln136, i1 %icmp_ln136_1" [../snake.cpp:136]   --->   Operation 82 'and' 'and_ln136' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 83 [1/1] (1.58ns)   --->   "%br_ln136 = br i1 %and_ln136, void %lor.lhs.false, void %if.end113" [../snake.cpp:136]   --->   Operation 83 'br' 'br_ln136' <Predicate = (rst_n_read & and_ln112 & detected_read)> <Delay = 1.58>
+ST_1 : Operation 84 [1/1] (1.56ns)   --->   "%icmp_ln137 = icmp_eq  i2 %new_dir_2, i2 1" [../snake.cpp:137]   --->   Operation 84 'icmp' 'icmp_ln137' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136)> <Delay = 1.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.56> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 85 [1/1] (1.56ns)   --->   "%icmp_ln137_1 = icmp_eq  i2 %st_direction_load, i2 0" [../snake.cpp:137]   --->   Operation 85 'icmp' 'icmp_ln137_1' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136)> <Delay = 1.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.56> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 86 [1/1] (0.97ns)   --->   "%and_ln137 = and i1 %icmp_ln137, i1 %icmp_ln137_1" [../snake.cpp:137]   --->   Operation 86 'and' 'and_ln137' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136)> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 87 [1/1] (1.58ns)   --->   "%br_ln137 = br i1 %and_ln137, void %lor.lhs.false99, void %if.end113" [../snake.cpp:137]   --->   Operation 87 'br' 'br_ln137' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136)> <Delay = 1.58>
+ST_1 : Operation 88 [1/1] (1.56ns)   --->   "%icmp_ln138 = icmp_eq  i2 %new_dir_2, i2 2" [../snake.cpp:138]   --->   Operation 88 'icmp' 'icmp_ln138' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136 & !and_ln137)> <Delay = 1.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.56> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 89 [1/1] (1.56ns)   --->   "%icmp_ln138_1 = icmp_eq  i2 %st_direction_load, i2 3" [../snake.cpp:138]   --->   Operation 89 'icmp' 'icmp_ln138_1' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136 & !and_ln137)> <Delay = 1.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.56> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 90 [1/1] (0.97ns)   --->   "%and_ln138 = and i1 %icmp_ln138, i1 %icmp_ln138_1" [../snake.cpp:138]   --->   Operation 90 'and' 'and_ln138' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136 & !and_ln137)> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 91 [1/1] (1.58ns)   --->   "%br_ln138 = br i1 %and_ln138, void %lor.rhs, void %if.end113" [../snake.cpp:138]   --->   Operation 91 'br' 'br_ln138' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136 & !and_ln137)> <Delay = 1.58>
+ST_1 : Operation 92 [1/1] (1.56ns)   --->   "%icmp_ln139 = icmp_eq  i2 %new_dir_2, i2 3" [../snake.cpp:139]   --->   Operation 92 'icmp' 'icmp_ln139' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136 & !and_ln137 & !and_ln138)> <Delay = 1.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.56> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 93 [1/1] (1.56ns)   --->   "%icmp_ln139_1 = icmp_eq  i2 %st_direction_load, i2 2" [../snake.cpp:139]   --->   Operation 93 'icmp' 'icmp_ln139_1' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136 & !and_ln137 & !and_ln138)> <Delay = 1.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.56> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 94 [1/1] (0.97ns)   --->   "%reversal = and i1 %icmp_ln139, i1 %icmp_ln139_1" [../snake.cpp:139]   --->   Operation 94 'and' 'reversal' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136 & !and_ln137 & !and_ln138)> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 95 [1/1] (1.58ns)   --->   "%br_ln141 = br i1 %reversal, void %if.then111, void %if.end113" [../snake.cpp:141]   --->   Operation 95 'br' 'br_ln141' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136 & !and_ln137 & !and_ln138)> <Delay = 1.58>
+ST_1 : Operation 96 [1/1] (1.58ns)   --->   "%store_ln142 = store i2 %new_dir_2, i2 %st_direction" [../snake.cpp:142]   --->   Operation 96 'store' 'store_ln142' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136 & !and_ln137 & !and_ln138 & !reversal)> <Delay = 1.58>
+ST_1 : Operation 97 [1/1] (1.58ns)   --->   "%br_ln142 = br void %if.end113" [../snake.cpp:142]   --->   Operation 97 'br' 'br_ln142' <Predicate = (rst_n_read & and_ln112 & detected_read & !and_ln136 & !and_ln137 & !and_ln138 & !reversal)> <Delay = 1.58>
+ST_1 : Operation 98 [1/1] (0.00ns)   --->   "%st_direction_loc_1 = phi i2 %st_direction_load, void %if.then58, i2 %st_direction_load, void %if.then59, i2 %st_direction_load, void %lor.lhs.false, i2 %st_direction_load, void %lor.lhs.false99, i2 %st_direction_load, void %lor.rhs, i2 %new_dir_2, void %if.then111"   --->   Operation 98 'phi' 'st_direction_loc_1' <Predicate = (rst_n_read & and_ln112)> <Delay = 0.00>
+ST_1 : Operation 99 [1/1] (1.73ns)   --->   "%add_ln148 = add i4 %st_frame_count_load, i4 1" [../snake.cpp:148]   --->   Operation 99 'add' 'add_ln148' <Predicate = (rst_n_read & and_ln112)> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 100 [1/1] (1.73ns)   --->   "%icmp_ln150 = icmp_eq  i4 %add_ln148, i4 15" [../snake.cpp:150]   --->   Operation 100 'icmp' 'icmp_ln150' <Predicate = (rst_n_read & and_ln112)> <Delay = 1.73> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 101 [1/1] (1.58ns)   --->   "%br_ln150 = br i1 %icmp_ln150, void %if.end245_ifconv, void %if.then119" [../snake.cpp:150]   --->   Operation 101 'br' 'br_ln150' <Predicate = (rst_n_read & and_ln112)> <Delay = 1.58>
+ST_1 : Operation 102 [2/2] (3.25ns)   --->   "%new_head_col = load i5 0" [../snake.cpp:156]   --->   Operation 102 'load' 'new_head_col' <Predicate = (rst_n_read & and_ln112 & icmp_ln150)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 5> <Depth = 300> <RAM>
+ST_1 : Operation 103 [2/2] (3.25ns)   --->   "%new_head_row = load i4 0" [../snake.cpp:156]   --->   Operation 103 'load' 'new_head_row' <Predicate = (rst_n_read & and_ln112 & icmp_ln150)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 4> <Depth = 300> <RAM>
+
+State 2 <SV = 1> <Delay = 4.99>
+ST_2 : Operation 104 [1/2] (4.99ns)   --->   "%call_ln0 = call void @snake_top_Pipeline_VITIS_LOOP_73_1_VITIS_LOOP_74_2, i1 %grid"   --->   Operation 104 'call' 'call_ln0' <Predicate = true> <Delay = 4.99> <CoreType = "Generic">   --->   Generic Core
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 105 [2/2] (0.00ns)   --->   "%call_ln0 = call void @snake_top_Pipeline_VITIS_LOOP_85_3, i5 %st_body_col, i4 %st_body_row, i1 %grid"   --->   Operation 105 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
+
+State 4 <SV = 3> <Delay = 4.74>
+ST_4 : Operation 106 [1/2] (4.74ns)   --->   "%call_ln0 = call void @snake_top_Pipeline_VITIS_LOOP_85_3, i5 %st_body_col, i4 %st_body_row, i1 %grid"   --->   Operation 106 'call' 'call_ln0' <Predicate = true> <Delay = 4.74> <CoreType = "Generic">   --->   Generic Core
+
+State 5 <SV = 4> <Delay = 0.00>
+ST_5 : Operation 107 [2/2] (0.00ns)   --->   "%call_ln0 = call void @snake_top_Pipeline_VITIS_LOOP_94_4, i5 %st_body_col, i4 %st_body_row"   --->   Operation 107 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
+ST_5 : Operation 108 [2/2] (0.00ns)   --->   "%call_ln0 = call void @snake_top_Pipeline_VITIS_LOOP_27_1, i16 %or_ln_loc, i4 %r_5_loc, i5 %c_6_loc, i1 %grid"   --->   Operation 108 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Generic Core
+
+State 6 <SV = 5> <Delay = 5.86>
+ST_6 : Operation 109 [1/2] (4.99ns)   --->   "%call_ln0 = call void @snake_top_Pipeline_VITIS_LOOP_94_4, i5 %st_body_col, i4 %st_body_row"   --->   Operation 109 'call' 'call_ln0' <Predicate = true> <Delay = 4.99> <CoreType = "Generic">   --->   Generic Core
+ST_6 : Operation 110 [1/2] (5.86ns)   --->   "%call_ln0 = call void @snake_top_Pipeline_VITIS_LOOP_27_1, i16 %or_ln_loc, i4 %r_5_loc, i5 %c_6_loc, i1 %grid"   --->   Operation 110 'call' 'call_ln0' <Predicate = true> <Delay = 5.86> <CoreType = "Generic">   --->   Generic Core
+
+State 7 <SV = 6> <Delay = 1.58>
+ST_7 : Operation 111 [1/1] (1.58ns)   --->   "%store_ln78 = store i8 3, i8 %st_length" [../snake.cpp:78]   --->   Operation 111 'store' 'store_ln78' <Predicate = true> <Delay = 1.58>
+ST_7 : Operation 112 [1/1] (1.58ns)   --->   "%store_ln79 = store i2 3, i2 %st_direction" [../snake.cpp:79]   --->   Operation 112 'store' 'store_ln79' <Predicate = true> <Delay = 1.58>
+ST_7 : Operation 113 [1/1] (1.58ns)   --->   "%store_ln80 = store i1 0, i1 %st_game_over" [../snake.cpp:80]   --->   Operation 113 'store' 'store_ln80' <Predicate = true> <Delay = 1.58>
+ST_7 : Operation 114 [1/1] (1.58ns)   --->   "%store_ln83 = store i1 0, i1 %vsync_prev" [../snake.cpp:83]   --->   Operation 114 'store' 'store_ln83' <Predicate = true> <Delay = 1.58>
+ST_7 : Operation 115 [1/1] (0.00ns)   --->   "%or_ln_loc_load = load i16 %or_ln_loc"   --->   Operation 115 'load' 'or_ln_loc_load' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 116 [1/1] (0.00ns)   --->   "%r_5_loc_load = load i4 %r_5_loc"   --->   Operation 116 'load' 'r_5_loc_load' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 117 [1/1] (0.00ns)   --->   "%c_6_loc_load = load i5 %c_6_loc"   --->   Operation 117 'load' 'c_6_loc_load' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 118 [1/1] (1.58ns)   --->   "%store_ln28 = store i16 %or_ln_loc_load, i16 %lfsr" [../snake.cpp:28->../snake.cpp:100]   --->   Operation 118 'store' 'store_ln28' <Predicate = true> <Delay = 1.58>
+ST_7 : Operation 119 [1/1] (1.58ns)   --->   "%store_ln100 = store i5 %c_6_loc_load, i5 %st_food_col" [../snake.cpp:100]   --->   Operation 119 'store' 'store_ln100' <Predicate = true> <Delay = 1.58>
+ST_7 : Operation 120 [1/1] (1.58ns)   --->   "%store_ln100 = store i4 %r_5_loc_load, i4 %st_food_row" [../snake.cpp:100]   --->   Operation 120 'store' 'store_ln100' <Predicate = true> <Delay = 1.58>
+ST_7 : Operation 121 [1/1] (1.58ns)   --->   "%br_ln103 = br void %return" [../snake.cpp:103]   --->   Operation 121 'br' 'br_ln103' <Predicate = true> <Delay = 1.58>
+
+State 8 <SV = 1> <Delay = 13.4>
+ST_8 : Operation 122 [1/2] ( I:3.25ns O:3.25ns )   --->   "%new_head_col = load i5 0" [../snake.cpp:156]   --->   Operation 122 'load' 'new_head_col' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 5> <Depth = 300> <RAM>
+ST_8 : Operation 123 [1/2] ( I:3.25ns O:3.25ns )   --->   "%new_head_row = load i4 0" [../snake.cpp:156]   --->   Operation 123 'load' 'new_head_row' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 4> <Depth = 300> <RAM>
+ST_8 : Operation 124 [1/1] (1.56ns)   --->   "%icmp_ln158 = icmp_eq  i2 %st_direction_loc_1, i2 0" [../snake.cpp:158]   --->   Operation 124 'icmp' 'icmp_ln158' <Predicate = true> <Delay = 1.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.56> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 125 [1/1] (1.73ns)   --->   "%new_head_row_1 = add i4 %new_head_row, i4 15" [../snake.cpp:159]   --->   Operation 125 'add' 'new_head_row_1' <Predicate = true> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 126 [1/1] (1.02ns)   --->   "%new_head_row_2 = select i1 %icmp_ln158, i4 %new_head_row_1, i4 %new_head_row" [../snake.cpp:158]   --->   Operation 126 'select' 'new_head_row_2' <Predicate = true> <Delay = 1.02> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 1.02> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_8 : Operation 127 [1/1] (1.56ns)   --->   "%icmp_ln160 = icmp_eq  i2 %st_direction_loc_1, i2 1" [../snake.cpp:160]   --->   Operation 127 'icmp' 'icmp_ln160' <Predicate = true> <Delay = 1.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.56> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 128 [1/1] (1.73ns)   --->   "%new_head_row_3 = add i4 %new_head_row, i4 1" [../snake.cpp:161]   --->   Operation 128 'add' 'new_head_row_3' <Predicate = true> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 129 [1/1] (1.02ns)   --->   "%new_head_row_4 = select i1 %icmp_ln160, i4 %new_head_row_3, i4 %new_head_row_2" [../snake.cpp:160]   --->   Operation 129 'select' 'new_head_row_4' <Predicate = true> <Delay = 1.02> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 1.02> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_8 : Operation 130 [1/1] (1.56ns)   --->   "%icmp_ln162 = icmp_eq  i2 %st_direction_loc_1, i2 2" [../snake.cpp:162]   --->   Operation 130 'icmp' 'icmp_ln162' <Predicate = true> <Delay = 1.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.56> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 131 [1/1] (1.78ns)   --->   "%new_head_col_1 = add i5 %new_head_col, i5 31" [../snake.cpp:163]   --->   Operation 131 'add' 'new_head_col_1' <Predicate = true> <Delay = 1.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 132 [1/1] (1.21ns)   --->   "%new_head_col_2 = select i1 %icmp_ln162, i5 %new_head_col_1, i5 %new_head_col" [../snake.cpp:162]   --->   Operation 132 'select' 'new_head_col_2' <Predicate = true> <Delay = 1.21> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_8 : Operation 133 [1/1] (1.56ns)   --->   "%icmp_ln164 = icmp_eq  i2 %st_direction_loc_1, i2 3" [../snake.cpp:164]   --->   Operation 133 'icmp' 'icmp_ln164' <Predicate = true> <Delay = 1.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.56> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 134 [1/1] (1.78ns)   --->   "%new_head_col_3 = add i5 %new_head_col, i5 1" [../snake.cpp:165]   --->   Operation 134 'add' 'new_head_col_3' <Predicate = true> <Delay = 1.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 135 [1/1] (1.21ns)   --->   "%new_head_col_4 = select i1 %icmp_ln164, i5 %new_head_col_3, i5 %new_head_col_2" [../snake.cpp:164]   --->   Operation 135 'select' 'new_head_col_4' <Predicate = true> <Delay = 1.21> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_8 : Operation 136 [1/1] (1.78ns)   --->   "%icmp_ln171 = icmp_ugt  i5 %new_head_col_4, i5 19" [../snake.cpp:171]   --->   Operation 136 'icmp' 'icmp_ln171' <Predicate = true> <Delay = 1.78> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 137 [1/1] (1.73ns)   --->   "%icmp_ln172 = icmp_eq  i4 %new_head_row_4, i4 15" [../snake.cpp:172]   --->   Operation 137 'icmp' 'icmp_ln172' <Predicate = true> <Delay = 1.73> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 138 [1/1] (0.97ns)   --->   "%wall_hit = or i1 %icmp_ln171, i1 %icmp_ln172" [../snake.cpp:171]   --->   Operation 138 'or' 'wall_hit' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 139 [1/1] (0.00ns)   --->   "%br_ln174 = br i1 %wall_hit, void %if.else163_ifconv, void %if.then161" [../snake.cpp:174]   --->   Operation 139 'br' 'br_ln174' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 140 [1/1] (0.00ns)   --->   "%new_len_1 = load i8 %st_length" [../snake.cpp:188]   --->   Operation 140 'load' 'new_len_1' <Predicate = (!wall_hit)> <Delay = 0.00>
+ST_8 : Operation 141 [1/1] (0.00ns)   --->   "%zext_ln188 = zext i8 %new_len_1" [../snake.cpp:188]   --->   Operation 141 'zext' 'zext_ln188' <Predicate = (!wall_hit)> <Delay = 0.00>
+ST_8 : Operation 142 [1/1] (1.91ns)   --->   "%add_ln188 = add i9 %zext_ln188, i9 511" [../snake.cpp:188]   --->   Operation 142 'add' 'add_ln188' <Predicate = (!wall_hit)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 143 [1/1] (0.00ns)   --->   "%sext_ln188 = sext i9 %add_ln188" [../snake.cpp:188]   --->   Operation 143 'sext' 'sext_ln188' <Predicate = (!wall_hit)> <Delay = 0.00>
+ST_8 : Operation 144 [1/1] (0.00ns)   --->   "%st_body_col_addr = getelementptr i5 %st_body_col, i64 0, i64 %sext_ln188" [../snake.cpp:188]   --->   Operation 144 'getelementptr' 'st_body_col_addr' <Predicate = (!wall_hit)> <Delay = 0.00>
+ST_8 : Operation 145 [2/2] (3.25ns)   --->   "%st_body_col_load = load i9 %st_body_col_addr" [../snake.cpp:188]   --->   Operation 145 'load' 'st_body_col_load' <Predicate = (!wall_hit)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 5> <Depth = 300> <RAM>
+ST_8 : Operation 146 [1/1] (0.00ns)   --->   "%st_body_row_addr = getelementptr i4 %st_body_row, i64 0, i64 %sext_ln188" [../snake.cpp:189]   --->   Operation 146 'getelementptr' 'st_body_row_addr' <Predicate = (!wall_hit)> <Delay = 0.00>
+ST_8 : Operation 147 [2/2] (3.25ns)   --->   "%st_body_row_load = load i9 %st_body_row_addr" [../snake.cpp:189]   --->   Operation 147 'load' 'st_body_row_load' <Predicate = (!wall_hit)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 4> <Depth = 300> <RAM>
+ST_8 : Operation 148 [1/1] (0.00ns)   --->   "%zext_ln191 = zext i5 %new_head_col_4" [../snake.cpp:191]   --->   Operation 148 'zext' 'zext_ln191' <Predicate = (!wall_hit)> <Delay = 0.00>
+ST_8 : Operation 149 [1/1] (0.00ns)   --->   "%p_shl1 = bitconcatenate i9 @_ssdm_op_BitConcatenate.i9.i5.i4, i5 %new_head_col_4, i4 0" [../snake.cpp:191]   --->   Operation 149 'bitconcatenate' 'p_shl1' <Predicate = (!wall_hit)> <Delay = 0.00>
+ST_8 : Operation 150 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%sub_ln191 = sub i9 %p_shl1, i9 %zext_ln191" [../snake.cpp:191]   --->   Operation 150 'sub' 'sub_ln191' <Predicate = (!wall_hit)> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.84> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_8 : Operation 151 [1/1] (0.00ns)   --->   "%zext_ln191_1 = zext i4 %new_head_row_4" [../snake.cpp:191]   --->   Operation 151 'zext' 'zext_ln191_1' <Predicate = (!wall_hit)> <Delay = 0.00>
+ST_8 : Operation 152 [1/1] (3.69ns) (root node of TernaryAdder)   --->   "%add_ln191 = add i9 %sub_ln191, i9 %zext_ln191_1" [../snake.cpp:191]   --->   Operation 152 'add' 'add_ln191' <Predicate = (!wall_hit)> <Delay = 3.69> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.84> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_8 : Operation 153 [1/1] (0.00ns)   --->   "%zext_ln191_2 = zext i9 %add_ln191" [../snake.cpp:191]   --->   Operation 153 'zext' 'zext_ln191_2' <Predicate = (!wall_hit)> <Delay = 0.00>
+ST_8 : Operation 154 [1/1] (0.00ns)   --->   "%grid_addr = getelementptr i1 %grid, i64 0, i64 %zext_ln191_2" [../snake.cpp:191]   --->   Operation 154 'getelementptr' 'grid_addr' <Predicate = (!wall_hit)> <Delay = 0.00>
+ST_8 : Operation 155 [2/2] (2.32ns)   --->   "%grid_load = load i9 %grid_addr" [../snake.cpp:191]   --->   Operation 155 'load' 'grid_load' <Predicate = (!wall_hit)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 300> <RAM>
+ST_8 : Operation 156 [1/1] (1.58ns)   --->   "%store_ln175 = store i1 1, i1 %st_game_over" [../snake.cpp:175]   --->   Operation 156 'store' 'store_ln175' <Predicate = (wall_hit)> <Delay = 1.58>
+ST_8 : Operation 157 [1/1] (1.58ns)   --->   "%br_ln176 = br void %if.end245_ifconv" [../snake.cpp:176]   --->   Operation 157 'br' 'br_ln176' <Predicate = (wall_hit)> <Delay = 1.58>
+
+State 9 <SV = 2> <Delay = 9.27>
+ST_9 : Operation 158 [1/1] (1.78ns)   --->   "%icmp_ln180 = icmp_eq  i5 %new_head_col_4, i5 %st_food_col_load" [../snake.cpp:180]   --->   Operation 158 'icmp' 'icmp_ln180' <Predicate = true> <Delay = 1.78> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 159 [1/1] (1.73ns)   --->   "%icmp_ln181 = icmp_eq  i4 %new_head_row_4, i4 %st_food_row_load" [../snake.cpp:181]   --->   Operation 159 'icmp' 'icmp_ln181' <Predicate = true> <Delay = 1.73> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 160 [1/1] (0.97ns)   --->   "%will_eat = and i1 %icmp_ln180, i1 %icmp_ln181" [../snake.cpp:180]   --->   Operation 160 'and' 'will_eat' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 161 [1/2] ( I:3.25ns O:3.25ns )   --->   "%st_body_col_load = load i9 %st_body_col_addr" [../snake.cpp:188]   --->   Operation 161 'load' 'st_body_col_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 5> <Depth = 300> <RAM>
+ST_9 : Operation 162 [1/2] ( I:3.25ns O:3.25ns )   --->   "%st_body_row_load = load i9 %st_body_row_addr" [../snake.cpp:189]   --->   Operation 162 'load' 'st_body_row_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 4> <Depth = 300> <RAM>
+ST_9 : Operation 163 [1/1] (1.73ns)   --->   "%icmp_ln189 = icmp_ne  i4 %new_head_row_4, i4 %st_body_row_load" [../snake.cpp:189]   --->   Operation 163 'icmp' 'icmp_ln189' <Predicate = true> <Delay = 1.73> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 164 [1/1] (1.78ns)   --->   "%not_icmp_ln188 = icmp_ne  i5 %new_head_col_4, i5 %st_body_col_load" [../snake.cpp:164]   --->   Operation 164 'icmp' 'not_icmp_ln188' <Predicate = true> <Delay = 1.78> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 165 [1/1] (0.00ns) (grouped into LUT with out node self_hit)   --->   "%empty = or i1 %icmp_ln189, i1 %not_icmp_ln188" [../snake.cpp:189]   --->   Operation 165 'or' 'empty' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 166 [1/2] ( I:2.32ns O:2.32ns )   --->   "%grid_load = load i9 %grid_addr" [../snake.cpp:191]   --->   Operation 166 'load' 'grid_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 300> <RAM>
+ST_9 : Operation 167 [1/1] (0.00ns) (grouped into LUT with out node self_hit)   --->   "%or_ln192 = or i1 %will_eat, i1 %empty" [../snake.cpp:192]   --->   Operation 167 'or' 'or_ln192' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 168 [1/1] (0.97ns) (out node of the LUT)   --->   "%self_hit = and i1 %grid_load, i1 %or_ln192" [../snake.cpp:191]   --->   Operation 168 'and' 'self_hit' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 169 [1/1] (0.00ns)   --->   "%br_ln194 = br i1 %self_hit, void %if.else197, void %if.then195" [../snake.cpp:194]   --->   Operation 169 'br' 'br_ln194' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 170 [1/1] (0.00ns)   --->   "%br_ln198 = br i1 %will_eat, void %if.then198, void %cond.true212.critedge" [../snake.cpp:198]   --->   Operation 170 'br' 'br_ln198' <Predicate = (!self_hit)> <Delay = 0.00>
+ST_9 : Operation 171 [1/1] (0.00ns)   --->   "%zext_ln199 = zext i5 %st_body_col_load" [../snake.cpp:199]   --->   Operation 171 'zext' 'zext_ln199' <Predicate = (!self_hit & !will_eat)> <Delay = 0.00>
+ST_9 : Operation 172 [1/1] (0.00ns)   --->   "%p_shl2 = bitconcatenate i9 @_ssdm_op_BitConcatenate.i9.i5.i4, i5 %st_body_col_load, i4 0" [../snake.cpp:199]   --->   Operation 172 'bitconcatenate' 'p_shl2' <Predicate = (!self_hit & !will_eat)> <Delay = 0.00>
+ST_9 : Operation 173 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%sub_ln199 = sub i9 %p_shl2, i9 %zext_ln199" [../snake.cpp:199]   --->   Operation 173 'sub' 'sub_ln199' <Predicate = (!self_hit & !will_eat)> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.84> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_9 : Operation 174 [1/1] (0.00ns)   --->   "%zext_ln199_1 = zext i4 %st_body_row_load" [../snake.cpp:199]   --->   Operation 174 'zext' 'zext_ln199_1' <Predicate = (!self_hit & !will_eat)> <Delay = 0.00>
+ST_9 : Operation 175 [1/1] (3.69ns) (root node of TernaryAdder)   --->   "%add_ln199 = add i9 %sub_ln199, i9 %zext_ln199_1" [../snake.cpp:199]   --->   Operation 175 'add' 'add_ln199' <Predicate = (!self_hit & !will_eat)> <Delay = 3.69> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.84> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_9 : Operation 176 [1/1] (0.00ns)   --->   "%zext_ln199_2 = zext i9 %add_ln199" [../snake.cpp:199]   --->   Operation 176 'zext' 'zext_ln199_2' <Predicate = (!self_hit & !will_eat)> <Delay = 0.00>
+ST_9 : Operation 177 [1/1] (0.00ns)   --->   "%grid_addr_1 = getelementptr i1 %grid, i64 0, i64 %zext_ln199_2" [../snake.cpp:199]   --->   Operation 177 'getelementptr' 'grid_addr_1' <Predicate = (!self_hit & !will_eat)> <Delay = 0.00>
+ST_9 : Operation 178 [1/1] ( I:2.32ns O:2.32ns )   --->   "%store_ln200 = store i1 0, i9 %grid_addr_1" [../snake.cpp:200]   --->   Operation 178 'store' 'store_ln200' <Predicate = (!self_hit & !will_eat)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 300> <RAM>
+ST_9 : Operation 179 [1/1] (1.58ns)   --->   "%br_ln203 = br void %cond.end215" [../snake.cpp:203]   --->   Operation 179 'br' 'br_ln203' <Predicate = (!self_hit & !will_eat)> <Delay = 1.58>
+ST_9 : Operation 180 [1/1] (1.91ns)   --->   "%new_len = add i9 %zext_ln188, i9 1" [../snake.cpp:204]   --->   Operation 180 'add' 'new_len' <Predicate = (!self_hit & will_eat)> <Delay = 1.91> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 181 [1/1] (1.58ns)   --->   "%br_ln203 = br void %cond.end215" [../snake.cpp:203]   --->   Operation 181 'br' 'br_ln203' <Predicate = (!self_hit & will_eat)> <Delay = 1.58>
+ST_9 : Operation 182 [1/1] (1.58ns)   --->   "%store_ln195 = store i1 1, i1 %st_game_over" [../snake.cpp:195]   --->   Operation 182 'store' 'store_ln195' <Predicate = (self_hit)> <Delay = 1.58>
+ST_9 : Operation 183 [1/1] (1.58ns)   --->   "%br_ln196 = br void %if.end245_ifconv" [../snake.cpp:196]   --->   Operation 183 'br' 'br_ln196' <Predicate = (self_hit)> <Delay = 1.58>
+
+State 10 <SV = 3> <Delay = 2.32>
+ST_10 : Operation 184 [1/1] (0.00ns)   --->   "%new_len_2 = phi i9 %new_len, void %cond.true212.critedge, i9 %zext_ln188, void %if.then198"   --->   Operation 184 'phi' 'new_len_2' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 185 [2/2] (1.82ns)   --->   "%call_ln204 = call void @snake_top_Pipeline_VITIS_LOOP_207_5, i9 %new_len_2, i5 %st_body_col, i4 %st_body_row" [../snake.cpp:204]   --->   Operation 185 'call' 'call_ln204' <Predicate = true> <Delay = 1.82> <CoreType = "Generic">   --->   Generic Core
+ST_10 : Operation 186 [1/1] (0.00ns)   --->   "%trunc_ln213 = trunc i9 %new_len_2" [../snake.cpp:213]   --->   Operation 186 'trunc' 'trunc_ln213' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 187 [1/1] (1.58ns)   --->   "%store_ln213 = store i8 %trunc_ln213, i8 %st_length" [../snake.cpp:213]   --->   Operation 187 'store' 'store_ln213' <Predicate = true> <Delay = 1.58>
+ST_10 : Operation 188 [1/1] ( I:2.32ns O:2.32ns )   --->   "%store_ln216 = store i1 1, i9 %grid_addr" [../snake.cpp:216]   --->   Operation 188 'store' 'store_ln216' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 300> <RAM>
+
+State 11 <SV = 4> <Delay = 4.99>
+ST_11 : Operation 189 [1/2] (4.99ns)   --->   "%call_ln204 = call void @snake_top_Pipeline_VITIS_LOOP_207_5, i9 %new_len_2, i5 %st_body_col, i4 %st_body_row" [../snake.cpp:204]   --->   Operation 189 'call' 'call_ln204' <Predicate = true> <Delay = 4.99> <CoreType = "Generic">   --->   Generic Core
+
+State 12 <SV = 5> <Delay = 7.60>
+ST_12 : Operation 190 [1/1] ( I:3.25ns O:3.25ns )   --->   "%store_ln212 = store i5 %new_head_col_4, i5 0" [../snake.cpp:212]   --->   Operation 190 'store' 'store_ln212' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 5> <Depth = 300> <RAM>
+ST_12 : Operation 191 [1/1] ( I:3.25ns O:3.25ns )   --->   "%store_ln212 = store i4 %new_head_row_4, i4 0" [../snake.cpp:212]   --->   Operation 191 'store' 'store_ln212' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 4> <Depth = 300> <RAM>
+ST_12 : Operation 192 [1/1] (1.58ns)   --->   "%br_ln219 = br i1 %will_eat, void %if.end245_ifconv, void %if.then239" [../snake.cpp:219]   --->   Operation 192 'br' 'br_ln219' <Predicate = true> <Delay = 1.58>
+ST_12 : Operation 193 [1/1] (0.00ns)   --->   "%lfsr_load = load i16 %lfsr" [../snake.cpp:28->../snake.cpp:220]   --->   Operation 193 'load' 'lfsr_load' <Predicate = (will_eat)> <Delay = 0.00>
+ST_12 : Operation 194 [2/2] (7.60ns)   --->   "%call_ln28 = call void @snake_top_Pipeline_VITIS_LOOP_27_11, i16 %lfsr_load, i16 %or_ln14_1_loc, i4 %r_6_loc, i5 %c_7_loc, i1 %grid" [../snake.cpp:28->../snake.cpp:220]   --->   Operation 194 'call' 'call_ln28' <Predicate = (will_eat)> <Delay = 7.60> <CoreType = "Generic">   --->   Generic Core
+
+State 13 <SV = 6> <Delay = 5.86>
+ST_13 : Operation 195 [1/2] (5.86ns)   --->   "%call_ln28 = call void @snake_top_Pipeline_VITIS_LOOP_27_11, i16 %lfsr_load, i16 %or_ln14_1_loc, i4 %r_6_loc, i5 %c_7_loc, i1 %grid" [../snake.cpp:28->../snake.cpp:220]   --->   Operation 195 'call' 'call_ln28' <Predicate = true> <Delay = 5.86> <CoreType = "Generic">   --->   Generic Core
+
+State 14 <SV = 7> <Delay = 6.02>
+ST_14 : Operation 196 [1/1] (0.00ns)   --->   "%or_ln14_1_loc_load = load i16 %or_ln14_1_loc"   --->   Operation 196 'load' 'or_ln14_1_loc_load' <Predicate = (and_ln112 & icmp_ln150 & !wall_hit & !self_hit & will_eat)> <Delay = 0.00>
+ST_14 : Operation 197 [1/1] (0.00ns)   --->   "%r_6_loc_load = load i4 %r_6_loc"   --->   Operation 197 'load' 'r_6_loc_load' <Predicate = (and_ln112 & icmp_ln150 & !wall_hit & !self_hit & will_eat)> <Delay = 0.00>
+ST_14 : Operation 198 [1/1] (0.00ns)   --->   "%c_7_loc_load = load i5 %c_7_loc"   --->   Operation 198 'load' 'c_7_loc_load' <Predicate = (and_ln112 & icmp_ln150 & !wall_hit & !self_hit & will_eat)> <Delay = 0.00>
+ST_14 : Operation 199 [1/1] (1.58ns)   --->   "%store_ln28 = store i16 %or_ln14_1_loc_load, i16 %lfsr" [../snake.cpp:28->../snake.cpp:220]   --->   Operation 199 'store' 'store_ln28' <Predicate = (and_ln112 & icmp_ln150 & !wall_hit & !self_hit & will_eat)> <Delay = 1.58>
+ST_14 : Operation 200 [1/1] (1.58ns)   --->   "%store_ln220 = store i5 %c_7_loc_load, i5 %st_food_col" [../snake.cpp:220]   --->   Operation 200 'store' 'store_ln220' <Predicate = (and_ln112 & icmp_ln150 & !wall_hit & !self_hit & will_eat)> <Delay = 1.58>
+ST_14 : Operation 201 [1/1] (1.58ns)   --->   "%store_ln220 = store i4 %r_6_loc_load, i4 %st_food_row" [../snake.cpp:220]   --->   Operation 201 'store' 'store_ln220' <Predicate = (and_ln112 & icmp_ln150 & !wall_hit & !self_hit & will_eat)> <Delay = 1.58>
+ST_14 : Operation 202 [1/1] (1.58ns)   --->   "%br_ln220 = br void %if.end245_ifconv" [../snake.cpp:220]   --->   Operation 202 'br' 'br_ln220' <Predicate = (and_ln112 & icmp_ln150 & !wall_hit & !self_hit & will_eat)> <Delay = 1.58>
+ST_14 : Operation 203 [1/1] (0.00ns)   --->   "%cell_col = partselect i5 @_ssdm_op_PartSelect.i5.i10.i32.i32, i10 %vga_x_read, i32 5, i32 9" [../snake.cpp:231]   --->   Operation 203 'partselect' 'cell_col' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 204 [1/1] (0.00ns)   --->   "%cell_row = partselect i4 @_ssdm_op_PartSelect.i4.i10.i32.i32, i10 %vga_y_read, i32 5, i32 8" [../snake.cpp:232]   --->   Operation 204 'partselect' 'cell_row' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 205 [1/1] (1.73ns)   --->   "%icmp_ln235 = icmp_ult  i10 %vga_x_read, i10 640" [../snake.cpp:235]   --->   Operation 205 'icmp' 'icmp_ln235' <Predicate = true> <Delay = 1.73> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 206 [1/1] (1.73ns)   --->   "%icmp_ln236 = icmp_ult  i10 %vga_y_read, i10 480" [../snake.cpp:236]   --->   Operation 206 'icmp' 'icmp_ln236' <Predicate = true> <Delay = 1.73> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 207 [1/1] (0.97ns)   --->   "%in_grid = and i1 %icmp_ln235, i1 %icmp_ln236" [../snake.cpp:235]   --->   Operation 207 'and' 'in_grid' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 208 [1/1] (0.00ns)   --->   "%zext_ln238 = zext i5 %cell_col" [../snake.cpp:238]   --->   Operation 208 'zext' 'zext_ln238' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 209 [1/1] (0.00ns)   --->   "%p_shl = bitconcatenate i9 @_ssdm_op_BitConcatenate.i9.i5.i4, i5 %cell_col, i4 0" [../snake.cpp:238]   --->   Operation 209 'bitconcatenate' 'p_shl' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 210 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%sub_ln238 = sub i9 %p_shl, i9 %zext_ln238" [../snake.cpp:238]   --->   Operation 210 'sub' 'sub_ln238' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.84> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 211 [1/1] (0.00ns)   --->   "%zext_ln238_1 = zext i4 %cell_row" [../snake.cpp:238]   --->   Operation 211 'zext' 'zext_ln238_1' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 212 [1/1] (3.69ns) (root node of TernaryAdder)   --->   "%add_ln238 = add i9 %sub_ln238, i9 %zext_ln238_1" [../snake.cpp:238]   --->   Operation 212 'add' 'add_ln238' <Predicate = true> <Delay = 3.69> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.84> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 213 [1/1] (0.00ns)   --->   "%zext_ln238_2 = zext i9 %add_ln238" [../snake.cpp:238]   --->   Operation 213 'zext' 'zext_ln238_2' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 214 [1/1] (0.00ns)   --->   "%grid_addr_2 = getelementptr i1 %grid, i64 0, i64 %zext_ln238_2" [../snake.cpp:238]   --->   Operation 214 'getelementptr' 'grid_addr_2' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 215 [2/2] (2.32ns)   --->   "%grid_load_1 = load i9 %grid_addr_2" [../snake.cpp:238]   --->   Operation 215 'load' 'grid_load_1' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 300> <RAM>
+
+State 15 <SV = 8> <Delay = 6.87>
+ST_15 : Operation 216 [1/1] (0.00ns)   --->   "%st_frame_count_flag_0 = phi i1 1, void %if.then161, i1 1, void %if.then195, i1 1, void %if.end113, i1 0, void %if.end, i1 1, void %if.then239, i1 1, void %cond.end215"   --->   Operation 216 'phi' 'st_frame_count_flag_0' <Predicate = (rst_n_read)> <Delay = 0.00>
+ST_15 : Operation 217 [1/1] (0.00ns)   --->   "%st_frame_count_new_0 = phi i4 0, void %if.then161, i4 0, void %if.then195, i4 %add_ln148, void %if.end113, i4 0, void %if.end, i4 0, void %if.then239, i4 0, void %cond.end215" [../snake.cpp:148]   --->   Operation 217 'phi' 'st_frame_count_new_0' <Predicate = (rst_n_read)> <Delay = 0.00>
+ST_15 : Operation 218 [1/1] (0.00ns)   --->   "%st_food_col_loc_1 = phi i5 %st_food_col_load, void %if.then161, i5 %st_food_col_load, void %if.then195, i5 %st_food_col_load, void %if.end113, i5 %st_food_col_load, void %if.end, i5 %c_7_loc_load, void %if.then239, i5 %st_food_col_load, void %cond.end215" [../snake.cpp:180]   --->   Operation 218 'phi' 'st_food_col_loc_1' <Predicate = (rst_n_read)> <Delay = 0.00>
+ST_15 : Operation 219 [1/1] (0.00ns)   --->   "%st_food_row_loc_1 = phi i4 %st_food_row_load, void %if.then161, i4 %st_food_row_load, void %if.then195, i4 %st_food_row_load, void %if.end113, i4 %st_food_row_load, void %if.end, i4 %r_6_loc_load, void %if.then239, i4 %st_food_row_load, void %cond.end215" [../snake.cpp:181]   --->   Operation 219 'phi' 'st_food_row_loc_1' <Predicate = (rst_n_read)> <Delay = 0.00>
+ST_15 : Operation 220 [1/1] (0.00ns)   --->   "%empty_13 = phi i1 1, void %if.then161, i1 1, void %if.then195, i1 %st_game_over_load, void %if.end113, i1 %st_game_over_load, void %if.end, i1 %st_game_over_load, void %if.then239, i1 %st_game_over_load, void %cond.end215" [../snake.cpp:112]   --->   Operation 220 'phi' 'empty_13' <Predicate = (rst_n_read)> <Delay = 0.00>
+ST_15 : Operation 221 [1/2] ( I:2.32ns O:2.32ns )   --->   "%grid_load_1 = load i9 %grid_addr_2" [../snake.cpp:238]   --->   Operation 221 'load' 'grid_load_1' <Predicate = (rst_n_read)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 1> <Depth = 300> <RAM>
+ST_15 : Operation 222 [1/1] (0.00ns) (grouped into LUT with out node or_ln243)   --->   "%is_snake = and i1 %in_grid, i1 %grid_load_1" [../snake.cpp:235]   --->   Operation 222 'and' 'is_snake' <Predicate = (rst_n_read)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 223 [1/1] (1.78ns)   --->   "%icmp_ln240 = icmp_eq  i5 %cell_col, i5 %st_food_col_loc_1" [../snake.cpp:240]   --->   Operation 223 'icmp' 'icmp_ln240' <Predicate = (rst_n_read)> <Delay = 1.78> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 224 [1/1] (0.97ns) (out node of the LUT)   --->   "%or_ln243 = or i1 %is_snake, i1 %empty_13" [../snake.cpp:243]   --->   Operation 224 'or' 'or_ln243' <Predicate = (rst_n_read)> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 225 [1/1] (1.73ns)   --->   "%icmp_ln241 = icmp_eq  i4 %cell_row, i4 %st_food_row_loc_1" [../snake.cpp:241]   --->   Operation 225 'icmp' 'icmp_ln241' <Predicate = (rst_n_read)> <Delay = 1.73> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 226 [1/1] (0.00ns) (grouped into LUT with out node and_ln239_1)   --->   "%and_ln239 = and i1 %icmp_ln240, i1 %icmp_ln241" [../snake.cpp:239]   --->   Operation 226 'and' 'and_ln239' <Predicate = (rst_n_read)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 227 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln239_1 = and i1 %and_ln239, i1 %in_grid" [../snake.cpp:239]   --->   Operation 227 'and' 'and_ln239_1' <Predicate = (rst_n_read)> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 228 [1/1] (0.99ns)   --->   "%select_ln243 = select i1 %or_ln243, i1 %empty_13, i1 %and_ln239_1" [../snake.cpp:243]   --->   Operation 228 'select' 'select_ln243' <Predicate = (rst_n_read)> <Delay = 0.99> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_15 : Operation 229 [1/1] (0.97ns)   --->   "%xor_ln243 = xor i1 %or_ln243, i1 %empty_13" [../snake.cpp:243]   --->   Operation 229 'xor' 'xor_ln243' <Predicate = (rst_n_read)> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 230 [1/1] (0.00ns) (grouped into LUT with out node select_ln243_1)   --->   "%or_ln243_1 = or i1 %or_ln243, i1 %and_ln239_1" [../snake.cpp:243]   --->   Operation 230 'or' 'or_ln243_1' <Predicate = (rst_n_read)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 231 [1/1] (1.24ns) (out node of the LUT)   --->   "%select_ln243_1 = select i1 %or_ln243_1, i8 0, i8 128" [../snake.cpp:243]   --->   Operation 231 'select' 'select_ln243_1' <Predicate = (rst_n_read)> <Delay = 1.24> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 1.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_15 : Operation 232 [1/1] (1.58ns)   --->   "%br_ln264 = br void %return" [../snake.cpp:264]   --->   Operation 232 'br' 'br_ln264' <Predicate = (rst_n_read)> <Delay = 1.58>
+ST_15 : Operation 233 [1/1] (0.00ns)   --->   "%st_frame_count_flag_1 = phi i1 %st_frame_count_flag_0, void %if.end245_ifconv, i1 1, void %for.inc.preheader"   --->   Operation 233 'phi' 'st_frame_count_flag_1' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 234 [1/1] (0.00ns)   --->   "%st_frame_count_new_1 = phi i4 %st_frame_count_new_0, void %if.end245_ifconv, i4 0, void %for.inc.preheader" [../snake.cpp:148]   --->   Operation 234 'phi' 'st_frame_count_new_1' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 235 [1/1] (0.00ns) (grouped into LUT with out node storemerge2_cast)   --->   "%storemerge2 = phi i1 %select_ln243, void %if.end245_ifconv, i1 0, void %for.inc.preheader" [../snake.cpp:243]   --->   Operation 235 'phi' 'storemerge2' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 236 [1/1] (0.00ns) (grouped into LUT with out node storemerge_cast)   --->   "%storemerge = phi i1 %xor_ln243, void %if.end245_ifconv, i1 0, void %for.inc.preheader" [../snake.cpp:243]   --->   Operation 236 'phi' 'storemerge' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 237 [1/1] (0.00ns)   --->   "%storemerge1 = phi i8 %select_ln243_1, void %if.end245_ifconv, i8 0, void %for.inc.preheader" [../snake.cpp:243]   --->   Operation 237 'phi' 'storemerge1' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 238 [1/1] (0.00ns)   --->   "%storemerge1_cast = zext i8 %storemerge1" [../snake.cpp:243]   --->   Operation 238 'zext' 'storemerge1_cast' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 239 [1/1] (0.99ns) (out node of the LUT)   --->   "%storemerge_cast = select i1 %storemerge, i10 1023, i10 0" [../snake.cpp:243]   --->   Operation 239 'select' 'storemerge_cast' <Predicate = true> <Delay = 0.99> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_15 : Operation 240 [1/1] (0.99ns) (out node of the LUT)   --->   "%storemerge2_cast = select i1 %storemerge2, i10 1023, i10 0" [../snake.cpp:243]   --->   Operation 240 'select' 'storemerge2_cast' <Predicate = true> <Delay = 0.99> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_15 : Operation 241 [1/1] (0.00ns)   --->   "%write_ln243 = write void @_ssdm_op_Write.ap_auto.i10P0A, i10 %R_out, i10 %storemerge2_cast" [../snake.cpp:243]   --->   Operation 241 'write' 'write_ln243' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 242 [1/1] (0.00ns)   --->   "%write_ln243 = write void @_ssdm_op_Write.ap_auto.i10P0A, i10 %G_out, i10 %storemerge_cast" [../snake.cpp:243]   --->   Operation 242 'write' 'write_ln243' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 243 [1/1] (0.00ns)   --->   "%write_ln243 = write void @_ssdm_op_Write.ap_auto.i10P0A, i10 %B_out, i10 %storemerge1_cast" [../snake.cpp:243]   --->   Operation 243 'write' 'write_ln243' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 244 [1/1] (0.00ns)   --->   "%br_ln0 = br i1 %st_frame_count_flag_1, void %return.new, void %mergeST"   --->   Operation 244 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 245 [1/1] (0.00ns)   --->   "%store_ln81 = store i4 %st_frame_count_new_1, i4 %st_frame_count" [../snake.cpp:81]   --->   Operation 245 'store' 'store_ln81' <Predicate = (st_frame_count_flag_1)> <Delay = 0.00>
+ST_15 : Operation 246 [1/1] (0.00ns)   --->   "%br_ln0 = br void %return.new"   --->   Operation 246 'br' 'br_ln0' <Predicate = (st_frame_count_flag_1)> <Delay = 0.00>
+ST_15 : Operation 247 [1/1] (0.00ns)   --->   "%ret_ln264 = ret" [../snake.cpp:264]   --->   Operation 247 'ret' 'ret_ln264' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 25.000ns, clock uncertainty: 6.750ns.
+
+ <State 1>: 8.494ns
+The critical path consists of the following:
+	wire read operation ('hand_y_read') on port 'hand_y' [27]  (0.000 ns)
+	'sub' operation 11 bit ('abs_dy', ../snake.cpp:125) [96]  (1.731 ns)
+	'select' operation 11 bit ('abs_dy', ../snake.cpp:125) [97]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln129', ../snake.cpp:129) [98]  (1.639 ns)
+	'select' operation 2 bit ('new_dir', ../snake.cpp:129) [103]  (0.993 ns)
+	'icmp' operation 1 bit ('icmp_ln139', ../snake.cpp:139) [119]  (1.565 ns)
+	'and' operation 1 bit ('reversal', ../snake.cpp:139) [121]  (0.978 ns)
+	'store' operation ('store_ln142', ../snake.cpp:142) of variable 'new_dir', ../snake.cpp:129 2 bit on static variable 'st_direction' [124]  (1.588 ns)
+
+ <State 2>: 4.999ns
+The critical path consists of the following:
+	'call' operation ('call_ln0') to 'snake_top_Pipeline_VITIS_LOOP_73_1_VITIS_LOOP_74_2' [62]  (4.999 ns)
+
+ <State 3>: 0.000ns
+The critical path consists of the following:
+
+ <State 4>: 4.741ns
+The critical path consists of the following:
+	'call' operation ('call_ln0') to 'snake_top_Pipeline_VITIS_LOOP_85_3' [67]  (4.741 ns)
+
+ <State 5>: 0.000ns
+The critical path consists of the following:
+
+ <State 6>: 5.866ns
+The critical path consists of the following:
+	'call' operation ('call_ln0') to 'snake_top_Pipeline_VITIS_LOOP_27_1' [69]  (5.866 ns)
+
+ <State 7>: 1.588ns
+The critical path consists of the following:
+	'store' operation ('store_ln78', ../snake.cpp:78) of constant 3 8 bit on static variable 'st_length' [63]  (1.588 ns)
+
+ <State 8>: 13.484ns
+The critical path consists of the following:
+	'load' operation 5 bit ('new_head.col', ../snake.cpp:156) on array 'st_body_col' [132]  (3.254 ns)
+	'add' operation 5 bit ('new_head.col', ../snake.cpp:163) [141]  (1.780 ns)
+	'select' operation 5 bit ('new_head.col', ../snake.cpp:162) [142]  (1.215 ns)
+	'select' operation 5 bit ('new_head.col', ../snake.cpp:164) [145]  (1.215 ns)
+	'sub' operation 9 bit ('sub_ln191', ../snake.cpp:191) [167]  (0.000 ns)
+	'add' operation 9 bit ('add_ln191', ../snake.cpp:191) [169]  (3.698 ns)
+	'getelementptr' operation 9 bit ('grid_addr', ../snake.cpp:191) [171]  (0.000 ns)
+	'load' operation 1 bit ('grid_load', ../snake.cpp:191) on array 'grid' [172]  (2.322 ns)
+
+ <State 9>: 9.274ns
+The critical path consists of the following:
+	'load' operation 5 bit ('st_body_col_load', ../snake.cpp:188) on array 'st_body_col' [159]  (3.254 ns)
+	'sub' operation 9 bit ('sub_ln199', ../snake.cpp:199) [181]  (0.000 ns)
+	'add' operation 9 bit ('add_ln199', ../snake.cpp:199) [183]  (3.698 ns)
+	'getelementptr' operation 9 bit ('grid_addr_1', ../snake.cpp:199) [185]  (0.000 ns)
+	'store' operation ('store_ln200', ../snake.cpp:200) of constant 0 1 bit on array 'grid' [186]  (2.322 ns)
+
+ <State 10>: 2.322ns
+The critical path consists of the following:
+	'store' operation ('store_ln216', ../snake.cpp:216) of constant 1 1 bit on array 'grid' [198]  (2.322 ns)
+
+ <State 11>: 4.999ns
+The critical path consists of the following:
+	'call' operation ('call_ln204', ../snake.cpp:204) to 'snake_top_Pipeline_VITIS_LOOP_207_5' [193]  (4.999 ns)
+
+ <State 12>: 7.608ns
+The critical path consists of the following:
+	'load' operation 16 bit ('lfsr_load', ../snake.cpp:28->../snake.cpp:220) on static variable 'lfsr' [201]  (0.000 ns)
+	'call' operation ('call_ln28', ../snake.cpp:28->../snake.cpp:220) to 'snake_top_Pipeline_VITIS_LOOP_27_11' [202]  (7.608 ns)
+
+ <State 13>: 5.866ns
+The critical path consists of the following:
+	'call' operation ('call_ln28', ../snake.cpp:28->../snake.cpp:220) to 'snake_top_Pipeline_VITIS_LOOP_27_11' [202]  (5.866 ns)
+
+ <State 14>: 6.020ns
+The critical path consists of the following:
+	'sub' operation 9 bit ('sub_ln238', ../snake.cpp:238) [229]  (0.000 ns)
+	'add' operation 9 bit ('add_ln238', ../snake.cpp:238) [231]  (3.698 ns)
+	'getelementptr' operation 9 bit ('grid_addr_2', ../snake.cpp:238) [233]  (0.000 ns)
+	'load' operation 1 bit ('grid_load_1', ../snake.cpp:238) on array 'grid' [234]  (2.322 ns)
+
+ <State 15>: 6.874ns
+The critical path consists of the following:
+	'load' operation 1 bit ('grid_load_1', ../snake.cpp:238) on array 'grid' [234]  (2.322 ns)
+	'and' operation 1 bit ('is_snake', ../snake.cpp:235) [235]  (0.000 ns)
+	'or' operation 1 bit ('or_ln243', ../snake.cpp:243) [237]  (0.978 ns)
+	'select' operation 1 bit ('select_ln243', ../snake.cpp:243) [241]  (0.993 ns)
+	multiplexor before 'phi' operation 1 bit ('storemerge2', ../snake.cpp:243) with incoming values : ('select_ln243', ../snake.cpp:243) [249]  (1.588 ns)
+	'phi' operation 1 bit ('storemerge2', ../snake.cpp:243) with incoming values : ('select_ln243', ../snake.cpp:243) [249]  (0.000 ns)
+	'select' operation 10 bit ('storemerge2_cast', ../snake.cpp:243) [254]  (0.993 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,52 @@
+  **** HLS Build v2025.2 6295257
+INFO: [HLS 200-2005] Using work_dir C:/Users/aniko/OneDrive/Desktop/ECE554/capstone/snake_hls/snake_hls/snake_top 
+INFO: [HLS 200-2176] Writing Vitis IDE component file C:/Users/aniko/OneDrive/Desktop/ECE554/capstone/snake_hls/snake_hls/snake_top/vitis-comp.json
+INFO: [HLS 200-10] Creating and opening component 'C:/Users/aniko/OneDrive/Desktop/ECE554/capstone/snake_hls/snake_hls/snake_top'.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.amd.com/access/sources/dita/topic?Doc_Version=2025.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-2174] Applying component config ini file hls_config.cfg
+INFO: [HLS 200-1465] Applying config ini 'syn.file=../snake.cpp' from hls_config.cfg(8)
+INFO: [HLS 200-10] Adding design file 'C:/Users/aniko/OneDrive/Desktop/ECE554/capstone/snake_hls/snake.cpp' to the project
+INFO: [HLS 200-1465] Applying config ini 'tb.file=../snake_tb.cpp' from hls_config.cfg(9)
+INFO: [HLS 200-10] Adding test bench file 'C:/Users/aniko/OneDrive/Desktop/ECE554/capstone/snake_hls/snake_tb.cpp' to the project
+INFO: [HLS 200-1465] Applying config ini 'syn.top=snake_top' from hls_config.cfg(7)
+INFO: [HLS 200-1465] Applying config ini 'flow_target=vivado' from hls_config.cfg(4)
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.amd.com/access/sources/dita/topic?Doc_Version=2025.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-1465] Applying config ini 'part=xc7z010clg225-1' from hls_config.cfg(1)
+INFO: [HLS 200-1611] Setting target device to 'xc7z010-clg225-1'
+INFO: [HLS 200-1465] Applying config ini 'clock=25ns' from hls_config.cfg(10)
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 25ns.
+INFO: [HLS 200-1465] Applying config ini 'package.output.format=ip_catalog' from hls_config.cfg(5)
+INFO: [HLS 200-2176] Writing Vitis IDE component file C:/Users/aniko/OneDrive/Desktop/ECE554/capstone/snake_hls/snake_hls/snake_top/vitis-comp.json
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [HLS 200-2191] C-Simulation will use clang-16 as the compiler
+INFO: [HLS 200-2036] Building debug C Simulation binaries
+   Compiling ../../../../../snake_tb.cpp in debug mode
+   Compiling ../../../../../snake.cpp in debug mode
+   Generating csim.exe
+PASS T1a: head green after reset
+PASS T1b: body green after reset
+PASS T1c: tail green after reset
+PASS T1d: cell behind tail is background
+PASS T2a: head moved right
+PASS T2b: old tail vacated
+PASS T3: snake moved up
+PASS T4: snake moved down
+PASS T5: 180-degree reversal blocked
+PASS T6: chained turn RIGHT→UP→LEFT
+PASS T7a: game over red screen (top-left)
+PASS T7b: game over red screen (bottom-right)
+PASS T8a: reset clears game over
+PASS T8b: background restored after reset
+PASS T9a: head after 3 right steps
+PASS T9b: body[1] after 3 right steps
+PASS T9c: body[2] after 3 right steps
+PASS T9d: old head vacated after 3 steps
+=========================================
+ALL TESTS PASSED
+=========================================
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-112] Total CPU user time: 1 seconds. Total CPU system time: 1 seconds. Total elapsed time: 8.034 seconds; peak allocated memory: 157.453 MB.
+INFO: [vitis-run 60-791] Total elapsed time: 0h 0m 15s

@@ -1,0 +1,21 @@
+{
+  "0": {
+    "basicblocks": 61,
+    "calls": "",
+    "control_depth": 3,
+    "def_use_depth": 7,
+    "file": "snake.cpp",
+    "fileloc": 48,
+    "instructions": 353,
+    "loads": {
+      "G": 22
+    },
+    "memory_accesses": 12,
+    "name": "snake_top",
+    "stores": {
+      "G": 31,
+      "T": 5
+    },
+    "total_instructions": 353
+  }
+}

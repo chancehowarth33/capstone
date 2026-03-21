@@ -1,0 +1,156 @@
+<ENTRY>
+{
+ "thisFile": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\snake_top.hlsrun_csim_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "03/21/26 02:21:35",
+ "timestampMillis": "1774077695361",
+ "buildStep": {
+  "cmdId": "8fca54bd-d531-40ca-b689-0bdf1e43ff9a",
+  "name": "vitis-run",
+  "logFile": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\logs\\snake_top.steps.log",
+  "commandLine": "C:/AMDDesignTools/2025.2/Vitis/bin/unwrapped/win64.o/vitis-run.exe  --mode hls --csim --config C:\\Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\hls_config.cfg --work_dir snake_top ",
+  "args": [
+   "--mode",
+   "hls",
+   "--csim",
+   "--config",
+   "C:\\Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\hls_config.cfg",
+   "--work_dir",
+   "snake_top"
+  ],
+  "iniFiles": [],
+  "cwd": "C:\\Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "03/21/26 02:21:35",
+ "timestampMillis": "1774077695362",
+ "status": {
+  "cmdId": "8fca54bd-d531-40ca-b689-0bdf1e43ff9a",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "03/21/26 02:21:44",
+ "timestampMillis": "1774077704321",
+ "buildSummary": {
+  "hardwarePlatform": "",
+  "hardwareDsa": "",
+  "platformDirectory": "",
+  "runtime": "",
+  "systemConfig": "",
+  "flow": "BF_RUN",
+  "target": "TT_HLS_C_SIM",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "snake_top",
+     "file": "",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "2025.2"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "03/21/26 02:21:44",
+ "timestampMillis": "1774077704325",
+ "buildStep": {
+  "cmdId": "25f20fb8-0e18-4f4b-802d-a698cfa90976",
+  "name": "",
+  "logFile": "C:/Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls\\snake_top\\hls\\hls.log",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "C:\\Users\\aniko\\OneDrive\\Desktop\\ECE554\\capstone\\snake_hls\\snake_hls"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "03/21/26 02:21:44",
+ "timestampMillis": "1774077704325",
+ "status": {
+  "cmdId": "25f20fb8-0e18-4f4b-802d-a698cfa90976",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "03/21/26 02:21:47",
+ "timestampMillis": "1774077707697",
+ "status": {
+  "cmdId": "25f20fb8-0e18-4f4b-802d-a698cfa90976",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "03/21/26 02:21:47",
+ "timestampMillis": "1774077707910",
+ "status": {
+  "cmdId": "8fca54bd-d531-40ca-b689-0bdf1e43ff9a",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "03/21/26 02:21:47",
+ "timestampMillis": "1774077707917",
+ "report": {
+  "path": "",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "03/21/26 02:21:47",
+ "timestampMillis": "1774077707918",
+ "report": {
+  "path": "",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
