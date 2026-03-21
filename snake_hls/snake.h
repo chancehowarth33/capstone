@@ -31,18 +31,18 @@
 //   Without it (plain g++ testbench) fall back to standard C++ types.
 //-----------------------------------------------------------------------------
 #ifdef __SYNTHESIS__
-  #include <ac_int.h>
-  typedef ac_int<5,  false> col_t;     // 0-19  grid column
-  typedef ac_int<4,  false> row_t;     // 0-14  grid row
-  typedef ac_int<8,  false> len_t;     // snake length (≤ MAX_LENGTH=300)
-  typedef ac_int<10, false> pix_t;     // pixel coordinate 0-639 / 0-479
-  typedef ac_int<10, false> rgb_t;     // 10-bit colour channel
-  typedef ac_int<4,  false> spd_t;     // frame-divider counter
-  typedef ac_int<2,  false> dir_t;     // direction (2 bits)
-  typedef ac_int<1,  false> state_t;   // game state (1 bit)
-  typedef ac_int<16, false> lfsr_t;    // 16-bit LFSR
-  typedef ac_int<11, true>  sdelta_t;  // signed hand-position delta
-  typedef ac_int<9,  false> len9_t;    // 9-bit length counter (covers 300)
+  #include <ap_int.h>
+  typedef ap_uint<5>  col_t;     // 0-19  grid column
+  typedef ap_uint<4>  row_t;     // 0-14  grid row
+  typedef ap_uint<8>  len_t;     // snake length (≤ MAX_LENGTH=300)
+  typedef ap_uint<10> pix_t;     // pixel coordinate 0-639 / 0-479
+  typedef ap_uint<10> rgb_t;     // 10-bit colour channel
+  typedef ap_uint<4>  spd_t;     // frame-divider counter
+  typedef ap_uint<2>  dir_t;     // direction (2 bits)
+  typedef ap_uint<1>  state_t;   // game state (1 bit)
+  typedef ap_uint<16> lfsr_t;    // 16-bit LFSR
+  typedef ap_int<11>  sdelta_t;  // signed hand-position delta
+  typedef ap_uint<9>  len9_t;    // 9-bit length counter (covers 300)
 #else
   typedef unsigned int   col_t;
   typedef unsigned int   row_t;

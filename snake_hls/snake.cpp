@@ -121,8 +121,8 @@ void snake_top(
             sdelta_t dx = (sdelta_t)hand_x - (sdelta_t)320;
             sdelta_t dy = (sdelta_t)hand_y - (sdelta_t)240;
 
-            sdelta_t abs_dx = (dx < (sdelta_t)0) ? -dx : dx;
-            sdelta_t abs_dy = (dy < (sdelta_t)0) ? -dy : dy;
+            sdelta_t abs_dx = (dx < (sdelta_t)0) ? (sdelta_t)(-dx) : dx;
+            sdelta_t abs_dy = (dy < (sdelta_t)0) ? (sdelta_t)(-dy) : dy;
 
             dir_t new_dir = st.direction;
 
