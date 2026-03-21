@@ -481,9 +481,10 @@ overlay u_overlay (
 
 
 // Game mode proof of-concept game where white dot is drawn at the detected hand position on a black background
-
+// NOW: Replaced with snake game wrapper
 
 // instantiation of the game overlay module
+/*
 game_overlay u_game (
     .vga_x    (oVGA_X),
     .vga_y    (oVGA_Y),
@@ -494,8 +495,24 @@ game_overlay u_game (
     .G_out    (game_G),
     .B_out    (game_B)
 );
+*/ 
 
+snake_wrapper u_game (
+    .clk      (VGA_CTRL_CLK),
+    .rst_n    (DLY_RST_2),
 
+    .hand_x   (hand_x),
+    .hand_y   (hand_y),
+    .detected (hand_detected),
+
+    .vga_x    (oVGA_X),
+    .vga_y    (oVGA_Y),
+    .vsync    (VGA_VS),
+
+    .R_out    (game_R),
+    .G_out    (game_G),
+    .B_out    (game_B)
+);
 
 
 
