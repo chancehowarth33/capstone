@@ -1,3 +1,0 @@
-<VitisHLS:BurstInfo>
-    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="../snake.cpp:27:22" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="../snake.cpp:27:22" LoopName="VITIS_LOOP_27_1" ParentFunc="snake_top(ap_uint&lt;10&gt;, ap_uint&lt;10&gt;, bool, ap_uint&lt;10&gt;, ap_uint&lt;10&gt;, bool, bool, ap_uint&lt;10&gt;&amp;, ap_uint&lt;10&gt;&amp;, ap_uint&lt;10&gt;&amp;)"/>
-</VitisHLS:BurstInfo>

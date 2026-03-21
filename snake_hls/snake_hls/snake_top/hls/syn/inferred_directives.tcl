@@ -1,8 +1,0 @@
-# Inferred from syn.compile.pipeline_loops=64
-set_directive_pipeline snake_top/VITIS_LOOP_74_2
-set_directive_pipeline snake_top/VITIS_LOOP_85_3
-set_directive_pipeline snake_top/VITIS_LOOP_94_4
-set_directive_pipeline snake_top/VITIS_LOOP_27_1
-set_directive_pipeline snake_top/VITIS_LOOP_207_5
-# Inferred from Performance Budgeter performance directives
-set_directive_loop_flatten snake_top/VITIS_LOOP_73_1
