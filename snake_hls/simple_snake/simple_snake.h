@@ -17,6 +17,10 @@
 // Move speed once ever SPEED_DIV falling edges of vsync
 #define SPEED_DIV 15
 
+// Snake settings
+#define MAX_LEN 5
+#define INIT_LEN 1
+
 // Fixed wifth for HLS
 typedef ap_uint<5> col_t;  // 0..19
 typedef ap_uint<4> row_t;  // 0..14
@@ -24,6 +28,7 @@ typedef ap_uint<10> pix_t; // 0..639 / 0..479
 typedef ap_uint<10> rgb_t; // 10-bit VGA color
 typedef ap_uint<4> spd_t;  // enough for SPEED_DIV up to 15
 typedef ap_uint<2> dir_t;  // 4 directions
+typedef ap_uint<3> len_t;  // Stores max length of snake
 
 // Direction encodings
 #define DIR_UP 0

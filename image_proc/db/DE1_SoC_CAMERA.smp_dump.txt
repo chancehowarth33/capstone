@@ -1,8 +1,28 @@
 
-State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|icmp_ln113_reg_898
-Name icmp_ln113_reg_898.1 
-icmp_ln113_reg_898.0 0 
-icmp_ln113_reg_898.1 1 
+State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|icmp_ln161_reg_1003
+Name icmp_ln161_reg_1003.1 
+icmp_ln161_reg_1003.0 0 
+icmp_ln161_reg_1003.1 1 
+
+State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|icmp_ln170_reg_1011
+Name icmp_ln170_reg_1011.1 
+icmp_ln170_reg_1011.0 0 
+icmp_ln170_reg_1011.1 1 
+
+State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|icmp_ln112_reg_980
+Name icmp_ln112_reg_980.1 
+icmp_ln112_reg_980.0 0 
+icmp_ln112_reg_980.1 1 
+
+State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_206_3:grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390|icmp_ln206_reg_196
+Name icmp_ln206_reg_196.1 
+icmp_ln206_reg_196.0 0 
+icmp_ln206_reg_196.1 1 
+
+State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_151_2:grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381|icmp_ln153_reg_153
+Name icmp_ln153_reg_153.1 
+icmp_ln153_reg_153.0 0 
+icmp_ln153_reg_153.1 1 
 
 State Machine - |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mSetup_ST
 Name mSetup_ST.0000 mSetup_ST.0010 mSetup_ST.0001 
