@@ -753,8 +753,10 @@ set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name VERILOG_FILE ../snake_hls/simple_snake/snake_top_sparsemux_7_2_2_1_1.v
-set_global_assignment -name VERILOG_FILE ../snake_hls/simple_snake/snake_top.v
+set_global_assignment -name VERILOG_FILE ../../simple_snake/snake_top/hls/syn/verilog/snake_top_urem_8ns_6ns_5_12_seq_1.v
+set_global_assignment -name VERILOG_FILE ../../simple_snake/snake_top/hls/syn/verilog/snake_top_urem_5ns_5ns_4_9_seq_1.v
+set_global_assignment -name VERILOG_FILE ../../simple_snake/snake_top/hls/syn/verilog/snake_top_sparsemux_7_2_2_1_1.v
+set_global_assignment -name VERILOG_FILE ../../simple_snake/snake_top/hls/syn/verilog/snake_top.v
 set_global_assignment -name SYSTEMVERILOG_FILE snake_wrapper.sv
 set_global_assignment -name QIP_FILE v/Line_Buffer1.qip
 set_global_assignment -name VERILOG_FILE v/Line_Buffer1.v

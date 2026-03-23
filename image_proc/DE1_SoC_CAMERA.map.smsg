@@ -1,8 +1,7 @@
-Warning (10273): Verilog HDL warning at snake_top.v(194): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_top.v Line: 194
-Warning (10273): Verilog HDL warning at snake_top.v(206): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_top.v Line: 206
-Warning (10273): Verilog HDL warning at snake_top.v(217): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_top.v Line: 217
-Warning (10273): Verilog HDL warning at snake_top.v(220): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_top.v Line: 220
-Warning (10273): Verilog HDL warning at snake_top.v(231): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_top.v Line: 231
-Warning (10273): Verilog HDL warning at snake_top.v(234): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_top.v Line: 234
-Warning (10273): Verilog HDL warning at snake_top.v(252): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_top.v Line: 252
-Warning (10273): Verilog HDL warning at snake_top.v(339): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_top.v Line: 339
+Warning (10273): Verilog HDL warning at snake_top.v(425): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 425
+Warning (10273): Verilog HDL warning at snake_top.v(446): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 446
+Warning (10273): Verilog HDL warning at snake_top.v(449): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 449
+Warning (10273): Verilog HDL warning at snake_top.v(492): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 492
+Warning (10273): Verilog HDL warning at snake_top.v(495): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 495
+Warning (10273): Verilog HDL warning at snake_top.v(574): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 574
+Warning (10273): Verilog HDL warning at snake_top.v(705): extended using "x" or "z" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 705
