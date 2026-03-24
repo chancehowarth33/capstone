@@ -26,17 +26,17 @@ module color_detect (
     output reg       cal_valid
 );
 
-    parameter NUM_BLOCK_COLS   = 20;
+    parameter NUM_BLOCK_COLS   = 40;
     parameter MIN_MATCH_BLOCKS = 1;
 
     parameter TOL_R = 10'd80;
-    parameter TOL_G = 10'd100;
+    parameter TOL_G = 10'd80;
     parameter TOL_B = 10'd80;
 
     integer i;
 
-    wire [4:0] block_col;
-    wire [3:0] block_row;
+    wire [5:0] block_col;
+    wire [4:0] block_row;
     wire       end_of_block;
     wire       is_center_block;
 
@@ -54,13 +54,14 @@ module color_detect (
     wire       capture_fall;
     reg        capture_pending;
 
-    reg [19:0] sum_R [0:NUM_BLOCK_COLS-1];
-    reg [19:0] sum_G [0:NUM_BLOCK_COLS-1];
-    reg [19:0] sum_B [0:NUM_BLOCK_COLS-1];
+    // 16x16 block => 256 pixels, max sum = 1023*256 = 261888, needs 18 bits
+    reg [17:0] sum_R [0:NUM_BLOCK_COLS-1];
+    reg [17:0] sum_G [0:NUM_BLOCK_COLS-1];
+    reg [17:0] sum_B [0:NUM_BLOCK_COLS-1];
 
     reg [15:0] centroid_sum_x;
     reg [15:0] centroid_sum_y;
-    reg [7:0]  match_count;
+    reg [10:0] match_count;
 
     reg [9:0] frame_min_x;
     reg [9:0] frame_max_x;
@@ -71,13 +72,13 @@ module color_detect (
     reg [9:0] cal_G;
     reg [9:0] cal_B;
 
-    wire [19:0] cur_sum_R;
-    wire [19:0] cur_sum_G;
-    wire [19:0] cur_sum_B;
+    wire [17:0] cur_sum_R;
+    wire [17:0] cur_sum_G;
+    wire [17:0] cur_sum_B;
 
-    wire [19:0] next_sum_R;
-    wire [19:0] next_sum_G;
-    wire [19:0] next_sum_B;
+    wire [17:0] next_sum_R;
+    wire [17:0] next_sum_G;
+    wire [17:0] next_sum_B;
 
     wire [9:0] avgR;
     wire [9:0] avgG;
@@ -88,18 +89,20 @@ module color_detect (
     wire [9:0] diffB;
     wire       color_match;
 
-    assign block_col       = vga_x[9:5];
-    assign block_row       = vga_y[8:5];
-    assign end_of_block    = (vga_x[4:0] == 5'd31) && (vga_y[4:0] == 5'd31);
-    assign is_center_block = (block_col == 5'd10) && (block_row == 4'd7);
+    assign block_col       = vga_x[9:4];
+    assign block_row       = vga_y[8:4];
+    assign end_of_block    = (vga_x[3:0] == 4'd15) && (vga_y[3:0] == 4'd15);
 
-    assign block_center_x  = {block_col, 5'd16};
-    assign block_center_y  = {block_row, 5'd16};
+    // center 16x16 block containing approximately (320,240)
+    assign is_center_block = (block_col == 6'd20) && (block_row == 5'd15);
 
-    assign block_left_w    = {block_col, 5'd0};
-    assign block_right_w   = {block_col, 5'd31};
-    assign block_top_w     = {block_row, 5'd0};
-    assign block_bottom_w  = {block_row, 5'd31};
+    assign block_center_x  = {block_col, 4'd8};
+    assign block_center_y  = {block_row, 4'd8};
+
+    assign block_left_w    = {block_col, 4'd0};
+    assign block_right_w   = {block_col, 4'd15};
+    assign block_top_w     = {block_row, 4'd0};
+    assign block_bottom_w  = {block_row, 4'd15};
 
     assign vsync_fall      = vsync_prev && !vsync;
     assign capture_fall    = capture_prev && !capture_btn_n;
@@ -112,9 +115,10 @@ module color_detect (
     assign next_sum_G      = cur_sum_G + G;
     assign next_sum_B      = cur_sum_B + B;
 
-    assign avgR            = next_sum_R[19:10];
-    assign avgG            = next_sum_G[19:10];
-    assign avgB            = next_sum_B[19:10];
+    // 16x16 average => divide by 256
+    assign avgR            = next_sum_R[17:8];
+    assign avgG            = next_sum_G[17:8];
+    assign avgB            = next_sum_B[17:8];
 
     assign diffR = (avgR >= cal_R) ? (avgR - cal_R) : (cal_R - avgR);
     assign diffG = (avgG >= cal_G) ? (avgG - cal_G) : (cal_G - avgG);
@@ -146,7 +150,7 @@ module color_detect (
 
             centroid_sum_x <= 16'd0;
             centroid_sum_y <= 16'd0;
-            match_count    <= 8'd0;
+            match_count    <= 11'd0;
 
             frame_min_x    <= 10'd639;
             frame_max_x    <= 10'd0;
@@ -162,9 +166,9 @@ module color_detect (
             cal_B           <= 10'd0;
 
             for (i = 0; i < NUM_BLOCK_COLS; i = i + 1) begin
-                sum_R[i] <= 20'd0;
-                sum_G[i] <= 20'd0;
-                sum_B[i] <= 20'd0;
+                sum_R[i] <= 18'd0;
+                sum_G[i] <= 18'd0;
+                sum_B[i] <= 18'd0;
             end
         end
         else begin
@@ -196,7 +200,7 @@ module color_detect (
 
                 centroid_sum_x <= 16'd0;
                 centroid_sum_y <= 16'd0;
-                match_count    <= 8'd0;
+                match_count    <= 11'd0;
 
                 frame_min_x    <= 10'd639;
                 frame_max_x    <= 10'd0;
@@ -204,9 +208,9 @@ module color_detect (
                 frame_max_y    <= 10'd0;
 
                 for (i = 0; i < NUM_BLOCK_COLS; i = i + 1) begin
-                    sum_R[i] <= 20'd0;
-                    sum_G[i] <= 20'd0;
-                    sum_B[i] <= 20'd0;
+                    sum_R[i] <= 18'd0;
+                    sum_G[i] <= 18'd0;
+                    sum_B[i] <= 18'd0;
                 end
             end
             else if (active) begin
@@ -237,7 +241,7 @@ module color_detect (
                     if (!calibrate && color_match) begin
                         centroid_sum_x <= centroid_sum_x + block_center_x;
                         centroid_sum_y <= centroid_sum_y + block_center_y;
-                        match_count    <= match_count + 8'd1;
+                        match_count    <= match_count + 11'd1;
 
                         if (block_left_w < frame_min_x)
                             frame_min_x <= block_left_w;
@@ -249,9 +253,9 @@ module color_detect (
                             frame_max_y <= block_bottom_w;
                     end
 
-                    sum_R[block_col] <= 20'd0;
-                    sum_G[block_col] <= 20'd0;
-                    sum_B[block_col] <= 20'd0;
+                    sum_R[block_col] <= 18'd0;
+                    sum_G[block_col] <= 18'd0;
+                    sum_B[block_col] <= 18'd0;
                 end
             end
         end

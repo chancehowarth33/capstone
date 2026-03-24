@@ -185,7 +185,8 @@ wire       oVGA_ACTIVE;
 
 
 // Game logic wires and instantiations
-wire [9:0] hand_x, hand_y;
+wire [9:0] overlay_x, overlay_y;
+wire [9:0] coord_x, coord_y;
 wire       hand_detected;
 
 wire [9:0] final_R, final_G, final_B;
@@ -312,7 +313,7 @@ assign hex_data = calibrate
                 ? (cal_valid
                     ? {cal_sample_R[9:2], cal_sample_G[9:2], cal_sample_B[9:2]}
                     : {center_avgR[9:2],  center_avgG[9:2],  center_avgB[9:2]})
-                : {2'b00, hand_y, 2'b00, hand_x};
+                : {2'b00, overlay_y, 2'b00, overlay_x};
 
 SEG7_LUT_6 u5 (
     .oSEG0(HEX0), .oSEG1(HEX1),
@@ -439,8 +440,10 @@ color_detect u_detect (
     .B           (oVGA_B),
     .vga_x       (oVGA_X),
     .vga_y       (oVGA_Y),
-    .hand_x      (hand_x),
-    .hand_y      (hand_y),
+    .overlay_x   (overlay_x),
+    .overlay_y   (overlay_y),
+    .coord_x     (coord_x),
+    .coord_y     (coord_y),
     .box_left    (box_left),
     .box_right   (box_right),
     .box_top     (box_top),
@@ -455,6 +458,7 @@ color_detect u_detect (
     .cal_valid   (cal_valid)
 );
 
+
 //=============================================================================
 // u_overlay — crosshair renderer
 //=============================================================================
@@ -466,8 +470,8 @@ overlay u_overlay (
     .B_in      (oVGA_B),
     .vga_x     (oVGA_X),
     .vga_y     (oVGA_Y),
-    .hand_x    (hand_x),
-    .hand_y    (hand_y),
+    .hand_x    (overlay_x),
+    .hand_y    (overlay_y),
     .box_left  (box_left),
     .box_right (box_right),
     .box_top   (box_top),
@@ -488,8 +492,8 @@ overlay u_overlay (
 game_overlay u_game (
     .vga_x    (oVGA_X),
     .vga_y    (oVGA_Y),
-    .hand_x   (hand_x),
-    .hand_y   (hand_y),
+    .hand_x   (coord_x),
+    .hand_y   (coord_y),
     .detected (hand_detected),
     .R_out    (game_R),
     .G_out    (game_G),
