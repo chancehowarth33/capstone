@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC_CAMERA
-Sun Mar 22 19:54:15 2026
+Tue Mar 24 16:58:35 2026
 Quartus Prime Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
 
 
@@ -150,7 +150,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Mar 22 19:54:15 2026           ;
+; Analysis & Synthesis Status     ; Successful - Tue Mar 24 16:58:35 2026           ;
 ; Quartus Prime Version           ; 25.1std.0 Build 1129 10/21/2025 SC Lite Edition ;
 ; Revision Name                   ; DE1_SoC_CAMERA                                  ;
 ; Top-level Entity Name           ; DE1_SoC_CAMERA                                  ;
@@ -276,7 +276,8 @@ on the Quartus Prime software download page.
 ;     Processor 5            ;   0.0%      ;
 ;     Processor 6            ;   0.0%      ;
 ;     Processor 7            ;   0.0%      ;
-;     Processors 8-12        ;   0.0%      ;
+;     Processor 8            ;   0.0%      ;
+;     Processors 9-12        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -2667,7 +2668,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
-    Info: Processing started: Sun Mar 22 19:54:03 2026
+    Info: Processing started: Tue Mar 24 16:58:19 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC_CAMERA -c DE1_SoC_CAMERA
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -3115,7 +3116,6 @@ Warning (10230): Verilog HDL assignment warning at color_detect.v(181): truncate
 Info (12128): Elaborating entity "overlay" for hierarchy "overlay:u_overlay" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 480
 Info (12128): Elaborating entity "snake_wrapper" for hierarchy "snake_wrapper:u_game" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 515
 Info (12128): Elaborating entity "snake_top" for hierarchy "snake_wrapper:u_game|snake_top:u_snake_top" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/snake_wrapper.sv Line: 40
-Warning (10306): Invalid value "none" for synthesis attribute "fsm_encoding" at ../../simple_snake/snake_top/hls/syn/verilog/snake_top.v(84) File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 84
 Warning (10036): Verilog HDL or VHDL warning at snake_top.v(244): object "ap_ST_fsm_state1_blk" assigned a value but never read File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 244
 Warning (10036): Verilog HDL or VHDL warning at snake_top.v(245): object "ap_ST_fsm_state2_blk" assigned a value but never read File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 245
 Warning (10036): Verilog HDL or VHDL warning at snake_top.v(246): object "ap_ST_fsm_state3_blk" assigned a value but never read File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 246
@@ -3152,14 +3152,12 @@ Warning (10230): Verilog HDL assignment warning at snake_top.v(1192): truncated 
 Info (12128): Elaborating entity "snake_top_snake_col_RAM_AUTO_1R1W" for hierarchy "snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_col_RAM_AUTO_1R1W:snake_col_U" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 300
 Info (12128): Elaborating entity "snake_top_snake_row_RAM_AUTO_1R1W" for hierarchy "snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_row_RAM_AUTO_1R1W:snake_row_U" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 317
 Info (12128): Elaborating entity "snake_top_snake_top_Pipeline_VITIS_LOOP_67_1" for hierarchy "snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_67_1:grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 334
-Warning (10306): Invalid value "none" for synthesis attribute "fsm_encoding" at ../../simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_67_1.v(46) File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_67_1.v Line: 46
 Warning (10036): Verilog HDL or VHDL warning at snake_top_snake_top_Pipeline_VITIS_LOOP_67_1.v(66): object "ap_ST_fsm_state1_blk" assigned a value but never read File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_67_1.v Line: 66
 Warning (10230): Verilog HDL assignment warning at snake_top_snake_top_Pipeline_VITIS_LOOP_67_1.v(210): truncated value with size 32 to match size of target (1) File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_67_1.v Line: 210
 Warning (10230): Verilog HDL assignment warning at snake_top_snake_top_Pipeline_VITIS_LOOP_67_1.v(231): truncated value with size 64 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_67_1.v Line: 231
 Warning (10230): Verilog HDL assignment warning at snake_top_snake_top_Pipeline_VITIS_LOOP_67_1.v(239): truncated value with size 64 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_67_1.v Line: 239
 Info (12128): Elaborating entity "snake_top_flow_control_loop_pipe_sequential_init" for hierarchy "snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_67_1:grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373|snake_top_flow_control_loop_pipe_sequential_init:flow_control_loop_pipe_sequential_init_U" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_67_1.v Line: 92
 Info (12128): Elaborating entity "snake_top_snake_top_Pipeline_VITIS_LOOP_151_2" for hierarchy "snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_151_2:grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 358
-Warning (10306): Invalid value "none" for synthesis attribute "fsm_encoding" at ../../simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v(60) File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v Line: 60
 Warning (10036): Verilog HDL or VHDL warning at snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v(91): object "ap_enable_pp0" assigned a value but never read File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v Line: 91
 Warning (10230): Verilog HDL assignment warning at snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v(271): truncated value with size 32 to match size of target (1) File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v Line: 271
 Warning (10230): Verilog HDL assignment warning at snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v(300): truncated value with size 64 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v Line: 300
@@ -3167,7 +3165,6 @@ Warning (10230): Verilog HDL assignment warning at snake_top_snake_top_Pipeline_
 Warning (10230): Verilog HDL assignment warning at snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v(312): truncated value with size 64 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v Line: 312
 Warning (10230): Verilog HDL assignment warning at snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v(314): truncated value with size 64 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v Line: 314
 Info (12128): Elaborating entity "snake_top_snake_top_Pipeline_VITIS_LOOP_206_3" for hierarchy "snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_206_3:grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390" File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top.v Line: 378
-Warning (10306): Invalid value "none" for synthesis attribute "fsm_encoding" at ../../simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_206_3.v(53) File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_206_3.v Line: 53
 Warning (10036): Verilog HDL or VHDL warning at snake_top_snake_top_Pipeline_VITIS_LOOP_206_3.v(75): object "ap_block_pp0_stage0_01001" assigned a value but never read File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_206_3.v Line: 75
 Warning (10036): Verilog HDL or VHDL warning at snake_top_snake_top_Pipeline_VITIS_LOOP_206_3.v(86): object "ap_enable_pp0" assigned a value but never read File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_206_3.v Line: 86
 Warning (10230): Verilog HDL assignment warning at snake_top_snake_top_Pipeline_VITIS_LOOP_206_3.v(253): truncated value with size 32 to match size of target (1) File: C:/Users/amers/Desktop/ECE554/simple_snake/snake_top/hls/syn/verilog/snake_top_snake_top_Pipeline_VITIS_LOOP_206_3.v Line: 253
@@ -3324,10 +3321,10 @@ Info (21057): Implemented 5009 device resources after synthesis - the final reso
     Info (21061): Implemented 4693 logic cells
     Info (21064): Implemented 86 RAM segments
     Info (21065): Implemented 4 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 225 warnings
-    Info: Peak virtual memory: 4991 megabytes
-    Info: Processing ended: Sun Mar 22 19:54:15 2026
-    Info: Elapsed time: 00:00:12
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 221 warnings
+    Info: Peak virtual memory: 5003 megabytes
+    Info: Processing ended: Tue Mar 24 16:58:35 2026
+    Info: Elapsed time: 00:00:16
     Info: Total CPU time (on all processors): 00:00:22
 
 
