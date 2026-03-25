@@ -505,8 +505,8 @@ snake_wrapper u_game (
     .clk      (VGA_CTRL_CLK),
     .rst_n    (DLY_RST_2),
 
-    .hand_x   (hand_x),
-    .hand_y   (hand_y),
+    .hand_x   (coord_x),
+    .hand_y   (coord_y),
     .detected (hand_detected),
 
     .vga_x    (oVGA_X),
