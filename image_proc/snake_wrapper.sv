@@ -2,8 +2,8 @@ module snake_wrapper (
     input  logic clk, 
     input  logic rst_n,
 
-    input  logic [9:0]  hand_x, // From color_detect
-    input  logic [9:0]  hand_y,
+    input  logic [9:0]  coord_x, // From color_detect
+    input  logic [9:0]  coord_y,
     input  logic        detected,
 
     input  logic [9:0]  vga_x, // VGA Controller
@@ -25,8 +25,8 @@ snake_top u_snake_top (
     .ap_clk   (clk),
     .ap_rst   (~rst_n),
 
-    .hand_x   (hand_x),
-    .hand_y   (hand_y),
+    .coord_x   (coord_x),
+    .coord_y   (coord_y),
     .detected (detected),
 
     .vga_x    (vga_x),

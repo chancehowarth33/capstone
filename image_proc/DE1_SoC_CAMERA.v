@@ -440,10 +440,8 @@ color_detect u_detect (
     .B           (oVGA_B),
     .vga_x       (oVGA_X),
     .vga_y       (oVGA_Y),
-    .overlay_x   (overlay_x),
-    .overlay_y   (overlay_y),
-    .coord_x     (coord_x),
-    .coord_y     (coord_y),
+    .hand_x     (coord_x),
+    .hand_y     (coord_y),
     .box_left    (box_left),
     .box_right   (box_right),
     .box_top     (box_top),
@@ -505,8 +503,8 @@ snake_wrapper u_game (
     .clk      (VGA_CTRL_CLK),
     .rst_n    (DLY_RST_2),
 
-    .hand_x   (coord_x),
-    .hand_y   (coord_y),
+    .coord_x   (coord_x),
+    .coord_y   (coord_y),
     .detected (hand_detected),
 
     .vga_x    (oVGA_X),

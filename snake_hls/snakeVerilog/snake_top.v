@@ -12,8 +12,8 @@
 module snake_top (
         ap_clk,
         ap_rst,
-        hand_x,
-        hand_y,
+        coord_x,
+        coord_y,
         detected,
         vga_x,
         vga_y,
@@ -48,8 +48,8 @@ parameter    ap_ST_fsm_state21 = 21'd1048576;
 
 input   ap_clk;
 input   ap_rst;
-input  [9:0] hand_x;
-input  [9:0] hand_y;
+input  [9:0] coord_x;
+input  [9:0] coord_y;
 input  [0:0] detected;
 input  [9:0] vga_x;
 input  [9:0] vga_y;
@@ -1129,7 +1129,7 @@ assign grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_start = grp_snake_top_P
 
 assign grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_start = grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_start_reg;
 
-assign icmp_ln102_fu_484_p2 = ((hand_x > 10'd319) ? 1'b1 : 1'b0);
+assign icmp_ln102_fu_484_p2 = ((coord_x > 10'd319) ? 1'b1 : 1'b0);
 
 assign icmp_ln112_fu_560_p2 = ((frame_count == 4'd14) ? 1'b1 : 1'b0);
 
@@ -1197,7 +1197,7 @@ assign storemerge_cast_fu_899_p3 = ((ap_phi_mux_storemerge_phi_fu_366_p4[0:0] ==
 
 assign tmp_fu_718_p4 = {{snake_len_load_reg_941[2:1]}};
 
-assign top_half_fu_478_p2 = ((hand_y < 10'd240) ? 1'b1 : 1'b0);
+assign top_half_fu_478_p2 = ((coord_y < 10'd240) ? 1'b1 : 1'b0);
 
 assign vsync_fall_fu_438_p2 = (xor_ln89_fu_432_p2 & vsync_prev);
 

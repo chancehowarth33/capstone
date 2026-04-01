@@ -17,8 +17,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void snake_top(
-    pix_t hand_x,
-    pix_t hand_y,
+    pix_t coord_x,
+    pix_t coord_y,
     bool detected,
     pix_t vga_x,
     pix_t vga_y,
@@ -31,8 +31,8 @@ void snake_top(
 // This should tell vitis to treat our code as an always running module. We can fix this later,
 // but for now we just want the game to run indefinitely.
 #pragma HLS INTERFACE ap_ctrl_none port = return
-#pragma HLS INTERFACE ap_none port = hand_x
-#pragma HLS INTERFACE ap_none port = hand_y
+#pragma HLS INTERFACE ap_none port = coord_x
+#pragma HLS INTERFACE ap_none port = coord_y
 #pragma HLS INTERFACE ap_none port = detected
 #pragma HLS INTERFACE ap_none port = vga_x
 #pragma HLS INTERFACE ap_none port = vga_y
@@ -96,8 +96,8 @@ void snake_top(
 
         if (detected)
         {
-            bool left_half = (hand_x < (pix_t)320);
-            bool top_half = (hand_y < (pix_t)240);
+            bool left_half = (coord_x < (pix_t)320);
+            bool top_half = (coord_y < (pix_t)240);
 
             if (left_half && top_half)
                 direction = DIR_UP;
