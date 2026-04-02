@@ -4,8 +4,8 @@ module overlay (
     input  [9:0] B_in,
     input  [9:0] vga_x,
     input  [9:0] vga_y,
-    input  [9:0] hand_x,
-    input  [9:0] hand_y,
+    input  [9:0] overlay_x,
+    input  [9:0] overlay_y,
     input  [9:0] box_left,
     input  [9:0] box_right,
     input  [9:0] box_top,
@@ -75,8 +75,8 @@ module overlay (
 
     // center dot at filtered hand_x/hand_y
     assign trk_dot_on = detected &&
-        (vga_x >= (hand_x - 10'd2)) && (vga_x <= (hand_x + 10'd2)) &&
-        (vga_y >= (hand_y - 10'd2)) && (vga_y <= (hand_y + 10'd2));
+        (vga_x >= (overlay_x - 10'd2)) && (vga_x <= (overlay_x + 10'd2)) &&
+        (vga_y >= (overlay_y - 10'd2)) && (vga_y <= (overlay_y + 10'd2));
 
     assign R_out = (calibrate ? (cal_box_on || cal_dot_on) : (trk_box_on || trk_dot_on)) ? 10'h3FF : R_in;
     assign G_out = (calibrate ? (cal_box_on || cal_dot_on) : (trk_box_on || trk_dot_on)) ? 10'h3FF : G_in;
