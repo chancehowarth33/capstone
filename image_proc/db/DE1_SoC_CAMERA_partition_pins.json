@@ -464,19 +464,19 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY[1]",
-					"strict" : false
-				},
-				{
 					"name" : "D5M_PIXLCLK",
 					"strict" : false
 				},
 				{
-					"name" : "SW[9]",
+					"name" : "D5M_FVAL",
 					"strict" : false
 				},
 				{
-					"name" : "D5M_FVAL",
+					"name" : "KEY[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[9]",
 					"strict" : false
 				},
 				{

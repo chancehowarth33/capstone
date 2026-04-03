@@ -1,7 +1,7 @@
 module color_detect (
     input        clk,
     input        rst_n,
-    input        vsync,
+    input        fval,
     input        active,
     input        calibrate,
     input        capture_btn_n,   // KEY[1], active-low
@@ -69,8 +69,8 @@ module color_detect (
     //========================
     // control
     //========================
-    reg vsync_prev;
-    wire vsync_fall = vsync_prev && !vsync;
+    reg fval_prev;
+    wire fval_fall = fval_prev && !fval;
 
     reg capture_prev;
     wire capture_fall = capture_prev && !capture_btn_n;
@@ -140,7 +140,7 @@ module color_detect (
                 sum_B[i] <= 0;
             end
         end else begin
-            vsync_prev   <= vsync;
+            fval_prev   <= fval;
             capture_prev <= capture_btn_n;
 
             if (calibrate && capture_fall)
@@ -149,7 +149,7 @@ module color_detect (
             //========================
             // frame end
             //========================
-            if (vsync_fall) begin
+            if (fval_fall) begin
                 if (!calibrate && match_count >= MIN_MATCH_BLOCKS) begin
                     detected  <= 1;
 
