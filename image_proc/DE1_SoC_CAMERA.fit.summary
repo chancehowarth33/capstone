@@ -1,12 +1,12 @@
-Fitter Status : Successful - Sat Apr  4 00:28:59 2026
+Fitter Status : Successful - Sat Apr  4 00:41:40 2026
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : DE1_SoC_CAMERA
 Top-level Entity Name : DE1_SoC_CAMERA
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 1,710 / 32,070 ( 5 % )
-Total registers : 2751
+Logic utilization (in ALMs) : 1,704 / 32,070 ( 5 % )
+Total registers : 2764
 Total pins : 226 / 457 ( 49 % )
 Total virtual pins : 0
 Total block memory bits : 59,344 / 4,065,280 ( 1 % )
