@@ -42,6 +42,7 @@ module color_detect (
     parameter TOL_G = 10'd100;
     parameter TOL_B = 10'd120;
 
+
     integer i;
 
     //========================
@@ -53,6 +54,9 @@ module color_detect (
     wire end_of_block =
         (vga_x[4:0] == 5'd31) &&
         (vga_y[4:0] == 5'd31);
+
+    // fires at the end of every complete row of blocks (block_col==19, every 32 pixel rows)
+    wire subframe_out = end_of_block && (block_col == 5'd19);
 
     wire is_center_block =
         (block_col == 5'd10) &&
@@ -224,6 +228,24 @@ module color_detect (
                         if (block_right_w > frame_max_x) frame_max_x <= block_right_w;
                         if (block_top_w < frame_min_y) frame_min_y <= block_top_w;
                         if (block_bottom_w > frame_max_y) frame_max_y <= block_bottom_w;
+                    end
+
+                    // sub-frame output: snapshot current centroid without resetting
+                    // accumulators keep running to fval_fall
+                    if (!calibrate && subframe_out) begin
+                        if (match_count >= MIN_MATCH_BLOCKS) begin
+                            detected   <= 1;
+                            overlay_x  <= tracked_x;
+                            overlay_y  <= tracked_y;
+                            coord_x    <= 10'd639 - tracked_x;
+                            coord_y    <= tracked_y;
+                            box_left   <= frame_min_x;
+                            box_right  <= frame_max_x;
+                            box_top    <= frame_min_y;
+                            box_bottom <= frame_max_y;
+                        end else begin
+                            detected <= 0;
+                        end
                     end
 
                     sum_R[block_col] <= 0;
