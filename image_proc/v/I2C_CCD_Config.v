@@ -200,16 +200,16 @@ begin
 	0	:	LUT_DATA	<=	24'h000000;
 	1	:	LUT_DATA	<=	24'h20c000;				//	Mirror Row and Columns
 	2	:	LUT_DATA	<=	{8'h09,senosr_exposure};//	Exposure
-	3	:	LUT_DATA	<=	24'h050008;				//	H_Blanking (min margin at higher pixel clock)
-	4	:	LUT_DATA	<=	24'h060019;				//	V_Blanking (returned to default for higher frame rate)
+	3	:	LUT_DATA	<=	24'h050000;				//	H_Blanking
+	4	:	LUT_DATA	<=	24'h060019;				//	V_Blanking
 	5	:	LUT_DATA	<=	24'h0A8000;				//	change latch
 	6	:	LUT_DATA	<=	24'h2B0013;				//	Green 1 Gain
 	7	:	LUT_DATA	<=	24'h2C009A;				//	Blue Gain
 	8	:	LUT_DATA	<=	24'h2D019C;				//	Red Gain
 	9	:	LUT_DATA	<=	24'h2E0013;				//	Green 2 Gain
 	10	:	LUT_DATA	<=	24'h100051;				//	set up PLL power on
-	11	:	LUT_DATA	<=	24'h113705;				//	PLL_m_Factor<<8+PLL_n_Divider (M=55, N=5 → VCO=229MHz, ~60fps)
-	12	:	LUT_DATA	<=	24'h120002;				//	PLL_p1_Divider (P1=2)
+	11	:	LUT_DATA	<=	24'h111805;				//	PLL_m_Factor<<8+PLL_n_Divider
+	12	:	LUT_DATA	<=	24'h120003;				//	PLL_p1_Divider
    13	:	LUT_DATA	<=	24'h100053;				//	set USE PLL	 
 	14	:	LUT_DATA	<=	24'h980000;				//	disble calibration 	
 	15	:	LUT_DATA	<=	24'hA00000;				//	Test pattern control 
