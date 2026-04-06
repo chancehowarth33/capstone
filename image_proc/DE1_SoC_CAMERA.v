@@ -285,7 +285,7 @@ always @(posedge D5M_PIXLCLK or negedge DLY_RST_2)
     if (!DLY_RST_2) buf_sel <= 0;
     else if (cam_fval_fall) buf_sel <= ~buf_sel;
 
-// 2-FF synchronizer into sdram_ctrl_clk domain
+// 2-FF synchronizer: buf_sel -> sdram_ctrl_clk (for write addresses)
 reg buf_sel_s1, buf_sel_sync;
 always @(posedge sdram_ctrl_clk or negedge DLY_RST_2)
     if (!DLY_RST_2) begin
@@ -296,11 +296,43 @@ always @(posedge sdram_ctrl_clk or negedge DLY_RST_2)
         buf_sel_sync <= buf_sel_s1;
     end
 
-// Address muxes — picked up by SDRAM controller on every wrap
+// 2-FF synchronizer: buf_sel -> VGA_CTRL_CLK
+reg buf_sel_vga_s1, buf_sel_vga;
+always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2)
+    if (!DLY_RST_2) begin
+        buf_sel_vga_s1 <= 0;
+        buf_sel_vga    <= 0;
+    end else begin
+        buf_sel_vga_s1 <= buf_sel;
+        buf_sel_vga    <= buf_sel_vga_s1;
+    end
+
+// rd_buf_sel: only latches at VGA frame start to prevent mid-frame buffer swap
+// This ensures the read address only changes at clean VGA frame boundaries.
+reg rd_buf_sel_vga;
+wire vga_frame_start = (oVGA_X == 10'd0) && (oVGA_Y == 10'd0);
+always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2)
+    if (!DLY_RST_2) rd_buf_sel_vga <= 0;
+    else if (vga_frame_start) rd_buf_sel_vga <= buf_sel_vga;
+
+// 2-FF synchronizer: rd_buf_sel_vga -> sdram_ctrl_clk (for read addresses)
+reg rd_buf_sel_s1, rd_buf_sel_sync;
+always @(posedge sdram_ctrl_clk or negedge DLY_RST_2)
+    if (!DLY_RST_2) begin
+        rd_buf_sel_s1   <= 0;
+        rd_buf_sel_sync <= 0;
+    end else begin
+        rd_buf_sel_s1   <= rd_buf_sel_vga;
+        rd_buf_sel_sync <= rd_buf_sel_s1;
+    end
+
+// Write address mux: buf_sel_sync (flips immediately at fval_fall)
 wire [22:0] wr1_base = buf_sel_sync ? 23'h200000 : 23'h000000;
 wire [22:0] wr2_base = buf_sel_sync ? 23'h300000 : 23'h100000;
-wire [22:0] rd1_base = buf_sel_sync ? 23'h000000 : 23'h200000;
-wire [22:0] rd2_base = buf_sel_sync ? 23'h100000 : 23'h300000;
+
+// Read address mux: rd_buf_sel_sync (only changes at VGA frame boundary)
+wire [22:0] rd1_base = rd_buf_sel_sync ? 23'h000000 : 23'h200000;
+wire [22:0] rd2_base = rd_buf_sel_sync ? 23'h100000 : 23'h300000;
 
 //=============================================================================
 // u2 — Reset sequencer
