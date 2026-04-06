@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC_CAMERA
-Sat Apr  4 01:09:15 2026
+Mon Apr  6 14:33:34 2026
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -17,88 +17,89 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   9. Analysis & Synthesis IP Cores Summary
  10. State Machine - |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mSetup_ST
  11. Registers Protected by Synthesis
- 12. Registers Removed During Synthesis
- 13. Removed Registers Triggering Further Register Optimizations
- 14. General Register Statistics
- 15. Inverted Register Statistics
- 16. Multiplexer Restructuring Statistics (Restructuring Performed)
- 17. Source assignments for RAW2RGB:u4|Line_Buffer1:u0|altshift_taps:ALTSHIFT_TAPS_component|shift_taps_lv51:auto_generated|altsyncram_jug1:altsyncram2
- 18. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated
- 19. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_nv6:rdptr_g1p
- 20. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_jdc:wrptr_g1p
- 21. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|altsyncram_86d1:fifo_ram
- 22. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_brp
- 23. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_bwp
- 24. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_8pl:rs_dgwp
- 25. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_8pl:rs_dgwp|dffpipe_pe9:dffpipe13
- 26. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_9pl:ws_dgrp
- 27. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_9pl:ws_dgrp|dffpipe_qe9:dffpipe16
- 28. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated
- 29. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_nv6:rdptr_g1p
- 30. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_jdc:wrptr_g1p
- 31. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|altsyncram_86d1:fifo_ram
- 32. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_brp
- 33. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_bwp
- 34. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_8pl:rs_dgwp
- 35. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_8pl:rs_dgwp|dffpipe_pe9:dffpipe13
- 36. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_9pl:ws_dgrp
- 37. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_9pl:ws_dgrp|dffpipe_qe9:dffpipe16
- 38. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated
- 39. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_nv6:rdptr_g1p
- 40. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_jdc:wrptr_g1p
- 41. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|altsyncram_86d1:fifo_ram
- 42. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_apl:rs_dgwp
- 43. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_apl:rs_dgwp|dffpipe_re9:dffpipe5
- 44. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|dffpipe_oe9:ws_brp
- 45. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|dffpipe_oe9:ws_bwp
- 46. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_bpl:ws_dgrp
- 47. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_bpl:ws_dgrp|dffpipe_se9:dffpipe8
- 48. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated
- 49. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_nv6:rdptr_g1p
- 50. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_jdc:wrptr_g1p
- 51. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|altsyncram_86d1:fifo_ram
- 52. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_apl:rs_dgwp
- 53. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_apl:rs_dgwp|dffpipe_re9:dffpipe5
- 54. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|dffpipe_oe9:ws_brp
- 55. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|dffpipe_oe9:ws_bwp
- 56. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_bpl:ws_dgrp
- 57. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_bpl:ws_dgrp|dffpipe_se9:dffpipe8
- 58. Parameter Settings for User Entity Instance: CCD_Capture:u3
- 59. Parameter Settings for User Entity Instance: RAW2RGB:u4|Line_Buffer1:u0|altshift_taps:ALTSHIFT_TAPS_component
- 60. Parameter Settings for User Entity Instance: sdram_pll:u6|sdram_pll_0002:sdram_pll_inst|altera_pll:altera_pll_i
- 61. Parameter Settings for User Entity Instance: Sdram_Control:u7
- 62. Parameter Settings for User Entity Instance: Sdram_Control:u7|control_interface:u_control_interface
- 63. Parameter Settings for User Entity Instance: Sdram_Control:u7|command:u_command
- 64. Parameter Settings for User Entity Instance: Sdram_Control:u7|sdr_data_path:u_sdr_data_path
- 65. Parameter Settings for User Entity Instance: Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component
- 66. Parameter Settings for User Entity Instance: Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component
- 67. Parameter Settings for User Entity Instance: Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component
- 68. Parameter Settings for User Entity Instance: Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component
- 69. Parameter Settings for User Entity Instance: I2C_CCD_Config:u8
- 70. Parameter Settings for User Entity Instance: VGA_Controller:u1
- 71. Parameter Settings for User Entity Instance: color_detect:u_detect
- 72. Parameter Settings for User Entity Instance: overlay:u_overlay
- 73. Parameter Settings for Inferred Entity Instance: color_detect:u_detect|lpm_divide:Div0
- 74. Parameter Settings for Inferred Entity Instance: color_detect:u_detect|lpm_divide:Div1
- 75. altshift_taps Parameter Settings by Entity Instance
- 76. Port Connectivity Checks: "overlay:u_overlay"
- 77. Port Connectivity Checks: "color_detect:u_detect"
- 78. Port Connectivity Checks: "VGA_Controller:u1"
- 79. Port Connectivity Checks: "I2C_CCD_Config:u8|I2C_Controller:u0"
- 80. Port Connectivity Checks: "Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo"
- 81. Port Connectivity Checks: "Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo"
- 82. Port Connectivity Checks: "Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo"
- 83. Port Connectivity Checks: "Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo"
- 84. Port Connectivity Checks: "Sdram_Control:u7|sdr_data_path:u_sdr_data_path"
- 85. Port Connectivity Checks: "Sdram_Control:u7|control_interface:u_control_interface"
- 86. Port Connectivity Checks: "Sdram_Control:u7"
- 87. Port Connectivity Checks: "sdram_pll:u6"
- 88. Port Connectivity Checks: "RAW2RGB:u4|Line_Buffer1:u0"
- 89. Port Connectivity Checks: "RAW2RGB:u4"
- 90. Port Connectivity Checks: "CCD_Capture:u3"
- 91. Post-Synthesis Netlist Statistics for Top Partition
- 92. Elapsed Time Per Partition
- 93. Analysis & Synthesis Messages
+ 12. User-Specified and Inferred Latches
+ 13. Registers Removed During Synthesis
+ 14. Removed Registers Triggering Further Register Optimizations
+ 15. General Register Statistics
+ 16. Inverted Register Statistics
+ 17. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 18. Source assignments for RAW2RGB:u4|Line_Buffer1:u0|altshift_taps:ALTSHIFT_TAPS_component|shift_taps_lv51:auto_generated|altsyncram_jug1:altsyncram2
+ 19. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated
+ 20. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_nv6:rdptr_g1p
+ 21. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_jdc:wrptr_g1p
+ 22. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|altsyncram_86d1:fifo_ram
+ 23. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_brp
+ 24. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_bwp
+ 25. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_8pl:rs_dgwp
+ 26. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_8pl:rs_dgwp|dffpipe_pe9:dffpipe13
+ 27. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_9pl:ws_dgrp
+ 28. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_9pl:ws_dgrp|dffpipe_qe9:dffpipe16
+ 29. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated
+ 30. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_nv6:rdptr_g1p
+ 31. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_jdc:wrptr_g1p
+ 32. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|altsyncram_86d1:fifo_ram
+ 33. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_brp
+ 34. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_bwp
+ 35. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_8pl:rs_dgwp
+ 36. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_8pl:rs_dgwp|dffpipe_pe9:dffpipe13
+ 37. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_9pl:ws_dgrp
+ 38. Source assignments for Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|alt_synch_pipe_9pl:ws_dgrp|dffpipe_qe9:dffpipe16
+ 39. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated
+ 40. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_nv6:rdptr_g1p
+ 41. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_jdc:wrptr_g1p
+ 42. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|altsyncram_86d1:fifo_ram
+ 43. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_apl:rs_dgwp
+ 44. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_apl:rs_dgwp|dffpipe_re9:dffpipe5
+ 45. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|dffpipe_oe9:ws_brp
+ 46. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|dffpipe_oe9:ws_bwp
+ 47. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_bpl:ws_dgrp
+ 48. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_bpl:ws_dgrp|dffpipe_se9:dffpipe8
+ 49. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated
+ 50. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_nv6:rdptr_g1p
+ 51. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_jdc:wrptr_g1p
+ 52. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|altsyncram_86d1:fifo_ram
+ 53. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_apl:rs_dgwp
+ 54. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_apl:rs_dgwp|dffpipe_re9:dffpipe5
+ 55. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|dffpipe_oe9:ws_brp
+ 56. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|dffpipe_oe9:ws_bwp
+ 57. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_bpl:ws_dgrp
+ 58. Source assignments for Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_bpl:ws_dgrp|dffpipe_se9:dffpipe8
+ 59. Parameter Settings for User Entity Instance: CCD_Capture:u3
+ 60. Parameter Settings for User Entity Instance: RAW2RGB:u4|Line_Buffer1:u0|altshift_taps:ALTSHIFT_TAPS_component
+ 61. Parameter Settings for User Entity Instance: sdram_pll:u6|sdram_pll_0002:sdram_pll_inst|altera_pll:altera_pll_i
+ 62. Parameter Settings for User Entity Instance: Sdram_Control:u7
+ 63. Parameter Settings for User Entity Instance: Sdram_Control:u7|control_interface:u_control_interface
+ 64. Parameter Settings for User Entity Instance: Sdram_Control:u7|command:u_command
+ 65. Parameter Settings for User Entity Instance: Sdram_Control:u7|sdr_data_path:u_sdr_data_path
+ 66. Parameter Settings for User Entity Instance: Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component
+ 67. Parameter Settings for User Entity Instance: Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component
+ 68. Parameter Settings for User Entity Instance: Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component
+ 69. Parameter Settings for User Entity Instance: Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component
+ 70. Parameter Settings for User Entity Instance: I2C_CCD_Config:u8
+ 71. Parameter Settings for User Entity Instance: VGA_Controller:u1
+ 72. Parameter Settings for User Entity Instance: color_detect:u_detect
+ 73. Parameter Settings for User Entity Instance: overlay:u_overlay
+ 74. Parameter Settings for Inferred Entity Instance: color_detect:u_detect|lpm_divide:Div0
+ 75. Parameter Settings for Inferred Entity Instance: color_detect:u_detect|lpm_divide:Div1
+ 76. altshift_taps Parameter Settings by Entity Instance
+ 77. Port Connectivity Checks: "overlay:u_overlay"
+ 78. Port Connectivity Checks: "color_detect:u_detect"
+ 79. Port Connectivity Checks: "VGA_Controller:u1"
+ 80. Port Connectivity Checks: "I2C_CCD_Config:u8|I2C_Controller:u0"
+ 81. Port Connectivity Checks: "Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo"
+ 82. Port Connectivity Checks: "Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo"
+ 83. Port Connectivity Checks: "Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo"
+ 84. Port Connectivity Checks: "Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo"
+ 85. Port Connectivity Checks: "Sdram_Control:u7|sdr_data_path:u_sdr_data_path"
+ 86. Port Connectivity Checks: "Sdram_Control:u7|control_interface:u_control_interface"
+ 87. Port Connectivity Checks: "Sdram_Control:u7"
+ 88. Port Connectivity Checks: "sdram_pll:u6"
+ 89. Port Connectivity Checks: "RAW2RGB:u4|Line_Buffer1:u0"
+ 90. Port Connectivity Checks: "RAW2RGB:u4"
+ 91. Port Connectivity Checks: "CCD_Capture:u3"
+ 92. Post-Synthesis Netlist Statistics for Top Partition
+ 93. Elapsed Time Per Partition
+ 94. Analysis & Synthesis Messages
 
 
 
@@ -125,13 +126,13 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sat Apr  4 01:09:15 2026           ;
+; Analysis & Synthesis Status     ; Successful - Mon Apr  6 14:33:34 2026           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; DE1_SoC_CAMERA                                  ;
 ; Top-level Entity Name           ; DE1_SoC_CAMERA                                  ;
 ; Family                          ; Cyclone V                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                             ;
-; Total registers                 ; 2623                                            ;
+; Total registers                 ; 2627                                            ;
 ; Total pins                      ; 226                                             ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 59,344                                          ;
@@ -250,8 +251,7 @@ on the Quartus Prime software download page.
 ;     Processor 4            ;   0.0%      ;
 ;     Processor 5            ;   0.0%      ;
 ;     Processor 6            ;   0.0%      ;
-;     Processor 7            ;   0.0%      ;
-;     Processors 8-12        ;   0.0%      ;
+;     Processors 7-12        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -323,16 +323,16 @@ on the Quartus Prime software download page.
 +---------------------------------------------+-------------------+
 ; Resource                                    ; Usage             ;
 +---------------------------------------------+-------------------+
-; Estimate of Logic utilization (ALMs needed) ; 1899              ;
+; Estimate of Logic utilization (ALMs needed) ; 1902              ;
 ;                                             ;                   ;
-; Combinational ALUT usage for logic          ; 2545              ;
-;     -- 7 input functions                    ; 14                ;
-;     -- 6 input functions                    ; 702               ;
-;     -- 5 input functions                    ; 383               ;
-;     -- 4 input functions                    ; 364               ;
-;     -- <=3 input functions                  ; 1082              ;
+; Combinational ALUT usage for logic          ; 2564              ;
+;     -- 7 input functions                    ; 13                ;
+;     -- 6 input functions                    ; 686               ;
+;     -- 5 input functions                    ; 386               ;
+;     -- 4 input functions                    ; 382               ;
+;     -- <=3 input functions                  ; 1097              ;
 ;                                             ;                   ;
-; Dedicated logic registers                   ; 2623              ;
+; Dedicated logic registers                   ; 2627              ;
 ;                                             ;                   ;
 ; I/O pins                                    ; 226               ;
 ; Total MLAB memory bits                      ; 0                 ;
@@ -344,9 +344,9 @@ on the Quartus Prime software download page.
 ;     -- PLLs                                 ; 4                 ;
 ;                                             ;                   ;
 ; Maximum fan-out node                        ; D5M_PIXLCLK~input ;
-; Maximum fan-out                             ; 1642              ;
-; Total fan-out                               ; 23329             ;
-; Average fan-out                             ; 4.05              ;
+; Maximum fan-out                             ; 1644              ;
+; Total fan-out                               ; 23361             ;
+; Average fan-out                             ; 4.04              ;
 +---------------------------------------------+-------------------+
 
 
@@ -355,9 +355,9 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node                                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                        ; Entity Name         ; Library Name ;
 +--------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |DE1_SoC_CAMERA                                              ; 2545 (68)           ; 2623 (198)                ; 59344             ; 0          ; 226  ; 0            ; |DE1_SoC_CAMERA                                                                                                                                                                            ; DE1_SoC_CAMERA      ; work         ;
+; |DE1_SoC_CAMERA                                              ; 2564 (69)           ; 2627 (202)                ; 59344             ; 0          ; 226  ; 0            ; |DE1_SoC_CAMERA                                                                                                                                                                            ; DE1_SoC_CAMERA      ; work         ;
 ;    |CCD_Capture:u3|                                          ; 36 (36)             ; 42 (42)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|CCD_Capture:u3                                                                                                                                                             ; CCD_Capture         ; work         ;
-;    |I2C_CCD_Config:u8|                                       ; 196 (140)           ; 133 (95)                  ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8                                                                                                                                                          ; I2C_CCD_Config      ; work         ;
+;    |I2C_CCD_Config:u8|                                       ; 197 (141)           ; 133 (95)                  ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8                                                                                                                                                          ; I2C_CCD_Config      ; work         ;
 ;       |I2C_Controller:u0|                                    ; 56 (56)             ; 38 (38)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0                                                                                                                                        ; I2C_Controller      ; work         ;
 ;    |RAW2RGB:u4|                                              ; 61 (46)             ; 66 (55)                   ; 30672             ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|RAW2RGB:u4                                                                                                                                                                 ; RAW2RGB             ; work         ;
 ;       |Line_Buffer1:u0|                                      ; 15 (0)              ; 11 (0)                    ; 30672             ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|RAW2RGB:u4|Line_Buffer1:u0                                                                                                                                                 ; Line_Buffer1        ; work         ;
@@ -374,7 +374,7 @@ on the Quartus Prime software download page.
 ;       |SEG7_LUT:u3|                                          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|SEG7_LUT_6:u5|SEG7_LUT:u3                                                                                                                                                  ; SEG7_LUT            ; work         ;
 ;       |SEG7_LUT:u4|                                          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|SEG7_LUT_6:u5|SEG7_LUT:u4                                                                                                                                                  ; SEG7_LUT            ; work         ;
 ;       |SEG7_LUT:u5|                                          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|SEG7_LUT_6:u5|SEG7_LUT:u5                                                                                                                                                  ; SEG7_LUT            ; work         ;
-;    |Sdram_Control:u7|                                        ; 644 (213)           ; 713 (157)                 ; 28672             ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7                                                                                                                                                           ; Sdram_Control       ; work         ;
+;    |Sdram_Control:u7|                                        ; 658 (227)           ; 713 (157)                 ; 28672             ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7                                                                                                                                                           ; Sdram_Control       ; work         ;
 ;       |Sdram_RD_FIFO:u_read1_fifo|                           ; 75 (0)              ; 112 (0)                   ; 6656              ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo                                                                                                                                ; Sdram_RD_FIFO       ; work         ;
 ;          |dcfifo_mixed_widths:dcfifo_mixed_widths_component| ; 75 (0)              ; 112 (0)                   ; 6656              ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component                                                                              ; dcfifo_mixed_widths ; work         ;
 ;             |dcfifo_ahp1:auto_generated|                     ; 75 (14)             ; 112 (30)                  ; 6656              ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated                                                   ; dcfifo_ahp1         ; work         ;
@@ -442,7 +442,7 @@ on the Quartus Prime software download page.
 ;       |command:u_command|                                    ; 54 (54)             ; 49 (49)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command                                                                                                                                         ; command             ; work         ;
 ;       |control_interface:u_control_interface|                ; 75 (75)             ; 59 (59)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|control_interface:u_control_interface                                                                                                                     ; control_interface   ; work         ;
 ;    |VGA_Controller:u1|                                       ; 64 (64)             ; 76 (76)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|VGA_Controller:u1                                                                                                                                                          ; VGA_Controller      ; work         ;
-;    |color_detect:u_detect|                                   ; 1291 (725)          ; 1358 (1358)               ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect                                                                                                                                                      ; color_detect        ; work         ;
+;    |color_detect:u_detect|                                   ; 1294 (728)          ; 1358 (1358)               ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect                                                                                                                                                      ; color_detect        ; work         ;
 ;       |lpm_divide:Div0|                                      ; 283 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div0                                                                                                                                      ; lpm_divide          ; work         ;
 ;          |lpm_divide_2dm:auto_generated|                     ; 283 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div0|lpm_divide_2dm:auto_generated                                                                                                        ; lpm_divide_2dm      ; work         ;
 ;             |sign_div_unsign_8nh:divider|                    ; 283 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div0|lpm_divide_2dm:auto_generated|sign_div_unsign_8nh:divider                                                                            ; sign_div_unsign_8nh ; work         ;
@@ -666,6 +666,20 @@ Encoding Type:  One-Hot
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------+--------------------------------------------+
 
 
++---------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                               ;
++----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal ; Free of Timing Hazards ;
++----------------------------------------------------+---------------------+------------------------+
+; Sdram_Control:u7|rRD2_MAX_ADDR[21]                 ; KEY[0]              ; yes                    ;
+; Sdram_Control:u7|rRD1_MAX_ADDR[21]                 ; KEY[0]              ; yes                    ;
+; Sdram_Control:u7|rWR1_MAX_ADDR[21]                 ; KEY[0]              ; yes                    ;
+; Sdram_Control:u7|rWR2_MAX_ADDR[21]                 ; KEY[0]              ; yes                    ;
+; Number of user-specified and inferred latches = 4  ;                     ;                        ;
++----------------------------------------------------+---------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Registers Removed During Synthesis                                                                                                                                                                                                      ;
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
@@ -693,10 +707,10 @@ Encoding Type:  One-Hot
 ; Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_brp|dffe12a[8,9] ; Lost fanout                                                                 ;
 ; Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_bwp|dffe12a[8,9] ; Lost fanout                                                                 ;
 ; Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_brp|dffe12a[8,9] ; Lost fanout                                                                 ;
-; color_detect:u_detect|centroid_sum_x[1,2]                                                                                                                 ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
-; color_detect:u_detect|centroid_sum_y[0,1,3]                                                                                                               ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
 ; color_detect:u_detect|centroid_sum_x[0]                                                                                                                   ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
-; color_detect:u_detect|centroid_sum_y[2]                                                                                                                   ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
+; color_detect:u_detect|centroid_sum_y[1..3]                                                                                                                ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
+; color_detect:u_detect|centroid_sum_x[1,2]                                                                                                                 ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
+; color_detect:u_detect|centroid_sum_y[0]                                                                                                                   ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
 ; Sdram_Control:u7|rWR1_ADDR[0..2]                                                                                                                          ; Merged with Sdram_Control:u7|rWR1_ADDR[3]                                   ;
 ; Sdram_Control:u7|rWR2_ADDR[0..2]                                                                                                                          ; Merged with Sdram_Control:u7|rWR2_ADDR[3]                                   ;
 ; Sdram_Control:u7|rRD1_ADDR[0..2]                                                                                                                          ; Merged with Sdram_Control:u7|rRD1_ADDR[3]                                   ;
@@ -806,10 +820,10 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 2623  ;
-; Number of registers using Synchronous Clear  ; 1529  ;
+; Total registers                              ; 2627  ;
+; Number of registers using Synchronous Clear  ; 1525  ;
 ; Number of registers using Synchronous Load   ; 17    ;
-; Number of registers using Asynchronous Clear ; 2360  ;
+; Number of registers using Asynchronous Clear ; 2364  ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 1748  ;
 ; Number of registers using Preset             ; 0     ;
@@ -838,8 +852,8 @@ Encoding Type:  One-Hot
 ; Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_nv6:rdptr_g1p|parity6     ; 5       ;
 ; Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_nv6:rdptr_g1p|counter5a0 ; 13      ;
 ; Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_nv6:rdptr_g1p|counter5a0 ; 13      ;
-; Sdram_Control:u7|rRD2_ADDR[20]                                                                                                                                   ; 5       ;
-; Sdram_Control:u7|rWR2_ADDR[20]                                                                                                                                   ; 5       ;
+; Sdram_Control:u7|rRD2_ADDR[20]                                                                                                                                   ; 4       ;
+; Sdram_Control:u7|rWR2_ADDR[20]                                                                                                                                   ; 4       ;
 ; Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_jdc:wrptr_g1p|parity9     ; 2       ;
 ; Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_jdc:wrptr_g1p|parity9     ; 2       ;
 ; Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_jdc:wrptr_g1p|counter8a0 ; 9       ;
@@ -857,61 +871,61 @@ Encoding Type:  One-Hot
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|BA[1]                        ;
-; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|control_interface:u_control_interface|timer[5] ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|command_delay[0]             ;
-; 3:1                ; 35 bits   ; 70 LEs        ; 0 LEs                ; 70 LEs                 ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|match_count[9]                            ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|Y_Cont[11]                                       ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[0][4]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[1][0]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[2][13]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[3][11]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[4][17]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[5][19]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[6][5]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[7][0]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[8][11]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[9][17]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[10][13]                             ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[11][14]                             ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[12][1]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[13][7]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[14][19]                             ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[15][5]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[16][13]                             ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[17][10]                             ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[18][10]                             ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[19][7]                              ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[9]                            ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[7]                            ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_y[8]                            ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_y[8]                            ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_x[6]                            ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[15]                           ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[8]                        ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[7]                        ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|rp_shift[0]                  ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|X_Cont[5]                                        ;
-; 5:1                ; 19 bits   ; 57 LEs        ; 38 LEs               ; 19 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mADDR[15]                                      ;
-; 5:1                ; 20 bits   ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|RAW2RGB:u4|mCCD_B[7]                                            ;
-; 64:1               ; 4 bits    ; 168 LEs       ; 56 LEs               ; 112 LEs                ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mI2C_DATA[3]                                  ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|CMD[0]                                         ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|WR_MASK[1]                                     ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|RD_MASK[0]                                     ;
-; 7:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|ST[4]                                          ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[1]               ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[6]                            ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[22]                                                    ;
-; 3:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[2]                                                     ;
-; 3:1                ; 24 bits   ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|mux_B                                                           ;
-; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |DE1_SoC_CAMERA|RAW2RGB:u4|Add0                                                 ;
-; 20:1               ; 60 bits   ; 780 LEs       ; 780 LEs              ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|color_detect:u_detect|Mux36                                     ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|BA[0]                         ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|control_interface:u_control_interface|timer[15] ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|command_delay[6]              ;
+; 3:1                ; 35 bits   ; 70 LEs        ; 0 LEs                ; 70 LEs                 ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|match_count[4]                             ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|Y_Cont[5]                                         ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[0][7]                                ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[1][14]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[2][10]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[3][1]                                ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[4][19]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[5][19]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[6][10]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[7][12]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[8][3]                                ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[9][12]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[10][14]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[11][15]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[12][8]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[13][14]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[14][7]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[15][14]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[16][8]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[17][5]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[18][5]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[19][3]                               ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[6]                             ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[8]                             ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_y[7]                             ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_y[8]                             ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_x[9]                             ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[14]                            ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[3]                         ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[5]                         ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|rp_done                       ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|X_Cont[7]                                         ;
+; 5:1                ; 19 bits   ; 57 LEs        ; 38 LEs               ; 19 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mADDR[9]                                        ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|RAW2RGB:u4|mCCD_B[4]                                             ;
+; 64:1               ; 4 bits    ; 168 LEs       ; 52 LEs               ; 116 LEs                ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mI2C_DATA[3]                                   ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|CMD[0]                                          ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|WR_MASK[0]                                      ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|RD_MASK[0]                                      ;
+; 7:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|ST[8]                                           ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[1]                ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[10]                            ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[11]                                                     ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[9]                                                      ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|mux_B                                                            ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |DE1_SoC_CAMERA|RAW2RGB:u4|Add0                                                  ;
+; 20:1               ; 60 bits   ; 780 LEs       ; 780 LEs              ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|color_detect:u_detect|Mux52                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -2042,84 +2056,52 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "Sdram_Control:u7"                                                                                                                                                                                  ;
-+----------------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port                 ; Type   ; Severity ; Details                                                                                                                                                                            ;
-+----------------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; WR1_DATA[15]         ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR1_ADDR             ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (23 bits) it drives.  The 9 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
-; WR1_ADDR[22..0]      ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR1_MAX_ADDR         ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (23 bits) it drives.  The 9 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
-; WR1_MAX_ADDR[13..12] ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; WR1_MAX_ADDR[22..19] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR1_MAX_ADDR[17..16] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR1_MAX_ADDR[11..0]  ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR1_MAX_ADDR[18]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; WR1_MAX_ADDR[15]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; WR1_MAX_ADDR[14]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR1_LENGTH[3..0]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR1_LENGTH[7]        ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR1_LENGTH[6]        ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; WR1_LENGTH[5]        ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR1_LENGTH[4]        ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; WR2_DATA[15]         ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR2_ADDR[22..21]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR2_ADDR[19..0]      ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR2_ADDR[20]         ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; WR2_MAX_ADDR         ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (23 bits) it drives.  The 9 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
-; WR2_MAX_ADDR[13..12] ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; WR2_MAX_ADDR[22..21] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR2_MAX_ADDR[17..16] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR2_MAX_ADDR[11..0]  ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR2_MAX_ADDR[20]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; WR2_MAX_ADDR[19]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR2_MAX_ADDR[18]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; WR2_MAX_ADDR[15]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; WR2_MAX_ADDR[14]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR2_LENGTH[3..0]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR2_LENGTH[7]        ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR2_LENGTH[6]        ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; WR2_LENGTH[5]        ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; WR2_LENGTH[4]        ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; RD1_DATA[15]         ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                ;
-; RD1_ADDR             ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (23 bits) it drives.  The 9 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
-; RD1_ADDR[22..0]      ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD1_MAX_ADDR         ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (23 bits) it drives.  The 9 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
-; RD1_MAX_ADDR[13..12] ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; RD1_MAX_ADDR[22..19] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD1_MAX_ADDR[17..16] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD1_MAX_ADDR[11..0]  ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD1_MAX_ADDR[18]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; RD1_MAX_ADDR[15]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; RD1_MAX_ADDR[14]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD1_LENGTH[3..0]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD1_LENGTH[7]        ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD1_LENGTH[6]        ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; RD1_LENGTH[5]        ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD1_LENGTH[4]        ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; RD2_DATA[15]         ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                ;
-; RD2_ADDR[22..21]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD2_ADDR[19..0]      ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD2_ADDR[20]         ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; RD2_MAX_ADDR         ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (23 bits) it drives.  The 9 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
-; RD2_MAX_ADDR[13..12] ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; RD2_MAX_ADDR[22..21] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD2_MAX_ADDR[17..16] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD2_MAX_ADDR[11..0]  ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD2_MAX_ADDR[20]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; RD2_MAX_ADDR[19]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD2_MAX_ADDR[18]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; RD2_MAX_ADDR[15]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; RD2_MAX_ADDR[14]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD2_LENGTH[3..0]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD2_LENGTH[7]        ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD2_LENGTH[6]        ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; RD2_LENGTH[5]        ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; RD2_LENGTH[4]        ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; SA                   ; Output ; Warning  ; Output or bidir port (12 bits) is smaller than the port expression (13 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND.            ;
-; CS_N                 ; Output ; Warning  ; Output or bidir port (2 bits) is wider than the port expression (1 bits) it drives; bit(s) "CS_N[1..1]" have no fanouts                                                            ;
-+----------------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Sdram_Control:u7"                                                                                                                                                                              ;
++------------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port             ; Type   ; Severity ; Details                                                                                                                                                                            ;
++------------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; WR1_DATA[15]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; WR1_ADDR[20..12] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; WR1_ADDR[22]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; WR1_MAX_ADDR     ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (23 bits) it drives.  The 9 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; WR1_LENGTH[3..0] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; WR1_LENGTH[7]    ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; WR1_LENGTH[6]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; WR1_LENGTH[5]    ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; WR1_LENGTH[4]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; WR2_DATA[15]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; WR2_ADDR[19..12] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; WR2_ADDR[22]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; WR2_ADDR[20]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; WR2_MAX_ADDR     ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (23 bits) it drives.  The 9 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; WR2_LENGTH[3..0] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; WR2_LENGTH[7]    ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; WR2_LENGTH[6]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; WR2_LENGTH[5]    ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; WR2_LENGTH[4]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; RD1_DATA[15]     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                ;
+; RD1_ADDR[20..12] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; RD1_ADDR[22]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; RD1_MAX_ADDR     ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (23 bits) it drives.  The 9 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; RD1_LENGTH[3..0] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; RD1_LENGTH[7]    ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; RD1_LENGTH[6]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; RD1_LENGTH[5]    ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; RD1_LENGTH[4]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; RD2_DATA[15]     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                ;
+; RD2_ADDR[19..12] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; RD2_ADDR[22]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; RD2_ADDR[20]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; RD2_MAX_ADDR     ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (23 bits) it drives.  The 9 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; RD2_LENGTH[3..0] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; RD2_LENGTH[7]    ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; RD2_LENGTH[6]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; RD2_LENGTH[5]    ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; RD2_LENGTH[4]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; SA               ; Output ; Warning  ; Output or bidir port (12 bits) is smaller than the port expression (13 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND.            ;
+; CS_N             ; Output ; Warning  ; Output or bidir port (2 bits) is wider than the port expression (1 bits) it drives; bit(s) "CS_N[1..1]" have no fanouts                                                            ;
++------------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +------------------------------------------+
@@ -2169,20 +2151,20 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 2623                        ;
-;     CLR               ; 666                         ;
+; arriav_ff             ; 2627                        ;
+;     CLR               ; 670                         ;
 ;     CLR SCLR          ; 140                         ;
 ;     CLR SLD           ; 1                           ;
 ;     ENA               ; 144                         ;
-;     ENA CLR           ; 220                         ;
-;     ENA CLR SCLR      ; 1333                        ;
+;     ENA CLR           ; 224                         ;
+;     ENA CLR SCLR      ; 1329                        ;
 ;     ENA SCLR          ; 39                          ;
 ;     ENA SLD           ; 12                          ;
 ;     SCLR              ; 17                          ;
 ;     SLD               ; 4                           ;
 ;     plain             ; 47                          ;
 ; arriav_io_obuf        ; 62                          ;
-; arriav_lcell_comb     ; 2552                        ;
+; arriav_lcell_comb     ; 2571                        ;
 ;     arith             ; 728                         ;
 ;         0 data inputs ; 47                          ;
 ;         1 data inputs ; 350                         ;
@@ -2190,16 +2172,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;         3 data inputs ; 36                          ;
 ;         4 data inputs ; 66                          ;
 ;         5 data inputs ; 154                         ;
-;     extend            ; 14                          ;
-;         7 data inputs ; 14                          ;
-;     normal            ; 1700                        ;
+;     extend            ; 13                          ;
+;         7 data inputs ; 13                          ;
+;     normal            ; 1720                        ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 38                          ;
-;         2 data inputs ; 281                         ;
-;         3 data inputs ; 156                         ;
-;         4 data inputs ; 292                         ;
-;         5 data inputs ; 229                         ;
-;         6 data inputs ; 702                         ;
+;         2 data inputs ; 286                         ;
+;         3 data inputs ; 166                         ;
+;         4 data inputs ; 310                         ;
+;         5 data inputs ; 232                         ;
+;         6 data inputs ; 686                         ;
 ;     shared            ; 110                         ;
 ;         0 data inputs ; 6                           ;
 ;         2 data inputs ; 98                          ;
@@ -2209,7 +2191,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; stratixv_ram_block    ; 80                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 34.80                       ;
-; Average LUT depth     ; 8.80                        ;
+; Average LUT depth     ; 8.82                        ;
 +-----------------------+-----------------------------+
 
 
@@ -2228,7 +2210,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Sat Apr  4 01:09:02 2026
+    Info: Processing started: Mon Apr  6 14:33:19 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC_CAMERA -c DE1_SoC_CAMERA
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -2290,14 +2272,14 @@ Warning (10034): Output port "FAN_CTRL" at DE1_SoC_CAMERA.v(91) has no driver Fi
 Warning (10034): Output port "FPGA_I2C_SCLK" at DE1_SoC_CAMERA.v(94) has no driver File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 94
 Warning (10034): Output port "IRDA_TXD" at DE1_SoC_CAMERA.v(110) has no driver File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 110
 Warning (10034): Output port "TD_RESET_N" at DE1_SoC_CAMERA.v(131) has no driver File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 131
-Info (12128): Elaborating entity "Reset_Delay" for hierarchy "Reset_Delay:u2" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 278
-Info (12128): Elaborating entity "CCD_Capture" for hierarchy "CCD_Capture:u3" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 297
+Info (12128): Elaborating entity "Reset_Delay" for hierarchy "Reset_Delay:u2" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 317
+Info (12128): Elaborating entity "CCD_Capture" for hierarchy "CCD_Capture:u3" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 336
 Warning (10036): Verilog HDL or VHDL warning at CCD_Capture.v(164): object "ifval_fedge" assigned a value but never read File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/CCD_Capture.v Line: 164
 Warning (10036): Verilog HDL or VHDL warning at CCD_Capture.v(165): object "y_cnt_d" assigned a value but never read File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/CCD_Capture.v Line: 165
 Warning (10230): Verilog HDL assignment warning at CCD_Capture.v(125): truncated value with size 32 to match size of target (16) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/CCD_Capture.v Line: 125
 Warning (10230): Verilog HDL assignment warning at CCD_Capture.v(129): truncated value with size 32 to match size of target (16) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/CCD_Capture.v Line: 129
 Warning (10230): Verilog HDL assignment warning at CCD_Capture.v(185): truncated value with size 32 to match size of target (1) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/CCD_Capture.v Line: 185
-Info (12128): Elaborating entity "RAW2RGB" for hierarchy "RAW2RGB:u4" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 314
+Info (12128): Elaborating entity "RAW2RGB" for hierarchy "RAW2RGB:u4" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 353
 Info (12128): Elaborating entity "Line_Buffer1" for hierarchy "RAW2RGB:u4|Line_Buffer1:u0" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/RAW2RGB.v Line: 83
 Info (12128): Elaborating entity "altshift_taps" for hierarchy "RAW2RGB:u4|Line_Buffer1:u0|altshift_taps:ALTSHIFT_TAPS_component" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/Line_Buffer1.v Line: 79
 Info (12130): Elaborated megafunction instantiation "RAW2RGB:u4|Line_Buffer1:u0|altshift_taps:ALTSHIFT_TAPS_component" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/Line_Buffer1.v Line: 79
@@ -2320,9 +2302,9 @@ Info (12128): Elaborating entity "cntr_7of" for hierarchy "RAW2RGB:u4|Line_Buffe
 Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_qac.tdf
     Info (12023): Found entity 1: cmpr_qac File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/db/cmpr_qac.tdf Line: 23
 Info (12128): Elaborating entity "cmpr_qac" for hierarchy "RAW2RGB:u4|Line_Buffer1:u0|altshift_taps:ALTSHIFT_TAPS_component|shift_taps_lv51:auto_generated|cntr_7of:cntr1|cmpr_qac:cmpr4" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/db/cntr_7of.tdf Line: 36
-Info (12128): Elaborating entity "SEG7_LUT_6" for hierarchy "SEG7_LUT_6:u5" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 352
+Info (12128): Elaborating entity "SEG7_LUT_6" for hierarchy "SEG7_LUT_6:u5" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 391
 Info (12128): Elaborating entity "SEG7_LUT" for hierarchy "SEG7_LUT_6:u5|SEG7_LUT:u0" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/SEG7_LUT_6.v Line: 47
-Info (12128): Elaborating entity "sdram_pll" for hierarchy "sdram_pll:u6" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 365
+Info (12128): Elaborating entity "sdram_pll" for hierarchy "sdram_pll:u6" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 404
 Info (12128): Elaborating entity "sdram_pll_0002" for hierarchy "sdram_pll:u6|sdram_pll_0002:sdram_pll_inst" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/sdram_pll.v Line: 25
 Info (12128): Elaborating entity "altera_pll" for hierarchy "sdram_pll:u6|sdram_pll_0002:sdram_pll_inst|altera_pll:altera_pll_i" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/sdram_pll/sdram_pll_0002.v Line: 94
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "wire_to_nowhere_64" into its bus
@@ -2388,7 +2370,7 @@ Info (12133): Instantiated megafunction "sdram_pll:u6|sdram_pll_0002:sdram_pll_i
     Info (12134): Parameter "duty_cycle17" = "50"
     Info (12134): Parameter "pll_type" = "General"
     Info (12134): Parameter "pll_subtype" = "General"
-Info (12128): Elaborating entity "Sdram_Control" for hierarchy "Sdram_Control:u7" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 416
+Info (12128): Elaborating entity "Sdram_Control" for hierarchy "Sdram_Control:u7" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 455
 Warning (10230): Verilog HDL assignment warning at Sdram_Control.v(385): truncated value with size 32 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 385
 Warning (10240): Verilog HDL Always Construct warning at Sdram_Control.v(423): inferring latch(es) for variable "rWR1_MAX_ADDR", which holds its previous value in one or more paths through the always construct File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 423
 Warning (10240): Verilog HDL Always Construct warning at Sdram_Control.v(423): inferring latch(es) for variable "rWR2_MAX_ADDR", which holds its previous value in one or more paths through the always construct File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 423
@@ -2618,7 +2600,7 @@ Info (12128): Elaborating entity "alt_synch_pipe_bpl" for hierarchy "Sdram_Contr
 Info (12021): Found 1 design units, including 1 entities, in source file db/dffpipe_se9.tdf
     Info (12023): Found entity 1: dffpipe_se9 File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/db/dffpipe_se9.tdf Line: 25
 Info (12128): Elaborating entity "dffpipe_se9" for hierarchy "Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|alt_synch_pipe_bpl:ws_dgrp|dffpipe_se9:dffpipe8" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/db/alt_synch_pipe_bpl.tdf Line: 35
-Info (12128): Elaborating entity "I2C_CCD_Config" for hierarchy "I2C_CCD_Config:u8" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 430
+Info (12128): Elaborating entity "I2C_CCD_Config" for hierarchy "I2C_CCD_Config:u8" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 469
 Warning (10230): Verilog HDL assignment warning at I2C_CCD_Config.v(86): truncated value with size 32 to match size of target (1) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/I2C_CCD_Config.v Line: 86
 Warning (10230): Verilog HDL assignment warning at I2C_CCD_Config.v(87): truncated value with size 32 to match size of target (1) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/I2C_CCD_Config.v Line: 87
 Warning (10230): Verilog HDL assignment warning at I2C_CCD_Config.v(109): truncated value with size 32 to match size of target (25) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/I2C_CCD_Config.v Line: 109
@@ -2629,7 +2611,7 @@ Info (12128): Elaborating entity "I2C_Controller" for hierarchy "I2C_CCD_Config:
 Warning (10230): Verilog HDL assignment warning at I2C_Controller.v(71): truncated value with size 32 to match size of target (1) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/I2C_Controller.v Line: 71
 Warning (10230): Verilog HDL assignment warning at I2C_Controller.v(70): truncated value with size 32 to match size of target (1) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/I2C_Controller.v Line: 70
 Warning (10230): Verilog HDL assignment warning at I2C_Controller.v(83): truncated value with size 32 to match size of target (7) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/I2C_Controller.v Line: 83
-Info (12128): Elaborating entity "VGA_Controller" for hierarchy "VGA_Controller:u1" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 454
+Info (12128): Elaborating entity "VGA_Controller" for hierarchy "VGA_Controller:u1" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 493
 Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(128): truncated value with size 32 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/VGA_Controller.v Line: 128
 Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(131): truncated value with size 32 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/VGA_Controller.v Line: 131
 Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(134): truncated value with size 32 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/VGA_Controller.v Line: 134
@@ -2637,11 +2619,11 @@ Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(162): trunca
 Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(163): truncated value with size 32 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/VGA_Controller.v Line: 163
 Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(198): truncated value with size 32 to match size of target (13) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/VGA_Controller.v Line: 198
 Warning (10230): Verilog HDL assignment warning at VGA_Controller.v(224): truncated value with size 32 to match size of target (13) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/v/VGA_Controller.v Line: 224
-Info (12128): Elaborating entity "color_detect" for hierarchy "color_detect:u_detect" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 490
+Info (12128): Elaborating entity "color_detect" for hierarchy "color_detect:u_detect" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 529
 Warning (10230): Verilog HDL assignment warning at color_detect.v(124): truncated value with size 16 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 124
 Warning (10230): Verilog HDL assignment warning at color_detect.v(125): truncated value with size 16 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 125
 Warning (10230): Verilog HDL assignment warning at color_detect.v(225): truncated value with size 32 to match size of target (11) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 225
-Info (12128): Elaborating entity "overlay" for hierarchy "overlay:u_overlay" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 559
+Info (12128): Elaborating entity "overlay" for hierarchy "overlay:u_overlay" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 598
 Warning (14284): Synthesized away the following node(s):
     Warning (14285): Synthesized away the following RAM node(s):
         Warning (14320): Synthesized away node "Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|altsyncram_86d1:fifo_ram|q_b[0]" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/db/altsyncram_86d1.tdf Line: 42
@@ -2714,8 +2696,19 @@ Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "PS2_CLK2" has no driver File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 120
     Warning (13040): bidirectional pin "PS2_DAT" has no driver File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 121
     Warning (13040): bidirectional pin "PS2_DAT2" has no driver File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 122
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "Sdram_Control:u7|rRD1_MAX_ADDR[21]" merged with LATCH primitive "Sdram_Control:u7|rRD2_MAX_ADDR[21]" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 423
+    Info (13026): Duplicate LATCH primitive "Sdram_Control:u7|rWR2_MAX_ADDR[21]" merged with LATCH primitive "Sdram_Control:u7|rWR1_MAX_ADDR[21]" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 423
 Info (13000): Registers with preset signals will power-up high File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 443
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13004): Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
+    Warning (13310): Register "Sdram_Control:u7|rRD2_ADDR[21]" is converted into an equivalent circuit using register "Sdram_Control:u7|rRD2_ADDR[21]~_emulated" and latch "Sdram_Control:u7|rRD2_ADDR[21]~1" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 443
+    Warning (13310): Register "Sdram_Control:u7|rRD1_ADDR[21]" is converted into an equivalent circuit using register "Sdram_Control:u7|rRD1_ADDR[21]~_emulated" and latch "Sdram_Control:u7|rRD2_ADDR[21]~1" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 443
+    Warning (13310): Register "Sdram_Control:u7|rWR1_ADDR[21]" is converted into an equivalent circuit using register "Sdram_Control:u7|rWR1_ADDR[21]~_emulated" and latch "Sdram_Control:u7|rWR1_ADDR[21]~1" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 443
+    Warning (13310): Register "Sdram_Control:u7|rWR2_ADDR[21]" is converted into an equivalent circuit using register "Sdram_Control:u7|rWR2_ADDR[21]~_emulated" and latch "Sdram_Control:u7|rWR1_ADDR[21]~1" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 443
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "Sdram_Control:u7|rRD2_ADDR[21]~1" merged with LATCH primitive "Sdram_Control:u7|rRD2_MAX_ADDR[21]" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 443
+    Info (13026): Duplicate LATCH primitive "Sdram_Control:u7|rWR1_ADDR[21]~1" merged with LATCH primitive "Sdram_Control:u7|rWR1_MAX_ADDR[21]" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 443
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "ADC_DIN" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 53
     Warning (13410): Pin "ADC_SCLK" is stuck at GND File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 55
@@ -2773,17 +2766,17 @@ Warning (21074): Design contains 23 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "TD_HS" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 130
     Warning (15610): No output dependent on input pin "TD_VS" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 132
     Warning (15610): No output dependent on input pin "D5M_STROBE" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 152
-Info (21057): Implemented 4786 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 4808 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 48 input pins
     Info (21059): Implemented 116 output pins
     Info (21060): Implemented 62 bidirectional pins
-    Info (21061): Implemented 4476 logic cells
+    Info (21061): Implemented 4498 logic cells
     Info (21064): Implemented 80 RAM segments
     Info (21065): Implemented 4 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 164 warnings
-    Info: Peak virtual memory: 4989 megabytes
-    Info: Processing ended: Sat Apr  4 01:09:15 2026
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:22
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 169 warnings
+    Info: Peak virtual memory: 5006 megabytes
+    Info: Processing ended: Mon Apr  6 14:33:34 2026
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:28
 
 

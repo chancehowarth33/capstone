@@ -264,6 +264,45 @@ always @(posedge D5M_PIXLCLK) begin
 end
 
 //=============================================================================
+// Double buffer control
+// buf_sel=0: camera writes 0x000000/0x100000, VGA reads 0x200000/0x300000
+// buf_sel=1: camera writes 0x200000/0x300000, VGA reads 0x000000/0x100000
+// SDRAM controller reloads WR/RD_ADDR from the input ports on every wrap,
+// so changing the mux here takes effect automatically at the next frame boundary.
+//=============================================================================
+
+// fval falling edge in camera domain
+reg  rCCD_FVAL_d;
+wire cam_fval_fall;
+always @(posedge D5M_PIXLCLK or negedge DLY_RST_2)
+    if (!DLY_RST_2) rCCD_FVAL_d <= 0;
+    else            rCCD_FVAL_d <= rCCD_FVAL;
+assign cam_fval_fall = rCCD_FVAL_d && !rCCD_FVAL;
+
+// buf_sel toggle — camera clock domain
+reg buf_sel;
+always @(posedge D5M_PIXLCLK or negedge DLY_RST_2)
+    if (!DLY_RST_2) buf_sel <= 0;
+    else if (cam_fval_fall) buf_sel <= ~buf_sel;
+
+// 2-FF synchronizer into sdram_ctrl_clk domain
+reg buf_sel_s1, buf_sel_sync;
+always @(posedge sdram_ctrl_clk or negedge DLY_RST_2)
+    if (!DLY_RST_2) begin
+        buf_sel_s1   <= 0;
+        buf_sel_sync <= 0;
+    end else begin
+        buf_sel_s1   <= buf_sel;
+        buf_sel_sync <= buf_sel_s1;
+    end
+
+// Address muxes — picked up by SDRAM controller on every wrap
+wire [22:0] wr1_base = buf_sel_sync ? 23'h200000 : 23'h000000;
+wire [22:0] wr2_base = buf_sel_sync ? 23'h300000 : 23'h100000;
+wire [22:0] rd1_base = buf_sel_sync ? 23'h000000 : 23'h200000;
+wire [22:0] rd2_base = buf_sel_sync ? 23'h100000 : 23'h300000;
+
+//=============================================================================
 // u2 — Reset sequencer
 //=============================================================================
 
@@ -374,32 +413,32 @@ Sdram_Control u7 (
 
     .WR1_DATA     ({1'b0, sCCD_G[11:7], sCCD_B[11:2]}),
     .WR1          (sCCD_DVAL),
-    .WR1_ADDR     (0),
-    .WR1_MAX_ADDR (640*480),
+    .WR1_ADDR     (wr1_base),
+    .WR1_MAX_ADDR (wr1_base + 640*480),
     .WR1_LENGTH   (8'h50),
     .WR1_LOAD     (!DLY_RST_0),
     .WR1_CLK      (~D5M_PIXLCLK),
 
     .WR2_DATA     ({1'b0, sCCD_G[6:2], sCCD_R[11:2]}),
     .WR2          (sCCD_DVAL),
-    .WR2_ADDR     (23'h100000),
-    .WR2_MAX_ADDR (23'h100000 + 640*480),
+    .WR2_ADDR     (wr2_base),
+    .WR2_MAX_ADDR (wr2_base + 640*480),
     .WR2_LENGTH   (8'h50),
     .WR2_LOAD     (!DLY_RST_0),
     .WR2_CLK      (~D5M_PIXLCLK),
 
     .RD1_DATA     (Read_DATA1),
     .RD1          (Read),
-    .RD1_ADDR     (0),
-    .RD1_MAX_ADDR (640*480),
+    .RD1_ADDR     (rd1_base),
+    .RD1_MAX_ADDR (rd1_base + 640*480),
     .RD1_LENGTH   (8'h50),
     .RD1_LOAD     (!DLY_RST_0),
     .RD1_CLK      (~VGA_CTRL_CLK),
 
     .RD2_DATA     (Read_DATA2),
     .RD2          (Read),
-    .RD2_ADDR     (23'h100000),
-    .RD2_MAX_ADDR (23'h100000 + 640*480),
+    .RD2_ADDR     (rd2_base),
+    .RD2_MAX_ADDR (rd2_base + 640*480),
     .RD2_LENGTH   (8'h50),
     .RD2_LOAD     (!DLY_RST_0),
     .RD2_CLK      (~VGA_CTRL_CLK),
