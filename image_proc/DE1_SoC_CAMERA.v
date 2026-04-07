@@ -211,6 +211,51 @@ assign game_mode = SW[7];
 wire [9:0] game_R, game_G, game_B;
 wire [9:0] mux_R, mux_G, mux_B;
 
+// Pixel Warping improvement
+// Create 1-cycle output pipeline
+wire vga_hs_i;
+wire vga_vs_i;
+wire vga_sync_i;
+wire vga_blank_i;
+// Register RGB values for sync
+reg [9:0] vga_r_reg, vga_g_reg, vga_b_reg;
+reg       vga_hs_reg, vga_vs_reg, vga_sync_reg, vga_blank_reg;
+
+// New overlay bit select to include game mode output
+assign mux_R = game_mode ? game_R : final_R;
+assign mux_G = game_mode ? game_G : final_G;
+assign mux_B = game_mode ? game_B : final_B;
+
+// register the final selected RGB and sync/control together
+always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
+    if (!DLY_RST_2) begin
+        vga_r_reg     <= 10'd0;
+        vga_g_reg     <= 10'd0;
+        vga_b_reg     <= 10'd0;
+        vga_hs_reg    <= 1'b0;
+        vga_vs_reg    <= 1'b0;
+        vga_sync_reg  <= 1'b0;
+        vga_blank_reg <= 1'b0;
+    end
+    else begin
+        vga_r_reg     <= mux_R;
+        vga_g_reg     <= mux_G;
+        vga_b_reg     <= mux_B;
+        vga_hs_reg    <= vga_hs_i;
+        vga_vs_reg    <= vga_vs_i;
+        vga_sync_reg  <= vga_sync_i;
+        vga_blank_reg <= vga_blank_i;
+    end
+end
+
+// drive board pins with registered outputs
+assign VGA_R       = vga_r_reg[9:2];
+assign VGA_G       = vga_g_reg[9:2];
+assign VGA_B       = vga_b_reg[9:2];
+assign VGA_HS      = vga_hs_reg;
+assign VGA_VS      = vga_vs_reg;
+assign VGA_SYNC_N  = vga_sync_reg;
+assign VGA_BLANK_N = vga_blank_reg;
 
 //=============================================================================
 // Static assignments
@@ -229,14 +274,6 @@ assign VGA_G = final_G[9:2];
 assign VGA_B = final_B[9:2];
 */
 
-// New overlay bit select to include game mode output
-assign mux_R = game_mode ? game_R : final_R;
-assign mux_G = game_mode ? game_G : final_G;
-assign mux_B = game_mode ? game_B : final_B;
-
-assign VGA_R = mux_R[9:2];
-assign VGA_G = mux_G[9:2];
-assign VGA_B = mux_B[9:2];
 
 //=============================================================================
 // Camera input latch
@@ -412,10 +449,10 @@ VGA_Controller u1 (
     .oVGA_R      (oVGA_R),
     .oVGA_G      (oVGA_G),
     .oVGA_B      (oVGA_B),
-    .oVGA_H_SYNC (VGA_HS),
-    .oVGA_V_SYNC (VGA_VS),
-    .oVGA_SYNC   (VGA_SYNC_N),
-    .oVGA_BLANK  (VGA_BLANK_N),
+    .oVGA_H_SYNC (vga_hs_i), // Change controller I/O with internal wire
+    .oVGA_V_SYNC (vga_vs_i), //
+    .oVGA_SYNC   (vga_sync_i), //
+    .oVGA_BLANK  (vga_blank_i),//
     .oVGA_X      (oVGA_X),
     .oVGA_Y      (oVGA_Y),
     .oVGA_ACTIVE (oVGA_ACTIVE),
