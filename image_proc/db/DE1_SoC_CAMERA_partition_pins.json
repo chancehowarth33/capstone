@@ -4,6 +4,22 @@
 			"name" : "Top",
 			"pins" : [
 				{
+					"name" : "LEDR[0]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_CKE",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_HS",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_VS",
+					"strict" : false
+				},
+				{
 					"name" : "DRAM_ADDR[0]",
 					"strict" : false
 				},
@@ -52,23 +68,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "DRAM_BA[0]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_BA[1]",
-					"strict" : false
-				},
-				{
 					"name" : "DRAM_CAS_N",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_CKE",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_CS_N",
 					"strict" : false
 				},
 				{
@@ -85,6 +85,22 @@
 				},
 				{
 					"name" : "DRAM_WE_N",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_BA[0]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_BA[1]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_CS_N",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_BLANK_N",
 					"strict" : false
 				},
 				{
@@ -256,10 +272,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "LEDR[0]",
-					"strict" : false
-				},
-				{
 					"name" : "VGA_B[0]",
 					"strict" : false
 				},
@@ -289,10 +301,6 @@
 				},
 				{
 					"name" : "VGA_B[7]",
-					"strict" : false
-				},
-				{
-					"name" : "VGA_BLANK_N",
 					"strict" : false
 				},
 				{
@@ -328,10 +336,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "VGA_HS",
-					"strict" : false
-				},
-				{
 					"name" : "VGA_R[0]",
 					"strict" : false
 				},
@@ -361,10 +365,6 @@
 				},
 				{
 					"name" : "VGA_R[7]",
-					"strict" : false
-				},
-				{
-					"name" : "VGA_VS",
 					"strict" : false
 				},
 				{
@@ -468,11 +468,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "D5M_FVAL",
+					"name" : "KEY[1]",
 					"strict" : false
 				},
 				{
-					"name" : "KEY[1]",
+					"name" : "D5M_FVAL",
 					"strict" : false
 				},
 				{

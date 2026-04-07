@@ -208,7 +208,7 @@ begin
 	8	:	LUT_DATA	<=	24'h2D019C;				//	Red Gain
 	9	:	LUT_DATA	<=	24'h2E0013;				//	Green 2 Gain
 	10	:	LUT_DATA	<=	24'h100051;				//	set up PLL power on
-	11	:	LUT_DATA	<=	24'h111805;				//	PLL_m_Factor<<8+PLL_n_Divider
+	11	:	LUT_DATA	<=	24'h111E05;				//	PLL_m_Factor<<8+PLL_n_Divider  (M=30 → ~25fps)
 	12	:	LUT_DATA	<=	24'h120003;				//	PLL_p1_Divider
    13	:	LUT_DATA	<=	24'h100053;				//	set USE PLL	 
 	14	:	LUT_DATA	<=	24'h980000;				//	disble calibration 	
