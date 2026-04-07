@@ -3,7 +3,9 @@
 // and crosshair overlay on VGA output.
 //  The camera captures at 25fps and color_detect fires a tracking output every 32 pixel rows (15 times per frame), giving 375 tracking updates   
 // per second, while VGA always reads the latest pixels written to SDRAM with no buffering delay.
-//
+// 375 updates/second — 15 subframe outputs per camera frame × 25fps.
+// Effective frames is at 375 fps
+
 // SW[0]  : exposure direction select
 //          0 = increase exposure when KEY[1] is pressed
 //          1 = decrease exposure when KEY[1] is pressed

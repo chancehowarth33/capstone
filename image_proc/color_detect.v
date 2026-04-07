@@ -45,6 +45,9 @@ module color_detect (
 
     integer i;
 
+    // Yes, color_detect.v uses 16×16 blocks — vga_x[9:4] and vga_y[8:4] for block indices, end_of_block fires at x[3:0]==15 && y[3:0]==15, and 
+    // averaging divides by 256 via next_sum_R[17:8].
+
     //========================
     // block math (16x16)
     //========================
