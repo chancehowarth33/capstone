@@ -755,10 +755,9 @@ set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name VERILOG_FILE ../snake_hls/snakeVerilog/snake_top_urem_8ns_6ns_5_12_seq_1.v
 set_global_assignment -name VERILOG_FILE ../snake_hls/snakeVerilog/snake_top_urem_5ns_5ns_4_9_seq_1.v
-set_global_assignment -name VERILOG_FILE ../snake_hls/snakeVerilog/snake_top_sparsemux_7_2_2_1_1.v
-set_global_assignment -name VERILOG_FILE ../snake_hls/snakeVerilog/snake_top_snake_top_Pipeline_VITIS_LOOP_206_3.v
-set_global_assignment -name VERILOG_FILE ../snake_hls/snakeVerilog/snake_top_snake_top_Pipeline_VITIS_LOOP_151_2.v
-set_global_assignment -name VERILOG_FILE ../snake_hls/snakeVerilog/snake_top_snake_top_Pipeline_VITIS_LOOP_67_1.v
+set_global_assignment -name VERILOG_FILE ../snake_hls/snakeVerilog/snake_top_snake_top_Pipeline_VITIS_LOOP_274_3.v
+set_global_assignment -name VERILOG_FILE ../snake_hls/snakeVerilog/snake_top_snake_top_Pipeline_VITIS_LOOP_218_2.v
+set_global_assignment -name VERILOG_FILE ../snake_hls/snakeVerilog/snake_top_snake_top_Pipeline_VITIS_LOOP_71_1.v
 set_global_assignment -name VERILOG_FILE ../snake_hls/snakeVerilog/snake_top_snake_row_RAM_AUTO_1R1W.v
 set_global_assignment -name VERILOG_FILE ../snake_hls/snakeVerilog/snake_top_snake_col_RAM_AUTO_1R1W.v
 set_global_assignment -name VERILOG_FILE ../snake_hls/snakeVerilog/snake_top_flow_control_loop_pipe_sequential_init.v

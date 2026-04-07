@@ -1,37 +1,37 @@
 |DE1_SoC_CAMERA
 ADC_CS_N <> <UNC>
-ADC_DIN <= <GND>
+ADC_DIN << <GND>
 ADC_DOUT => ~NO_FANOUT~
-ADC_SCLK <= <GND>
+ADC_SCLK << <GND>
 AUD_ADCDAT => ~NO_FANOUT~
 AUD_ADCLRCK <> <UNC>
 AUD_BCLK <> <UNC>
-AUD_DACDAT <= <GND>
+AUD_DACDAT << <GND>
 AUD_DACLRCK <> <UNC>
-AUD_XCK <= <GND>
+AUD_XCK << <GND>
 CLOCK2_50 => CLOCK2_50.IN1
 CLOCK3_50 => ~NO_FANOUT~
 CLOCK4_50 => ~NO_FANOUT~
 CLOCK_50 => CLOCK_50.IN2
-DRAM_ADDR[0] <= Sdram_Control:u7.SA
-DRAM_ADDR[1] <= Sdram_Control:u7.SA
-DRAM_ADDR[2] <= Sdram_Control:u7.SA
-DRAM_ADDR[3] <= Sdram_Control:u7.SA
-DRAM_ADDR[4] <= Sdram_Control:u7.SA
-DRAM_ADDR[5] <= Sdram_Control:u7.SA
-DRAM_ADDR[6] <= Sdram_Control:u7.SA
-DRAM_ADDR[7] <= Sdram_Control:u7.SA
-DRAM_ADDR[8] <= Sdram_Control:u7.SA
-DRAM_ADDR[9] <= Sdram_Control:u7.SA
-DRAM_ADDR[10] <= Sdram_Control:u7.SA
-DRAM_ADDR[11] <= Sdram_Control:u7.SA
-DRAM_ADDR[12] <= Sdram_Control:u7.SA
-DRAM_BA[0] <= Sdram_Control:u7.BA
-DRAM_BA[1] <= Sdram_Control:u7.BA
-DRAM_CAS_N <= Sdram_Control:u7.CAS_N
-DRAM_CKE <= Sdram_Control:u7.CKE
-DRAM_CLK <= sdram_pll:u6.outclk_1
-DRAM_CS_N <= Sdram_Control:u7.CS_N
+DRAM_ADDR[0] << Sdram_Control:u7.SA
+DRAM_ADDR[1] << Sdram_Control:u7.SA
+DRAM_ADDR[2] << Sdram_Control:u7.SA
+DRAM_ADDR[3] << Sdram_Control:u7.SA
+DRAM_ADDR[4] << Sdram_Control:u7.SA
+DRAM_ADDR[5] << Sdram_Control:u7.SA
+DRAM_ADDR[6] << Sdram_Control:u7.SA
+DRAM_ADDR[7] << Sdram_Control:u7.SA
+DRAM_ADDR[8] << Sdram_Control:u7.SA
+DRAM_ADDR[9] << Sdram_Control:u7.SA
+DRAM_ADDR[10] << Sdram_Control:u7.SA
+DRAM_ADDR[11] << Sdram_Control:u7.SA
+DRAM_ADDR[12] << Sdram_Control:u7.SA
+DRAM_BA[0] << Sdram_Control:u7.BA
+DRAM_BA[1] << Sdram_Control:u7.BA
+DRAM_CAS_N << Sdram_Control:u7.CAS_N
+DRAM_CKE << Sdram_Control:u7.CKE
+DRAM_CLK << sdram_pll:u6.outclk_1
+DRAM_CS_N << Sdram_Control:u7.CS_N
 DRAM_DQ[0] <> Sdram_Control:u7.DQ
 DRAM_DQ[1] <> Sdram_Control:u7.DQ
 DRAM_DQ[2] <> Sdram_Control:u7.DQ
@@ -48,12 +48,12 @@ DRAM_DQ[12] <> Sdram_Control:u7.DQ
 DRAM_DQ[13] <> Sdram_Control:u7.DQ
 DRAM_DQ[14] <> Sdram_Control:u7.DQ
 DRAM_DQ[15] <> Sdram_Control:u7.DQ
-DRAM_LDQM <= Sdram_Control:u7.DQM
-DRAM_RAS_N <= Sdram_Control:u7.RAS_N
-DRAM_UDQM <= Sdram_Control:u7.DQM
-DRAM_WE_N <= Sdram_Control:u7.WE_N
-FAN_CTRL <= <GND>
-FPGA_I2C_SCLK <= <GND>
+DRAM_LDQM << Sdram_Control:u7.DQM
+DRAM_RAS_N << Sdram_Control:u7.RAS_N
+DRAM_UDQM << Sdram_Control:u7.DQM
+DRAM_WE_N << Sdram_Control:u7.WE_N
+FAN_CTRL << <GND>
+FPGA_I2C_SCLK << <GND>
 FPGA_I2C_SDAT <> <UNC>
 GPIO_0[0] <> <UNC>
 GPIO_0[1] <> <UNC>
@@ -91,64 +91,64 @@ GPIO_0[32] <> <UNC>
 GPIO_0[33] <> <UNC>
 GPIO_0[34] <> <UNC>
 GPIO_0[35] <> <UNC>
-HEX0[0] <= SEG7_LUT_6:u5.oSEG0
-HEX0[1] <= SEG7_LUT_6:u5.oSEG0
-HEX0[2] <= SEG7_LUT_6:u5.oSEG0
-HEX0[3] <= SEG7_LUT_6:u5.oSEG0
-HEX0[4] <= SEG7_LUT_6:u5.oSEG0
-HEX0[5] <= SEG7_LUT_6:u5.oSEG0
-HEX0[6] <= SEG7_LUT_6:u5.oSEG0
-HEX1[0] <= SEG7_LUT_6:u5.oSEG1
-HEX1[1] <= SEG7_LUT_6:u5.oSEG1
-HEX1[2] <= SEG7_LUT_6:u5.oSEG1
-HEX1[3] <= SEG7_LUT_6:u5.oSEG1
-HEX1[4] <= SEG7_LUT_6:u5.oSEG1
-HEX1[5] <= SEG7_LUT_6:u5.oSEG1
-HEX1[6] <= SEG7_LUT_6:u5.oSEG1
-HEX2[0] <= SEG7_LUT_6:u5.oSEG2
-HEX2[1] <= SEG7_LUT_6:u5.oSEG2
-HEX2[2] <= SEG7_LUT_6:u5.oSEG2
-HEX2[3] <= SEG7_LUT_6:u5.oSEG2
-HEX2[4] <= SEG7_LUT_6:u5.oSEG2
-HEX2[5] <= SEG7_LUT_6:u5.oSEG2
-HEX2[6] <= SEG7_LUT_6:u5.oSEG2
-HEX3[0] <= SEG7_LUT_6:u5.oSEG3
-HEX3[1] <= SEG7_LUT_6:u5.oSEG3
-HEX3[2] <= SEG7_LUT_6:u5.oSEG3
-HEX3[3] <= SEG7_LUT_6:u5.oSEG3
-HEX3[4] <= SEG7_LUT_6:u5.oSEG3
-HEX3[5] <= SEG7_LUT_6:u5.oSEG3
-HEX3[6] <= SEG7_LUT_6:u5.oSEG3
-HEX4[0] <= SEG7_LUT_6:u5.oSEG4
-HEX4[1] <= SEG7_LUT_6:u5.oSEG4
-HEX4[2] <= SEG7_LUT_6:u5.oSEG4
-HEX4[3] <= SEG7_LUT_6:u5.oSEG4
-HEX4[4] <= SEG7_LUT_6:u5.oSEG4
-HEX4[5] <= SEG7_LUT_6:u5.oSEG4
-HEX4[6] <= SEG7_LUT_6:u5.oSEG4
-HEX5[0] <= SEG7_LUT_6:u5.oSEG5
-HEX5[1] <= SEG7_LUT_6:u5.oSEG5
-HEX5[2] <= SEG7_LUT_6:u5.oSEG5
-HEX5[3] <= SEG7_LUT_6:u5.oSEG5
-HEX5[4] <= SEG7_LUT_6:u5.oSEG5
-HEX5[5] <= SEG7_LUT_6:u5.oSEG5
-HEX5[6] <= SEG7_LUT_6:u5.oSEG5
+HEX0[0] << SEG7_LUT_6:u5.oSEG0
+HEX0[1] << SEG7_LUT_6:u5.oSEG0
+HEX0[2] << SEG7_LUT_6:u5.oSEG0
+HEX0[3] << SEG7_LUT_6:u5.oSEG0
+HEX0[4] << SEG7_LUT_6:u5.oSEG0
+HEX0[5] << SEG7_LUT_6:u5.oSEG0
+HEX0[6] << SEG7_LUT_6:u5.oSEG0
+HEX1[0] << SEG7_LUT_6:u5.oSEG1
+HEX1[1] << SEG7_LUT_6:u5.oSEG1
+HEX1[2] << SEG7_LUT_6:u5.oSEG1
+HEX1[3] << SEG7_LUT_6:u5.oSEG1
+HEX1[4] << SEG7_LUT_6:u5.oSEG1
+HEX1[5] << SEG7_LUT_6:u5.oSEG1
+HEX1[6] << SEG7_LUT_6:u5.oSEG1
+HEX2[0] << SEG7_LUT_6:u5.oSEG2
+HEX2[1] << SEG7_LUT_6:u5.oSEG2
+HEX2[2] << SEG7_LUT_6:u5.oSEG2
+HEX2[3] << SEG7_LUT_6:u5.oSEG2
+HEX2[4] << SEG7_LUT_6:u5.oSEG2
+HEX2[5] << SEG7_LUT_6:u5.oSEG2
+HEX2[6] << SEG7_LUT_6:u5.oSEG2
+HEX3[0] << SEG7_LUT_6:u5.oSEG3
+HEX3[1] << SEG7_LUT_6:u5.oSEG3
+HEX3[2] << SEG7_LUT_6:u5.oSEG3
+HEX3[3] << SEG7_LUT_6:u5.oSEG3
+HEX3[4] << SEG7_LUT_6:u5.oSEG3
+HEX3[5] << SEG7_LUT_6:u5.oSEG3
+HEX3[6] << SEG7_LUT_6:u5.oSEG3
+HEX4[0] << SEG7_LUT_6:u5.oSEG4
+HEX4[1] << SEG7_LUT_6:u5.oSEG4
+HEX4[2] << SEG7_LUT_6:u5.oSEG4
+HEX4[3] << SEG7_LUT_6:u5.oSEG4
+HEX4[4] << SEG7_LUT_6:u5.oSEG4
+HEX4[5] << SEG7_LUT_6:u5.oSEG4
+HEX4[6] << SEG7_LUT_6:u5.oSEG4
+HEX5[0] << SEG7_LUT_6:u5.oSEG5
+HEX5[1] << SEG7_LUT_6:u5.oSEG5
+HEX5[2] << SEG7_LUT_6:u5.oSEG5
+HEX5[3] << SEG7_LUT_6:u5.oSEG5
+HEX5[4] << SEG7_LUT_6:u5.oSEG5
+HEX5[5] << SEG7_LUT_6:u5.oSEG5
+HEX5[6] << SEG7_LUT_6:u5.oSEG5
 IRDA_RXD => ~NO_FANOUT~
-IRDA_TXD <= <GND>
+IRDA_TXD << <GND>
 KEY[0] => KEY[0].IN2
 KEY[1] => KEY[1].IN1
 KEY[2] => _.IN1
 KEY[3] => comb.IN1
-LEDR[0] <= color_detect:u_detect.cal_valid
-LEDR[1] <= <GND>
-LEDR[2] <= <GND>
-LEDR[3] <= <GND>
-LEDR[4] <= <GND>
-LEDR[5] <= <GND>
-LEDR[6] <= <GND>
-LEDR[7] <= <GND>
-LEDR[8] <= <GND>
-LEDR[9] <= <GND>
+LEDR[0] << color_detect:u_detect.cal_valid
+LEDR[1] << <GND>
+LEDR[2] << <GND>
+LEDR[3] << <GND>
+LEDR[4] << <GND>
+LEDR[5] << <GND>
+LEDR[6] << <GND>
+LEDR[7] << <GND>
+LEDR[8] << <GND>
+LEDR[9] << <GND>
 PS2_CLK <> <UNC>
 PS2_CLK2 <> <UNC>
 PS2_DAT <> <UNC>
@@ -196,37 +196,37 @@ TD_DATA[5] => ~NO_FANOUT~
 TD_DATA[6] => ~NO_FANOUT~
 TD_DATA[7] => ~NO_FANOUT~
 TD_HS => ~NO_FANOUT~
-TD_RESET_N <= <GND>
+TD_RESET_N << <GND>
 TD_VS => ~NO_FANOUT~
-VGA_B[0] <= mux_B.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[1] <= mux_B.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[2] <= mux_B.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[3] <= mux_B.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[4] <= mux_B.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[5] <= mux_B.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[6] <= mux_B.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[7] <= mux_B.DB_MAX_OUTPUT_PORT_TYPE
-VGA_BLANK_N <= VGA_Controller:u1.oVGA_BLANK
-VGA_CLK <= VGA_CTRL_CLK.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[0] <= mux_G.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[1] <= mux_G.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[2] <= mux_G.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[3] <= mux_G.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[4] <= mux_G.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[5] <= mux_G.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[6] <= mux_G.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[7] <= mux_G.DB_MAX_OUTPUT_PORT_TYPE
-VGA_HS <= VGA_Controller:u1.oVGA_H_SYNC
-VGA_R[0] <= mux_R.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[1] <= mux_R.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[2] <= mux_R.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[3] <= mux_R.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[4] <= mux_R.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[5] <= mux_R.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[6] <= mux_R.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[7] <= mux_R.DB_MAX_OUTPUT_PORT_TYPE
-VGA_SYNC_N <= VGA_Controller:u1.oVGA_SYNC
-VGA_VS <= VGA_VS.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[0] << mux_B.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[1] << mux_B.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[2] << mux_B.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[3] << mux_B.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[4] << mux_B.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[5] << mux_B.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[6] << mux_B.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[7] << mux_B.DB_MAX_OUTPUT_PORT_TYPE
+VGA_BLANK_N << VGA_Controller:u1.oVGA_BLANK
+VGA_CLK << VGA_CTRL_CLK.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[0] << mux_G.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[1] << mux_G.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[2] << mux_G.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[3] << mux_G.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[4] << mux_G.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[5] << mux_G.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[6] << mux_G.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[7] << mux_G.DB_MAX_OUTPUT_PORT_TYPE
+VGA_HS << VGA_Controller:u1.oVGA_H_SYNC
+VGA_R[0] << mux_R.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[1] << mux_R.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[2] << mux_R.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[3] << mux_R.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[4] << mux_R.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[5] << mux_R.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[6] << mux_R.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[7] << mux_R.DB_MAX_OUTPUT_PORT_TYPE
+VGA_SYNC_N << VGA_Controller:u1.oVGA_SYNC
+VGA_VS << VGA_VS.DB_MAX_OUTPUT_PORT_TYPE
 D5M_D[0] => rCCD_DATA[0].DATAIN
 D5M_D[1] => rCCD_DATA[1].DATAIN
 D5M_D[2] => rCCD_DATA[2].DATAIN
@@ -242,12 +242,12 @@ D5M_D[11] => rCCD_DATA[11].DATAIN
 D5M_FVAL => rCCD_FVAL.DATAIN
 D5M_LVAL => rCCD_LVAL.DATAIN
 D5M_PIXLCLK => D5M_PIXLCLK.IN1
-D5M_RESET_N <= DLY_RST_1.DB_MAX_OUTPUT_PORT_TYPE
-D5M_SCLK <= I2C_CCD_Config:u8.I2C_SCLK
+D5M_RESET_N << DLY_RST_1.DB_MAX_OUTPUT_PORT_TYPE
+D5M_SCLK << I2C_CCD_Config:u8.I2C_SCLK
 D5M_SDATA <> I2C_CCD_Config:u8.I2C_SDAT
 D5M_STROBE => ~NO_FANOUT~
-D5M_TRIGGER <= <VCC>
-D5M_XCLKIN <= sdram_pll:u6.outclk_2
+D5M_TRIGGER << <VCC>
+D5M_XCLKIN << sdram_pll:u6.outclk_2
 
 
 |DE1_SoC_CAMERA|Reset_Delay:u2
@@ -13068,91 +13068,126 @@ B_out[9] <= snake_top:u_snake_top.B_out
 |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top
 ap_clk => ap_clk.IN7
 ap_rst => ap_rst.IN7
-coord_x[0] => LessThan0.IN20
-coord_x[1] => LessThan0.IN19
-coord_x[2] => LessThan0.IN18
-coord_x[3] => LessThan0.IN17
-coord_x[4] => LessThan0.IN16
-coord_x[5] => LessThan0.IN15
-coord_x[6] => LessThan0.IN14
-coord_x[7] => LessThan0.IN13
-coord_x[8] => LessThan0.IN12
-coord_x[9] => LessThan0.IN11
-coord_y[0] => LessThan2.IN20
-coord_y[1] => LessThan2.IN19
-coord_y[2] => LessThan2.IN18
-coord_y[3] => LessThan2.IN17
-coord_y[4] => LessThan2.IN16
-coord_y[5] => LessThan2.IN15
-coord_y[6] => LessThan2.IN14
-coord_y[7] => LessThan2.IN13
-coord_y[8] => LessThan2.IN12
-coord_y[9] => LessThan2.IN11
-detected[0] => always4.IN0
-vga_x[0] => ~NO_FANOUT~
-vga_x[1] => ~NO_FANOUT~
-vga_x[2] => ~NO_FANOUT~
-vga_x[3] => ~NO_FANOUT~
-vga_x[4] => ~NO_FANOUT~
-vga_x[5] => vga_x_read_reg_927[5].DATAIN
-vga_x[6] => vga_x_read_reg_927[6].DATAIN
-vga_x[7] => vga_x_read_reg_927[7].DATAIN
-vga_x[8] => vga_x_read_reg_927[8].DATAIN
-vga_x[9] => vga_x_read_reg_927[9].DATAIN
-vga_y[0] => ~NO_FANOUT~
-vga_y[1] => ~NO_FANOUT~
-vga_y[2] => ~NO_FANOUT~
-vga_y[3] => ~NO_FANOUT~
-vga_y[4] => ~NO_FANOUT~
-vga_y[5] => vga_y_read_reg_922[5].DATAIN
-vga_y[6] => vga_y_read_reg_922[6].DATAIN
-vga_y[7] => vga_y_read_reg_922[7].DATAIN
-vga_y[8] => vga_y_read_reg_922[8].DATAIN
-vga_y[9] => ~NO_FANOUT~
-vsync[0] => vsync_fall_fu_438_p2[0].IN1
+coord_x[0] => abs_start_dx_fu_666_p3[0].DATAA
+coord_x[0] => Add16.IN10
+coord_x[0] => coord_x_read_reg_1477[0].DATAIN
+coord_x[1] => abs_start_dx_fu_666_p3[1].DATAA
+coord_x[1] => Add16.IN9
+coord_x[1] => coord_x_read_reg_1477[1].DATAIN
+coord_x[2] => abs_start_dx_fu_666_p3[2].DATAA
+coord_x[2] => Add16.IN8
+coord_x[2] => coord_x_read_reg_1477[2].DATAIN
+coord_x[3] => abs_start_dx_fu_666_p3[3].DATAA
+coord_x[3] => Add16.IN7
+coord_x[3] => coord_x_read_reg_1477[3].DATAIN
+coord_x[4] => abs_start_dx_fu_666_p3[4].DATAA
+coord_x[4] => Add16.IN6
+coord_x[4] => coord_x_read_reg_1477[4].DATAIN
+coord_x[5] => abs_start_dx_fu_666_p3[5].DATAA
+coord_x[5] => Add16.IN5
+coord_x[5] => coord_x_read_reg_1477[5].DATAIN
+coord_x[6] => Add14.IN10
+coord_x[6] => coord_x_read_reg_1477[6].DATAIN
+coord_x[7] => Add14.IN9
+coord_x[7] => coord_x_read_reg_1477[7].DATAIN
+coord_x[8] => Add14.IN8
+coord_x[8] => coord_x_read_reg_1477[8].DATAIN
+coord_x[9] => Add14.IN7
+coord_x[9] => coord_x_read_reg_1477[9].DATAIN
+coord_y[0] => abs_start_dy_fu_688_p3[0].DATAA
+coord_y[0] => Add17.IN10
+coord_y[0] => coord_y_read_reg_1472[0].DATAIN
+coord_y[1] => abs_start_dy_fu_688_p3[1].DATAA
+coord_y[1] => Add17.IN9
+coord_y[1] => coord_y_read_reg_1472[1].DATAIN
+coord_y[2] => abs_start_dy_fu_688_p3[2].DATAA
+coord_y[2] => Add17.IN8
+coord_y[2] => coord_y_read_reg_1472[2].DATAIN
+coord_y[3] => abs_start_dy_fu_688_p3[3].DATAA
+coord_y[3] => Add17.IN7
+coord_y[3] => coord_y_read_reg_1472[3].DATAIN
+coord_y[4] => Add15.IN14
+coord_y[4] => coord_y_read_reg_1472[4].DATAIN
+coord_y[5] => Add15.IN13
+coord_y[5] => coord_y_read_reg_1472[5].DATAIN
+coord_y[6] => Add15.IN12
+coord_y[6] => coord_y_read_reg_1472[6].DATAIN
+coord_y[7] => Add15.IN11
+coord_y[7] => coord_y_read_reg_1472[7].DATAIN
+coord_y[8] => Add15.IN10
+coord_y[8] => coord_y_read_reg_1472[8].DATAIN
+coord_y[9] => Add15.IN9
+coord_y[9] => coord_y_read_reg_1472[9].DATAIN
+detected[0] => and_ln117_fu_702_p2[0].IN1
+detected[0] => always4.IN1
+detected[0] => detected_read_reg_1467[0].DATAIN
+vga_x[0] => vga_x_read_reg_1461[0].DATAIN
+vga_x[1] => vga_x_read_reg_1461[1].DATAIN
+vga_x[2] => vga_x_read_reg_1461[2].DATAIN
+vga_x[3] => vga_x_read_reg_1461[3].DATAIN
+vga_x[4] => vga_x_read_reg_1461[4].DATAIN
+vga_x[5] => vga_x_read_reg_1461[5].DATAIN
+vga_x[6] => vga_x_read_reg_1461[6].DATAIN
+vga_x[7] => vga_x_read_reg_1461[7].DATAIN
+vga_x[8] => vga_x_read_reg_1461[8].DATAIN
+vga_x[9] => vga_x_read_reg_1461[9].DATAIN
+vga_y[0] => vga_y_read_reg_1455[0].DATAIN
+vga_y[1] => vga_y_read_reg_1455[1].DATAIN
+vga_y[2] => vga_y_read_reg_1455[2].DATAIN
+vga_y[3] => vga_y_read_reg_1455[3].DATAIN
+vga_y[4] => vga_y_read_reg_1455[4].DATAIN
+vga_y[5] => vga_y_read_reg_1455[5].DATAIN
+vga_y[6] => vga_y_read_reg_1455[6].DATAIN
+vga_y[7] => vga_y_read_reg_1455[7].DATAIN
+vga_y[8] => vga_y_read_reg_1455[8].DATAIN
+vga_y[9] => vga_y_read_reg_1455[9].DATAIN
+vsync[0] => vsync_fall_fu_584_p2[0].IN1
 vsync[0] => vsync_prev[0].DATAIN
 rst_n[0] => always4.IN1
-rst_n[0] => always10.IN1
-rst_n[0] => always39.IN1
-rst_n[0] => always48.IN1
-rst_n[0] => always54.IN1
-rst_n[0] => always54.IN1
-rst_n[0] => always27.IN1
-rst_n[0] => always39.IN1
-rst_n[0] => always44.IN1
-rst_n[0] => always48.IN1
-rst_n[0] => always53.IN1
-rst_n[0] => rst_n_read_reg_918[0].DATAIN
-R_out[0] <= ap_phi_mux_storemerge2_phi_fu_355_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-R_out[1] <= ap_phi_mux_storemerge2_phi_fu_355_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-R_out[2] <= ap_phi_mux_storemerge2_phi_fu_355_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-R_out[3] <= ap_phi_mux_storemerge2_phi_fu_355_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-R_out[4] <= ap_phi_mux_storemerge2_phi_fu_355_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-R_out[5] <= ap_phi_mux_storemerge2_phi_fu_355_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-R_out[6] <= ap_phi_mux_storemerge2_phi_fu_355_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-R_out[7] <= ap_phi_mux_storemerge2_phi_fu_355_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-R_out[8] <= ap_phi_mux_storemerge2_phi_fu_355_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-R_out[9] <= ap_phi_mux_storemerge2_phi_fu_355_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-G_out[0] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-G_out[1] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-G_out[2] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-G_out[3] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-G_out[4] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-G_out[5] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-G_out[6] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-G_out[7] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-G_out[8] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-G_out[9] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-B_out[0] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-B_out[1] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-B_out[2] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-B_out[3] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-B_out[4] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-B_out[5] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-B_out[6] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-B_out[7] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-B_out[8] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
-B_out[9] <= ap_phi_mux_storemerge_phi_fu_366_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+rst_n[0] => always8.IN1
+rst_n[0] => always8.IN1
+rst_n[0] => always8.IN1
+rst_n[0] => always50.IN1
+rst_n[0] => always59.IN1
+rst_n[0] => always65.IN1
+rst_n[0] => always65.IN1
+rst_n[0] => always65.IN1
+rst_n[0] => always35.IN1
+rst_n[0] => always50.IN1
+rst_n[0] => always55.IN1
+rst_n[0] => always59.IN1
+rst_n[0] => always64.IN1
+rst_n[0] => rst_n_read_reg_1451[0].DATAIN
+R_out[0] <= ap_phi_mux_storemerge2_phi_fu_481_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+R_out[1] <= ap_phi_mux_storemerge2_phi_fu_481_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+R_out[2] <= ap_phi_mux_storemerge2_phi_fu_481_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+R_out[3] <= ap_phi_mux_storemerge2_phi_fu_481_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+R_out[4] <= ap_phi_mux_storemerge2_phi_fu_481_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+R_out[5] <= ap_phi_mux_storemerge2_phi_fu_481_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+R_out[6] <= ap_phi_mux_storemerge2_phi_fu_481_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+R_out[7] <= ap_phi_mux_storemerge2_phi_fu_481_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+R_out[8] <= ap_phi_mux_storemerge2_phi_fu_481_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+R_out[9] <= ap_phi_mux_storemerge2_phi_fu_481_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+G_out[0] <= ap_phi_mux_storemerge1_phi_fu_492_p4.DB_MAX_OUTPUT_PORT_TYPE
+G_out[1] <= ap_phi_mux_storemerge1_phi_fu_492_p4.DB_MAX_OUTPUT_PORT_TYPE
+G_out[2] <= ap_phi_mux_storemerge1_phi_fu_492_p4.DB_MAX_OUTPUT_PORT_TYPE
+G_out[3] <= ap_phi_mux_storemerge1_phi_fu_492_p4.DB_MAX_OUTPUT_PORT_TYPE
+G_out[4] <= ap_phi_mux_storemerge1_phi_fu_492_p4.DB_MAX_OUTPUT_PORT_TYPE
+G_out[5] <= ap_phi_mux_storemerge1_phi_fu_492_p4.DB_MAX_OUTPUT_PORT_TYPE
+G_out[6] <= ap_phi_mux_storemerge1_phi_fu_492_p4.DB_MAX_OUTPUT_PORT_TYPE
+G_out[7] <= ap_phi_mux_storemerge1_phi_fu_492_p4.DB_MAX_OUTPUT_PORT_TYPE
+G_out[8] <= ap_phi_mux_storemerge1_phi_fu_492_p4.DB_MAX_OUTPUT_PORT_TYPE
+G_out[9] <= ap_phi_mux_storemerge1_phi_fu_492_p4.DB_MAX_OUTPUT_PORT_TYPE
+B_out[0] <= ap_phi_mux_storemerge3_phi_fu_504_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+B_out[1] <= ap_phi_mux_storemerge3_phi_fu_504_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+B_out[2] <= ap_phi_mux_storemerge3_phi_fu_504_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+B_out[3] <= ap_phi_mux_storemerge3_phi_fu_504_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+B_out[4] <= ap_phi_mux_storemerge3_phi_fu_504_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+B_out[5] <= ap_phi_mux_storemerge3_phi_fu_504_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+B_out[6] <= ap_phi_mux_storemerge3_phi_fu_504_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+B_out[7] <= ap_phi_mux_storemerge3_phi_fu_504_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+B_out[8] <= ap_phi_mux_storemerge3_phi_fu_504_p4[0].DB_MAX_OUTPUT_PORT_TYPE
+B_out[9] <= ap_phi_mux_storemerge3_phi_fu_504_p4[0].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_col_RAM_AUTO_1R1W:snake_col_U
@@ -13282,7 +13317,7 @@ clk => q0[3]~reg0.CLK
 clk => ram.CLK0
 
 
-|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_67_1:grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373
+|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_71_1:grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511
 ap_clk => ap_clk.IN1
 ap_rst => ap_rst.IN1
 ap_start => ap_start.IN1
@@ -13310,7 +13345,7 @@ snake_row_d0[2] <= <VCC>
 snake_row_d0[3] <= <GND>
 
 
-|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_67_1:grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373|snake_top_flow_control_loop_pipe_sequential_init:flow_control_loop_pipe_sequential_init_U
+|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_71_1:grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511|snake_top_flow_control_loop_pipe_sequential_init:flow_control_loop_pipe_sequential_init_U
 ap_clk => ap_done_cache.CLK
 ap_clk => ap_loop_init_int.CLK
 ap_rst => ap_loop_init_int.OUTPUTSELECT
@@ -13331,7 +13366,7 @@ ap_loop_exit_ready => ap_ready.DATAIN
 ap_loop_exit_done => ap_loop_init_int.OUTPUTSELECT
 
 
-|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_151_2:grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381
+|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_218_2:grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519
 ap_clk => ap_clk.IN1
 ap_rst => ap_rst.IN1
 ap_start => ap_start.IN1
@@ -13379,7 +13414,7 @@ snake_row_q1[2] => snake_row_d0[2].DATAIN
 snake_row_q1[3] => snake_row_d0[3].DATAIN
 
 
-|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_151_2:grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381|snake_top_flow_control_loop_pipe_sequential_init:flow_control_loop_pipe_sequential_init_U
+|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_218_2:grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519|snake_top_flow_control_loop_pipe_sequential_init:flow_control_loop_pipe_sequential_init_U
 ap_clk => ap_done_cache.CLK
 ap_clk => ap_loop_init_int.CLK
 ap_rst => ap_loop_init_int.OUTPUTSELECT
@@ -13400,16 +13435,16 @@ ap_loop_exit_ready => ap_ready.DATAIN
 ap_loop_exit_done => ap_loop_init_int.OUTPUTSELECT
 
 
-|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_206_3:grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390
+|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_274_3:grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528
 ap_clk => ap_clk.IN1
 ap_rst => ap_rst.IN1
 ap_start => ap_start.IN1
 ap_done <= snake_top_flow_control_loop_pipe_sequential_init:flow_control_loop_pipe_sequential_init_U.ap_done
 ap_idle <= always8.DB_MAX_OUTPUT_PORT_TYPE
 ap_ready <= snake_top_flow_control_loop_pipe_sequential_init:flow_control_loop_pipe_sequential_init_U.ap_ready
-snake_len_loc_3[0] => LessThan0.IN3
-snake_len_loc_3[1] => LessThan0.IN2
-snake_len_loc_3[2] => LessThan0.IN1
+snake_len_loc_4[0] => LessThan0.IN3
+snake_len_loc_4[1] => LessThan0.IN2
+snake_len_loc_4[2] => LessThan0.IN1
 cell_col[0] => Equal1.IN4
 cell_col[1] => Equal1.IN3
 cell_col[2] => Equal1.IN2
@@ -13440,7 +13475,7 @@ snake_row_q0[2] => Equal2.IN5
 snake_row_q0[3] => Equal2.IN4
 
 
-|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_206_3:grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390|snake_top_flow_control_loop_pipe_sequential_init:flow_control_loop_pipe_sequential_init_U
+|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_snake_top_Pipeline_VITIS_LOOP_274_3:grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528|snake_top_flow_control_loop_pipe_sequential_init:flow_control_loop_pipe_sequential_init_U
 ap_clk => ap_done_cache.CLK
 ap_clk => ap_loop_init_int.CLK
 ap_rst => ap_loop_init_int.OUTPUTSELECT
@@ -13461,24 +13496,7 @@ ap_loop_exit_ready => ap_ready.DATAIN
 ap_loop_exit_done => ap_loop_init_int.OUTPUTSELECT
 
 
-|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_sparsemux_7_2_2_1_1:sparsemux_7_2_2_1_1_U12
-din0[0] => Mux1.IN0
-din0[1] => Mux0.IN0
-din1[0] => Mux1.IN1
-din1[1] => Mux0.IN1
-din2[0] => Mux1.IN2
-din2[1] => Mux0.IN2
-def[0] => Mux1.IN3
-def[1] => Mux0.IN3
-sel[0] => Mux0.IN5
-sel[0] => Mux1.IN5
-sel[1] => Mux0.IN4
-sel[1] => Mux1.IN4
-dout[0] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
-dout[1] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_urem_8ns_6ns_5_12_seq_1:urem_8ns_6ns_5_12_seq_1_U13
+|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_urem_8ns_6ns_5_12_seq_1:urem_8ns_6ns_5_12_seq_1_U12
 clk => snake_top_urem_8ns_6ns_5_12_seq_1_divseq:snake_top_urem_8ns_6ns_5_12_seq_1_divseq_u.clk
 clk => remd[0].CLK
 clk => remd[1].CLK
@@ -13541,7 +13559,7 @@ dout[3] <= remd[3].DB_MAX_OUTPUT_PORT_TYPE
 dout[4] <= remd[4].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_urem_8ns_6ns_5_12_seq_1:urem_8ns_6ns_5_12_seq_1_U13|snake_top_urem_8ns_6ns_5_12_seq_1_divseq:snake_top_urem_8ns_6ns_5_12_seq_1_divseq_u
+|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_urem_8ns_6ns_5_12_seq_1:urem_8ns_6ns_5_12_seq_1_U12|snake_top_urem_8ns_6ns_5_12_seq_1_divseq:snake_top_urem_8ns_6ns_5_12_seq_1_divseq_u
 clk => remd_tmp[0].CLK
 clk => remd_tmp[1].CLK
 clk => remd_tmp[2].CLK
@@ -13655,7 +13673,7 @@ remd[3] <= remd_tmp[3].DB_MAX_OUTPUT_PORT_TYPE
 remd[4] <= remd_tmp[4].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_urem_5ns_5ns_4_9_seq_1:urem_5ns_5ns_4_9_seq_1_U14
+|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_urem_5ns_5ns_4_9_seq_1:urem_5ns_5ns_4_9_seq_1_U13
 clk => snake_top_urem_5ns_5ns_4_9_seq_1_divseq:snake_top_urem_5ns_5ns_4_9_seq_1_divseq_u.clk
 clk => remd[0].CLK
 clk => remd[1].CLK
@@ -13704,7 +13722,7 @@ dout[2] <= remd[2].DB_MAX_OUTPUT_PORT_TYPE
 dout[3] <= remd[3].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_urem_5ns_5ns_4_9_seq_1:urem_5ns_5ns_4_9_seq_1_U14|snake_top_urem_5ns_5ns_4_9_seq_1_divseq:snake_top_urem_5ns_5ns_4_9_seq_1_divseq_u
+|DE1_SoC_CAMERA|snake_wrapper:u_game|snake_top:u_snake_top|snake_top_urem_5ns_5ns_4_9_seq_1:urem_5ns_5ns_4_9_seq_1_U13|snake_top_urem_5ns_5ns_4_9_seq_1_divseq:snake_top_urem_5ns_5ns_4_9_seq_1_divseq_u
 clk => remd_tmp[0].CLK
 clk => remd_tmp[1].CLK
 clk => remd_tmp[2].CLK
