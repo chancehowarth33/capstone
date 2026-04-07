@@ -220,11 +220,15 @@ wire vga_blank_i;
 // Register RGB values for sync
 reg [9:0] vga_r_reg, vga_g_reg, vga_b_reg;
 reg       vga_hs_reg, vga_vs_reg, vga_sync_reg, vga_blank_reg;
+// Game reset behavior
+wire game_rst_n;
+assign game_rst_n = DLY_RST_2 & KEY[0];
 
 // New overlay bit select to include game mode output
 assign mux_R = game_mode ? game_R : final_R;
 assign mux_G = game_mode ? game_G : final_G;
 assign mux_B = game_mode ? game_B : final_B;
+
 
 // register the final selected RGB and sync/control together
 always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
@@ -527,7 +531,7 @@ overlay u_overlay (
 // instantiation of the snake game
 snake_wrapper u_game (
     .clk      (VGA_CTRL_CLK),
-    .rst_n    (DLY_RST_2),
+    .rst_n    (game_rst_n),
 
     .coord_x   (coord_x),
     .coord_y   (coord_y),

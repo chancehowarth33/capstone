@@ -23,7 +23,7 @@ logic [9:0] snake_b;
 // Simple snake core instantiation
 snake_top u_snake_top (
     .ap_clk   (clk),
-    .ap_rst   (~rst_n),
+    .ap_rst   (1'b0),
 
     .coord_x   (coord_x),
     .coord_y   (coord_y),

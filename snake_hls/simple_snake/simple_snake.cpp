@@ -62,6 +62,9 @@ void snake_top(
     static game_t game_state = (game_t)GAME_WAIT_START;
     static hold_t start_hold_count = (hold_t)0;
 
+    // force start screen.
+    static bool start_armed = false;
+
     // Reset
     if (!rst_n)
     {
@@ -85,11 +88,11 @@ void snake_top(
 
         game_state = (game_t)GAME_WAIT_START;
         start_hold_count = (hold_t)0;
+        start_armed = false;
 
-        R_out = (rgb_t)0;
+        R_out = (rgb_t)1023;
         G_out = (rgb_t)0;
-        B_out = (rgb_t)0;
-
+        B_out = (rgb_t)1023;
         return;
     }
 
@@ -121,7 +124,14 @@ void snake_top(
         // GAME WAIT START STATE
         if (game_state == (game_t)GAME_WAIT_START)
         {
-            if (in_start_box)
+            // First, require the hand to be outside the start box (or not detected)
+            // before allowing a hold inside the box to start the game.
+            if (!detected || !in_start_box)
+            {
+                start_armed = true;
+                start_hold_count = (hold_t)0;
+            }
+            else if (start_armed && detected && in_start_box)
             {
                 if (start_hold_count < (hold_t)START_HOLD_FRAMES)
                     start_hold_count = (hold_t)(start_hold_count + (hold_t)1);
@@ -282,6 +292,12 @@ void snake_top(
     }
     // food check, check if snake is on food
     bool food_on = (cell_col == food_col) && (cell_row == food_row);
+
+    if (game_state != (game_t)GAME_RUNNING)
+    {
+        snake_on = false;
+        food_on = false;
+    }
 
     // Logic for small cursor so the user can see where their hand is while playing
     bool hand_on = false;
