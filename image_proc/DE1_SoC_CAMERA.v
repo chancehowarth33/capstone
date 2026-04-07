@@ -1,6 +1,8 @@
 // DE1_SoC_CAMERA.v
 // Hand tracking PoC — D5M camera feed with color-based centroid detection
 // and crosshair overlay on VGA output.
+//  The camera captures at 25fps and color_detect fires a tracking output every 32 pixel rows (15 times per frame), giving 375 tracking updates   
+// per second, while VGA always reads the latest pixels written to SDRAM with no buffering delay.
 //
 // SW[0]  : exposure direction select
 //          0 = increase exposure when KEY[1] is pressed
