@@ -264,16 +264,31 @@ always @(posedge D5M_PIXLCLK) begin
 end
 
 //=============================================================================
-// Single-buffer SDRAM addressing
-// Camera writes to 0x000000/0x100000; VGA reads from the same region.
-// The SDRAM controller arbitrates: writes are prioritised so the camera always
-// gets through, and VGA reads see the most recently written pixel data.
-// This gives the lowest possible lag with no buffer-swap glitches.
+// Double buffer control
+// buf_sel=0: camera writes 0x000000/0x100000, VGA reads 0x200000/0x300000
+// buf_sel=1: camera writes 0x200000/0x300000, VGA reads 0x000000/0x100000
 //=============================================================================
-localparam [22:0] WR1_BASE = 23'h000000;
-localparam [22:0] WR2_BASE = 23'h100000;
-localparam [22:0] RD1_BASE = 23'h000000;
-localparam [22:0] RD2_BASE = 23'h100000;
+reg  rCCD_FVAL_d;
+wire cam_fval_fall;
+always @(posedge D5M_PIXLCLK or negedge DLY_RST_2)
+    if (!DLY_RST_2) rCCD_FVAL_d <= 0;
+    else            rCCD_FVAL_d <= rCCD_FVAL;
+assign cam_fval_fall = rCCD_FVAL_d && !rCCD_FVAL;
+
+reg buf_sel;
+always @(posedge D5M_PIXLCLK or negedge DLY_RST_2)
+    if (!DLY_RST_2) buf_sel <= 0;
+    else if (cam_fval_fall) buf_sel <= ~buf_sel;
+
+reg buf_sel_s1, buf_sel_sync;
+always @(posedge sdram_ctrl_clk or negedge DLY_RST_2)
+    if (!DLY_RST_2) begin buf_sel_s1 <= 0; buf_sel_sync <= 0; end
+    else begin buf_sel_s1 <= buf_sel; buf_sel_sync <= buf_sel_s1; end
+
+wire [22:0] wr1_base = buf_sel_sync ? 23'h200000 : 23'h000000;
+wire [22:0] wr2_base = buf_sel_sync ? 23'h300000 : 23'h100000;
+wire [22:0] rd1_base = buf_sel_sync ? 23'h000000 : 23'h200000;
+wire [22:0] rd2_base = buf_sel_sync ? 23'h100000 : 23'h300000;
 
 wire rd_load = !DLY_RST_0;
 
@@ -388,32 +403,32 @@ Sdram_Control u7 (
 
     .WR1_DATA     ({1'b0, sCCD_G[11:7], sCCD_B[11:2]}),
     .WR1          (sCCD_DVAL),
-    .WR1_ADDR     (WR1_BASE),
-    .WR1_MAX_ADDR (WR1_BASE + 640*480),
+    .WR1_ADDR     (wr1_base),
+    .WR1_MAX_ADDR (wr1_base + 640*480),
     .WR1_LENGTH   (8'h50),
     .WR1_LOAD     (!DLY_RST_0),
     .WR1_CLK      (~D5M_PIXLCLK),
 
     .WR2_DATA     ({1'b0, sCCD_G[6:2], sCCD_R[11:2]}),
     .WR2          (sCCD_DVAL),
-    .WR2_ADDR     (WR2_BASE),
-    .WR2_MAX_ADDR (WR2_BASE + 640*480),
+    .WR2_ADDR     (wr2_base),
+    .WR2_MAX_ADDR (wr2_base + 640*480),
     .WR2_LENGTH   (8'h50),
     .WR2_LOAD     (!DLY_RST_0),
     .WR2_CLK      (~D5M_PIXLCLK),
 
     .RD1_DATA     (Read_DATA1),
     .RD1          (Read),
-    .RD1_ADDR     (RD1_BASE),
-    .RD1_MAX_ADDR (RD1_BASE + 640*480),
+    .RD1_ADDR     (rd1_base),
+    .RD1_MAX_ADDR (rd1_base + 640*480),
     .RD1_LENGTH   (8'h50),
     .RD1_LOAD     (rd_load),
     .RD1_CLK      (~VGA_CTRL_CLK),
 
     .RD2_DATA     (Read_DATA2),
     .RD2          (Read),
-    .RD2_ADDR     (RD2_BASE),
-    .RD2_MAX_ADDR (RD2_BASE + 640*480),
+    .RD2_ADDR     (rd2_base),
+    .RD2_MAX_ADDR (rd2_base + 640*480),
     .RD2_LENGTH   (8'h50),
     .RD2_LOAD     (rd_load),
     .RD2_CLK      (~VGA_CTRL_CLK),
