@@ -279,8 +279,10 @@ void snake_top(
 
     col_t cell_col = (col_t)(vga_x >> 5);
     row_t cell_row = (row_t)(vga_y >> 5);
-
+    // Adding snake head logic efficiently
     bool snake_on = false;
+    bool snake_head_on = false;
+
     for (int i = 0; i < MAX_LEN; i++)
     {
         if (((len_t)i < snake_len) &&
@@ -288,6 +290,9 @@ void snake_top(
             (cell_row == snake_row[i]))
         {
             snake_on = true;
+
+            if (i == 0)
+                snake_head_on = true;
         }
     }
     // food check, check if snake is on food
@@ -325,8 +330,16 @@ void snake_top(
         (abs_box_dx <= (ap_uint<10>)48) &&
         (abs_box_dy <= (ap_uint<10>)48);
 
-    if (snake_on)
+    if (snake_head_on)
     {
+        // Head = green
+        R_out = (rgb_t)0;
+        G_out = (rgb_t)1023;
+        B_out = (rgb_t)0;
+    }
+    else if (snake_on)
+    {
+        // Body = white
         R_out = (rgb_t)1023;
         G_out = (rgb_t)1023;
         B_out = (rgb_t)1023;
