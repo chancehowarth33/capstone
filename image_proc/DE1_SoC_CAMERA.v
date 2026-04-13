@@ -582,7 +582,7 @@ overlay u_overlay (
 
 // instantiation of the snake game
 
-/*
+
 snake_wrapper u_game (
     .clk      (VGA_CTRL_CLK),
     .rst_n    (DLY_RST_2),
@@ -600,7 +600,6 @@ snake_wrapper u_game (
     .B_out    (game_B)
 );
 
-*/
 
 
 endmodule
