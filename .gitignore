@@ -1,0 +1,13 @@
+# ModelSim output
+image_proc/work/
+image_proc/*.wlf
+image_proc/*.mpf
+image_proc/*.mti
+image_proc/*.cr.mti
+image_proc/*.bak
+
+# Vitis HLS IDE files
+snake_hls/_ide/
+
+# Claude Code local settings
+.claude/
