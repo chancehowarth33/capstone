@@ -10,7 +10,7 @@ module snake_renderer (
     input  logic [4:0] snake_head_col,
     input  logic [3:0] snake_head_row,
 
-    // Body segments 1..11
+    // Body segments 1..27
     input  logic [4:0] snake_body1_col,
     input  logic [3:0] snake_body1_row,
     input  logic [4:0] snake_body2_col,
@@ -33,9 +33,44 @@ module snake_renderer (
     input  logic [3:0] snake_body10_row,
     input  logic [4:0] snake_body11_col,
     input  logic [3:0] snake_body11_row,
+    input  logic [4:0] snake_body12_col,
+    input  logic [3:0] snake_body12_row,
+    input  logic [4:0] snake_body13_col,
+    input  logic [3:0] snake_body13_row,
+    input  logic [4:0] snake_body14_col,
+    input  logic [3:0] snake_body14_row,
+    input  logic [4:0] snake_body15_col,
+    input  logic [3:0] snake_body15_row,
+    input  logic [4:0] snake_body16_col,
+    input  logic [3:0] snake_body16_row,
+    input  logic [4:0] snake_body17_col,
+    input  logic [3:0] snake_body17_row,
+    input  logic [4:0] snake_body18_col,
+    input  logic [3:0] snake_body18_row,
+    input  logic [4:0] snake_body19_col,
+    input  logic [3:0] snake_body19_row,
+    input  logic [4:0] snake_body20_col,
+    input  logic [3:0] snake_body20_row,
+    input  logic [4:0] snake_body21_col,
+    input  logic [3:0] snake_body21_row,
+    input  logic [4:0] snake_body22_col,
+    input  logic [3:0] snake_body22_row,
+    input  logic [4:0] snake_body23_col,
+    input  logic [3:0] snake_body23_row,
+    input  logic [4:0] snake_body24_col,
+    input  logic [3:0] snake_body24_row,
+    input  logic [4:0] snake_body25_col,
+    input  logic [3:0] snake_body25_row,
+    input  logic [4:0] snake_body26_col,
+    input  logic [3:0] snake_body26_row,
+    input  logic [4:0] snake_body27_col,
+    input  logic [3:0] snake_body27_row,
 
     // Total snake length including head
-    input  logic [3:0] snake_len,
+    input  logic [4:0] snake_len,
+
+    // Running score (independent of snake length)
+    input  logic [6:0] score,
 
     // Food
     input  logic [4:0] food_col,
@@ -47,7 +82,7 @@ module snake_renderer (
     // Game-over screen support
     input  logic       game_over_active,
     input  logic       game_over_flash_on,
-    input  logic [3:0] game_over_score,
+    input  logic [6:0] game_over_score,
 
     output logic [9:0] R_out,
     output logic [9:0] G_out,
@@ -70,15 +105,18 @@ module snake_renderer (
 
     logic body1_on, body2_on, body3_on, body4_on, body5_on, body6_on;
     logic body7_on, body8_on, body9_on, body10_on, body11_on;
+    logic body12_on, body13_on, body14_on, body15_on, body16_on, body17_on;
+    logic body18_on, body19_on, body20_on, body21_on, body22_on, body23_on;
+    logic body24_on, body25_on, body26_on, body27_on;
 
     // ------------------------------------------------------------
     // Score / text overlay signals
     // ------------------------------------------------------------
 
-    // Score is body length, not total length.
-    logic [3:0] score_value;
-    logic [3:0] score_tens;
-    logic [3:0] score_ones;
+    // Score comes from the dedicated score port (independent of snake length)
+    logic [6:0] score_value;
+    logic [6:0] score_tens;
+    logic [6:0] score_ones;
 
     // Score text enable for the current pixel
     logic score_on;
@@ -536,10 +574,26 @@ module snake_renderer (
         body9_on       = 1'b0;
         body10_on      = 1'b0;
         body11_on      = 1'b0;
+        body12_on      = 1'b0;
+        body13_on      = 1'b0;
+        body14_on      = 1'b0;
+        body15_on      = 1'b0;
+        body16_on      = 1'b0;
+        body17_on      = 1'b0;
+        body18_on      = 1'b0;
+        body19_on      = 1'b0;
+        body20_on      = 1'b0;
+        body21_on      = 1'b0;
+        body22_on      = 1'b0;
+        body23_on      = 1'b0;
+        body24_on      = 1'b0;
+        body25_on      = 1'b0;
+        body26_on      = 1'b0;
+        body27_on      = 1'b0;
 
-        score_value    = 4'd0;
-        score_tens     = 4'd0;
-        score_ones     = 4'd0;
+        score_value    = 7'd0;
+        score_tens     = 7'd0;
+        score_ones     = 7'd0;
         score_on       = 1'b0;
 
         score_x        = 10'd0;
@@ -583,20 +637,40 @@ module snake_renderer (
         // --------------------------------------------------------
         head_on = (cell_col == snake_head_col) && (cell_row == snake_head_row);
 
-        body1_on  = (snake_len >= 4'd2)  && (cell_col == snake_body1_col)  && (cell_row == snake_body1_row);
-        body2_on  = (snake_len >= 4'd3)  && (cell_col == snake_body2_col)  && (cell_row == snake_body2_row);
-        body3_on  = (snake_len >= 4'd4)  && (cell_col == snake_body3_col)  && (cell_row == snake_body3_row);
-        body4_on  = (snake_len >= 4'd5)  && (cell_col == snake_body4_col)  && (cell_row == snake_body4_row);
-        body5_on  = (snake_len >= 4'd6)  && (cell_col == snake_body5_col)  && (cell_row == snake_body5_row);
-        body6_on  = (snake_len >= 4'd7)  && (cell_col == snake_body6_col)  && (cell_row == snake_body6_row);
-        body7_on  = (snake_len >= 4'd8)  && (cell_col == snake_body7_col)  && (cell_row == snake_body7_row);
-        body8_on  = (snake_len >= 4'd9)  && (cell_col == snake_body8_col)  && (cell_row == snake_body8_row);
-        body9_on  = (snake_len >= 4'd10) && (cell_col == snake_body9_col)  && (cell_row == snake_body9_row);
-        body10_on = (snake_len >= 4'd11) && (cell_col == snake_body10_col) && (cell_row == snake_body10_row);
-        body11_on = (snake_len >= 4'd12) && (cell_col == snake_body11_col) && (cell_row == snake_body11_row);
+        body1_on  = (snake_len >= 5'd2)  && (cell_col == snake_body1_col)  && (cell_row == snake_body1_row);
+        body2_on  = (snake_len >= 5'd3)  && (cell_col == snake_body2_col)  && (cell_row == snake_body2_row);
+        body3_on  = (snake_len >= 5'd4)  && (cell_col == snake_body3_col)  && (cell_row == snake_body3_row);
+        body4_on  = (snake_len >= 5'd5)  && (cell_col == snake_body4_col)  && (cell_row == snake_body4_row);
+        body5_on  = (snake_len >= 5'd6)  && (cell_col == snake_body5_col)  && (cell_row == snake_body5_row);
+        body6_on  = (snake_len >= 5'd7)  && (cell_col == snake_body6_col)  && (cell_row == snake_body6_row);
+        body7_on  = (snake_len >= 5'd8)  && (cell_col == snake_body7_col)  && (cell_row == snake_body7_row);
+        body8_on  = (snake_len >= 5'd9)  && (cell_col == snake_body8_col)  && (cell_row == snake_body8_row);
+        body9_on  = (snake_len >= 5'd10) && (cell_col == snake_body9_col)  && (cell_row == snake_body9_row);
+        body10_on = (snake_len >= 5'd11) && (cell_col == snake_body10_col) && (cell_row == snake_body10_row);
+        body11_on = (snake_len >= 5'd12) && (cell_col == snake_body11_col) && (cell_row == snake_body11_row);
+        body12_on = (snake_len >= 5'd13) && (cell_col == snake_body12_col) && (cell_row == snake_body12_row);
+        body13_on = (snake_len >= 5'd14) && (cell_col == snake_body13_col) && (cell_row == snake_body13_row);
+        body14_on = (snake_len >= 5'd15) && (cell_col == snake_body14_col) && (cell_row == snake_body14_row);
+        body15_on = (snake_len >= 5'd16) && (cell_col == snake_body15_col) && (cell_row == snake_body15_row);
+        body16_on = (snake_len >= 5'd17) && (cell_col == snake_body16_col) && (cell_row == snake_body16_row);
+        body17_on = (snake_len >= 5'd18) && (cell_col == snake_body17_col) && (cell_row == snake_body17_row);
+        body18_on = (snake_len >= 5'd19) && (cell_col == snake_body18_col) && (cell_row == snake_body18_row);
+        body19_on = (snake_len >= 5'd20) && (cell_col == snake_body19_col) && (cell_row == snake_body19_row);
+        body20_on = (snake_len >= 5'd21) && (cell_col == snake_body20_col) && (cell_row == snake_body20_row);
+        body21_on = (snake_len >= 5'd22) && (cell_col == snake_body21_col) && (cell_row == snake_body21_row);
+        body22_on = (snake_len >= 5'd23) && (cell_col == snake_body22_col) && (cell_row == snake_body22_row);
+        body23_on = (snake_len >= 5'd24) && (cell_col == snake_body23_col) && (cell_row == snake_body23_row);
+        body24_on = (snake_len >= 5'd25) && (cell_col == snake_body24_col) && (cell_row == snake_body24_row);
+        body25_on = (snake_len >= 5'd26) && (cell_col == snake_body25_col) && (cell_row == snake_body25_row);
+        body26_on = (snake_len >= 5'd27) && (cell_col == snake_body26_col) && (cell_row == snake_body26_row);
+        body27_on = (snake_len >= 5'd28) && (cell_col == snake_body27_col) && (cell_row == snake_body27_row);
 
-        body_on = body1_on || body2_on || body3_on || body4_on || body5_on ||
-                  body6_on || body7_on || body8_on || body9_on || body10_on || body11_on;
+        body_on = body1_on  || body2_on  || body3_on  || body4_on  || body5_on  ||
+                  body6_on  || body7_on  || body8_on  || body9_on  || body10_on ||
+                  body11_on || body12_on || body13_on || body14_on || body15_on ||
+                  body16_on || body17_on || body18_on || body19_on || body20_on ||
+                  body21_on || body22_on || body23_on || body24_on || body25_on ||
+                  body26_on || body27_on;
 
         food_on = (cell_col == food_col) && (cell_row == food_row);
 
@@ -636,16 +710,12 @@ module snake_renderer (
 
         // --------------------------------------------------------
         // Score display setup
-        // Score = snake_len - 1
+        // Use the dedicated score port (increments every food eaten, capped at 99)
         // Hide normal score while game-over banner is active
         // --------------------------------------------------------
-        if (snake_len > 4'd0)
-            score_value = snake_len - 4'd1;
-        else
-            score_value = 4'd0;
-
-        score_tens = score_value / 4'd10;
-        score_ones = score_value % 4'd10;
+        score_value = score;
+        score_tens  = score_value / 7'd10;
+        score_ones  = score_value % 7'd10;
 
         if (!game_over_active) begin
             // Score area: top-left corner
@@ -782,16 +852,15 @@ module snake_renderer (
                     5'd14: go_char_code = CH_COLON;
                     5'd15: go_char_code = CH_BLANK;
                     5'd16: begin
-                        if (game_over_score >= 4'd10)
-                            go_char_code = digit_to_char(4'd1);
+                        // Tens digit of game_over_score (0..9, blank if score < 10)
+                        if (game_over_score >= 7'd10)
+                            go_char_code = digit_to_char(game_over_score / 7'd10);
                         else
                             go_char_code = CH_BLANK;
                     end
                     5'd17: begin
-                        if (game_over_score >= 4'd10)
-                            go_char_code = digit_to_char(game_over_score - 4'd10);
-                        else
-                            go_char_code = digit_to_char(game_over_score);
+                        // Ones digit of game_over_score
+                        go_char_code = digit_to_char(game_over_score % 7'd10);
                     end
                     default: go_char_code = CH_BLANK;
                 endcase

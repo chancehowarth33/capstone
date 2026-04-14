@@ -18,7 +18,7 @@
 #define SPEED_DIV 15
 
 // Snake settings
-#define MAX_LEN 5
+#define MAX_LEN 28
 #define INIT_LEN 1
 
 // Fixed wifth for HLS
@@ -28,7 +28,7 @@ typedef ap_uint<10> pix_t; // 0..639 / 0..479
 typedef ap_uint<10> rgb_t; // 10-bit VGA color
 typedef ap_uint<4> spd_t;  // enough for SPEED_DIV up to 15
 typedef ap_uint<2> dir_t;  // 4 directions
-typedef ap_uint<3> len_t;  // Stores max length of snake
+typedef ap_uint<5> len_t;  // Stores max length of snake (up to 28)
 typedef ap_uint<1> game_t; // Game State Variable
 typedef ap_uint<7> hold_t; // enough for 0..127
 
