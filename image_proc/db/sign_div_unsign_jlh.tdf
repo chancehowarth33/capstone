@@ -1,5 +1,5 @@
 --sign_div_unsign DEN_REPRESENTATION="UNSIGNED" DEN_WIDTH=3 LPM_PIPELINE=0 MAXIMIZE_SPEED=5 NUM_REPRESENTATION="UNSIGNED" NUM_WIDTH=10 SKIP_BITS=0 denominator numerator quotient remainder
---VERSION_BEGIN 25.1 cbx_cycloneii 2025:10:22:10:31:27:SC cbx_lpm_abs 2025:10:22:10:31:27:SC cbx_lpm_add_sub 2025:10:22:10:31:27:SC cbx_lpm_divide 2025:10:22:10:31:27:SC cbx_mgl 2025:10:22:10:31:44:SC cbx_nadder 2025:10:22:10:31:27:SC cbx_stratix 2025:10:22:10:31:27:SC cbx_stratixii 2025:10:22:10:31:26:SC cbx_util_mgl 2025:10:22:10:31:27:SC  VERSION_END
+--VERSION_BEGIN 24.1 cbx_cycloneii 2025:03:05:20:06:36:SC cbx_lpm_abs 2025:03:05:20:06:36:SC cbx_lpm_add_sub 2025:03:05:20:06:36:SC cbx_lpm_divide 2025:03:05:20:06:36:SC cbx_mgl 2025:03:05:20:07:01:SC cbx_nadder 2025:03:05:20:06:36:SC cbx_stratix 2025:03:05:20:06:36:SC cbx_stratixii 2025:03:05:20:06:36:SC cbx_util_mgl 2025:03:05:20:06:36:SC  VERSION_END
 
 
 -- Copyright (C) 2025  Altera Corporation. All rights reserved.
