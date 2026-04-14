@@ -33,7 +33,7 @@ module snake_wrapper (
     // Game-over flash timing
     // We show 5 visible flashes by alternating ON/OFF phases.
     // 10 total phases = 5 ON + 5 OFF.
-    localparam logic [5:0] GAME_OVER_FLASH_FRAMES = 6'd12;
+    localparam logic [5:0] GAME_OVER_FLASH_FRAMES = 6'd30; // 30 frames/phase x 10 phases = 300 frames = ~5 seconds @ 60Hz
     localparam logic [3:0] GAME_OVER_TOTAL_PHASES = 4'd10;
 
     // Head

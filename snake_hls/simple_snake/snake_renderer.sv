@@ -704,7 +704,7 @@ module snake_renderer (
         else
             box_dy_mag = {1'b0, (10'd240 - vga_y)};
 
-        start_box_on = (!game_running) &&
+        start_box_on = (!game_running) && (!game_over_active) &&
                        (box_dx_mag <= 11'd48) &&
                        (box_dy_mag <= 11'd48);
 
