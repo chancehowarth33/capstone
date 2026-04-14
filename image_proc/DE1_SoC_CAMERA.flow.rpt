@@ -1,5 +1,5 @@
 Flow report for DE1_SoC_CAMERA
-Tue Apr 14 15:14:15 2026
+Tue Apr 14 15:48:13 2026
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,25 +41,25 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Flow Summary                                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Flow Status                     ; Successful - Tue Apr 14 15:14:14 2026           ;
+; Flow Status                     ; Successful - Tue Apr 14 15:47:53 2026           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; DE1_SoC_CAMERA                                  ;
 ; Top-level Entity Name           ; DE1_SoC_CAMERA                                  ;
 ; Family                          ; Cyclone V                                       ;
 ; Device                          ; 5CSEMA5F31C6                                    ;
 ; Timing Models                   ; Final                                           ;
-; Logic utilization (in ALMs)     ; N/A                                             ;
-; Total registers                 ; 7573                                            ;
-; Total pins                      ; 226                                             ;
+; Logic utilization (in ALMs)     ; 11,599 / 32,070 ( 36 % )                        ;
+; Total registers                 ; 7761                                            ;
+; Total pins                      ; 226 / 457 ( 49 % )                              ;
 ; Total virtual pins              ; 0                                               ;
-; Total block memory bits         ; 62,416                                          ;
-; Total DSP Blocks                ; 0                                               ;
+; Total block memory bits         ; 62,416 / 4,065,280 ( 2 % )                      ;
+; Total DSP Blocks                ; 0 / 87 ( 0 % )                                  ;
 ; Total HSSI RX PCSs              ; 0                                               ;
 ; Total HSSI PMA RX Deserializers ; 0                                               ;
 ; Total HSSI TX PCSs              ; 0                                               ;
 ; Total HSSI PMA TX Serializers   ; 0                                               ;
-; Total PLLs                      ; 1                                               ;
-; Total DLLs                      ; 0                                               ;
+; Total PLLs                      ; 1 / 6 ( 17 % )                                  ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                                   ;
 +---------------------------------+-------------------------------------------------+
 
 
@@ -68,7 +68,7 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/14/2026 15:11:44 ;
+; Start date & time ; 04/14/2026 15:28:13 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DE1_SoC_CAMERA      ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ on the Quartus Prime software download page.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 238388407058771.177619750423828        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 238388407058771.177619849323140        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; MISC_FILE                           ; v/Line_Buffer1.bsf                     ; --            ; --          ; --         ;
@@ -100,8 +100,11 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:02:29     ; 1.5                     ; 5533 MB             ; 00:02:49                           ;
-; Total                ; 00:02:29     ; --                      ; --                  ; 00:02:49                           ;
+; Analysis & Synthesis ; 00:02:41     ; 1.8                     ; 5533 MB             ; 00:03:01                           ;
+; Fitter               ; 00:16:41     ; 1.1                     ; 7790 MB             ; 01:28:13                           ;
+; Assembler            ; 00:00:09     ; 1.0                     ; 5394 MB             ; 00:00:09                           ;
+; Timing Analyzer      ; 00:00:18     ; 4.9                     ; 5776 MB             ; 00:01:19                           ;
+; Total                ; 00:19:49     ; --                      ; --                  ; 01:32:42                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -111,6 +114,9 @@ on the Quartus Prime software download page.
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
 ; Analysis & Synthesis ; LOAN-RDS-D566    ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; LOAN-RDS-D566    ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; LOAN-RDS-D566    ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; LOAN-RDS-D566    ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -118,6 +124,9 @@ on the Quartus Prime software download page.
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC_CAMERA -c DE1_SoC_CAMERA
+quartus_fit --read_settings_files=off --write_settings_files=off DE1_SoC_CAMERA -c DE1_SoC_CAMERA
+quartus_asm --read_settings_files=off --write_settings_files=off DE1_SoC_CAMERA -c DE1_SoC_CAMERA
+quartus_sta DE1_SoC_CAMERA -c DE1_SoC_CAMERA
 
 
 
