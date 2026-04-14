@@ -444,32 +444,40 @@ always@(posedge CLK or negedge RESET_N)
 		begin
 			if(rWR1_ADDR<rWR1_MAX_ADDR-rWR1_LENGTH)
 				rWR1_ADDR	<= rWR1_ADDR+rWR1_LENGTH;
-			else
-				rWR1_ADDR	<= WR1_ADDR;
+			else begin
+				rWR1_ADDR	    <= WR1_ADDR;
+				rWR1_MAX_ADDR	<= WR1_MAX_ADDR;
+			end
 		end
 		//	Write Side 2
 		if (mWR_DONE&&WR_MASK[1])
 		begin
 			if(rWR2_ADDR<rWR2_MAX_ADDR-rWR2_LENGTH)
 				rWR2_ADDR	<=	rWR2_ADDR+rWR2_LENGTH;
-			else
-				rWR2_ADDR	<=	WR2_ADDR;
+			else begin
+				rWR2_ADDR	    <=	WR2_ADDR;
+				rWR2_MAX_ADDR	<=	WR2_MAX_ADDR;
+			end
 		end
 		//	Read Side 1
 		if (mRD_DONE&&RD_MASK[0])
 		begin
-			if(rRD1_ADDR<rRD1_MAX_ADDR-rRD1_LENGTH)
+			if(rRD1_ADDR < (rRD1_MAX_ADDR-rRD1_LENGTH))
 				rRD1_ADDR	<=	rRD1_ADDR+rRD1_LENGTH;
-			else
-				rRD1_ADDR	<=	RD1_ADDR;
+			else begin
+				rRD1_ADDR	    <=	RD1_ADDR;
+				rRD1_MAX_ADDR	<=	RD1_MAX_ADDR;
+			end
 		end
 		//	Read Side 2
 		if (mRD_DONE&&RD_MASK[1])
 		begin
-			if(rRD2_ADDR<rRD2_MAX_ADDR-rRD2_LENGTH)
+			if(rRD2_ADDR < (rRD2_MAX_ADDR-rRD2_LENGTH))
 				rRD2_ADDR	<=	rRD2_ADDR+rRD2_LENGTH;
-			else
-				rRD2_ADDR	<=	RD2_ADDR;
+			else begin
+				rRD2_ADDR	    <=	RD2_ADDR;
+				rRD2_MAX_ADDR	<=	RD2_MAX_ADDR;
+			end
 		end
 	end
 

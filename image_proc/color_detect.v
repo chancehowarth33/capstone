@@ -1,7 +1,7 @@
 module color_detect (
     input        clk,
     input        rst_n,
-    input        vsync,
+    input        fval,
     input        active,
     input        calibrate,
     input        capture_btn_n,   // KEY[1], active-low
@@ -34,7 +34,7 @@ module color_detect (
     output reg       cal_valid
 );
 
-    parameter NUM_BLOCK_COLS   = 20;
+    parameter NUM_BLOCK_COLS   = 40;   // 640px / 16px per block
     parameter MIN_MATCH_BLOCKS = 1;
 
     // tuned for orange object
@@ -42,35 +42,42 @@ module color_detect (
     parameter TOL_G = 10'd100;
     parameter TOL_B = 10'd120;
 
+
     integer i;
 
+    // Yes, color_detect.v uses 16×16 blocks — vga_x[9:4] and vga_y[8:4] for block indices, end_of_block fires at x[3:0]==15 && y[3:0]==15, and 
+    // averaging divides by 256 via next_sum_R[17:8].
+
     //========================
-    // block math (32x32)
+    // block math (16x16)
     //========================
-    wire [4:0] block_col = vga_x[9:5];
-    wire [3:0] block_row = vga_y[8:5];
+    wire [5:0] block_col = vga_x[9:4];   // 0..39 (40 cols of 16px)
+    wire [4:0] block_row = vga_y[8:4];   // 0..29 (30 rows of 16px)
 
     wire end_of_block =
-        (vga_x[4:0] == 5'd31) &&
-        (vga_y[4:0] == 5'd31);
+        (vga_x[3:0] == 4'd15) &&
+        (vga_y[3:0] == 4'd15);
+
+    // fires at the end of every complete row of blocks (block_col==39, every 16 pixel rows)
+    wire subframe_out = end_of_block && (block_col == 6'd39);
 
     wire is_center_block =
-        (block_col == 5'd10) &&
-        (block_row == 4'd7);
+        (block_col == 6'd20) &&
+        (block_row == 5'd15);
 
-    wire [9:0] block_center_x = {block_col, 5'd16};
-    wire [9:0] block_center_y = {block_row, 5'd16};
+    wire [9:0] block_center_x = {block_col, 4'd8};
+    wire [9:0] block_center_y = {block_row, 4'd8};
 
-    wire [9:0] block_left_w   = {block_col, 5'd0};
-    wire [9:0] block_right_w  = {block_col, 5'd31};
-    wire [9:0] block_top_w    = {block_row, 5'd0};
-    wire [9:0] block_bottom_w = {block_row, 5'd31};
+    wire [9:0] block_left_w   = {block_col, 4'd0};
+    wire [9:0] block_right_w  = {block_col, 4'd15};
+    wire [9:0] block_top_w    = {block_row, 4'd0};
+    wire [9:0] block_bottom_w = {block_row, 4'd15};
 
     //========================
     // control
     //========================
-    reg vsync_prev;
-    wire vsync_fall = vsync_prev && !vsync;
+    reg fval_prev;
+    wire fval_fall = fval_prev && !fval;
 
     reg capture_prev;
     wire capture_fall = capture_prev && !capture_btn_n;
@@ -84,8 +91,8 @@ module color_detect (
     reg [19:0] sum_G [0:NUM_BLOCK_COLS-1];
     reg [19:0] sum_B [0:NUM_BLOCK_COLS-1];
 
-    reg [15:0] centroid_sum_x;
-    reg [15:0] centroid_sum_y;
+    reg [19:0] centroid_sum_x;  // needs 20b: 40×30 blocks × 639 max x
+    reg [19:0] centroid_sum_y;
     reg [10:0] match_count;
 
     reg [9:0] frame_min_x;
@@ -103,9 +110,9 @@ module color_detect (
     wire [19:0] next_sum_G = sum_G[block_col] + G;
     wire [19:0] next_sum_B = sum_B[block_col] + B;
 
-    wire [9:0] avgR = next_sum_R[19:10];
-    wire [9:0] avgG = next_sum_G[19:10];
-    wire [9:0] avgB = next_sum_B[19:10];
+    wire [9:0] avgR = next_sum_R[17:8];  // 16×16=256 pixels → divide by 256
+    wire [9:0] avgG = next_sum_G[17:8];
+    wire [9:0] avgB = next_sum_B[17:8];
 
     wire [9:0] diffR = (avgR > cal_R) ? avgR - cal_R : cal_R - avgR;
     wire [9:0] diffG = (avgG > cal_G) ? avgG - cal_G : cal_G - avgG;
@@ -140,7 +147,7 @@ module color_detect (
                 sum_B[i] <= 0;
             end
         end else begin
-            vsync_prev   <= vsync;
+            fval_prev   <= fval;
             capture_prev <= capture_btn_n;
 
             if (calibrate && capture_fall)
@@ -149,7 +156,7 @@ module color_detect (
             //========================
             // frame end
             //========================
-            if (vsync_fall) begin
+            if (fval_fall) begin
                 if (!calibrate && match_count >= MIN_MATCH_BLOCKS) begin
                     detected  <= 1;
 
@@ -224,6 +231,24 @@ module color_detect (
                         if (block_right_w > frame_max_x) frame_max_x <= block_right_w;
                         if (block_top_w < frame_min_y) frame_min_y <= block_top_w;
                         if (block_bottom_w > frame_max_y) frame_max_y <= block_bottom_w;
+                    end
+
+                    // sub-frame output: snapshot current centroid without resetting
+                    // accumulators keep running to fval_fall
+                    if (!calibrate && subframe_out) begin
+                        if (match_count >= MIN_MATCH_BLOCKS) begin
+                            detected   <= 1;
+                            overlay_x  <= tracked_x;
+                            overlay_y  <= tracked_y;
+                            coord_x    <= 10'd639 - tracked_x;
+                            coord_y    <= tracked_y;
+                            box_left   <= frame_min_x;
+                            box_right  <= frame_max_x;
+                            box_top    <= frame_min_y;
+                            box_bottom <= frame_max_y;
+                        end else begin
+                            detected <= 0;
+                        end
                     end
 
                     sum_R[block_col] <= 0;
