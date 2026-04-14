@@ -220,6 +220,25 @@ wire [9:0] mux_R, mux_G, mux_B;
 wire draw_mode;
 assign draw_mode = SW[6];
 
+// Draw game — pen up/down and brush size controls
+wire pen_down;
+assign pen_down = SW[5]; // SW[5]=1 draws, SW[5]=0 lifts the pen
+
+reg  [1:0] brush_size;
+reg        key1_prev;
+wire       key1_fall = key1_prev && !KEY[1]; // falling edge = button press (active-low)
+
+always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
+    if (!DLY_RST_2) begin
+        brush_size <= 2'd0;
+        key1_prev  <= 1'b1;
+    end else begin
+        key1_prev <= KEY[1];
+        if (draw_mode && key1_fall)
+            brush_size <= (brush_size == 2'd2) ? 2'd0 : brush_size + 2'd1;
+    end
+end
+
 
 //=============================================================================
 // Static assignments
@@ -402,7 +421,7 @@ Sdram_Control u7 (
 I2C_CCD_Config u8 (
     .iCLK           (CLOCK2_50),
     .iRST_N         (DLY_RST_2),
-    .iEXPOSURE_ADJ  (calibrate ? 1'b1 : KEY[1]), // calibration mode uses KEY[1] to capture center block RGB values instead of adjusting exposure
+    .iEXPOSURE_ADJ  (calibrate ? 1'b1 : (draw_mode ? 1'b1 : KEY[1])), // calibrate/draw modes block KEY[1] from adjusting exposure
     .iEXPOSURE_DEC_p(SW[0]),
     .iZOOM_MODE_SW  (SW[9]),
     .I2C_SCLK       (D5M_SCLK),
@@ -494,19 +513,23 @@ overlay u_overlay (
 
 
 // Draw game — hand leaves a white trail; KEY[3] clears the canvas
+// SW[5]=1 pen down (draw), SW[5]=0 pen up (no paint)
+// KEY[1] cycles brush size: small (8px) -> medium (16px) -> large (32px)
 draw_game u_draw (
-    .clk       (VGA_CTRL_CLK),
-    .rst_n     (DLY_RST_2),
-    .vsync     (VGA_VS),
-    .detected  (hand_detected),
-    .overlay_x (coord_x),
-    .overlay_y (coord_y),
-    .vga_x     (oVGA_X),
-    .vga_y     (oVGA_Y),
-    .clear_n   (KEY[3]),
-    .R_out     (draw_R),
-    .G_out     (draw_G),
-    .B_out     (draw_B)
+    .clk        (VGA_CTRL_CLK),
+    .rst_n      (DLY_RST_2),
+    .vsync      (VGA_VS),
+    .detected   (hand_detected),
+    .overlay_x  (coord_x),
+    .overlay_y  (coord_y),
+    .vga_x      (oVGA_X),
+    .vga_y      (oVGA_Y),
+    .clear_n    (KEY[3]),
+    .pen_down   (pen_down),
+    .brush_size (brush_size),
+    .R_out      (draw_R),
+    .G_out      (draw_G),
+    .B_out      (draw_B)
 );
 
 // Snake game
