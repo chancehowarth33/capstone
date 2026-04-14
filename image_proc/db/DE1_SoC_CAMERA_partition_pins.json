@@ -4,6 +4,90 @@
 			"name" : "Top",
 			"pins" : [
 				{
+					"name" : "DRAM_ADDR[0]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[1]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[2]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[3]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[4]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[5]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[6]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[7]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[8]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[9]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[10]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_ADDR[11]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_BA[0]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_BA[1]",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_CAS_N",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_CKE",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_CS_N",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_LDQM",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_RAS_N",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_UDQM",
+					"strict" : false
+				},
+				{
+					"name" : "DRAM_WE_N",
+					"strict" : false
+				},
+				{
 					"name" : "HEX0[0]",
 					"strict" : false
 				},
@@ -176,114 +260,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "VGA_HS",
-					"strict" : false
-				},
-				{
-					"name" : "VGA_VS",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_BA[0]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_BA[1]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_CKE",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_CS_N",
-					"strict" : false
-				},
-				{
-					"name" : "VGA_BLANK_N",
-					"strict" : false
-				},
-				{
-					"name" : "VGA_R[7]",
-					"strict" : false
-				},
-				{
-					"name" : "D5M_RESET_N",
-					"strict" : false
-				},
-				{
-					"name" : "D5M_SCLK",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_ADDR[0]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_ADDR[1]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_ADDR[2]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_ADDR[3]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_ADDR[4]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_ADDR[5]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_ADDR[6]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_ADDR[7]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_ADDR[8]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_ADDR[9]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_ADDR[10]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_ADDR[11]",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_CAS_N",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_LDQM",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_RAS_N",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_UDQM",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_WE_N",
-					"strict" : false
-				},
-				{
 					"name" : "VGA_B[0]",
 					"strict" : false
 				},
@@ -313,6 +289,10 @@
 				},
 				{
 					"name" : "VGA_B[7]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_BLANK_N",
 					"strict" : false
 				},
 				{
@@ -348,6 +328,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "VGA_HS",
+					"strict" : false
+				},
+				{
 					"name" : "VGA_R[0]",
 					"strict" : false
 				},
@@ -376,7 +360,19 @@
 					"strict" : false
 				},
 				{
-					"name" : "D5M_SDATA",
+					"name" : "VGA_R[7]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_VS",
+					"strict" : false
+				},
+				{
+					"name" : "D5M_RESET_N",
+					"strict" : false
+				},
+				{
+					"name" : "D5M_SCLK",
 					"strict" : false
 				},
 				{
@@ -444,6 +440,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "D5M_SDATA",
+					"strict" : false
+				},
+				{
 					"name" : "SW[8]",
 					"strict" : false
 				},
@@ -468,11 +468,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY[1]",
+					"name" : "D5M_FVAL",
 					"strict" : false
 				},
 				{
-					"name" : "D5M_FVAL",
+					"name" : "KEY[1]",
 					"strict" : false
 				},
 				{

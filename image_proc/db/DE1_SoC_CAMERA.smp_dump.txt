@@ -1,4 +1,25 @@
 
+State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|direction
+Name direction.DIR_DOWN direction.DIR_LEFT direction.DIR_UP direction.DIR_RIGHT 
+direction.DIR_RIGHT 0 0 0 0 
+direction.DIR_UP 0 0 1 1 
+direction.DIR_LEFT 0 1 0 1 
+direction.DIR_DOWN 1 0 0 1 
+
+State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|food_step
+Name food_step.1010 food_step.1001 food_step.1000 food_step.0111 food_step.0110 food_step.0101 food_step.0100 food_step.0011 food_step.0010 food_step.0001 food_step.0000 
+food_step.0000 0 0 0 0 0 0 0 0 0 0 0 
+food_step.0001 0 0 0 0 0 0 0 0 0 1 1 
+food_step.0010 0 0 0 0 0 0 0 0 1 0 1 
+food_step.0011 0 0 0 0 0 0 0 1 0 0 1 
+food_step.0100 0 0 0 0 0 0 1 0 0 0 1 
+food_step.0101 0 0 0 0 0 1 0 0 0 0 1 
+food_step.0110 0 0 0 0 1 0 0 0 0 0 1 
+food_step.0111 0 0 0 1 0 0 0 0 0 0 1 
+food_step.1000 0 0 1 0 0 0 0 0 0 0 1 
+food_step.1001 0 1 0 0 0 0 0 0 0 0 1 
+food_step.1010 1 0 0 0 0 0 0 0 0 0 1 
+
 State Machine - |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mSetup_ST
 Name mSetup_ST.0000 mSetup_ST.0010 mSetup_ST.0001 
 mSetup_ST.0000 0 0 0 
