@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC_CAMERA
-Mon Apr 13 18:39:23 2026
+Mon Apr 13 19:51:30 2026
 Quartus Prime Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
 
 
@@ -83,34 +83,36 @@ Quartus Prime Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
  75. Parameter Settings for Inferred Entity Instance: color_detect:u_detect|lpm_divide:Div0
  76. Parameter Settings for Inferred Entity Instance: color_detect:u_detect|lpm_divide:Div1
  77. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod1
- 78. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0
- 79. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div1
- 80. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0
+ 78. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0
+ 79. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0
+ 80. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div1
  81. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod3
- 82. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div5
- 83. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod2
- 84. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div3
- 85. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div4
- 86. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div2
- 87. altshift_taps Parameter Settings by Entity Instance
- 88. Port Connectivity Checks: "snake_wrapper:u_game"
- 89. Port Connectivity Checks: "overlay:u_overlay"
- 90. Port Connectivity Checks: "color_detect:u_detect"
- 91. Port Connectivity Checks: "I2C_CCD_Config:u8|I2C_Controller:u0"
- 92. Port Connectivity Checks: "Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo"
- 93. Port Connectivity Checks: "Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo"
- 94. Port Connectivity Checks: "Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo"
- 95. Port Connectivity Checks: "Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo"
- 96. Port Connectivity Checks: "Sdram_Control:u7|sdr_data_path:u_sdr_data_path"
- 97. Port Connectivity Checks: "Sdram_Control:u7|control_interface:u_control_interface"
- 98. Port Connectivity Checks: "Sdram_Control:u7"
- 99. Port Connectivity Checks: "sdram_pll:u6"
-100. Port Connectivity Checks: "RAW2RGB:u4|Line_Buffer1:u0"
-101. Port Connectivity Checks: "RAW2RGB:u4"
-102. Port Connectivity Checks: "CCD_Capture:u3"
-103. Post-Synthesis Netlist Statistics for Top Partition
-104. Elapsed Time Per Partition
-105. Analysis & Synthesis Messages
+ 82. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div6
+ 83. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod4
+ 84. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div5
+ 85. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod2
+ 86. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div3
+ 87. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div4
+ 88. Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div2
+ 89. altshift_taps Parameter Settings by Entity Instance
+ 90. Port Connectivity Checks: "snake_wrapper:u_game"
+ 91. Port Connectivity Checks: "overlay:u_overlay"
+ 92. Port Connectivity Checks: "color_detect:u_detect"
+ 93. Port Connectivity Checks: "I2C_CCD_Config:u8|I2C_Controller:u0"
+ 94. Port Connectivity Checks: "Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo"
+ 95. Port Connectivity Checks: "Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo"
+ 96. Port Connectivity Checks: "Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo"
+ 97. Port Connectivity Checks: "Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo"
+ 98. Port Connectivity Checks: "Sdram_Control:u7|sdr_data_path:u_sdr_data_path"
+ 99. Port Connectivity Checks: "Sdram_Control:u7|control_interface:u_control_interface"
+100. Port Connectivity Checks: "Sdram_Control:u7"
+101. Port Connectivity Checks: "sdram_pll:u6"
+102. Port Connectivity Checks: "RAW2RGB:u4|Line_Buffer1:u0"
+103. Port Connectivity Checks: "RAW2RGB:u4"
+104. Port Connectivity Checks: "CCD_Capture:u3"
+105. Post-Synthesis Netlist Statistics for Top Partition
+106. Elapsed Time Per Partition
+107. Analysis & Synthesis Messages
 
 
 
@@ -137,13 +139,13 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Apr 13 18:39:23 2026           ;
+; Analysis & Synthesis Status     ; Successful - Mon Apr 13 19:51:29 2026           ;
 ; Quartus Prime Version           ; 25.1std.0 Build 1129 10/21/2025 SC Lite Edition ;
 ; Revision Name                   ; DE1_SoC_CAMERA                                  ;
 ; Top-level Entity Name           ; DE1_SoC_CAMERA                                  ;
 ; Family                          ; Cyclone V                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                             ;
-; Total registers                 ; 2640                                            ;
+; Total registers                 ; 2795                                            ;
 ; Total pins                      ; 226                                             ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 62,416                                          ;
@@ -333,11 +335,11 @@ on the Quartus Prime software download page.
 ; db/lpm_divide_g3m.tdf                       ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/lpm_divide_g3m.tdf             ;           ;
 ; db/sign_div_unsign_jlh.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/sign_div_unsign_jlh.tdf        ;           ;
 ; db/alt_u_div_cve.tdf                        ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/alt_u_div_cve.tdf              ;           ;
-; db/lpm_divide_42m.tdf                       ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/lpm_divide_42m.tdf             ;           ;
-; db/sign_div_unsign_7kh.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/sign_div_unsign_7kh.tdf        ;           ;
-; db/alt_u_div_kse.tdf                        ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/alt_u_div_kse.tdf              ;           ;
+; db/lpm_divide_4am.tdf                       ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/lpm_divide_4am.tdf             ;           ;
+; db/sign_div_unsign_akh.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/sign_div_unsign_akh.tdf        ;           ;
+; db/alt_u_div_qse.tdf                        ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/alt_u_div_qse.tdf              ;           ;
+; db/lpm_divide_72m.tdf                       ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/lpm_divide_72m.tdf             ;           ;
 ; db/lpm_divide_dbm.tdf                       ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/lpm_divide_dbm.tdf             ;           ;
-; db/lpm_divide_1am.tdf                       ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/lpm_divide_1am.tdf             ;           ;
 ; db/lpm_divide_i3m.tdf                       ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/lpm_divide_i3m.tdf             ;           ;
 ; db/sign_div_unsign_llh.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/sign_div_unsign_llh.tdf        ;           ;
 ; db/alt_u_div_gve.tdf                        ; yes             ; Auto-Generated Megafunction  ; C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/alt_u_div_gve.tdf              ;           ;
@@ -353,16 +355,16 @@ on the Quartus Prime software download page.
 +---------------------------------------------+-----------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                             ;
 +---------------------------------------------+-----------------------------------------------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 2480                                                                              ;
+; Estimate of Logic utilization (ALMs needed) ; 2827                                                                              ;
 ;                                             ;                                                                                   ;
-; Combinational ALUT usage for logic          ; 3820                                                                              ;
+; Combinational ALUT usage for logic          ; 4200                                                                              ;
 ;     -- 7 input functions                    ; 23                                                                                ;
-;     -- 6 input functions                    ; 856                                                                               ;
-;     -- 5 input functions                    ; 529                                                                               ;
-;     -- 4 input functions                    ; 575                                                                               ;
-;     -- <=3 input functions                  ; 1837                                                                              ;
+;     -- 6 input functions                    ; 984                                                                               ;
+;     -- 5 input functions                    ; 588                                                                               ;
+;     -- 4 input functions                    ; 665                                                                               ;
+;     -- <=3 input functions                  ; 1940                                                                              ;
 ;                                             ;                                                                                   ;
-; Dedicated logic registers                   ; 2640                                                                              ;
+; Dedicated logic registers                   ; 2795                                                                              ;
 ;                                             ;                                                                                   ;
 ; I/O pins                                    ; 226                                                                               ;
 ; Total MLAB memory bits                      ; 0                                                                                 ;
@@ -374,9 +376,9 @@ on the Quartus Prime software download page.
 ;     -- PLLs                                 ; 4                                                                                 ;
 ;                                             ;                                                                                   ;
 ; Maximum fan-out node                        ; sdram_pll:u6|sdram_pll_0002:sdram_pll_inst|altera_pll:altera_pll_i|outclk_wire[3] ;
-; Maximum fan-out                             ; 1759                                                                              ;
-; Total fan-out                               ; 27980                                                                             ;
-; Average fan-out                             ; 3.96                                                                              ;
+; Maximum fan-out                             ; 1914                                                                              ;
+; Total fan-out                               ; 30811                                                                             ;
+; Average fan-out                             ; 4.05                                                                              ;
 +---------------------------------------------+-----------------------------------------------------------------------------------+
 
 
@@ -385,7 +387,7 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node                                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                        ; Entity Name         ; Library Name ;
 +--------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |DE1_SoC_CAMERA                                              ; 3820 (58)           ; 2640 (41)                 ; 62416             ; 0          ; 226  ; 0            ; |DE1_SoC_CAMERA                                                                                                                                                                            ; DE1_SoC_CAMERA      ; work         ;
+; |DE1_SoC_CAMERA                                              ; 4200 (74)           ; 2795 (41)                 ; 62416             ; 0          ; 226  ; 0            ; |DE1_SoC_CAMERA                                                                                                                                                                            ; DE1_SoC_CAMERA      ; work         ;
 ;    |CCD_Capture:u3|                                          ; 28 (28)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|CCD_Capture:u3                                                                                                                                                             ; CCD_Capture         ; work         ;
 ;    |I2C_CCD_Config:u8|                                       ; 196 (140)           ; 133 (95)                  ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8                                                                                                                                                          ; I2C_CCD_Config      ; work         ;
 ;       |I2C_Controller:u0|                                    ; 56 (56)             ; 38 (38)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0                                                                                                                                        ; I2C_Controller      ; work         ;
@@ -472,7 +474,7 @@ on the Quartus Prime software download page.
 ;       |command:u_command|                                    ; 54 (54)             ; 49 (49)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command                                                                                                                                         ; command             ; work         ;
 ;       |control_interface:u_control_interface|                ; 75 (75)             ; 59 (59)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|control_interface:u_control_interface                                                                                                                     ; control_interface   ; work         ;
 ;    |VGA_Controller:u1|                                       ; 65 (65)             ; 83 (83)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|VGA_Controller:u1                                                                                                                                                          ; VGA_Controller      ; work         ;
-;    |color_detect:u_detect|                                   ; 1296 (730)          ; 1367 (1367)               ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect                                                                                                                                                      ; color_detect        ; work         ;
+;    |color_detect:u_detect|                                   ; 1298 (732)          ; 1367 (1367)               ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect                                                                                                                                                      ; color_detect        ; work         ;
 ;       |lpm_divide:Div0|                                      ; 283 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div0                                                                                                                                      ; lpm_divide          ; work         ;
 ;          |lpm_divide_2dm:auto_generated|                     ; 283 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div0|lpm_divide_2dm:auto_generated                                                                                                        ; lpm_divide_2dm      ; work         ;
 ;             |sign_div_unsign_8nh:divider|                    ; 283 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div0|lpm_divide_2dm:auto_generated|sign_div_unsign_8nh:divider                                                                            ; sign_div_unsign_8nh ; work         ;
@@ -481,16 +483,16 @@ on the Quartus Prime software download page.
 ;          |lpm_divide_2dm:auto_generated|                     ; 283 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div1|lpm_divide_2dm:auto_generated                                                                                                        ; lpm_divide_2dm      ; work         ;
 ;             |sign_div_unsign_8nh:divider|                    ; 283 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div1|lpm_divide_2dm:auto_generated|sign_div_unsign_8nh:divider                                                                            ; sign_div_unsign_8nh ; work         ;
 ;                |alt_u_div_m2f:divider|                       ; 283 (283)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div1|lpm_divide_2dm:auto_generated|sign_div_unsign_8nh:divider|alt_u_div_m2f:divider                                                      ; alt_u_div_m2f       ; work         ;
-;    |overlay:u_overlay|                                       ; 103 (103)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|overlay:u_overlay                                                                                                                                                          ; overlay             ; work         ;
+;    |overlay:u_overlay|                                       ; 107 (107)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|overlay:u_overlay                                                                                                                                                          ; overlay             ; work         ;
 ;    |sdram_pll:u6|                                            ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|sdram_pll:u6                                                                                                                                                               ; sdram_pll           ; sdram_pll    ;
 ;       |sdram_pll_0002:sdram_pll_inst|                        ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|sdram_pll:u6|sdram_pll_0002:sdram_pll_inst                                                                                                                                 ; sdram_pll_0002      ; sdram_pll    ;
 ;          |altera_pll:altera_pll_i|                           ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|sdram_pll:u6|sdram_pll_0002:sdram_pll_inst|altera_pll:altera_pll_i                                                                                                         ; altera_pll          ; work         ;
-;    |snake_wrapper:u_game|                                    ; 1292 (422)          ; 165 (165)                 ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game                                                                                                                                                       ; snake_wrapper       ; work         ;
-;       |snake_renderer:u_renderer|                            ; 870 (361)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer                                                                                                                             ; snake_renderer      ; work         ;
-;          |lpm_divide:Div0|                                   ; 6 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0                                                                                                             ; lpm_divide          ; work         ;
-;             |lpm_divide_1am:auto_generated|                  ; 6 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0|lpm_divide_1am:auto_generated                                                                               ; lpm_divide_1am      ; work         ;
-;                |sign_div_unsign_7kh:divider|                 ; 6 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0|lpm_divide_1am:auto_generated|sign_div_unsign_7kh:divider                                                   ; sign_div_unsign_7kh ; work         ;
-;                   |alt_u_div_kse:divider|                    ; 6 (6)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0|lpm_divide_1am:auto_generated|sign_div_unsign_7kh:divider|alt_u_div_kse:divider                             ; alt_u_div_kse       ; work         ;
+;    |snake_wrapper:u_game|                                    ; 1650 (542)          ; 320 (320)                 ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game                                                                                                                                                       ; snake_wrapper       ; work         ;
+;       |snake_renderer:u_renderer|                            ; 1108 (452)          ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer                                                                                                                             ; snake_renderer      ; work         ;
+;          |lpm_divide:Div0|                                   ; 38 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0                                                                                                             ; lpm_divide          ; work         ;
+;             |lpm_divide_4am:auto_generated|                  ; 38 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0|lpm_divide_4am:auto_generated                                                                               ; lpm_divide_4am      ; work         ;
+;                |sign_div_unsign_akh:divider|                 ; 38 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0|lpm_divide_4am:auto_generated|sign_div_unsign_akh:divider                                                   ; sign_div_unsign_akh ; work         ;
+;                   |alt_u_div_qse:divider|                    ; 38 (38)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0|lpm_divide_4am:auto_generated|sign_div_unsign_akh:divider|alt_u_div_qse:divider                             ; alt_u_div_qse       ; work         ;
 ;          |lpm_divide:Div1|                                   ; 64 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div1                                                                                                             ; lpm_divide          ; work         ;
 ;             |lpm_divide_dbm:auto_generated|                  ; 64 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div1|lpm_divide_dbm:auto_generated                                                                               ; lpm_divide_dbm      ; work         ;
 ;                |sign_div_unsign_jlh:divider|                 ; 64 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div1|lpm_divide_dbm:auto_generated|sign_div_unsign_jlh:divider                                                   ; sign_div_unsign_jlh ; work         ;
@@ -511,10 +513,14 @@ on the Quartus Prime software download page.
 ;             |lpm_divide_dbm:auto_generated|                  ; 64 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div5|lpm_divide_dbm:auto_generated                                                                               ; lpm_divide_dbm      ; work         ;
 ;                |sign_div_unsign_jlh:divider|                 ; 64 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div5|lpm_divide_dbm:auto_generated|sign_div_unsign_jlh:divider                                                   ; sign_div_unsign_jlh ; work         ;
 ;                   |alt_u_div_cve:divider|                    ; 64 (64)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div5|lpm_divide_dbm:auto_generated|sign_div_unsign_jlh:divider|alt_u_div_cve:divider                             ; alt_u_div_cve       ; work         ;
-;          |lpm_divide:Mod0|                                   ; 10 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0                                                                                                             ; lpm_divide          ; work         ;
-;             |lpm_divide_42m:auto_generated|                  ; 10 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0|lpm_divide_42m:auto_generated                                                                               ; lpm_divide_42m      ; work         ;
-;                |sign_div_unsign_7kh:divider|                 ; 10 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0|lpm_divide_42m:auto_generated|sign_div_unsign_7kh:divider                                                   ; sign_div_unsign_7kh ; work         ;
-;                   |alt_u_div_kse:divider|                    ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0|lpm_divide_42m:auto_generated|sign_div_unsign_7kh:divider|alt_u_div_kse:divider                             ; alt_u_div_kse       ; work         ;
+;          |lpm_divide:Div6|                                   ; 38 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div6                                                                                                             ; lpm_divide          ; work         ;
+;             |lpm_divide_4am:auto_generated|                  ; 38 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div6|lpm_divide_4am:auto_generated                                                                               ; lpm_divide_4am      ; work         ;
+;                |sign_div_unsign_akh:divider|                 ; 38 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div6|lpm_divide_4am:auto_generated|sign_div_unsign_akh:divider                                                   ; sign_div_unsign_akh ; work         ;
+;                   |alt_u_div_qse:divider|                    ; 38 (38)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div6|lpm_divide_4am:auto_generated|sign_div_unsign_akh:divider|alt_u_div_qse:divider                             ; alt_u_div_qse       ; work         ;
+;          |lpm_divide:Mod0|                                   ; 42 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0                                                                                                             ; lpm_divide          ; work         ;
+;             |lpm_divide_72m:auto_generated|                  ; 42 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0|lpm_divide_72m:auto_generated                                                                               ; lpm_divide_72m      ; work         ;
+;                |sign_div_unsign_akh:divider|                 ; 42 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0|lpm_divide_72m:auto_generated|sign_div_unsign_akh:divider                                                   ; sign_div_unsign_akh ; work         ;
+;                   |alt_u_div_qse:divider|                    ; 42 (42)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0|lpm_divide_72m:auto_generated|sign_div_unsign_akh:divider|alt_u_div_qse:divider                             ; alt_u_div_qse       ; work         ;
 ;          |lpm_divide:Mod1|                                   ; 67 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod1                                                                                                             ; lpm_divide          ; work         ;
 ;             |lpm_divide_g3m:auto_generated|                  ; 67 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod1|lpm_divide_g3m:auto_generated                                                                               ; lpm_divide_g3m      ; work         ;
 ;                |sign_div_unsign_jlh:divider|                 ; 67 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod1|lpm_divide_g3m:auto_generated|sign_div_unsign_jlh:divider                                                   ; sign_div_unsign_jlh ; work         ;
@@ -527,6 +533,10 @@ on the Quartus Prime software download page.
 ;             |lpm_divide_g3m:auto_generated|                  ; 67 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod3|lpm_divide_g3m:auto_generated                                                                               ; lpm_divide_g3m      ; work         ;
 ;                |sign_div_unsign_jlh:divider|                 ; 67 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod3|lpm_divide_g3m:auto_generated|sign_div_unsign_jlh:divider                                                   ; sign_div_unsign_jlh ; work         ;
 ;                   |alt_u_div_cve:divider|                    ; 67 (67)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod3|lpm_divide_g3m:auto_generated|sign_div_unsign_jlh:divider|alt_u_div_cve:divider                             ; alt_u_div_cve       ; work         ;
+;          |lpm_divide:Mod4|                                   ; 45 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod4                                                                                                             ; lpm_divide          ; work         ;
+;             |lpm_divide_72m:auto_generated|                  ; 45 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod4|lpm_divide_72m:auto_generated                                                                               ; lpm_divide_72m      ; work         ;
+;                |sign_div_unsign_akh:divider|                 ; 45 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod4|lpm_divide_72m:auto_generated|sign_div_unsign_akh:divider                                                   ; sign_div_unsign_akh ; work         ;
+;                   |alt_u_div_qse:divider|                    ; 45 (45)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod4|lpm_divide_72m:auto_generated|sign_div_unsign_akh:divider|alt_u_div_qse:divider                             ; alt_u_div_qse       ; work         ;
 +--------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -799,11 +809,10 @@ Encoding Type:  One-Hot
 ; Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_brp|dffe12a[8,9] ; Lost fanout                                                                 ;
 ; Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_bwp|dffe12a[8,9] ; Lost fanout                                                                 ;
 ; Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_brp|dffe12a[8,9] ; Lost fanout                                                                 ;
-; color_detect:u_detect|centroid_sum_y[0]                                                                                                                   ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
-; color_detect:u_detect|centroid_sum_x[0,1]                                                                                                                 ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
-; color_detect:u_detect|centroid_sum_y[2,3]                                                                                                                 ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
-; color_detect:u_detect|centroid_sum_x[2]                                                                                                                   ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
-; color_detect:u_detect|centroid_sum_y[1]                                                                                                                   ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
+; color_detect:u_detect|centroid_sum_x[0,2]                                                                                                                 ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
+; color_detect:u_detect|centroid_sum_y[3]                                                                                                                   ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
+; color_detect:u_detect|centroid_sum_x[1]                                                                                                                   ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
+; color_detect:u_detect|centroid_sum_y[0..2]                                                                                                                ; Merged with color_detect:u_detect|centroid_sum_x[3]                         ;
 ; Sdram_Control:u7|rWR1_ADDR[0..2]                                                                                                                          ; Merged with Sdram_Control:u7|rWR1_ADDR[3]                                   ;
 ; Sdram_Control:u7|rWR2_ADDR[0..2]                                                                                                                          ; Merged with Sdram_Control:u7|rWR2_ADDR[3]                                   ;
 ; Sdram_Control:u7|rRD1_ADDR[0..2]                                                                                                                          ; Merged with Sdram_Control:u7|rRD1_ADDR[3]                                   ;
@@ -923,208 +932,253 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 2640  ;
+; Total registers                              ; 2795  ;
 ; Number of registers using Synchronous Clear  ; 1538  ;
-; Number of registers using Synchronous Load   ; 17    ;
-; Number of registers using Asynchronous Clear ; 2375  ;
+; Number of registers using Synchronous Load   ; 286   ;
+; Number of registers using Asynchronous Clear ; 2530  ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 1893  ;
+; Number of registers using Clock Enable       ; 2051  ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Inverted Register Statistics                                                                                                                                               ;
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; Inverted Register                                                                                                                                                ; Fan out ;
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; I2C_CCD_Config:u8|I2C_Controller:u0|SCLK                                                                                                                         ; 3       ;
-; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[5]                                                                                                                ; 16      ;
-; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[4]                                                                                                                ; 14      ;
-; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[3]                                                                                                                ; 23      ;
-; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[2]                                                                                                                ; 19      ;
-; snake_wrapper:u_game|snake_len[1]                                                                                                                                ; 29      ;
-; snake_wrapper:u_game|snake_body10_row[1]                                                                                                                         ; 3       ;
-; snake_wrapper:u_game|snake_body10_row[2]                                                                                                                         ; 3       ;
-; snake_wrapper:u_game|snake_body10_row[0]                                                                                                                         ; 3       ;
-; snake_wrapper:u_game|snake_body7_row[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body7_row[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body7_row[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body7_col[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body7_col[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body8_row[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body8_row[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body8_row[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body8_col[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body5_row[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body5_row[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body5_col[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body5_row[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body5_col[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body4_row[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body4_row[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body4_col[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body4_row[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body4_col[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body9_row[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body9_row[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body9_row[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body9_col[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body6_row[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body6_row[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body6_row[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body6_col[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body1_row[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body1_row[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body1_row[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body1_col[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body1_col[3]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body2_row[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body2_row[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body2_row[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body2_col[3]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body3_row[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body3_row[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body3_row[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body3_col[0]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body3_col[1]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body3_col[2]                                                                                                                          ; 3       ;
-; snake_wrapper:u_game|snake_body11_row[2]                                                                                                                         ; 2       ;
-; snake_wrapper:u_game|snake_body11_row[0]                                                                                                                         ; 2       ;
-; snake_wrapper:u_game|snake_body11_row[1]                                                                                                                         ; 2       ;
-; snake_wrapper:u_game|snake_head_row[2]                                                                                                                           ; 19      ;
-; snake_wrapper:u_game|snake_head_row[0]                                                                                                                           ; 8       ;
-; snake_wrapper:u_game|snake_head_row[1]                                                                                                                           ; 7       ;
-; snake_wrapper:u_game|snake_head_col[1]                                                                                                                           ; 8       ;
-; snake_wrapper:u_game|snake_head_col[3]                                                                                                                           ; 7       ;
-; snake_wrapper:u_game|food_row[2]                                                                                                                                 ; 2       ;
-; snake_wrapper:u_game|food_row[0]                                                                                                                                 ; 2       ;
-; snake_wrapper:u_game|food_col[0]                                                                                                                                 ; 3       ;
-; snake_wrapper:u_game|food_col[2]                                                                                                                                 ; 2       ;
-; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[0]                                                                                                                ; 18      ;
-; I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[1]                                                                                                                ; 21      ;
-; I2C_CCD_Config:u8|I2C_Controller:u0|END                                                                                                                          ; 5       ;
-; I2C_CCD_Config:u8|I2C_Controller:u0|SDO                                                                                                                          ; 4       ;
-; Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_nv6:rdptr_g1p|counter5a0  ; 10      ;
-; Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_nv6:rdptr_g1p|counter5a0  ; 10      ;
-; Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_nv6:rdptr_g1p|counter5a0 ; 9       ;
-; Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_nv6:rdptr_g1p|counter5a0 ; 9       ;
-; Sdram_Control:u7|rRD2_ADDR[20]                                                                                                                                   ; 4       ;
-; Sdram_Control:u7|rWR2_ADDR[20]                                                                                                                                   ; 4       ;
-; Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_jdc:wrptr_g1p|counter8a0  ; 8       ;
-; Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_nv6:rdptr_g1p|parity6     ; 5       ;
-; Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_jdc:wrptr_g1p|counter8a0  ; 8       ;
-; Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_nv6:rdptr_g1p|parity6     ; 5       ;
-; Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_jdc:wrptr_g1p|counter8a0 ; 9       ;
-; Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_nv6:rdptr_g1p|parity6    ; 2       ;
-; Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_jdc:wrptr_g1p|counter8a0 ; 9       ;
-; Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_nv6:rdptr_g1p|parity6    ; 2       ;
-; Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_jdc:wrptr_g1p|parity9     ; 2       ;
-; Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|a_graycounter_jdc:wrptr_g1p|parity9     ; 2       ;
-; Sdram_Control:u7|Sdram_WR_FIFO:u_write1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_jdc:wrptr_g1p|parity9    ; 5       ;
-; Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|a_graycounter_jdc:wrptr_g1p|parity9    ; 5       ;
-; I2C_CCD_Config:u8|senosr_exposure[8]                                                                                                                             ; 3       ;
-; I2C_CCD_Config:u8|senosr_exposure[10]                                                                                                                            ; 3       ;
-; I2C_CCD_Config:u8|senosr_exposure[9]                                                                                                                             ; 3       ;
-; I2C_CCD_Config:u8|senosr_exposure[7]                                                                                                                             ; 3       ;
-; I2C_CCD_Config:u8|senosr_exposure[6]                                                                                                                             ; 3       ;
-; Total number of inverted registers = 90                                                                                                                          ;         ;
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
++-----------------------------------------------------+
+; Inverted Register Statistics                        ;
++-------------------------------------------+---------+
+; Inverted Register                         ; Fan out ;
++-------------------------------------------+---------+
+; snake_wrapper:u_game|snake_body23_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body23_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body23_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_len[1]         ; 23      ;
+; snake_wrapper:u_game|snake_body21_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body21_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body21_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body20_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body20_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body20_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body22_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body22_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body22_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body15_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body15_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body15_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body18_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body18_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body18_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body13_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body13_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body13_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body10_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body10_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body10_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body11_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body11_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body11_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body12_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body12_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body12_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body27_row[1]  ; 2       ;
+; snake_wrapper:u_game|snake_body27_row[2]  ; 2       ;
+; snake_wrapper:u_game|snake_body27_row[0]  ; 2       ;
+; snake_wrapper:u_game|snake_body25_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body25_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body25_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body9_row[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body9_row[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body9_row[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body9_col[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body7_row[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body7_row[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body7_row[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body7_col[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body7_col[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body8_row[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body8_row[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body8_row[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body8_col[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body16_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body16_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body16_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body14_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body14_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body14_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body6_row[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body6_row[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body6_row[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body6_col[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body4_row[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body4_row[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body4_row[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body4_col[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body4_col[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body1_row[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body1_row[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body1_row[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body1_col[0]   ; 4       ;
+; snake_wrapper:u_game|snake_body1_col[3]   ; 3       ;
+; snake_wrapper:u_game|snake_body2_row[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body2_row[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body2_row[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body2_col[3]   ; 3       ;
+; snake_wrapper:u_game|snake_body19_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body19_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body19_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body17_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body17_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body17_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body5_row[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body5_row[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body5_row[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body5_col[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body5_col[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body26_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body26_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body26_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body3_row[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body3_row[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body3_row[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body3_col[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body3_col[1]   ; 3       ;
+; snake_wrapper:u_game|snake_body3_col[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body24_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body24_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body24_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_head_row[2]    ; 33      ;
+; snake_wrapper:u_game|snake_head_row[0]    ; 12      ;
+; snake_wrapper:u_game|snake_head_row[1]    ; 7       ;
+; Total number of inverted registers = 138* ;         ;
++-------------------------------------------+---------+
+* Table truncated at 100 items. To change the number of inverted registers reported, set the "Number of Inverted Registers Reported" option under Assignments->Settings->Analysis and Synthesis Settings->More Settings
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                 ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|food_col[4]                                 ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_head_col[0]                           ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_len[3]                                ;
-; 3:1                ; 21 bits   ; 42 LEs        ; 42 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|vga_b_reg[7]                                                     ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|BA[1]                         ;
-; 3:1                ; 35 bits   ; 70 LEs        ; 0 LEs                ; 70 LEs                 ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|match_count[10]                            ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[0][6]                                ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[1][5]                                ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[2][4]                                ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[3][7]                                ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[4][19]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[5][18]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[6][11]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[7][1]                                ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[8][9]                                ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[9][9]                                ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[10][9]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[11][4]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[12][13]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[13][5]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[14][2]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[15][15]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[16][8]                               ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[17][18]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[18][13]                              ;
-; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[19][15]                              ;
-; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|control_interface:u_control_interface|timer[12] ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[9]                             ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[8]                             ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_y[6]                             ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_y[5]                             ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_x[9]                             ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|command_delay[2]              ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|Y_Cont[0]                                         ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[2]                             ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|frame_count[0]                              ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|vga_g_reg[8]                                                     ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|game_over_flash_count[3]                    ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|game_over_flash_phase[3]                    ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[11]                        ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[7]                         ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|rp_shift[0]                   ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|X_Cont[15]                                        ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body7_col[3]                          ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body1_col[4]                          ;
-; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body3_row[3]                          ;
-; 5:1                ; 19 bits   ; 57 LEs        ; 38 LEs               ; 19 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mADDR[13]                                       ;
-; 5:1                ; 20 bits   ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|RAW2RGB:u4|mCCD_B[7]                                             ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body2_col[0]                          ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body4_col[0]                          ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body5_col[3]                          ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body6_col[0]                          ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body8_row[3]                          ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body9_row[3]                          ;
-; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body10_col[4]                         ;
-; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body11_col[1]                         ;
-; 64:1               ; 4 bits    ; 168 LEs       ; 56 LEs               ; 112 LEs                ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mI2C_DATA[12]                                  ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|CMD[1]                                          ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|WR_MASK[1]                                      ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mRD                                             ;
-; 7:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|ST[9]                                           ;
-; 9:1                ; 7 bits    ; 42 LEs        ; 21 LEs               ; 21 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|start_hold_count[5]                         ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|food_row[2]                                 ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_head_col[1]                           ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[3]                ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[7]                             ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body7_col[1]                          ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body1_col[0]                          ;
-; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body3_row[1]                          ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body2_row[0]                          ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body4_col[2]                          ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body5_row[0]                          ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body6_col[2]                          ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body8_row[2]                          ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body9_col[0]                          ;
-; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body10_row[2]                         ;
-; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body11_row[1]                         ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[22]                                                     ;
-; 3:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[1]                                                      ;
-; 3:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|food_step                                   ;
-; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |DE1_SoC_CAMERA|RAW2RGB:u4|Add0                                                  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|R_out[3]          ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|Selector4                                   ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|Selector0                                   ;
-; 20:1               ; 60 bits   ; 780 LEs       ; 780 LEs              ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|color_detect:u_detect|Mux44                                      ;
-; 33:1               ; 4 bits    ; 88 LEs        ; 56 LEs               ; 32 LEs                 ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|Mux20             ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|G_out             ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|food_col[4]                                ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_head_col[0]                          ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_len[2]                               ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|score[4]                                   ;
+; 3:1                ; 21 bits   ; 42 LEs        ; 42 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|vga_r_reg[4]                                                    ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|BA[1]                        ;
+; 3:1                ; 35 bits   ; 70 LEs        ; 0 LEs                ; 70 LEs                 ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|match_count[10]                           ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[0][2]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[1][1]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[2][9]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[3][4]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[4][4]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[5][9]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[6][3]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[7][8]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[8][2]                               ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[9][14]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[10][19]                             ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[11][13]                             ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[12][13]                             ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[13][18]                             ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[14][19]                             ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[15][11]                             ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[16][14]                             ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[17][7]                              ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[18][10]                             ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 0 LEs                ; 120 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[19][5]                              ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|control_interface:u_control_interface|timer[5] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[9]                            ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[8]                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_y[8]                            ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_y[5]                            ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_x[9]                            ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|command_delay[1]             ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|Y_Cont[1]                                        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[15]                           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|frame_count[0]                             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|vga_g_reg[4]                                                    ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|game_over_flash_count[5]                   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|game_over_flash_phase[1]                   ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[3]                        ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[4]                        ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|rp_done                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|X_Cont[12]                                       ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body15_row[3]                        ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body1_col[2]                         ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body3_row[3]                         ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body7_col[4]                         ;
+; 5:1                ; 19 bits   ; 57 LEs        ; 38 LEs               ; 19 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mADDR[20]                                      ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|RAW2RGB:u4|mCCD_R[2]                                            ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body2_col[4]                         ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body4_col[3]                         ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body5_row[3]                         ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body6_row[3]                         ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body8_col[3]                         ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body9_col[2]                         ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body10_col[3]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body11_row[3]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body12_row[3]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body13_col[1]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body14_row[3]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body16_row[3]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body17_col[4]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body18_col[3]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body19_row[3]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body20_col[3]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body21_col[0]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body22_col[4]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body23_row[3]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body24_col[3]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body25_row[3]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body26_col[3]                        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body27_col[1]                        ;
+; 64:1               ; 4 bits    ; 168 LEs       ; 56 LEs               ; 112 LEs                ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mI2C_DATA[3]                                  ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|CMD[0]                                         ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|WR_MASK[0]                                     ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|RD_MASK[0]                                     ;
+; 7:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|ST[3]                                          ;
+; 9:1                ; 7 bits    ; 42 LEs        ; 21 LEs               ; 21 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|start_hold_count[0]                        ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|food_col[2]                                ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_head_row[2]                          ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[2]               ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[10]                           ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body15_row[2]                        ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body1_col[3]                         ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body3_col[0]                         ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body7_col[1]                         ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body2_row[1]                         ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body4_col[2]                         ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body5_row[0]                         ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body6_row[1]                         ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body8_row[2]                         ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body9_row[0]                         ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body10_row[0]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body11_row[0]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body12_row[1]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body13_row[2]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body14_row[2]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body16_row[2]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body17_row[2]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body18_row[2]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body19_row[2]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body20_row[2]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body21_row[1]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body22_row[0]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body23_row[0]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body24_row[0]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body25_row[0]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body26_row[2]                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body27_row[1]                        ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[23]                                                    ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[13]                                                    ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|food_step                                  ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |DE1_SoC_CAMERA|RAW2RGB:u4|Add0                                                 ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|R_out[3]         ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|Selector6                                  ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|Selector2                                  ;
+; 20:1               ; 60 bits   ; 780 LEs       ; 780 LEs              ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|color_detect:u_detect|Mux19                                     ;
+; 17:1               ; 5 bits    ; 55 LEs        ; 40 LEs               ; 15 LEs                 ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|Mux1             ;
+; 33:1               ; 5 bits    ; 110 LEs       ; 70 LEs               ; 40 LEs                 ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|Mux18            ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|B_out            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -2165,18 +2219,41 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +-----------------------------------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0 ;
+; Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0 ;
 +------------------------+----------------+-----------------------------------------------------------------------+
 ; Parameter Name         ; Value          ; Type                                                                  ;
 +------------------------+----------------+-----------------------------------------------------------------------+
-; LPM_WIDTHN             ; 4              ; Untyped                                                               ;
+; LPM_WIDTHN             ; 7              ; Untyped                                                               ;
 ; LPM_WIDTHD             ; 4              ; Untyped                                                               ;
 ; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                               ;
 ; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                               ;
 ; LPM_PIPELINE           ; 0              ; Untyped                                                               ;
 ; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                               ;
 ; MAXIMIZE_SPEED         ; 5              ; Untyped                                                               ;
-; CBXI_PARAMETER         ; lpm_divide_42m ; Untyped                                                               ;
+; CBXI_PARAMETER         ; lpm_divide_4am ; Untyped                                                               ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                               ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                               ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                            ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                          ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                          ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                                        ;
++------------------------+----------------+-----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0 ;
++------------------------+----------------+-----------------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                                  ;
++------------------------+----------------+-----------------------------------------------------------------------+
+; LPM_WIDTHN             ; 7              ; Untyped                                                               ;
+; LPM_WIDTHD             ; 4              ; Untyped                                                               ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                               ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                               ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                               ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                               ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                               ;
+; CBXI_PARAMETER         ; lpm_divide_72m ; Untyped                                                               ;
 ; CARRY_CHAIN            ; MANUAL         ; Untyped                                                               ;
 ; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                               ;
 ; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                            ;
@@ -2211,29 +2288,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +-----------------------------------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0 ;
-+------------------------+----------------+-----------------------------------------------------------------------+
-; Parameter Name         ; Value          ; Type                                                                  ;
-+------------------------+----------------+-----------------------------------------------------------------------+
-; LPM_WIDTHN             ; 4              ; Untyped                                                               ;
-; LPM_WIDTHD             ; 4              ; Untyped                                                               ;
-; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                               ;
-; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                               ;
-; LPM_PIPELINE           ; 0              ; Untyped                                                               ;
-; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                               ;
-; MAXIMIZE_SPEED         ; 5              ; Untyped                                                               ;
-; CBXI_PARAMETER         ; lpm_divide_1am ; Untyped                                                               ;
-; CARRY_CHAIN            ; MANUAL         ; Untyped                                                               ;
-; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                               ;
-; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                            ;
-; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                          ;
-; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                          ;
-; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                                        ;
-+------------------------+----------------+-----------------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------------------------------------+
 ; Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod3 ;
 +------------------------+----------------+-----------------------------------------------------------------------+
 ; Parameter Name         ; Value          ; Type                                                                  ;
@@ -2246,6 +2300,52 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                               ;
 ; MAXIMIZE_SPEED         ; 5              ; Untyped                                                               ;
 ; CBXI_PARAMETER         ; lpm_divide_g3m ; Untyped                                                               ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                               ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                               ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                            ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                          ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                          ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                                        ;
++------------------------+----------------+-----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div6 ;
++------------------------+----------------+-----------------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                                  ;
++------------------------+----------------+-----------------------------------------------------------------------+
+; LPM_WIDTHN             ; 7              ; Untyped                                                               ;
+; LPM_WIDTHD             ; 4              ; Untyped                                                               ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                               ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                               ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                               ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                               ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                               ;
+; CBXI_PARAMETER         ; lpm_divide_4am ; Untyped                                                               ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                               ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                               ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                            ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                          ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                          ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                                        ;
++------------------------+----------------+-----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod4 ;
++------------------------+----------------+-----------------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                                  ;
++------------------------+----------------+-----------------------------------------------------------------------+
+; LPM_WIDTHN             ; 7              ; Untyped                                                               ;
+; LPM_WIDTHD             ; 4              ; Untyped                                                               ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                               ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                               ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                               ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                               ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                               ;
+; CBXI_PARAMETER         ; lpm_divide_72m ; Untyped                                                               ;
 ; CARRY_CHAIN            ; MANUAL         ; Untyped                                                               ;
 ; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                               ;
 ; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                            ;
@@ -2612,40 +2712,41 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 2640                        ;
-;     CLR               ; 530                         ;
+; arriav_ff             ; 2795                        ;
+;     CLR               ; 527                         ;
 ;     CLR SCLR          ; 146                         ;
 ;     CLR SLD           ; 1                           ;
 ;     ENA               ; 144                         ;
-;     ENA CLR           ; 362                         ;
+;     ENA CLR           ; 251                         ;
 ;     ENA CLR SCLR      ; 1336                        ;
+;     ENA CLR SLD       ; 269                         ;
 ;     ENA SCLR          ; 39                          ;
 ;     ENA SLD           ; 12                          ;
 ;     SCLR              ; 17                          ;
 ;     SLD               ; 4                           ;
 ;     plain             ; 49                          ;
 ; arriav_io_obuf        ; 62                          ;
-; arriav_lcell_comb     ; 3827                        ;
-;     arith             ; 1113                        ;
-;         0 data inputs ; 138                         ;
-;         1 data inputs ; 478                         ;
-;         2 data inputs ; 84                          ;
-;         3 data inputs ; 137                         ;
-;         4 data inputs ; 122                         ;
+; arriav_lcell_comb     ; 4207                        ;
+;     arith             ; 1192                        ;
+;         0 data inputs ; 158                         ;
+;         1 data inputs ; 497                         ;
+;         2 data inputs ; 92                          ;
+;         3 data inputs ; 167                         ;
+;         4 data inputs ; 124                         ;
 ;         5 data inputs ; 154                         ;
 ;     extend            ; 23                          ;
 ;         7 data inputs ; 23                          ;
-;     normal            ; 2513                        ;
+;     normal            ; 2794                        ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 40                          ;
-;         2 data inputs ; 543                         ;
-;         3 data inputs ; 250                         ;
-;         4 data inputs ; 447                         ;
-;         5 data inputs ; 375                         ;
-;         6 data inputs ; 856                         ;
-;     shared            ; 178                         ;
-;         0 data inputs ; 12                          ;
-;         1 data inputs ; 22                          ;
+;         1 data inputs ; 60                          ;
+;         2 data inputs ; 499                         ;
+;         3 data inputs ; 280                         ;
+;         4 data inputs ; 535                         ;
+;         5 data inputs ; 434                         ;
+;         6 data inputs ; 984                         ;
+;     shared            ; 198                         ;
+;         0 data inputs ; 16                          ;
+;         1 data inputs ; 38                          ;
 ;         2 data inputs ; 138                         ;
 ;         4 data inputs ; 6                           ;
 ; boundary_port         ; 226                         ;
@@ -2653,7 +2754,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; stratixv_ram_block    ; 86                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 34.80                       ;
-; Average LUT depth     ; 9.97                        ;
+; Average LUT depth     ; 10.20                       ;
 +-----------------------+-----------------------------+
 
 
@@ -2662,7 +2763,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:07     ;
+; Top            ; 00:00:09     ;
 +----------------+--------------+
 
 
@@ -2672,7 +2773,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
-    Info: Processing started: Mon Apr 13 18:39:07 2026
+    Info: Processing started: Mon Apr 13 19:51:11 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC_CAMERA -c DE1_SoC_CAMERA
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -3083,33 +3184,35 @@ Warning (10230): Verilog HDL assignment warning at color_detect.v(121): truncate
 Warning (10230): Verilog HDL assignment warning at color_detect.v(221): truncated value with size 32 to match size of target (11) File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/color_detect.v Line: 221
 Info (12128): Elaborating entity "overlay" for hierarchy "overlay:u_overlay" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 525
 Info (12128): Elaborating entity "snake_wrapper" for hierarchy "snake_wrapper:u_game" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 547
-Info (10264): Verilog HDL Case Statement information at snake_wrapper.sv(135): all case item expressions in this case statement are onehot File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/snake_wrapper.sv Line: 135
-Info (10264): Verilog HDL Case Statement information at snake_wrapper.sv(369): all case item expressions in this case statement are onehot File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/snake_wrapper.sv Line: 369
-Info (12128): Elaborating entity "snake_renderer" for hierarchy "snake_wrapper:u_game|snake_renderer:u_renderer" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/snake_wrapper.sv Line: 441
-Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(660): truncated value with size 10 to match size of target (4) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 660
-Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(661): truncated value with size 10 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 661
-Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(723): truncated value with size 10 to match size of target (5) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 723
-Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(724): truncated value with size 10 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 724
-Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(725): truncated value with size 10 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 725
-Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(763): truncated value with size 10 to match size of target (5) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 763
-Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(764): truncated value with size 10 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 764
+Info (10264): Verilog HDL Case Statement information at snake_wrapper.sv(152): all case item expressions in this case statement are onehot File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/snake_wrapper.sv Line: 152
+Info (10264): Verilog HDL Case Statement information at snake_wrapper.sv(470): all case item expressions in this case statement are onehot File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/snake_wrapper.sv Line: 470
+Info (12128): Elaborating entity "snake_renderer" for hierarchy "snake_wrapper:u_game|snake_renderer:u_renderer" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/snake_wrapper.sv Line: 574
+Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(730): truncated value with size 10 to match size of target (4) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 730
+Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(731): truncated value with size 10 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 731
+Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(793): truncated value with size 10 to match size of target (5) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 793
+Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(794): truncated value with size 10 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 794
+Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(795): truncated value with size 10 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 795
+Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(833): truncated value with size 10 to match size of target (5) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 833
+Warning (10230): Verilog HDL assignment warning at snake_renderer.sv(834): truncated value with size 10 to match size of target (3) File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 834
 Warning (14284): Synthesized away the following node(s):
     Warning (14285): Synthesized away the following RAM node(s):
         Warning (14320): Synthesized away node "Sdram_Control:u7|Sdram_RD_FIFO:u_read2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|altsyncram_86d1:fifo_ram|q_b[15]" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/altsyncram_86d1.tdf Line: 522
         Warning (14320): Synthesized away node "Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated|altsyncram_86d1:fifo_ram|q_b[15]" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/altsyncram_86d1.tdf Line: 522
-Info (278001): Inferred 12 megafunctions from design logic
+Info (278001): Inferred 14 megafunctions from design logic
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "color_detect:u_detect|Div0" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/color_detect.v Line: 120
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "color_detect:u_detect|Div1" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/color_detect.v Line: 121
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Mod1" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 661
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Mod0" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 648
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div1" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 660
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div0" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 647
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Mod3" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 764
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div5" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 763
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Mod2" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 724
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div3" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 724
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div4" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 725
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div2" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 723
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Mod1" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 731
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div0" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 717
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Mod0" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 718
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div1" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 730
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Mod3" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 834
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div6" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 857
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Mod4" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 863
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div5" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 833
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Mod2" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 794
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div3" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 794
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div4" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 795
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "snake_wrapper:u_game|snake_renderer:u_renderer|Div2" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 793
 Info (12130): Elaborated megafunction instantiation "color_detect:u_detect|lpm_divide:Div0" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/color_detect.v Line: 120
 Info (12133): Instantiated megafunction "color_detect:u_detect|lpm_divide:Div0" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/color_detect.v Line: 120
     Info (12134): Parameter "LPM_WIDTHN" = "16"
@@ -3122,8 +3225,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/sign
     Info (12023): Found entity 1: sign_div_unsign_8nh File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/sign_div_unsign_8nh.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_m2f.tdf
     Info (12023): Found entity 1: alt_u_div_m2f File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/alt_u_div_m2f.tdf Line: 23
-Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod1" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 661
-Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod1" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 661
+Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod1" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 731
+Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod1" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 731
     Info (12134): Parameter "LPM_WIDTHN" = "10"
     Info (12134): Parameter "LPM_WIDTHD" = "3"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -3134,42 +3237,48 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/sign
     Info (12023): Found entity 1: sign_div_unsign_jlh File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/sign_div_unsign_jlh.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_cve.tdf
     Info (12023): Found entity 1: alt_u_div_cve File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/alt_u_div_cve.tdf Line: 23
-Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 648
-Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 648
-    Info (12134): Parameter "LPM_WIDTHN" = "4"
+Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 717
+Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 717
+    Info (12134): Parameter "LPM_WIDTHN" = "7"
     Info (12134): Parameter "LPM_WIDTHD" = "4"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_42m.tdf
-    Info (12023): Found entity 1: lpm_divide_42m File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/lpm_divide_42m.tdf Line: 25
-Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_7kh.tdf
-    Info (12023): Found entity 1: sign_div_unsign_7kh File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/sign_div_unsign_7kh.tdf Line: 25
-Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_kse.tdf
-    Info (12023): Found entity 1: alt_u_div_kse File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/alt_u_div_kse.tdf Line: 23
-Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div1" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 660
-Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div1" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 660
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_4am.tdf
+    Info (12023): Found entity 1: lpm_divide_4am File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/lpm_divide_4am.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_akh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_akh File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/sign_div_unsign_akh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_qse.tdf
+    Info (12023): Found entity 1: alt_u_div_qse File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/alt_u_div_qse.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 718
+Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod0" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 718
+    Info (12134): Parameter "LPM_WIDTHN" = "7"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_72m.tdf
+    Info (12023): Found entity 1: lpm_divide_72m File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/lpm_divide_72m.tdf Line: 25
+Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div1" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 730
+Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div1" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 730
     Info (12134): Parameter "LPM_WIDTHN" = "10"
     Info (12134): Parameter "LPM_WIDTHD" = "3"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
 Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_dbm.tdf
     Info (12023): Found entity 1: lpm_divide_dbm File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/lpm_divide_dbm.tdf Line: 25
-Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 647
-Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 647
-    Info (12134): Parameter "LPM_WIDTHN" = "4"
+Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div6" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 857
+Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div6" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 857
+    Info (12134): Parameter "LPM_WIDTHN" = "7"
     Info (12134): Parameter "LPM_WIDTHD" = "4"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_1am.tdf
-    Info (12023): Found entity 1: lpm_divide_1am File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/lpm_divide_1am.tdf Line: 25
-Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div5" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 763
-Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div5" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 763
+Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div5" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 833
+Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div5" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 833
     Info (12134): Parameter "LPM_WIDTHN" = "10"
     Info (12134): Parameter "LPM_WIDTHD" = "3"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod2" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 724
-Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod2" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 724
+Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod2" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 794
+Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Mod2" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 794
     Info (12134): Parameter "LPM_WIDTHN" = "10"
     Info (12134): Parameter "LPM_WIDTHD" = "5"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -3180,8 +3289,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/sign
     Info (12023): Found entity 1: sign_div_unsign_llh File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/sign_div_unsign_llh.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_gve.tdf
     Info (12023): Found entity 1: alt_u_div_gve File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/alt_u_div_gve.tdf Line: 23
-Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div3" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 724
-Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div3" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 724
+Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div3" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 794
+Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div3" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 794
     Info (12134): Parameter "LPM_WIDTHN" = "5"
     Info (12134): Parameter "LPM_WIDTHD" = "3"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -3192,14 +3301,14 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/sign
     Info (12023): Found entity 1: sign_div_unsign_8kh File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/sign_div_unsign_8kh.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_lse.tdf
     Info (12023): Found entity 1: alt_u_div_lse File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/db/alt_u_div_lse.tdf Line: 23
-Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div4" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 725
-Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div4" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 725
+Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div4" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 795
+Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div4" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 795
     Info (12134): Parameter "LPM_WIDTHN" = "10"
     Info (12134): Parameter "LPM_WIDTHD" = "3"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div2" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 723
-Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div2" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 723
+Info (12130): Elaborated megafunction instantiation "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div2" File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 793
+Info (12133): Instantiated megafunction "snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div2" with the following parameter: File: C:/Users/amers/Desktop/ECE554/capstone/snake_hls/simple_snake/snake_renderer.sv Line: 793
     Info (12134): Parameter "LPM_WIDTHN" = "10"
     Info (12134): Parameter "LPM_WIDTHD" = "5"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -3256,7 +3365,7 @@ Warning (13039): The following bidirectional pins have no drivers
 Info (13000): Registers with preset signals will power-up high File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/Sdram_Control/Sdram_Control.v Line: 443
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13004): Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
-    Warning (13310): Register "snake_wrapper:u_game|vsync_prev" is converted into an equivalent circuit using register "snake_wrapper:u_game|vsync_prev~_emulated" and latch "snake_wrapper:u_game|vsync_prev~1" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/snake_wrapper.sv Line: 80
+    Warning (13310): Register "snake_wrapper:u_game|vsync_prev" is converted into an equivalent circuit using register "snake_wrapper:u_game|vsync_prev~_emulated" and latch "snake_wrapper:u_game|vsync_prev~1" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/snake_wrapper.sv Line: 97
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "ADC_DIN" is stuck at GND File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 53
     Warning (13410): Pin "ADC_SCLK" is stuck at GND File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 55
@@ -3314,17 +3423,17 @@ Warning (21074): Design contains 23 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "TD_HS" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 130
     Warning (15610): No output dependent on input pin "TD_VS" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 132
     Warning (15610): No output dependent on input pin "D5M_STROBE" File: C:/Users/amers/Desktop/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 152
-Info (21057): Implemented 5909 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 6527 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 48 input pins
     Info (21059): Implemented 116 output pins
     Info (21060): Implemented 62 bidirectional pins
-    Info (21061): Implemented 5593 logic cells
+    Info (21061): Implemented 6211 logic cells
     Info (21064): Implemented 86 RAM segments
     Info (21065): Implemented 4 PLLs
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 159 warnings
-    Info: Peak virtual memory: 5010 megabytes
-    Info: Processing ended: Mon Apr 13 18:39:23 2026
-    Info: Elapsed time: 00:00:16
+    Info: Peak virtual memory: 5028 megabytes
+    Info: Processing ended: Mon Apr 13 19:51:30 2026
+    Info: Elapsed time: 00:00:19
     Info: Total CPU time (on all processors): 00:00:28
 
 

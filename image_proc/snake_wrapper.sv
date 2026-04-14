@@ -28,19 +28,19 @@ module snake_wrapper (
     localparam logic [9:0] DEAD_ZONE_Y = 10'd48;
 
     localparam logic [6:0] START_HOLD_FRAMES = 7'd120;
-    localparam logic [3:0] MAX_LEN = 4'd12;
+    localparam logic [4:0] MAX_LEN = 5'd28;
 
     // Game-over flash timing
     // We show 5 visible flashes by alternating ON/OFF phases.
     // 10 total phases = 5 ON + 5 OFF.
-    localparam logic [5:0] GAME_OVER_FLASH_FRAMES = 6'd12;
+    localparam logic [5:0] GAME_OVER_FLASH_FRAMES = 6'd30; // 30 frames/phase x 10 phases = 300 frames = ~5 seconds @ 60Hz
     localparam logic [3:0] GAME_OVER_TOTAL_PHASES = 4'd10;
 
     // Head
     logic [4:0] snake_head_col;
     logic [3:0] snake_head_row;
 
-    // Body segments 1..11
+    // Body segments 1..27
     logic [4:0] snake_body1_col;   logic [3:0] snake_body1_row;
     logic [4:0] snake_body2_col;   logic [3:0] snake_body2_row;
     logic [4:0] snake_body3_col;   logic [3:0] snake_body3_row;
@@ -52,8 +52,24 @@ module snake_wrapper (
     logic [4:0] snake_body9_col;   logic [3:0] snake_body9_row;
     logic [4:0] snake_body10_col;  logic [3:0] snake_body10_row;
     logic [4:0] snake_body11_col;  logic [3:0] snake_body11_row;
+    logic [4:0] snake_body12_col;  logic [3:0] snake_body12_row;
+    logic [4:0] snake_body13_col;  logic [3:0] snake_body13_row;
+    logic [4:0] snake_body14_col;  logic [3:0] snake_body14_row;
+    logic [4:0] snake_body15_col;  logic [3:0] snake_body15_row;
+    logic [4:0] snake_body16_col;  logic [3:0] snake_body16_row;
+    logic [4:0] snake_body17_col;  logic [3:0] snake_body17_row;
+    logic [4:0] snake_body18_col;  logic [3:0] snake_body18_row;
+    logic [4:0] snake_body19_col;  logic [3:0] snake_body19_row;
+    logic [4:0] snake_body20_col;  logic [3:0] snake_body20_row;
+    logic [4:0] snake_body21_col;  logic [3:0] snake_body21_row;
+    logic [4:0] snake_body22_col;  logic [3:0] snake_body22_row;
+    logic [4:0] snake_body23_col;  logic [3:0] snake_body23_row;
+    logic [4:0] snake_body24_col;  logic [3:0] snake_body24_row;
+    logic [4:0] snake_body25_col;  logic [3:0] snake_body25_row;
+    logic [4:0] snake_body26_col;  logic [3:0] snake_body26_row;
+    logic [4:0] snake_body27_col;  logic [3:0] snake_body27_row;
 
-    logic [3:0] snake_len;
+    logic [4:0] snake_len;
 
     // Food
     logic [4:0] food_col;
@@ -72,7 +88,8 @@ module snake_wrapper (
     // Game-over state
     logic       game_over_active;
     logic       game_over_flash_on;
-    logic [3:0] game_over_score;
+    logic [6:0] game_over_score;
+    logic [6:0] score;            // running score, independent of snake length
     logic [3:0] game_over_flash_phase;
     logic [5:0] game_over_flash_count;
 
@@ -163,17 +180,33 @@ module snake_wrapper (
     always_comb begin
         self_collision = 1'b0;
 
-        if ((snake_len >= 4'd2)  && (next_head_col == snake_body1_col)  && (next_head_row == snake_body1_row))  self_collision = 1'b1;
-        if ((snake_len >= 4'd3)  && (next_head_col == snake_body2_col)  && (next_head_row == snake_body2_row))  self_collision = 1'b1;
-        if ((snake_len >= 4'd4)  && (next_head_col == snake_body3_col)  && (next_head_row == snake_body3_row))  self_collision = 1'b1;
-        if ((snake_len >= 4'd5)  && (next_head_col == snake_body4_col)  && (next_head_row == snake_body4_row))  self_collision = 1'b1;
-        if ((snake_len >= 4'd6)  && (next_head_col == snake_body5_col)  && (next_head_row == snake_body5_row))  self_collision = 1'b1;
-        if ((snake_len >= 4'd7)  && (next_head_col == snake_body6_col)  && (next_head_row == snake_body6_row))  self_collision = 1'b1;
-        if ((snake_len >= 4'd8)  && (next_head_col == snake_body7_col)  && (next_head_row == snake_body7_row))  self_collision = 1'b1;
-        if ((snake_len >= 4'd9)  && (next_head_col == snake_body8_col)  && (next_head_row == snake_body8_row))  self_collision = 1'b1;
-        if ((snake_len >= 4'd10) && (next_head_col == snake_body9_col)  && (next_head_row == snake_body9_row))  self_collision = 1'b1;
-        if ((snake_len >= 4'd11) && (next_head_col == snake_body10_col) && (next_head_row == snake_body10_row)) self_collision = 1'b1;
-        if ((snake_len >= 4'd12) && (next_head_col == snake_body11_col) && (next_head_row == snake_body11_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd2)  && (next_head_col == snake_body1_col)  && (next_head_row == snake_body1_row))  self_collision = 1'b1;
+        if ((snake_len >= 5'd3)  && (next_head_col == snake_body2_col)  && (next_head_row == snake_body2_row))  self_collision = 1'b1;
+        if ((snake_len >= 5'd4)  && (next_head_col == snake_body3_col)  && (next_head_row == snake_body3_row))  self_collision = 1'b1;
+        if ((snake_len >= 5'd5)  && (next_head_col == snake_body4_col)  && (next_head_row == snake_body4_row))  self_collision = 1'b1;
+        if ((snake_len >= 5'd6)  && (next_head_col == snake_body5_col)  && (next_head_row == snake_body5_row))  self_collision = 1'b1;
+        if ((snake_len >= 5'd7)  && (next_head_col == snake_body6_col)  && (next_head_row == snake_body6_row))  self_collision = 1'b1;
+        if ((snake_len >= 5'd8)  && (next_head_col == snake_body7_col)  && (next_head_row == snake_body7_row))  self_collision = 1'b1;
+        if ((snake_len >= 5'd9)  && (next_head_col == snake_body8_col)  && (next_head_row == snake_body8_row))  self_collision = 1'b1;
+        if ((snake_len >= 5'd10) && (next_head_col == snake_body9_col)  && (next_head_row == snake_body9_row))  self_collision = 1'b1;
+        if ((snake_len >= 5'd11) && (next_head_col == snake_body10_col) && (next_head_row == snake_body10_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd12) && (next_head_col == snake_body11_col) && (next_head_row == snake_body11_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd13) && (next_head_col == snake_body12_col) && (next_head_row == snake_body12_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd14) && (next_head_col == snake_body13_col) && (next_head_row == snake_body13_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd15) && (next_head_col == snake_body14_col) && (next_head_row == snake_body14_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd16) && (next_head_col == snake_body15_col) && (next_head_row == snake_body15_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd17) && (next_head_col == snake_body16_col) && (next_head_row == snake_body16_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd18) && (next_head_col == snake_body17_col) && (next_head_row == snake_body17_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd19) && (next_head_col == snake_body18_col) && (next_head_row == snake_body18_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd20) && (next_head_col == snake_body19_col) && (next_head_row == snake_body19_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd21) && (next_head_col == snake_body20_col) && (next_head_row == snake_body20_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd22) && (next_head_col == snake_body21_col) && (next_head_row == snake_body21_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd23) && (next_head_col == snake_body22_col) && (next_head_row == snake_body22_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd24) && (next_head_col == snake_body23_col) && (next_head_row == snake_body23_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd25) && (next_head_col == snake_body24_col) && (next_head_row == snake_body24_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd26) && (next_head_col == snake_body25_col) && (next_head_row == snake_body25_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd27) && (next_head_col == snake_body26_col) && (next_head_row == snake_body26_row)) self_collision = 1'b1;
+        if ((snake_len >= 5'd28) && (next_head_col == snake_body27_col) && (next_head_row == snake_body27_row)) self_collision = 1'b1;
     end
 
     always_ff @(posedge clk or negedge rst_n) begin
@@ -181,19 +214,36 @@ module snake_wrapper (
             snake_head_col <= 5'd10;
             snake_head_row <= 4'd7;
 
-            snake_body1_col <= 5'd9;  snake_body1_row <= 4'd7;
-            snake_body2_col <= 5'd8;  snake_body2_row <= 4'd7;
-            snake_body3_col <= 5'd7;  snake_body3_row <= 4'd7;
-            snake_body4_col <= 5'd6;  snake_body4_row <= 4'd7;
-            snake_body5_col <= 5'd5;  snake_body5_row <= 4'd7;
-            snake_body6_col <= 5'd4;  snake_body6_row <= 4'd7;
-            snake_body7_col <= 5'd3;  snake_body7_row <= 4'd7;
-            snake_body8_col <= 5'd2;  snake_body8_row <= 4'd7;
-            snake_body9_col <= 5'd1;  snake_body9_row <= 4'd7;
-            snake_body10_col <= 5'd0; snake_body10_row <= 4'd7;
-            snake_body11_col <= 5'd0; snake_body11_row <= 4'd7;
+            snake_body1_col  <= 5'd9;  snake_body1_row  <= 4'd7;
+            snake_body2_col  <= 5'd8;  snake_body2_row  <= 4'd7;
+            snake_body3_col  <= 5'd7;  snake_body3_row  <= 4'd7;
+            snake_body4_col  <= 5'd6;  snake_body4_row  <= 4'd7;
+            snake_body5_col  <= 5'd5;  snake_body5_row  <= 4'd7;
+            snake_body6_col  <= 5'd4;  snake_body6_row  <= 4'd7;
+            snake_body7_col  <= 5'd3;  snake_body7_row  <= 4'd7;
+            snake_body8_col  <= 5'd2;  snake_body8_row  <= 4'd7;
+            snake_body9_col  <= 5'd1;  snake_body9_row  <= 4'd7;
+            snake_body10_col <= 5'd0;  snake_body10_row <= 4'd7;
+            snake_body11_col <= 5'd0;  snake_body11_row <= 4'd7;
+            snake_body12_col <= 5'd0;  snake_body12_row <= 4'd7;
+            snake_body13_col <= 5'd0;  snake_body13_row <= 4'd7;
+            snake_body14_col <= 5'd0;  snake_body14_row <= 4'd7;
+            snake_body15_col <= 5'd0;  snake_body15_row <= 4'd7;
+            snake_body16_col <= 5'd0;  snake_body16_row <= 4'd7;
+            snake_body17_col <= 5'd0;  snake_body17_row <= 4'd7;
+            snake_body18_col <= 5'd0;  snake_body18_row <= 4'd7;
+            snake_body19_col <= 5'd0;  snake_body19_row <= 4'd7;
+            snake_body20_col <= 5'd0;  snake_body20_row <= 4'd7;
+            snake_body21_col <= 5'd0;  snake_body21_row <= 4'd7;
+            snake_body22_col <= 5'd0;  snake_body22_row <= 4'd7;
+            snake_body23_col <= 5'd0;  snake_body23_row <= 4'd7;
+            snake_body24_col <= 5'd0;  snake_body24_row <= 4'd7;
+            snake_body25_col <= 5'd0;  snake_body25_row <= 4'd7;
+            snake_body26_col <= 5'd0;  snake_body26_row <= 4'd7;
+            snake_body27_col <= 5'd0;  snake_body27_row <= 4'd7;
 
-            snake_len <= 4'd2;
+            snake_len <= 5'd2;
+            score     <= 7'd0;
 
             food_col  <= 5'd5;
             food_row  <= 4'd5;
@@ -205,7 +255,7 @@ module snake_wrapper (
 
             // Game-over state reset
             game_over_active      <= 1'b0;
-            game_over_score       <= 4'd0;
+            game_over_score       <= 7'd0;
             game_over_flash_phase <= 4'd0;
             game_over_flash_count <= 6'd0;
 
@@ -265,19 +315,36 @@ module snake_wrapper (
                         snake_head_col <= 5'd10;
                         snake_head_row <= 4'd7;
 
-                        snake_body1_col <= 5'd9;  snake_body1_row <= 4'd7;
-                        snake_body2_col <= 5'd8;  snake_body2_row <= 4'd7;
-                        snake_body3_col <= 5'd7;  snake_body3_row <= 4'd7;
-                        snake_body4_col <= 5'd6;  snake_body4_row <= 4'd7;
-                        snake_body5_col <= 5'd5;  snake_body5_row <= 4'd7;
-                        snake_body6_col <= 5'd4;  snake_body6_row <= 4'd7;
-                        snake_body7_col <= 5'd3;  snake_body7_row <= 4'd7;
-                        snake_body8_col <= 5'd2;  snake_body8_row <= 4'd7;
-                        snake_body9_col <= 5'd1;  snake_body9_row <= 4'd7;
-                        snake_body10_col <= 5'd0; snake_body10_row <= 4'd7;
-                        snake_body11_col <= 5'd0; snake_body11_row <= 4'd7;
+                        snake_body1_col  <= 5'd9;  snake_body1_row  <= 4'd7;
+                        snake_body2_col  <= 5'd8;  snake_body2_row  <= 4'd7;
+                        snake_body3_col  <= 5'd7;  snake_body3_row  <= 4'd7;
+                        snake_body4_col  <= 5'd6;  snake_body4_row  <= 4'd7;
+                        snake_body5_col  <= 5'd5;  snake_body5_row  <= 4'd7;
+                        snake_body6_col  <= 5'd4;  snake_body6_row  <= 4'd7;
+                        snake_body7_col  <= 5'd3;  snake_body7_row  <= 4'd7;
+                        snake_body8_col  <= 5'd2;  snake_body8_row  <= 4'd7;
+                        snake_body9_col  <= 5'd1;  snake_body9_row  <= 4'd7;
+                        snake_body10_col <= 5'd0;  snake_body10_row <= 4'd7;
+                        snake_body11_col <= 5'd0;  snake_body11_row <= 4'd7;
+                        snake_body12_col <= 5'd0;  snake_body12_row <= 4'd7;
+                        snake_body13_col <= 5'd0;  snake_body13_row <= 4'd7;
+                        snake_body14_col <= 5'd0;  snake_body14_row <= 4'd7;
+                        snake_body15_col <= 5'd0;  snake_body15_row <= 4'd7;
+                        snake_body16_col <= 5'd0;  snake_body16_row <= 4'd7;
+                        snake_body17_col <= 5'd0;  snake_body17_row <= 4'd7;
+                        snake_body18_col <= 5'd0;  snake_body18_row <= 4'd7;
+                        snake_body19_col <= 5'd0;  snake_body19_row <= 4'd7;
+                        snake_body20_col <= 5'd0;  snake_body20_row <= 4'd7;
+                        snake_body21_col <= 5'd0;  snake_body21_row <= 4'd7;
+                        snake_body22_col <= 5'd0;  snake_body22_row <= 4'd7;
+                        snake_body23_col <= 5'd0;  snake_body23_row <= 4'd7;
+                        snake_body24_col <= 5'd0;  snake_body24_row <= 4'd7;
+                        snake_body25_col <= 5'd0;  snake_body25_row <= 4'd7;
+                        snake_body26_col <= 5'd0;  snake_body26_row <= 4'd7;
+                        snake_body27_col <= 5'd0;  snake_body27_row <= 4'd7;
 
-                        snake_len <= 4'd2;
+                        snake_len <= 5'd2;
+                        score     <= 7'd0;
 
                         food_col  <= 5'd5;
                         food_row  <= 4'd5;
@@ -325,46 +392,80 @@ module snake_wrapper (
                             start_armed           <= 1'b0;
                             frame_count           <= 4'd0;
 
-                            // Score is body length, not total length
-                            if (snake_len > 4'd0)
-                                game_over_score <= snake_len - 4'd1;
-                            else
-                                game_over_score <= 4'd0;
+                            // Capture running score at time of death
+                            game_over_score <= score;
                         end
                         else begin
-                            if (snake_len >= 4'd12) begin snake_body11_col <= snake_body10_col; snake_body11_row <= snake_body10_row; end
-                            if (snake_len >= 4'd11) begin snake_body10_col <= snake_body9_col;  snake_body10_row <= snake_body9_row;  end
-                            if (snake_len >= 4'd10) begin snake_body9_col  <= snake_body8_col;  snake_body9_row  <= snake_body8_row;  end
-                            if (snake_len >= 4'd9)  begin snake_body8_col  <= snake_body7_col;  snake_body8_row  <= snake_body7_row;  end
-                            if (snake_len >= 4'd8)  begin snake_body7_col  <= snake_body6_col;  snake_body7_row  <= snake_body6_row;  end
-                            if (snake_len >= 4'd7)  begin snake_body6_col  <= snake_body5_col;  snake_body6_row  <= snake_body5_row;  end
-                            if (snake_len >= 4'd6)  begin snake_body5_col  <= snake_body4_col;  snake_body5_row  <= snake_body4_row;  end
-                            if (snake_len >= 4'd5)  begin snake_body4_col  <= snake_body3_col;  snake_body4_row  <= snake_body3_row;  end
-                            if (snake_len >= 4'd4)  begin snake_body3_col  <= snake_body2_col;  snake_body3_row  <= snake_body2_row;  end
-                            if (snake_len >= 4'd3)  begin snake_body2_col  <= snake_body1_col;  snake_body2_row  <= snake_body1_row;  end
-                            if (snake_len >= 4'd2)  begin snake_body1_col  <= snake_head_col;   snake_body1_row  <= snake_head_row;   end
+                            if (snake_len >= 5'd28) begin snake_body27_col <= snake_body26_col; snake_body27_row <= snake_body26_row; end
+                            if (snake_len >= 5'd27) begin snake_body26_col <= snake_body25_col; snake_body26_row <= snake_body25_row; end
+                            if (snake_len >= 5'd26) begin snake_body25_col <= snake_body24_col; snake_body25_row <= snake_body24_row; end
+                            if (snake_len >= 5'd25) begin snake_body24_col <= snake_body23_col; snake_body24_row <= snake_body23_row; end
+                            if (snake_len >= 5'd24) begin snake_body23_col <= snake_body22_col; snake_body23_row <= snake_body22_row; end
+                            if (snake_len >= 5'd23) begin snake_body22_col <= snake_body21_col; snake_body22_row <= snake_body21_row; end
+                            if (snake_len >= 5'd22) begin snake_body21_col <= snake_body20_col; snake_body21_row <= snake_body20_row; end
+                            if (snake_len >= 5'd21) begin snake_body20_col <= snake_body19_col; snake_body20_row <= snake_body19_row; end
+                            if (snake_len >= 5'd20) begin snake_body19_col <= snake_body18_col; snake_body19_row <= snake_body18_row; end
+                            if (snake_len >= 5'd19) begin snake_body18_col <= snake_body17_col; snake_body18_row <= snake_body17_row; end
+                            if (snake_len >= 5'd18) begin snake_body17_col <= snake_body16_col; snake_body17_row <= snake_body16_row; end
+                            if (snake_len >= 5'd17) begin snake_body16_col <= snake_body15_col; snake_body16_row <= snake_body15_row; end
+                            if (snake_len >= 5'd16) begin snake_body15_col <= snake_body14_col; snake_body15_row <= snake_body14_row; end
+                            if (snake_len >= 5'd15) begin snake_body14_col <= snake_body13_col; snake_body14_row <= snake_body13_row; end
+                            if (snake_len >= 5'd14) begin snake_body13_col <= snake_body12_col; snake_body13_row <= snake_body12_row; end
+                            if (snake_len >= 5'd13) begin snake_body12_col <= snake_body11_col; snake_body12_row <= snake_body11_row; end
+                            if (snake_len >= 5'd12) begin snake_body11_col <= snake_body10_col; snake_body11_row <= snake_body10_row; end
+                            if (snake_len >= 5'd11) begin snake_body10_col <= snake_body9_col;  snake_body10_row <= snake_body9_row;  end
+                            if (snake_len >= 5'd10) begin snake_body9_col  <= snake_body8_col;  snake_body9_row  <= snake_body8_row;  end
+                            if (snake_len >= 5'd9)  begin snake_body8_col  <= snake_body7_col;  snake_body8_row  <= snake_body7_row;  end
+                            if (snake_len >= 5'd8)  begin snake_body7_col  <= snake_body6_col;  snake_body7_row  <= snake_body6_row;  end
+                            if (snake_len >= 5'd7)  begin snake_body6_col  <= snake_body5_col;  snake_body6_row  <= snake_body5_row;  end
+                            if (snake_len >= 5'd6)  begin snake_body5_col  <= snake_body4_col;  snake_body5_row  <= snake_body4_row;  end
+                            if (snake_len >= 5'd5)  begin snake_body4_col  <= snake_body3_col;  snake_body4_row  <= snake_body3_row;  end
+                            if (snake_len >= 5'd4)  begin snake_body3_col  <= snake_body2_col;  snake_body3_row  <= snake_body2_row;  end
+                            if (snake_len >= 5'd3)  begin snake_body2_col  <= snake_body1_col;  snake_body2_row  <= snake_body1_row;  end
+                            if (snake_len >= 5'd2)  begin snake_body1_col  <= snake_head_col;   snake_body1_row  <= snake_head_row;   end
 
                             snake_head_col <= next_head_col;
                             snake_head_row <= next_head_row;
 
                             if ((next_head_col == food_col) && (next_head_row == food_row)) begin
                                 case (snake_len)
-                                    4'd1:  begin snake_body1_col  <= snake_head_col;  snake_body1_row  <= snake_head_row;  end
-                                    4'd2:  begin snake_body2_col  <= snake_body1_col; snake_body2_row  <= snake_body1_row; end
-                                    4'd3:  begin snake_body3_col  <= snake_body2_col; snake_body3_row  <= snake_body2_row; end
-                                    4'd4:  begin snake_body4_col  <= snake_body3_col; snake_body4_row  <= snake_body3_row; end
-                                    4'd5:  begin snake_body5_col  <= snake_body4_col; snake_body5_row  <= snake_body4_row; end
-                                    4'd6:  begin snake_body6_col  <= snake_body5_col; snake_body6_row  <= snake_body5_row; end
-                                    4'd7:  begin snake_body7_col  <= snake_body6_col; snake_body7_row  <= snake_body6_row; end
-                                    4'd8:  begin snake_body8_col  <= snake_body7_col; snake_body8_row  <= snake_body7_row; end
-                                    4'd9:  begin snake_body9_col  <= snake_body8_col; snake_body9_row  <= snake_body8_row; end
-                                    4'd10: begin snake_body10_col <= snake_body9_col; snake_body10_row <= snake_body9_row; end
-                                    4'd11: begin snake_body11_col <= snake_body10_col; snake_body11_row <= snake_body10_row; end
+                                    5'd1:  begin snake_body1_col  <= snake_head_col;   snake_body1_row  <= snake_head_row;  end
+                                    5'd2:  begin snake_body2_col  <= snake_body1_col;  snake_body2_row  <= snake_body1_row;  end
+                                    5'd3:  begin snake_body3_col  <= snake_body2_col;  snake_body3_row  <= snake_body2_row;  end
+                                    5'd4:  begin snake_body4_col  <= snake_body3_col;  snake_body4_row  <= snake_body3_row;  end
+                                    5'd5:  begin snake_body5_col  <= snake_body4_col;  snake_body5_row  <= snake_body4_row;  end
+                                    5'd6:  begin snake_body6_col  <= snake_body5_col;  snake_body6_row  <= snake_body5_row;  end
+                                    5'd7:  begin snake_body7_col  <= snake_body6_col;  snake_body7_row  <= snake_body6_row;  end
+                                    5'd8:  begin snake_body8_col  <= snake_body7_col;  snake_body8_row  <= snake_body7_row;  end
+                                    5'd9:  begin snake_body9_col  <= snake_body8_col;  snake_body9_row  <= snake_body8_row;  end
+                                    5'd10: begin snake_body10_col <= snake_body9_col;  snake_body10_row <= snake_body9_row;  end
+                                    5'd11: begin snake_body11_col <= snake_body10_col; snake_body11_row <= snake_body10_row; end
+                                    5'd12: begin snake_body12_col <= snake_body11_col; snake_body12_row <= snake_body11_row; end
+                                    5'd13: begin snake_body13_col <= snake_body12_col; snake_body13_row <= snake_body12_row; end
+                                    5'd14: begin snake_body14_col <= snake_body13_col; snake_body14_row <= snake_body13_row; end
+                                    5'd15: begin snake_body15_col <= snake_body14_col; snake_body15_row <= snake_body14_row; end
+                                    5'd16: begin snake_body16_col <= snake_body15_col; snake_body16_row <= snake_body15_row; end
+                                    5'd17: begin snake_body17_col <= snake_body16_col; snake_body17_row <= snake_body16_row; end
+                                    5'd18: begin snake_body18_col <= snake_body17_col; snake_body18_row <= snake_body17_row; end
+                                    5'd19: begin snake_body19_col <= snake_body18_col; snake_body19_row <= snake_body18_row; end
+                                    5'd20: begin snake_body20_col <= snake_body19_col; snake_body20_row <= snake_body19_row; end
+                                    5'd21: begin snake_body21_col <= snake_body20_col; snake_body21_row <= snake_body20_row; end
+                                    5'd22: begin snake_body22_col <= snake_body21_col; snake_body22_row <= snake_body21_row; end
+                                    5'd23: begin snake_body23_col <= snake_body22_col; snake_body23_row <= snake_body22_row; end
+                                    5'd24: begin snake_body24_col <= snake_body23_col; snake_body24_row <= snake_body23_row; end
+                                    5'd25: begin snake_body25_col <= snake_body24_col; snake_body25_row <= snake_body24_row; end
+                                    5'd26: begin snake_body26_col <= snake_body25_col; snake_body26_row <= snake_body25_row; end
+                                    5'd27: begin snake_body27_col <= snake_body26_col; snake_body27_row <= snake_body26_row; end
                                     default: begin end
                                 endcase
 
+                                // Grow body up to max length
                                 if (snake_len < MAX_LEN)
-                                    snake_len <= snake_len + 4'd1;
+                                    snake_len <= snake_len + 5'd1;
+
+                                // Score always increments on food eaten, capped at 99
+                                if (score < 7'd99)
+                                    score <= score + 7'd1;
 
                                 case (food_step)
                                     4'd0:  begin food_col <= 5'd14; food_row <= 4'd5;  food_step <= 4'd1;  end
@@ -422,15 +523,47 @@ module snake_wrapper (
         .snake_body10_row(snake_body10_row),
         .snake_body11_col(snake_body11_col),
         .snake_body11_row(snake_body11_row),
+        .snake_body12_col(snake_body12_col),
+        .snake_body12_row(snake_body12_row),
+        .snake_body13_col(snake_body13_col),
+        .snake_body13_row(snake_body13_row),
+        .snake_body14_col(snake_body14_col),
+        .snake_body14_row(snake_body14_row),
+        .snake_body15_col(snake_body15_col),
+        .snake_body15_row(snake_body15_row),
+        .snake_body16_col(snake_body16_col),
+        .snake_body16_row(snake_body16_row),
+        .snake_body17_col(snake_body17_col),
+        .snake_body17_row(snake_body17_row),
+        .snake_body18_col(snake_body18_col),
+        .snake_body18_row(snake_body18_row),
+        .snake_body19_col(snake_body19_col),
+        .snake_body19_row(snake_body19_row),
+        .snake_body20_col(snake_body20_col),
+        .snake_body20_row(snake_body20_row),
+        .snake_body21_col(snake_body21_col),
+        .snake_body21_row(snake_body21_row),
+        .snake_body22_col(snake_body22_col),
+        .snake_body22_row(snake_body22_row),
+        .snake_body23_col(snake_body23_col),
+        .snake_body23_row(snake_body23_row),
+        .snake_body24_col(snake_body24_col),
+        .snake_body24_row(snake_body24_row),
+        .snake_body25_col(snake_body25_col),
+        .snake_body25_row(snake_body25_row),
+        .snake_body26_col(snake_body26_col),
+        .snake_body26_row(snake_body26_row),
+        .snake_body27_col(snake_body27_col),
+        .snake_body27_row(snake_body27_row),
 
         .snake_len(snake_len),
+        .score(score),
 
         .food_col(food_col),
         .food_row(food_row),
 
         .game_running(game_running),
 
-        // New game-over renderer inputs
         .game_over_active(game_over_active),
         .game_over_flash_on(game_over_flash_on),
         .game_over_score(game_over_score),
