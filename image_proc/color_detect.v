@@ -34,7 +34,7 @@ module color_detect (
     output reg       cal_valid
 );
 
-    parameter NUM_BLOCK_COLS   = 40;   // 640px / 16px per block
+    parameter NUM_BLOCK_COLS   = 20;   // 640px / 32px per block
     parameter MIN_MATCH_BLOCKS = 1;
 
     // tuned for orange object
@@ -45,33 +45,30 @@ module color_detect (
 
     integer i;
 
-    // Yes, color_detect.v uses 16×16 blocks — vga_x[9:4] and vga_y[8:4] for block indices, end_of_block fires at x[3:0]==15 && y[3:0]==15, and 
-    // averaging divides by 256 via next_sum_R[17:8].
-
     //========================
-    // block math (16x16)
+    // block math (32x32)
     //========================
-    wire [5:0] block_col = vga_x[9:4];   // 0..39 (40 cols of 16px)
-    wire [4:0] block_row = vga_y[8:4];   // 0..29 (30 rows of 16px)
+    wire [4:0] block_col = vga_x[9:5];   // 0..19 (20 cols of 32px)
+    wire [3:0] block_row = vga_y[8:5];   // 0..14 (15 rows of 32px)
 
     wire end_of_block =
-        (vga_x[3:0] == 4'd15) &&
-        (vga_y[3:0] == 4'd15);
+        (vga_x[4:0] == 5'd31) &&
+        (vga_y[4:0] == 5'd31);
 
-    // fires at the end of every complete row of blocks (block_col==39, every 16 pixel rows)
-    wire subframe_out = end_of_block && (block_col == 6'd39);
+    // fires at the end of every complete row of blocks (block_col==19, every 32 pixel rows)
+    wire subframe_out = end_of_block && (block_col == 5'd19);
 
     wire is_center_block =
-        (block_col == 6'd20) &&
-        (block_row == 5'd15);
+        (block_col == 5'd10) &&
+        (block_row == 4'd7);
 
-    wire [9:0] block_center_x = {block_col, 4'd8};
-    wire [9:0] block_center_y = {block_row, 4'd8};
+    wire [9:0] block_center_x = {block_col, 5'd16};
+    wire [9:0] block_center_y = {block_row, 5'd16};
 
-    wire [9:0] block_left_w   = {block_col, 4'd0};
-    wire [9:0] block_right_w  = {block_col, 4'd15};
-    wire [9:0] block_top_w    = {block_row, 4'd0};
-    wire [9:0] block_bottom_w = {block_row, 4'd15};
+    wire [9:0] block_left_w   = {block_col, 5'd0};
+    wire [9:0] block_right_w  = {block_col, 5'd31};
+    wire [9:0] block_top_w    = {block_row, 5'd0};
+    wire [9:0] block_bottom_w = {block_row, 5'd31};
 
     //========================
     // control
@@ -110,9 +107,9 @@ module color_detect (
     wire [19:0] next_sum_G = sum_G[block_col] + G;
     wire [19:0] next_sum_B = sum_B[block_col] + B;
 
-    wire [9:0] avgR = next_sum_R[17:8];  // 16×16=256 pixels → divide by 256
-    wire [9:0] avgG = next_sum_G[17:8];
-    wire [9:0] avgB = next_sum_B[17:8];
+    wire [9:0] avgR = next_sum_R[19:10];  // 32×32=1024 pixels → divide by 1024
+    wire [9:0] avgG = next_sum_G[19:10];
+    wire [9:0] avgB = next_sum_B[19:10];
 
     wire [9:0] diffR = (avgR > cal_R) ? avgR - cal_R : cal_R - avgR;
     wire [9:0] diffG = (avgG > cal_G) ? avgG - cal_G : cal_G - avgG;
