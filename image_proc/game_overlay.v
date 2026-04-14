@@ -22,3 +22,4 @@ module game_overlay (
     assign B_out = dot_on ? 10'h3FF : 10'd0;
 
 endmodule
+

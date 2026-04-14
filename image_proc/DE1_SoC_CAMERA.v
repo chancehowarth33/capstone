@@ -6,9 +6,14 @@
 //          0 = increase exposure when KEY[1] is pressed
 //          1 = decrease exposure when KEY[1] is pressed
 //
-// SW[7]  : game mode
+// SW[6]  : draw game mode
+//          0 = normal mode (controlled by SW[7])
+//          1 = drawing game — hand leaves a white trail on a black canvas
+//              KEY[3] clears the canvas
+//
+// SW[7]  : snake game mode (ignored when SW[6]=1)
 //          0 = normal camera/overlay view
-//          1 = black screen with white dot at tracked position
+//          1 = snake game
 //
 // SW[8]  : calibration mode enable
 //          0 = normal tracking mode
@@ -209,57 +214,12 @@ assign game_mode = SW[7];
 
 // Instantiate new RGB values for game mode output from the overlay
 wire [9:0] game_R, game_G, game_B;
+wire [9:0] draw_R, draw_G, draw_B;
 wire [9:0] mux_R, mux_G, mux_B;
 
-// Pixel Warping improvement
-// Create 1-cycle output pipeline
-wire vga_hs_i;
-wire vga_vs_i;
-wire vga_sync_i;
-wire vga_blank_i;
-// Register RGB values for sync
-reg [9:0] vga_r_reg, vga_g_reg, vga_b_reg;
-reg       vga_hs_reg, vga_vs_reg, vga_sync_reg, vga_blank_reg;
-// Game reset behavior
-wire game_rst_n;
-assign game_rst_n = DLY_RST_2 & KEY[0];
+wire draw_mode;
+assign draw_mode = SW[6];
 
-// New overlay bit select to include game mode output
-assign mux_R = game_mode ? game_R : final_R;
-assign mux_G = game_mode ? game_G : final_G;
-assign mux_B = game_mode ? game_B : final_B;
-
-
-// register the final selected RGB and sync/control together
-always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
-    if (!DLY_RST_2) begin
-        vga_r_reg     <= 10'd0;
-        vga_g_reg     <= 10'd0;
-        vga_b_reg     <= 10'd0;
-        vga_hs_reg    <= 1'b0;
-        vga_vs_reg    <= 1'b0;
-        vga_sync_reg  <= 1'b0;
-        vga_blank_reg <= 1'b0;
-    end
-    else begin
-        vga_r_reg     <= mux_R;
-        vga_g_reg     <= mux_G;
-        vga_b_reg     <= mux_B;
-        vga_hs_reg    <= vga_hs_i;
-        vga_vs_reg    <= vga_vs_i;
-        vga_sync_reg  <= vga_sync_i;
-        vga_blank_reg <= vga_blank_i;
-    end
-end
-
-// drive board pins with registered outputs
-assign VGA_R       = vga_r_reg[9:2];
-assign VGA_G       = vga_g_reg[9:2];
-assign VGA_B       = vga_b_reg[9:2];
-assign VGA_HS      = vga_hs_reg;
-assign VGA_VS      = vga_vs_reg;
-assign VGA_SYNC_N  = vga_sync_reg;
-assign VGA_BLANK_N = vga_blank_reg;
 
 //=============================================================================
 // Static assignments
@@ -278,6 +238,14 @@ assign VGA_G = final_G[9:2];
 assign VGA_B = final_B[9:2];
 */
 
+// New overlay bit select to include game mode output
+assign mux_R = draw_mode ? draw_R : (game_mode ? game_R : final_R);
+assign mux_G = draw_mode ? draw_G : (game_mode ? game_G : final_G);
+assign mux_B = draw_mode ? draw_B : (game_mode ? game_B : final_B);
+
+assign VGA_R = mux_R[9:2];
+assign VGA_G = mux_G[9:2];
+assign VGA_B = mux_B[9:2];
 
 //=============================================================================
 // Camera input latch
@@ -453,10 +421,10 @@ VGA_Controller u1 (
     .oVGA_R      (oVGA_R),
     .oVGA_G      (oVGA_G),
     .oVGA_B      (oVGA_B),
-    .oVGA_H_SYNC (vga_hs_i), // Change controller I/O with internal wire
-    .oVGA_V_SYNC (vga_vs_i), //
-    .oVGA_SYNC   (vga_sync_i), //
-    .oVGA_BLANK  (vga_blank_i),//
+    .oVGA_H_SYNC (VGA_HS),
+    .oVGA_V_SYNC (VGA_VS),
+    .oVGA_SYNC   (VGA_SYNC_N),
+    .oVGA_BLANK  (VGA_BLANK_N),
     .oVGA_X      (oVGA_X),
     .oVGA_Y      (oVGA_Y),
     .oVGA_ACTIVE (oVGA_ACTIVE),
@@ -525,13 +493,26 @@ overlay u_overlay (
 );
 
 
-// Game mode proof of-concept game where white dot is drawn at the detected hand position on a black background
+// Draw game — hand leaves a white trail; KEY[3] clears the canvas
+draw_game u_draw (
+    .clk       (VGA_CTRL_CLK),
+    .rst_n     (DLY_RST_2),
+    .vsync     (VGA_VS),
+    .detected  (hand_detected),
+    .overlay_x (overlay_x),
+    .overlay_y (overlay_y),
+    .vga_x     (oVGA_X),
+    .vga_y     (oVGA_Y),
+    .clear_n   (KEY[3]),
+    .R_out     (draw_R),
+    .G_out     (draw_G),
+    .B_out     (draw_B)
+);
 
-
-// instantiation of the snake game
+// Snake game
 snake_wrapper u_game (
     .clk      (VGA_CTRL_CLK),
-    .rst_n    (game_rst_n),
+    .rst_n    (DLY_RST_2),
 
     .coord_x   (coord_x),
     .coord_y   (coord_y),
