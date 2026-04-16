@@ -119,7 +119,10 @@ module draw_game (
             vsync_prev <= vsync;
 
             if (!clear_n) begin
-                // Hold clear_n low to wipe the canvas
+                // Hold clear_n low to wipe the canvas and return to start screen
+                game_active      <= 1'b0;
+                start_hold_count <= 7'd0;
+                start_armed      <= 1'b0;
                 for (i = 0; i < GRID_COLS; i = i + 1)
                     for (j = 0; j < GRID_ROWS; j = j + 1)
                         canvas[i][j] <= 1'b0;
