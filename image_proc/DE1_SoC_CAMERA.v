@@ -6,6 +6,10 @@
 //          0 = increase exposure when KEY[1] is pressed
 //          1 = decrease exposure when KEY[1] is pressed
 //
+// SW[4]  : catch game mode
+//          0 = normal mode
+//          1 = catch game — move hand horizontally to control paddle
+//
 // SW[6]  : draw game mode
 //          0 = normal mode (controlled by SW[7])
 //          1 = drawing game — hand leaves a white trail on a black canvas
@@ -215,10 +219,15 @@ assign game_mode = SW[7];
 // Instantiate new RGB values for game mode output from the overlay
 wire [9:0] game_R, game_G, game_B;
 wire [9:0] draw_R, draw_G, draw_B;
+wire [9:0] catch_R, catch_G, catch_B;
 wire [9:0] mux_R, mux_G, mux_B;
 
 wire draw_mode;
 assign draw_mode = SW[6];
+
+// SW[4] = catch game mode
+wire catch_mode;
+assign catch_mode = SW[4];
 
 // Draw game — pen up/down and brush size controls
 wire pen_down;
@@ -258,9 +267,10 @@ assign VGA_B = final_B[9:2];
 */
 
 // New overlay bit select to include game mode output
-assign mux_R = draw_mode ? draw_R : (game_mode ? game_R : final_R);
-assign mux_G = draw_mode ? draw_G : (game_mode ? game_G : final_G);
-assign mux_B = draw_mode ? draw_B : (game_mode ? game_B : final_B);
+// Priority: draw (SW[6]) > catch (SW[4]) > snake (SW[7]) > camera
+assign mux_R = draw_mode  ? draw_R  : (catch_mode ? catch_R : (game_mode ? game_R : final_R));
+assign mux_G = draw_mode  ? draw_G  : (catch_mode ? catch_G : (game_mode ? game_G : final_G));
+assign mux_B = draw_mode  ? draw_B  : (catch_mode ? catch_B : (game_mode ? game_B : final_B));
 
 assign VGA_R = mux_R[9:2];
 assign VGA_G = mux_G[9:2];
@@ -530,6 +540,21 @@ draw_game u_draw (
     .R_out      (draw_R),
     .G_out      (draw_G),
     .B_out      (draw_B)
+);
+
+// Catch game — SW[4]=1 to activate, hand X controls paddle
+catch_game u_catch (
+    .clk       (VGA_CTRL_CLK),
+    .rst_n     (DLY_RST_2),
+    .vsync     (VGA_VS),
+    .detected  (hand_detected),
+    .overlay_x (coord_x),
+    .overlay_y (coord_y),
+    .vga_x     (oVGA_X),
+    .vga_y     (oVGA_Y),
+    .R_out     (catch_R),
+    .G_out     (catch_G),
+    .B_out     (catch_B)
 );
 
 // Snake game
