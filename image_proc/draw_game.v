@@ -4,8 +4,8 @@
 // The screen is divided into an 80x60 grid of 8x8 cells.
 // When the hand is detected and pen_down is high, cells under the hand
 // centroid are marked as painted on every vsync falling edge.
-// Painted cells render white; the live cursor renders as a small red
-// dot; everything else is black.
+// Painted cells render white; the live cursor renders yellow when pen_down
+// is high (drawing) and red when pen_down is low (pen lifted); everything else is black.
 //
 // Inputs
 //   clk        : VGA pixel clock (25 MHz)
@@ -117,9 +117,9 @@ module draw_game (
             G_out = 10'h3FF;
             B_out = 10'h3FF;
         end else if (cursor_on) begin
-            // Live cursor — red
+            // Live cursor — yellow when pen down, red when pen up
             R_out = 10'h3FF;
-            G_out = 10'h000;
+            G_out = pen_down ? 10'h3FF : 10'h000;
             B_out = 10'h000;
         end else begin
             // Background — black
