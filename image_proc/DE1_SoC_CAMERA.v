@@ -258,7 +258,9 @@ end
 //=============================================================================
 
 assign D5M_TRIGGER  = 1'b1;
-assign D5M_RESET_N  = DLY_RST_1;
+// D5M_RESET_N: held low on system startup (DLY_RST_1) AND during
+// the 10 ms clock-switch window so the camera never sees a glitch.
+assign D5M_RESET_N  = DLY_RST_1 && !cam_resetting;
 assign VGA_CTRL_CLK = VGA_CLK;
 assign LEDR[0] = cal_valid; // debug: indicates when a new center block RGB value is captured in calibration mode
 assign LEDR[9:1] = 9'b0; // turn off other LEDs
@@ -270,10 +272,15 @@ assign VGA_G = final_G[9:2];
 assign VGA_B = final_B[9:2];
 */
 
-// New overlay bit select to include game mode output
-assign mux_R = draw_mode ? draw_R : (game_mode ? game_R : final_R);
-assign mux_G = draw_mode ? draw_G : (game_mode ? game_G : final_G);
-assign mux_B = draw_mode ? draw_B : (game_mode ? game_B : final_B);
+// New overlay bit select to include game mode output.
+// game_R/G/B come from snake_wrapper (currently commented out).
+// While snake_wrapper is disabled, game mode falls back to the camera
+// overlay (final_R/G/B) so the tracking cursor stays visible.
+// Re-enable snake_wrapper and restore "game_mode ? game_R : final_R"
+// when the game renderer is active.
+assign mux_R = draw_mode ? draw_R : final_R;
+assign mux_G = draw_mode ? draw_G : final_G;
+assign mux_B = draw_mode ? draw_B : final_B;
 
 assign VGA_R = mux_R[9:2];
 assign VGA_G = mux_G[9:2];
@@ -382,8 +389,7 @@ SEG7_LUT_6 u5 (
 // u6 — PLL
 //=============================================================================
 
-wire fast_xclkin; // 50 MHz PLL output
-wire game_active = game_mode || draw_mode;
+wire fast_xclkin; // 50 MHz for game-mode camera clock
 
 sdram_pll u6 (
     .refclk  (CLOCK_50),
@@ -391,12 +397,58 @@ sdram_pll u6 (
     .outclk_0(sdram_ctrl_clk),
     .outclk_1(DRAM_CLK),
     .outclk_2(fast_xclkin),  // 50 MHz — game mode camera clock
-    .outclk_3(VGA_CLK)       // 25 MHz — camera display mode + VGA
+    .outclk_3(VGA_CLK)       // 25 MHz — VGA + camera display-mode clock
 );
 
-// Mux D5M_XCLKIN: 50 MHz in game/draw mode, 25 MHz (reuse VGA_CLK) otherwise.
-// Camera will glitch for 1-2 frames on transition then recover.
-assign D5M_XCLKIN = game_active ? fast_xclkin : VGA_CLK;
+//=============================================================================
+// Camera clock-switch sequencer
+//
+// Switching D5M_XCLKIN between two non-phase-aligned PLL outputs mid-cycle
+// would glitch the camera PLL and break tracking. Instead we:
+//   1. Assert D5M_RESET_N=0 simultaneously with the XCLKIN switch so the
+//      camera is powered down during any glitch (harmless).
+//   2. Also reset I2C_CCD_Config so it re-sends all register values after
+//      the camera comes back up (camera loses I2C regs on RESET_N).
+//   3. Hold reset for 10 ms (500k cycles @ 50 MHz) — stable new clock on
+//      release.
+//   4. Latch the clock selection once at reset-assert time so XCLKIN cannot
+//      glitch again during the hold window.
+//=============================================================================
+
+wire game_active = game_mode || draw_mode;
+
+// Edge detect (CLOCK_50 domain — switch transitions are slow)
+reg  game_active_d;
+wire game_active_edge = game_active ^ game_active_d;
+
+// 10 ms reset counter at 50 MHz
+reg [19:0] cam_rst_cnt;
+wire       cam_resetting = (cam_rst_cnt != 20'd0);
+
+always @(posedge CLOCK_50 or negedge KEY[0]) begin
+    if (!KEY[0]) begin
+        game_active_d <= 1'b0;
+        cam_rst_cnt   <= 20'd0;
+    end else begin
+        game_active_d <= game_active;
+        if (game_active_edge && !cam_resetting)
+            cam_rst_cnt <= 20'd500_000;       // start 10 ms window
+        else if (cam_resetting)
+            cam_rst_cnt <= cam_rst_cnt - 20'd1;
+    end
+end
+
+// Latch clock selection at the moment reset fires — XCLKIN is stable
+// for the entire reset window (no re-glitch if switch bounces).
+reg game_active_latched;
+always @(posedge CLOCK_50 or negedge KEY[0]) begin
+    if (!KEY[0])
+        game_active_latched <= 1'b0;
+    else if (game_active_edge && !cam_resetting)
+        game_active_latched <= game_active;
+end
+
+assign D5M_XCLKIN = game_active_latched ? fast_xclkin : VGA_CLK;
 
 //=============================================================================
 // u7 — SDRAM frame buffer (raw RGB, no image processing)
@@ -453,9 +505,14 @@ Sdram_Control u7 (
 // u8 — I2C camera configuration
 //=============================================================================
 
+// I2C reset: also low during clock-switch window so I2C_CCD_Config
+// resets its LUT_INDEX and re-sends all 25 camera register values
+// once the camera comes out of reset at the new clock frequency.
+wire i2c_rst_n = DLY_RST_2 && !cam_resetting;
+
 I2C_CCD_Config u8 (
     .iCLK           (CLOCK2_50),
-    .iRST_N         (DLY_RST_2),
+    .iRST_N         (i2c_rst_n),
     .iEXPOSURE_ADJ  (calibrate ? 1'b1 : (draw_mode ? 1'b1 : KEY[1])), // calibrate/draw modes block KEY[1] from adjusting exposure
     .iEXPOSURE_DEC_p(SW[0]),
     .iZOOM_MODE_SW  (SW[9]),
@@ -615,6 +672,8 @@ draw_game u_draw (
     .B_out      (draw_B)
 );
 
+
+/*
 // Snake game
 snake_wrapper u_game (
     .clk      (VGA_CTRL_CLK),
@@ -633,6 +692,6 @@ snake_wrapper u_game (
     .B_out    (game_B)
 );
 
-
+*/
 
 endmodule
