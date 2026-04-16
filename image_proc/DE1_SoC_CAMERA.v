@@ -258,9 +258,7 @@ end
 //=============================================================================
 
 assign D5M_TRIGGER  = 1'b1;
-// D5M_RESET_N: held low on system startup (DLY_RST_1) AND during
-// the 10 ms clock-switch window so the camera never sees a glitch.
-assign D5M_RESET_N  = DLY_RST_1 && !cam_resetting;
+assign D5M_RESET_N  = DLY_RST_1;
 assign VGA_CTRL_CLK = VGA_CLK;
 assign LEDR[0] = cal_valid; // debug: indicates when a new center block RGB value is captured in calibration mode
 assign LEDR[9:1] = 9'b0; // turn off other LEDs
@@ -389,66 +387,22 @@ SEG7_LUT_6 u5 (
 // u6 — PLL
 //=============================================================================
 
-wire fast_xclkin; // 50 MHz for game-mode camera clock
-
 sdram_pll u6 (
     .refclk  (CLOCK_50),
     .rst     (1'b0),
     .outclk_0(sdram_ctrl_clk),
     .outclk_1(DRAM_CLK),
-    .outclk_2(fast_xclkin),  // 50 MHz — game mode camera clock
-    .outclk_3(VGA_CLK)       // 25 MHz — VGA + camera display-mode clock
+    .outclk_2(),        // unused
+    .outclk_3(VGA_CLK)  // 25 MHz
 );
 
-//=============================================================================
-// Camera clock-switch sequencer
-//
-// Switching D5M_XCLKIN between two non-phase-aligned PLL outputs mid-cycle
-// would glitch the camera PLL and break tracking. Instead we:
-//   1. Assert D5M_RESET_N=0 simultaneously with the XCLKIN switch so the
-//      camera is powered down during any glitch (harmless).
-//   2. Also reset I2C_CCD_Config so it re-sends all register values after
-//      the camera comes back up (camera loses I2C regs on RESET_N).
-//   3. Hold reset for 10 ms (500k cycles @ 50 MHz) — stable new clock on
-//      release.
-//   4. Latch the clock selection once at reset-assert time so XCLKIN cannot
-//      glitch again during the hold window.
-//=============================================================================
-
-wire game_active = game_mode || draw_mode;
-
-// Edge detect (CLOCK_50 domain — switch transitions are slow)
-reg  game_active_d;
-wire game_active_edge = game_active ^ game_active_d;
-
-// 10 ms reset counter at 50 MHz
-reg [19:0] cam_rst_cnt;
-wire       cam_resetting = (cam_rst_cnt != 20'd0);
-
-always @(posedge CLOCK_50 or negedge KEY[0]) begin
-    if (!KEY[0]) begin
-        game_active_d <= 1'b0;
-        cam_rst_cnt   <= 20'd0;
-    end else begin
-        game_active_d <= game_active;
-        if (game_active_edge && !cam_resetting)
-            cam_rst_cnt <= 20'd500_000;       // start 10 ms window
-        else if (cam_resetting)
-            cam_rst_cnt <= cam_rst_cnt - 20'd1;
-    end
-end
-
-// Latch clock selection at the moment reset fires — XCLKIN is stable
-// for the entire reset window (no re-glitch if switch bounces).
-reg game_active_latched;
-always @(posedge CLOCK_50 or negedge KEY[0]) begin
-    if (!KEY[0])
-        game_active_latched <= 1'b0;
-    else if (game_active_edge && !cam_resetting)
-        game_active_latched <= game_active;
-end
-
-assign D5M_XCLKIN = game_active_latched ? fast_xclkin : VGA_CLK;
+// Fixed 25 MHz to camera. Dynamic XCLKIN switching between two
+// non-phase-aligned PLL outputs is unreliable regardless of reset
+// sequencing — the camera PLL re-lock time is non-deterministic and
+// I2C reconfiguration adds another ~25 ms of instability each switch.
+// color_detect already runs on D5M_PIXLCLK (~40 MHz, ~112 fps) which
+// is ~2x faster than the old VGA-clock approach (25 MHz, ~60 fps).
+assign D5M_XCLKIN = VGA_CLK;
 
 //=============================================================================
 // u7 — SDRAM frame buffer (raw RGB, no image processing)
@@ -505,14 +459,9 @@ Sdram_Control u7 (
 // u8 — I2C camera configuration
 //=============================================================================
 
-// I2C reset: also low during clock-switch window so I2C_CCD_Config
-// resets its LUT_INDEX and re-sends all 25 camera register values
-// once the camera comes out of reset at the new clock frequency.
-wire i2c_rst_n = DLY_RST_2 && !cam_resetting;
-
 I2C_CCD_Config u8 (
     .iCLK           (CLOCK2_50),
-    .iRST_N         (i2c_rst_n),
+    .iRST_N         (DLY_RST_2),
     .iEXPOSURE_ADJ  (calibrate ? 1'b1 : (draw_mode ? 1'b1 : KEY[1])), // calibrate/draw modes block KEY[1] from adjusting exposure
     .iEXPOSURE_DEC_p(SW[0]),
     .iZOOM_MODE_SW  (SW[9]),
@@ -626,6 +575,44 @@ always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
 end
 
 //=============================================================================
+// Exponential low-pass filter on coord_x / coord_y (VGA domain)
+//
+// Runs at VGA_CTRL_CLK (25 MHz). The 28-bit accumulator stores the value
+// scaled by 2^SMOOTH so integer truncation doesn't eat the fractional steps.
+//
+//   output = acc >> SMOOTH
+//   acc[n] = acc[n-1] - acc[n-1]>>SMOOTH + coord   (one step per VGA clock)
+//
+// Time constant τ = 2^SMOOTH / 25 MHz.
+//   SMOOTH = 18 → τ ≈ 10.5 ms  (~4 tracking updates at 375 Hz)
+//   SMOOTH = 17 → τ ≈  5.2 ms  (faster, less smoothing)
+//   SMOOTH = 19 → τ ≈ 21.0 ms  (slower, more smoothing)
+//
+// Filter only advances while hand_detected so the output freezes at the
+// last known position rather than drifting toward 0 when the hand hides.
+//=============================================================================
+
+localparam SMOOTH = 18;
+
+reg [27:0] filt_coord_x_acc, filt_coord_y_acc;
+wire [9:0] smooth_coord_x = filt_coord_x_acc[27:18];
+wire [9:0] smooth_coord_y = filt_coord_y_acc[27:18];
+
+always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
+    if (!DLY_RST_2) begin
+        filt_coord_x_acc <= 28'd0;
+        filt_coord_y_acc <= 28'd0;
+    end else if (hand_detected) begin
+        filt_coord_x_acc <= filt_coord_x_acc
+                            - (filt_coord_x_acc >> SMOOTH)
+                            + {18'd0, coord_x};
+        filt_coord_y_acc <= filt_coord_y_acc
+                            - (filt_coord_y_acc >> SMOOTH)
+                            + {18'd0, coord_y};
+    end
+end
+
+//=============================================================================
 // u_overlay — crosshair renderer
 //=============================================================================
 
@@ -660,8 +647,8 @@ draw_game u_draw (
     .rst_n      (DLY_RST_2),
     .vsync      (VGA_VS),
     .detected   (hand_detected),
-    .overlay_x  (coord_x),
-    .overlay_y  (coord_y),
+    .overlay_x  (smooth_coord_x),
+    .overlay_y  (smooth_coord_y),
     .vga_x      (oVGA_X),
     .vga_y      (oVGA_Y),
     .clear_n    (KEY[3]),
@@ -679,8 +666,8 @@ snake_wrapper u_game (
     .clk      (VGA_CTRL_CLK),
     .rst_n    (DLY_RST_2),
 
-    .coord_x   (coord_x),
-    .coord_y   (coord_y),
+    .coord_x   (smooth_coord_x),
+    .coord_y   (smooth_coord_y),
     .detected (hand_detected),
 
     .vga_x    (oVGA_X),

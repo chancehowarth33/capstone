@@ -4,6 +4,26 @@
 			"name" : "Top",
 			"pins" : [
 				{
+					"name" : "HEX0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX0[4]",
+					"strict" : false
+				},
+				{
 					"name" : "DRAM_ADDR[0]",
 					"strict" : false
 				},
@@ -85,26 +105,6 @@
 				},
 				{
 					"name" : "DRAM_WE_N",
-					"strict" : false
-				},
-				{
-					"name" : "HEX0[0]",
-					"strict" : false
-				},
-				{
-					"name" : "HEX0[1]",
-					"strict" : false
-				},
-				{
-					"name" : "HEX0[2]",
-					"strict" : false
-				},
-				{
-					"name" : "HEX0[3]",
-					"strict" : false
-				},
-				{
-					"name" : "HEX0[4]",
 					"strict" : false
 				},
 				{
@@ -376,10 +376,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "D5M_XCLKIN",
-					"strict" : false
-				},
-				{
 					"name" : "DRAM_DQ[0]",
 					"strict" : false
 				},
@@ -472,10 +468,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[7]",
-					"strict" : false
-				},
-				{
 					"name" : "CLOCK2_50",
 					"strict" : false
 				},
@@ -485,6 +477,10 @@
 				},
 				{
 					"name" : "D5M_PIXLCLK",
+					"strict" : false
+				},
+				{
+					"name" : "SW[7]",
 					"strict" : false
 				},
 				{
