@@ -58,9 +58,6 @@ module color_detect (
         (block_col == 5'd10) &&
         (block_row == 4'd7);
 
-    wire [9:0] block_center_x = {block_col, 5'd16};
-    wire [9:0] block_center_y = {block_row, 5'd16};
-
     wire [9:0] block_left_w   = {block_col, 5'd0};
     wire [9:0] block_right_w  = {block_col, 5'd31};
     wire [9:0] block_top_w    = {block_row, 5'd0};
@@ -84,8 +81,6 @@ module color_detect (
     reg [19:0] sum_G [0:NUM_BLOCK_COLS-1];
     reg [19:0] sum_B [0:NUM_BLOCK_COLS-1];
 
-    reg [15:0] centroid_sum_x;
-    reg [15:0] centroid_sum_y;
     reg [10:0] match_count;
 
     reg [9:0] frame_min_x;
@@ -117,8 +112,11 @@ module color_detect (
         (diffG <= TOL_G) &&
         (diffB <= TOL_B);
 
-    wire [9:0] tracked_x = centroid_sum_x / match_count;
-    wire [9:0] tracked_y = centroid_sum_y / match_count;
+    wire [10:0] bbox_cx   = {1'b0, frame_min_x} + {1'b0, frame_max_x};
+    wire [10:0] bbox_cy   = {1'b0, frame_min_y} + {1'b0, frame_max_y};
+    wire [9:0]  tracked_x = bbox_cx[10:1];
+    wire [9:0]  tracked_y = bbox_cy[10:1];
+
 
     //========================
     // main logic
@@ -150,27 +148,23 @@ module color_detect (
             // frame end
             //========================
             if (vsync_fall) begin
-                if (!calibrate && match_count >= MIN_MATCH_BLOCKS) begin
-                    detected  <= 1;
-
-                    overlay_x <= tracked_x;
-                    overlay_y <= tracked_y;
-
-                    // mirrored for game
-                    coord_x   <= 10'd639 - tracked_x;
-                    coord_y   <= tracked_y;
-
-                    box_left   <= frame_min_x;
-                    box_right  <= frame_max_x;
-                    box_top    <= frame_min_y;
-                    box_bottom <= frame_max_y;
-                end else begin
-                    detected <= 0;
+                if (!calibrate) begin
+                    if (match_count >= MIN_MATCH_BLOCKS) begin
+                        detected  <= 1;
+                        overlay_x <= tracked_x;
+                        overlay_y <= tracked_y;
+                        coord_x   <= 10'd639 - tracked_x;
+                        coord_y   <= tracked_y;
+                        box_left   <= frame_min_x;
+                        box_right  <= frame_max_x;
+                        box_top    <= frame_min_y;
+                        box_bottom <= frame_max_y;
+                    end else begin
+                        detected <= 0;
+                    end
                 end
 
-                centroid_sum_x <= 0;
-                centroid_sum_y <= 0;
-                match_count    <= 0;
+                match_count <= 0;
 
                 frame_min_x <= 639;
                 frame_max_x <= 0;
@@ -216,9 +210,7 @@ module color_detect (
 
                     // detection
                     if (!calibrate && color_match) begin
-                        centroid_sum_x <= centroid_sum_x + block_center_x;
-                        centroid_sum_y <= centroid_sum_y + block_center_y;
-                        match_count    <= match_count + 1;
+                        match_count <= match_count + 1;
 
                         if (block_left_w < frame_min_x) frame_min_x <= block_left_w;
                         if (block_right_w > frame_max_x) frame_max_x <= block_right_w;
