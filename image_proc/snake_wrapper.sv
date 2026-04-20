@@ -9,6 +9,8 @@ module snake_wrapper (
     input  logic [9:0] vga_x,
     input  logic [9:0] vga_y,
     input  logic       vsync,
+    
+    input logic game_mode,
 
     output logic [9:0] R_out,
     output logic [9:0] G_out,
@@ -97,7 +99,9 @@ module snake_wrapper (
     logic vsync_prev;
     logic vsync_fall;
 
-    // Hand helpers
+    // Hand helpers (relative to snake head)
+    logic [9:0] head_center_x;
+    logic [9:0] head_center_y;
     logic [10:0] dx_mag;
     logic [10:0] dy_mag;
     logic        hand_left;
@@ -120,29 +124,38 @@ module snake_wrapper (
     assign game_over_flash_on = ~game_over_flash_phase[0];
 
     always_comb begin
-        if (coord_x < 10'd320) begin
-            dx_mag    = {1'b0, (10'd320 - coord_x)};
+        // Center of current snake head cell in pixel coordinates
+        head_center_x = {snake_head_col, 5'b00000} + 10'd16;
+        head_center_y = {snake_head_row, 5'b00000} + 10'd16;
+
+        // Compare hand position relative to snake head, not screen center
+        if (coord_x < head_center_x) begin
+            dx_mag    = {1'b0, (head_center_x - coord_x)};
             hand_left = 1'b1;
         end
         else begin
-            dx_mag    = {1'b0, (coord_x - 10'd320)};
+            dx_mag    = {1'b0, (coord_x - head_center_x)};
             hand_left = 1'b0;
         end
 
-        if (coord_y < 10'd240) begin
-            dy_mag  = {1'b0, (10'd240 - coord_y)};
+        if (coord_y < head_center_y) begin
+            dy_mag  = {1'b0, (head_center_y - coord_y)};
             hand_up = 1'b1;
         end
         else begin
-            dy_mag  = {1'b0, (coord_y - 10'd240)};
+            dy_mag  = {1'b0, (coord_y - head_center_y)};
             hand_up = 1'b0;
         end
 
-        in_dead_zone = (dx_mag <= DEAD_ZONE_X) && (dy_mag <= DEAD_ZONE_Y);
-
-        in_start_box = detected &&
+        // Dead zone now follows the snake head
+        in_dead_zone = game_mode && detected &&
                        (dx_mag <= DEAD_ZONE_X) &&
                        (dy_mag <= DEAD_ZONE_Y);
+
+        // Start box stays fixed at screen center
+        in_start_box = game_mode && detected &&
+                       (coord_x >= 10'd272) && (coord_x < 10'd368) &&
+                       (coord_y >= 10'd192) && (coord_y < 10'd288);
     end
 
     always_comb begin
@@ -264,9 +277,62 @@ module snake_wrapper (
             vsync_prev  <= vsync;
         end
         else begin
+            
             vsync_prev <= vsync;
 
-            if (vsync_fall) begin
+             if (!game_mode) begin
+                snake_head_col <= 5'd10;
+                snake_head_row <= 4'd7;
+
+                snake_body1_col  <= 5'd9;  snake_body1_row  <= 4'd7;
+                snake_body2_col  <= 5'd8;  snake_body2_row  <= 4'd7;
+                snake_body3_col  <= 5'd7;  snake_body3_row  <= 4'd7;
+                snake_body4_col  <= 5'd6;  snake_body4_row  <= 4'd7;
+                snake_body5_col  <= 5'd5;  snake_body5_row  <= 4'd7;
+                snake_body6_col  <= 5'd4;  snake_body6_row  <= 4'd7;
+                snake_body7_col  <= 5'd3;  snake_body7_row  <= 4'd7;
+                snake_body8_col  <= 5'd2;  snake_body8_row  <= 4'd7;
+                snake_body9_col  <= 5'd1;  snake_body9_row  <= 4'd7;
+                snake_body10_col <= 5'd0;  snake_body10_row <= 4'd7;
+                snake_body11_col <= 5'd0;  snake_body11_row <= 4'd7;
+                snake_body12_col <= 5'd0;  snake_body12_row <= 4'd7;
+                snake_body13_col <= 5'd0;  snake_body13_row <= 4'd7;
+                snake_body14_col <= 5'd0;  snake_body14_row <= 4'd7;
+                snake_body15_col <= 5'd0;  snake_body15_row <= 4'd7;
+                snake_body16_col <= 5'd0;  snake_body16_row <= 4'd7;
+                snake_body17_col <= 5'd0;  snake_body17_row <= 4'd7;
+                snake_body18_col <= 5'd0;  snake_body18_row <= 4'd7;
+                snake_body19_col <= 5'd0;  snake_body19_row <= 4'd7;
+                snake_body20_col <= 5'd0;  snake_body20_row <= 4'd7;
+                snake_body21_col <= 5'd0;  snake_body21_row <= 4'd7;
+                snake_body22_col <= 5'd0;  snake_body22_row <= 4'd7;
+                snake_body23_col <= 5'd0;  snake_body23_row <= 4'd7;
+                snake_body24_col <= 5'd0;  snake_body24_row <= 4'd7;
+                snake_body25_col <= 5'd0;  snake_body25_row <= 4'd7;
+                snake_body26_col <= 5'd0;  snake_body26_row <= 4'd7;
+                snake_body27_col <= 5'd0;  snake_body27_row <= 4'd7;
+
+                snake_len <= 5'd2;
+                score     <= 7'd0;
+
+                food_col  <= 5'd5;
+                food_row  <= 4'd5;
+                food_step <= 4'd0;
+
+                game_running     <= 1'b0;
+                start_hold_count <= 7'd0;
+                start_armed      <= 1'b0;
+
+                game_over_active      <= 1'b0;
+                game_over_score       <= 7'd0;
+                game_over_flash_phase <= 4'd0;
+                game_over_flash_count <= 6'd0;
+
+                direction   <= DIR_RIGHT;
+                frame_count <= 4'd0;
+            end
+
+            else if (vsync_fall) begin
                 // ------------------------------------------------
                 // If game over is active, flash the game-over screen
                 // 5 times, then return to the normal yellow start box
@@ -563,6 +629,7 @@ module snake_wrapper (
         .food_row(food_row),
 
         .game_running(game_running),
+        .start_hold_count(start_hold_count),
 
         .game_over_active(game_over_active),
         .game_over_flash_on(game_over_flash_on),

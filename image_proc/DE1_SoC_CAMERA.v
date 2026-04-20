@@ -543,7 +543,9 @@ snake_wrapper u_game (
 
     .R_out    (game_R),
     .G_out    (game_G),
-    .B_out    (game_B)
+    .B_out    (game_B),
+
+    .game_mode(game_mode)
 );
 
 
