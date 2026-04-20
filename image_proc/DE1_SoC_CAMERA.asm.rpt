@@ -1,5 +1,5 @@
 Assembler report for DE1_SoC_CAMERA
-Mon Apr 20 06:19:58 2026
+Mon Apr 20 18:16:43 2026
 Quartus Prime Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
 
 
@@ -38,7 +38,7 @@ on the Quartus Prime software download page.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Mon Apr 20 06:19:58 2026 ;
+; Assembler Status      ; Successful - Mon Apr 20 18:16:43 2026 ;
 ; Revision Name         ; DE1_SoC_CAMERA                        ;
 ; Top-level Entity Name ; DE1_SoC_CAMERA                        ;
 ; Family                ; Cyclone V                             ;
@@ -67,8 +67,8 @@ on the Quartus Prime software download page.
 +----------------+-------------------------------------------------------------------------------+
 ; Option         ; Setting                                                                       ;
 +----------------+-------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x025F6B02                                                                    ;
-; Checksum       ; 0x025F6B02                                                                    ;
+; JTAG usercode  ; 0x02641314                                                                    ;
+; Checksum       ; 0x02641314                                                                    ;
 +----------------+-------------------------------------------------------------------------------+
 
 
@@ -78,14 +78,14 @@ on the Quartus Prime software download page.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
-    Info: Processing started: Mon Apr 20 06:19:40 2026
+    Info: Processing started: Mon Apr 20 18:16:22 2026
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off DE1_SoC_CAMERA -c DE1_SoC_CAMERA
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 5396 megabytes
-    Info: Processing ended: Mon Apr 20 06:19:58 2026
-    Info: Elapsed time: 00:00:18
-    Info: Total CPU time (on all processors): 00:00:11
+    Info: Peak virtual memory: 5404 megabytes
+    Info: Processing ended: Mon Apr 20 18:16:43 2026
+    Info: Elapsed time: 00:00:21
+    Info: Total CPU time (on all processors): 00:00:16
 
 
