@@ -87,6 +87,7 @@ module catch_game (
     reg [1:0]  state;
     reg [9:0]  obj_x;
     reg [9:0]  obj_y;
+    reg        obj_type;         // 0 = coin, 1 = bomb
     reg [6:0]  score;
     reg [2:0]  lives;
     reg [9:0]  paddle_center;
@@ -166,6 +167,7 @@ module catch_game (
             state            <= STATE_IDLE;
             obj_x            <= 10'd312;
             obj_y            <= 10'd0;
+            obj_type         <= 1'b0;
             score            <= 7'd0;
             lives            <= LIVES_MAX;
             start_hold_count <= 7'd0;
@@ -198,6 +200,7 @@ module catch_game (
                             start_hold_count <= 7'd0;
                             obj_y            <= 10'd0;
                             obj_x            <= {1'b0, lfsr[8:0]};
+                            obj_type         <= lfsr[9];
                         end
                     end
 
@@ -206,14 +209,24 @@ module catch_game (
                     // ------------------------------------------------
                     STATE_PLAYING: begin
                         if (obj_caught) begin
-                            if (score < 7'd99) score <= score + 7'd1;
-                            obj_y <= 10'd0;
-                            obj_x <= {1'b0, lfsr[8:0]};
+                            if (obj_type == 1'b1) begin
+                                // Bomb caught — instant game over
+                                lives           <= 3'd0;
+                                state           <= STATE_GAMEOVER;
+                                game_over_count <= 8'd0;
+                            end else begin
+                                // Coin caught — score and respawn
+                                if (score < 7'd99) score <= score + 7'd1;
+                                obj_y    <= 10'd0;
+                                obj_x    <= {1'b0, lfsr[8:0]};
+                                obj_type <= lfsr[9];
+                            end
                         end else if (obj_missed) begin
                             if (lives > 3'd1) begin
-                                lives <= lives - 3'd1;
-                                obj_y <= 10'd0;
-                                obj_x <= {1'b0, lfsr[8:0]};
+                                lives    <= lives - 3'd1;
+                                obj_y    <= 10'd0;
+                                obj_x    <= {1'b0, lfsr[8:0]};
+                                obj_type <= lfsr[9];
                             end else begin
                                 lives           <= 3'd0;
                                 state           <= STATE_GAMEOVER;
@@ -564,6 +577,114 @@ module catch_game (
     endfunction
 
     // -----------------------------------------------------------------------
+    // Coin sprite ROM — 16x16, two layers.
+    // Bit 15 = leftmost pixel (x=0), bit 0 = rightmost (x=15).
+    // Outer circle (gold ring) minus inner is the ring; inner is yellow fill.
+    // -----------------------------------------------------------------------
+    function [15:0] get_coin_outer_row;
+        input [3:0] py;
+        case (py)
+            4'd0:  get_coin_outer_row = 16'h0000;
+            4'd1:  get_coin_outer_row = 16'h07E0;
+            4'd2:  get_coin_outer_row = 16'h0FF0;
+            4'd3:  get_coin_outer_row = 16'h1FF8;
+            4'd4:  get_coin_outer_row = 16'h3FFC;
+            4'd5:  get_coin_outer_row = 16'h7FFE;
+            4'd6:  get_coin_outer_row = 16'h7FFE;
+            4'd7:  get_coin_outer_row = 16'h7FFE;
+            4'd8:  get_coin_outer_row = 16'h7FFE;
+            4'd9:  get_coin_outer_row = 16'h7FFE;
+            4'd10: get_coin_outer_row = 16'h7FFE;
+            4'd11: get_coin_outer_row = 16'h3FFC;
+            4'd12: get_coin_outer_row = 16'h1FF8;
+            4'd13: get_coin_outer_row = 16'h0FF0;
+            4'd14: get_coin_outer_row = 16'h07E0;
+            4'd15: get_coin_outer_row = 16'h0000;
+            default: get_coin_outer_row = 16'h0000;
+        endcase
+    endfunction
+
+    function [15:0] get_coin_inner_row;
+        input [3:0] py;
+        case (py)
+            4'd0:  get_coin_inner_row = 16'h0000;
+            4'd1:  get_coin_inner_row = 16'h0000;
+            4'd2:  get_coin_inner_row = 16'h0000;
+            4'd3:  get_coin_inner_row = 16'h03C0;
+            4'd4:  get_coin_inner_row = 16'h0FF0;
+            4'd5:  get_coin_inner_row = 16'h0FF0;
+            4'd6:  get_coin_inner_row = 16'h1FF8;
+            4'd7:  get_coin_inner_row = 16'h1FF8;
+            4'd8:  get_coin_inner_row = 16'h1FF8;
+            4'd9:  get_coin_inner_row = 16'h1FF8;
+            4'd10: get_coin_inner_row = 16'h0FF0;
+            4'd11: get_coin_inner_row = 16'h0FF0;
+            4'd12: get_coin_inner_row = 16'h03C0;
+            4'd13: get_coin_inner_row = 16'h0000;
+            4'd14: get_coin_inner_row = 16'h0000;
+            4'd15: get_coin_inner_row = 16'h0000;
+            default: get_coin_inner_row = 16'h0000;
+        endcase
+    endfunction
+
+    // White highlight — small cluster top-left of coin centre
+    function [15:0] get_coin_highlight_row;
+        input [3:0] py;
+        case (py)
+            4'd3:  get_coin_highlight_row = 16'h0200; // x=6
+            4'd4:  get_coin_highlight_row = 16'h0600; // x=5,6
+            4'd5:  get_coin_highlight_row = 16'h0400; // x=5
+            default: get_coin_highlight_row = 16'h0000;
+        endcase
+    endfunction
+
+    // -----------------------------------------------------------------------
+    // Bomb sprite ROM — 16x16, three layers.
+    // Body: dark charcoal circle.  Shine: gray highlight top-left.
+    // Fuse: two orange pixels above the body at top-right.
+    // -----------------------------------------------------------------------
+    function [15:0] get_bomb_body_row;
+        input [3:0] py;
+        case (py)
+            4'd0:  get_bomb_body_row = 16'h0000;
+            4'd1:  get_bomb_body_row = 16'h07E0;
+            4'd2:  get_bomb_body_row = 16'h0FF0;
+            4'd3:  get_bomb_body_row = 16'h1FF8;
+            4'd4:  get_bomb_body_row = 16'h3FFC;
+            4'd5:  get_bomb_body_row = 16'h7FFE;
+            4'd6:  get_bomb_body_row = 16'h7FFE;
+            4'd7:  get_bomb_body_row = 16'h7FFE;
+            4'd8:  get_bomb_body_row = 16'h7FFE;
+            4'd9:  get_bomb_body_row = 16'h7FFE;
+            4'd10: get_bomb_body_row = 16'h7FFE;
+            4'd11: get_bomb_body_row = 16'h3FFC;
+            4'd12: get_bomb_body_row = 16'h1FF8;
+            4'd13: get_bomb_body_row = 16'h0FF0;
+            4'd14: get_bomb_body_row = 16'h07E0;
+            4'd15: get_bomb_body_row = 16'h0000;
+            default: get_bomb_body_row = 16'h0000;
+        endcase
+    endfunction
+
+    function [15:0] get_bomb_shine_row;
+        input [3:0] py;
+        case (py)
+            4'd3: get_bomb_shine_row = 16'h0C00; // x=4,5
+            4'd4: get_bomb_shine_row = 16'h0800; // x=4
+            default: get_bomb_shine_row = 16'h0000;
+        endcase
+    endfunction
+
+    // Fuse: two orange pixels at (x=10,11, y=0) — above the body top-right
+    function [15:0] get_bomb_fuse_row;
+        input [3:0] py;
+        case (py)
+            4'd0: get_bomb_fuse_row = 16'h0030; // x=10,11
+            default: get_bomb_fuse_row = 16'h0000;
+        endcase
+    endfunction
+
+    // -----------------------------------------------------------------------
     // Pixel renderer — combinational
     // -----------------------------------------------------------------------
 
@@ -599,8 +720,12 @@ module catch_game (
     reg [4:0]  go_char_code, go_glyph_bits;
 
     // Gameplay pixel signals
-    reg obj_on, paddle_on, cursor_on;
-    reg life1_on, life2_on, life3_on;
+    reg [3:0]  obj_px_r, obj_py_r;
+    reg [15:0] spr_row_a, spr_row_b, spr_row_c;
+    reg        coin_outer_on, coin_inner_on, coin_hi_on;
+    reg        bomb_body_on, bomb_shine_on, bomb_fuse_on;
+    reg        paddle_on, cursor_on;
+    reg        life1_on, life2_on, life3_on;
 
     always @(*) begin
         // -------------------------------------------------------------------
@@ -635,12 +760,22 @@ module catch_game (
         go_small_char_px    = 3'd0;  go_small_char_py = 3'd0;
         go_char_code        = CH_BLANK; go_glyph_bits = 5'b00000;
 
-        obj_on              = 1'b0;
-        paddle_on           = 1'b0;
-        cursor_on           = 1'b0;
-        life1_on            = 1'b0;
-        life2_on            = 1'b0;
-        life3_on            = 1'b0;
+        obj_px_r        = 4'd0;
+        obj_py_r        = 4'd0;
+        spr_row_a       = 16'h0000;
+        spr_row_b       = 16'h0000;
+        spr_row_c       = 16'h0000;
+        coin_outer_on   = 1'b0;
+        coin_inner_on   = 1'b0;
+        coin_hi_on      = 1'b0;
+        bomb_body_on    = 1'b0;
+        bomb_shine_on   = 1'b0;
+        bomb_fuse_on    = 1'b0;
+        paddle_on       = 1'b0;
+        cursor_on       = 1'b0;
+        life1_on        = 1'b0;
+        life2_on        = 1'b0;
+        life3_on        = 1'b0;
 
         R_out               = 10'h000;
         G_out               = 10'h000;
@@ -755,9 +890,27 @@ module catch_game (
             // ----------------------------------------------------------------
             STATE_PLAYING: begin
 
-                // Falling object (16x16 cyan square)
-                obj_on = (vga_x >= obj_x) && (vga_x < obj_x + OBJ_W) &&
-                         (vga_y >= obj_y) && (vga_y < obj_y + OBJ_H);
+                // Falling object (16x16 sprite — coin or bomb)
+                if ((vga_x >= obj_x) && (vga_x < obj_x + OBJ_W) &&
+                    (vga_y >= obj_y) && (vga_y < obj_y + OBJ_H)) begin
+                    obj_px_r = vga_x[3:0] - obj_x[3:0];
+                    obj_py_r = vga_y[3:0] - obj_y[3:0];
+                    if (obj_type == 1'b0) begin
+                        spr_row_a    = get_coin_outer_row(obj_py_r);
+                        spr_row_b    = get_coin_inner_row(obj_py_r);
+                        spr_row_c    = get_coin_highlight_row(obj_py_r);
+                        coin_outer_on = spr_row_a[15 - obj_px_r];
+                        coin_inner_on = spr_row_b[15 - obj_px_r];
+                        coin_hi_on    = spr_row_c[15 - obj_px_r];
+                    end else begin
+                        spr_row_a    = get_bomb_body_row(obj_py_r);
+                        spr_row_b    = get_bomb_shine_row(obj_py_r);
+                        spr_row_c    = get_bomb_fuse_row(obj_py_r);
+                        bomb_body_on  = spr_row_a[15 - obj_px_r];
+                        bomb_shine_on = spr_row_b[15 - obj_px_r];
+                        bomb_fuse_on  = spr_row_c[15 - obj_px_r];
+                    end
+                end
 
                 // Paddle (white bar)
                 paddle_on = (vga_x >= paddle_center - PADDLE_HALF) &&
@@ -823,8 +976,18 @@ module catch_game (
                     R_out = (lives >= 3'd1) ? 10'h000 : 10'h100;
                     G_out = (lives >= 3'd1) ? 10'h3FF : 10'h100;
                     B_out = 10'h000;
-                end else if (obj_on) begin
-                    R_out = 10'h000; G_out = 10'h3FF; B_out = 10'h3FF; // Cyan object
+                end else if (coin_hi_on) begin
+                    R_out = 10'h3FF; G_out = 10'h3FF; B_out = 10'h3FF; // White highlight
+                end else if (coin_inner_on) begin
+                    R_out = 10'h3FF; G_out = 10'h3FF; B_out = 10'h000; // Bright yellow fill
+                end else if (coin_outer_on) begin
+                    R_out = 10'h3FF; G_out = 10'h200; B_out = 10'h000; // Gold ring
+                end else if (bomb_fuse_on) begin
+                    R_out = 10'h3FF; G_out = 10'h180; B_out = 10'h000; // Orange fuse
+                end else if (bomb_shine_on) begin
+                    R_out = 10'h280; G_out = 10'h280; B_out = 10'h280; // Gray shine
+                end else if (bomb_body_on) begin
+                    R_out = 10'h0C0; G_out = 10'h0C0; B_out = 10'h0C0; // Dark charcoal body
                 end else if (paddle_on) begin
                     R_out = 10'h3FF; G_out = 10'h3FF; B_out = 10'h3FF; // White paddle
                 end else if (cursor_on) begin
