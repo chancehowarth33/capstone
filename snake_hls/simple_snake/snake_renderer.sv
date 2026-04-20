@@ -983,6 +983,11 @@ module snake_renderer (
             G_out = 10'd1023;
             B_out = 10'd1023;
         end
+        else if (hand_on) begin
+            R_out = 10'd0;
+            G_out = 10'd700;
+            B_out = 10'd1023;
+        end
         else if (start_text_on) begin
             R_out = 10'd80;
             G_out = 10'd40;
@@ -1051,11 +1056,6 @@ module snake_renderer (
                 G_out = 10'd0;
                 B_out = 10'd0;
             end
-        end
-        else if (hand_on) begin
-            R_out = 10'd0;
-            G_out = 10'd700;
-            B_out = 10'd1023;
         end
         else begin
             // Checkerboard grass background

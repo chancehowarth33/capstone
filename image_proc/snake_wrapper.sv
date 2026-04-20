@@ -117,9 +117,11 @@ module snake_wrapper (
 
     // Collision
     logic self_collision;
+    logic grow_this_step;
 
     assign vsync_fall = (vsync_prev == 1'b1) && (vsync == 1'b0);
-
+    assign grow_this_step = (next_head_col == food_col) && (next_head_row == food_row);
+    
     // Even flash phases are visible, odd phases are hidden
     assign game_over_flash_on = ~game_over_flash_phase[0];
 
@@ -193,33 +195,178 @@ module snake_wrapper (
     always_comb begin
         self_collision = 1'b0;
 
-        if ((snake_len >= 5'd2)  && (next_head_col == snake_body1_col)  && (next_head_row == snake_body1_row))  self_collision = 1'b1;
-        if ((snake_len >= 5'd3)  && (next_head_col == snake_body2_col)  && (next_head_row == snake_body2_row))  self_collision = 1'b1;
-        if ((snake_len >= 5'd4)  && (next_head_col == snake_body3_col)  && (next_head_row == snake_body3_row))  self_collision = 1'b1;
-        if ((snake_len >= 5'd5)  && (next_head_col == snake_body4_col)  && (next_head_row == snake_body4_row))  self_collision = 1'b1;
-        if ((snake_len >= 5'd6)  && (next_head_col == snake_body5_col)  && (next_head_row == snake_body5_row))  self_collision = 1'b1;
-        if ((snake_len >= 5'd7)  && (next_head_col == snake_body6_col)  && (next_head_row == snake_body6_row))  self_collision = 1'b1;
-        if ((snake_len >= 5'd8)  && (next_head_col == snake_body7_col)  && (next_head_row == snake_body7_row))  self_collision = 1'b1;
-        if ((snake_len >= 5'd9)  && (next_head_col == snake_body8_col)  && (next_head_row == snake_body8_row))  self_collision = 1'b1;
-        if ((snake_len >= 5'd10) && (next_head_col == snake_body9_col)  && (next_head_row == snake_body9_row))  self_collision = 1'b1;
-        if ((snake_len >= 5'd11) && (next_head_col == snake_body10_col) && (next_head_row == snake_body10_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd12) && (next_head_col == snake_body11_col) && (next_head_row == snake_body11_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd13) && (next_head_col == snake_body12_col) && (next_head_row == snake_body12_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd14) && (next_head_col == snake_body13_col) && (next_head_row == snake_body13_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd15) && (next_head_col == snake_body14_col) && (next_head_row == snake_body14_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd16) && (next_head_col == snake_body15_col) && (next_head_row == snake_body15_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd17) && (next_head_col == snake_body16_col) && (next_head_row == snake_body16_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd18) && (next_head_col == snake_body17_col) && (next_head_row == snake_body17_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd19) && (next_head_col == snake_body18_col) && (next_head_row == snake_body18_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd20) && (next_head_col == snake_body19_col) && (next_head_row == snake_body19_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd21) && (next_head_col == snake_body20_col) && (next_head_row == snake_body20_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd22) && (next_head_col == snake_body21_col) && (next_head_row == snake_body21_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd23) && (next_head_col == snake_body22_col) && (next_head_row == snake_body22_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd24) && (next_head_col == snake_body23_col) && (next_head_row == snake_body23_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd25) && (next_head_col == snake_body24_col) && (next_head_row == snake_body24_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd26) && (next_head_col == snake_body25_col) && (next_head_row == snake_body25_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd27) && (next_head_col == snake_body26_col) && (next_head_row == snake_body26_row)) self_collision = 1'b1;
-        if ((snake_len >= 5'd28) && (next_head_col == snake_body27_col) && (next_head_row == snake_body27_row)) self_collision = 1'b1;
+        // body1 is active when snake_len >= 2
+        // body2 is active when snake_len >= 3
+        // ...
+        // the active tail is the highest active body segment
+        //
+        // On a normal move (grow_this_step = 0), the tail moves away,
+        // so moving into the current tail cell should be allowed.
+        //
+        // On a growth move (grow_this_step = 1), the tail does NOT move,
+        // so the tail cell must still count as occupied.
+
+        if ((snake_len >= 5'd2) &&
+            ((snake_len != 5'd2) || grow_this_step) &&
+            (next_head_col == snake_body1_col) &&
+            (next_head_row == snake_body1_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd3) &&
+            ((snake_len != 5'd3) || grow_this_step) &&
+            (next_head_col == snake_body2_col) &&
+            (next_head_row == snake_body2_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd4) &&
+            ((snake_len != 5'd4) || grow_this_step) &&
+            (next_head_col == snake_body3_col) &&
+            (next_head_row == snake_body3_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd5) &&
+            ((snake_len != 5'd5) || grow_this_step) &&
+            (next_head_col == snake_body4_col) &&
+            (next_head_row == snake_body4_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd6) &&
+            ((snake_len != 5'd6) || grow_this_step) &&
+            (next_head_col == snake_body5_col) &&
+            (next_head_row == snake_body5_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd7) &&
+            ((snake_len != 5'd7) || grow_this_step) &&
+            (next_head_col == snake_body6_col) &&
+            (next_head_row == snake_body6_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd8) &&
+            ((snake_len != 5'd8) || grow_this_step) &&
+            (next_head_col == snake_body7_col) &&
+            (next_head_row == snake_body7_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd9) &&
+            ((snake_len != 5'd9) || grow_this_step) &&
+            (next_head_col == snake_body8_col) &&
+            (next_head_row == snake_body8_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd10) &&
+            ((snake_len != 5'd10) || grow_this_step) &&
+            (next_head_col == snake_body9_col) &&
+            (next_head_row == snake_body9_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd11) &&
+            ((snake_len != 5'd11) || grow_this_step) &&
+            (next_head_col == snake_body10_col) &&
+            (next_head_row == snake_body10_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd12) &&
+            ((snake_len != 5'd12) || grow_this_step) &&
+            (next_head_col == snake_body11_col) &&
+            (next_head_row == snake_body11_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd13) &&
+            ((snake_len != 5'd13) || grow_this_step) &&
+            (next_head_col == snake_body12_col) &&
+            (next_head_row == snake_body12_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd14) &&
+            ((snake_len != 5'd14) || grow_this_step) &&
+            (next_head_col == snake_body13_col) &&
+            (next_head_row == snake_body13_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd15) &&
+            ((snake_len != 5'd15) || grow_this_step) &&
+            (next_head_col == snake_body14_col) &&
+            (next_head_row == snake_body14_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd16) &&
+            ((snake_len != 5'd16) || grow_this_step) &&
+            (next_head_col == snake_body15_col) &&
+            (next_head_row == snake_body15_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd17) &&
+            ((snake_len != 5'd17) || grow_this_step) &&
+            (next_head_col == snake_body16_col) &&
+            (next_head_row == snake_body16_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd18) &&
+            ((snake_len != 5'd18) || grow_this_step) &&
+            (next_head_col == snake_body17_col) &&
+            (next_head_row == snake_body17_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd19) &&
+            ((snake_len != 5'd19) || grow_this_step) &&
+            (next_head_col == snake_body18_col) &&
+            (next_head_row == snake_body18_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd20) &&
+            ((snake_len != 5'd20) || grow_this_step) &&
+            (next_head_col == snake_body19_col) &&
+            (next_head_row == snake_body19_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd21) &&
+            ((snake_len != 5'd21) || grow_this_step) &&
+            (next_head_col == snake_body20_col) &&
+            (next_head_row == snake_body20_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd22) &&
+            ((snake_len != 5'd22) || grow_this_step) &&
+            (next_head_col == snake_body21_col) &&
+            (next_head_row == snake_body21_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd23) &&
+            ((snake_len != 5'd23) || grow_this_step) &&
+            (next_head_col == snake_body22_col) &&
+            (next_head_row == snake_body22_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd24) &&
+            ((snake_len != 5'd24) || grow_this_step) &&
+            (next_head_col == snake_body23_col) &&
+            (next_head_row == snake_body23_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd25) &&
+            ((snake_len != 5'd25) || grow_this_step) &&
+            (next_head_col == snake_body24_col) &&
+            (next_head_row == snake_body24_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd26) &&
+            ((snake_len != 5'd26) || grow_this_step) &&
+            (next_head_col == snake_body25_col) &&
+            (next_head_row == snake_body25_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd27) &&
+            ((snake_len != 5'd27) || grow_this_step) &&
+            (next_head_col == snake_body26_col) &&
+            (next_head_row == snake_body26_row))
+            self_collision = 1'b1;
+
+        if ((snake_len >= 5'd28) &&
+            ((snake_len != 5'd28) || grow_this_step) &&
+            (next_head_col == snake_body27_col) &&
+            (next_head_row == snake_body27_row))
+            self_collision = 1'b1;
     end
 
     always_ff @(posedge clk or negedge rst_n) begin
@@ -362,61 +509,60 @@ module snake_wrapper (
                         start_hold_count <= 7'd0;
                     end
                     else if (start_armed && in_start_box) begin
-                        if (start_hold_count < START_HOLD_FRAMES)
+                        if (start_hold_count == START_HOLD_FRAMES - 1) begin
+                            game_running <= 1'b1;
+                            frame_count  <= 4'd0;
+
+                            game_over_active      <= 1'b0;
+                            game_over_flash_phase <= 4'd0;
+                            game_over_flash_count <= 6'd0;
+
+                            snake_head_col <= 5'd10;
+                            snake_head_row <= 4'd7;
+
+                            snake_body1_col  <= 5'd9;  snake_body1_row  <= 4'd7;
+                            snake_body2_col  <= 5'd8;  snake_body2_row  <= 4'd7;
+                            snake_body3_col  <= 5'd7;  snake_body3_row  <= 4'd7;
+                            snake_body4_col  <= 5'd6;  snake_body4_row  <= 4'd7;
+                            snake_body5_col  <= 5'd5;  snake_body5_row  <= 4'd7;
+                            snake_body6_col  <= 5'd4;  snake_body6_row  <= 4'd7;
+                            snake_body7_col  <= 5'd3;  snake_body7_row  <= 4'd7;
+                            snake_body8_col  <= 5'd2;  snake_body8_row  <= 4'd7;
+                            snake_body9_col  <= 5'd1;  snake_body9_row  <= 4'd7;
+                            snake_body10_col <= 5'd0;  snake_body10_row <= 4'd7;
+                            snake_body11_col <= 5'd0;  snake_body11_row <= 4'd7;
+                            snake_body12_col <= 5'd0;  snake_body12_row <= 4'd7;
+                            snake_body13_col <= 5'd0;  snake_body13_row <= 4'd7;
+                            snake_body14_col <= 5'd0;  snake_body14_row <= 4'd7;
+                            snake_body15_col <= 5'd0;  snake_body15_row <= 4'd7;
+                            snake_body16_col <= 5'd0;  snake_body16_row <= 4'd7;
+                            snake_body17_col <= 5'd0;  snake_body17_row <= 4'd7;
+                            snake_body18_col <= 5'd0;  snake_body18_row <= 4'd7;
+                            snake_body19_col <= 5'd0;  snake_body19_row <= 4'd7;
+                            snake_body20_col <= 5'd0;  snake_body20_row <= 4'd7;
+                            snake_body21_col <= 5'd0;  snake_body21_row <= 4'd7;
+                            snake_body22_col <= 5'd0;  snake_body22_row <= 4'd7;
+                            snake_body23_col <= 5'd0;  snake_body23_row <= 4'd7;
+                            snake_body24_col <= 5'd0;  snake_body24_row <= 4'd7;
+                            snake_body25_col <= 5'd0;  snake_body25_row <= 4'd7;
+                            snake_body26_col <= 5'd0;  snake_body26_row <= 4'd7;
+                            snake_body27_col <= 5'd0;  snake_body27_row <= 4'd7;
+
+                            snake_len <= 5'd2;
+                            score     <= 7'd0;
+
+                            food_col  <= 5'd5;
+                            food_row  <= 4'd5;
+                            food_step <= 4'd0;
+
+                            direction        <= DIR_RIGHT;
+                            start_hold_count <= 7'd0;
+                        end
+                        else begin
                             start_hold_count <= start_hold_count + 7'd1;
+                        end
                     end
                     else begin
-                        start_hold_count <= 7'd0;
-                    end
-
-                    if (start_hold_count >= START_HOLD_FRAMES - 1) begin
-                        game_running <= 1'b1;
-                        frame_count  <= 4'd0;
-
-                        // Clear any game-over state when a new game starts
-                        game_over_active      <= 1'b0;
-                        game_over_flash_phase <= 4'd0;
-                        game_over_flash_count <= 6'd0;
-
-                        snake_head_col <= 5'd10;
-                        snake_head_row <= 4'd7;
-
-                        snake_body1_col  <= 5'd9;  snake_body1_row  <= 4'd7;
-                        snake_body2_col  <= 5'd8;  snake_body2_row  <= 4'd7;
-                        snake_body3_col  <= 5'd7;  snake_body3_row  <= 4'd7;
-                        snake_body4_col  <= 5'd6;  snake_body4_row  <= 4'd7;
-                        snake_body5_col  <= 5'd5;  snake_body5_row  <= 4'd7;
-                        snake_body6_col  <= 5'd4;  snake_body6_row  <= 4'd7;
-                        snake_body7_col  <= 5'd3;  snake_body7_row  <= 4'd7;
-                        snake_body8_col  <= 5'd2;  snake_body8_row  <= 4'd7;
-                        snake_body9_col  <= 5'd1;  snake_body9_row  <= 4'd7;
-                        snake_body10_col <= 5'd0;  snake_body10_row <= 4'd7;
-                        snake_body11_col <= 5'd0;  snake_body11_row <= 4'd7;
-                        snake_body12_col <= 5'd0;  snake_body12_row <= 4'd7;
-                        snake_body13_col <= 5'd0;  snake_body13_row <= 4'd7;
-                        snake_body14_col <= 5'd0;  snake_body14_row <= 4'd7;
-                        snake_body15_col <= 5'd0;  snake_body15_row <= 4'd7;
-                        snake_body16_col <= 5'd0;  snake_body16_row <= 4'd7;
-                        snake_body17_col <= 5'd0;  snake_body17_row <= 4'd7;
-                        snake_body18_col <= 5'd0;  snake_body18_row <= 4'd7;
-                        snake_body19_col <= 5'd0;  snake_body19_row <= 4'd7;
-                        snake_body20_col <= 5'd0;  snake_body20_row <= 4'd7;
-                        snake_body21_col <= 5'd0;  snake_body21_row <= 4'd7;
-                        snake_body22_col <= 5'd0;  snake_body22_row <= 4'd7;
-                        snake_body23_col <= 5'd0;  snake_body23_row <= 4'd7;
-                        snake_body24_col <= 5'd0;  snake_body24_row <= 4'd7;
-                        snake_body25_col <= 5'd0;  snake_body25_row <= 4'd7;
-                        snake_body26_col <= 5'd0;  snake_body26_row <= 4'd7;
-                        snake_body27_col <= 5'd0;  snake_body27_row <= 4'd7;
-
-                        snake_len <= 5'd2;
-                        score     <= 7'd0;
-
-                        food_col  <= 5'd5;
-                        food_row  <= 4'd5;
-                        food_step <= 4'd0;
-
-                        direction        <= DIR_RIGHT;
                         start_hold_count <= 7'd0;
                     end
                 end
