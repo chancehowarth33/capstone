@@ -20,6 +20,12 @@ direction.DIR_UP 0 0 1 1
 direction.DIR_LEFT 0 1 0 1 
 direction.DIR_DOWN 1 0 0 1 
 
+State Machine - |DE1_SoC_CAMERA|catch_game:u_catch|state
+Name state.STATE_IDLE state.STATE_GAMEOVER state.STATE_PLAYING 
+state.STATE_IDLE 0 0 0 
+state.STATE_PLAYING 1 0 1 
+state.STATE_GAMEOVER 1 1 0 
+
 State Machine - |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mSetup_ST
 Name mSetup_ST.0000 mSetup_ST.0010 mSetup_ST.0001 
 mSetup_ST.0000 0 0 0 
