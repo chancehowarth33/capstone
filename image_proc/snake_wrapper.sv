@@ -90,6 +90,11 @@ module snake_wrapper (
     logic       game_over_flash_on;
     logic [6:0] game_over_score;
     logic [6:0] score;            // running score, independent of snake length
+    // BCD score digits - maintained directly, no division needed at render time
+    logic [3:0] score_tens;       // 0..9
+    logic [3:0] score_ones;       // 0..9
+    logic [3:0] game_over_tens;
+    logic [3:0] game_over_ones;
     logic [3:0] game_over_flash_phase;
     logic [5:0] game_over_flash_count;
 
@@ -244,6 +249,8 @@ module snake_wrapper (
 
             snake_len <= 5'd2;
             score     <= 7'd0;
+            score_tens <= 4'd0;
+            score_ones <= 4'd0;
 
             food_col  <= 5'd5;
             food_row  <= 4'd5;
@@ -256,6 +263,8 @@ module snake_wrapper (
             // Game-over state reset
             game_over_active      <= 1'b0;
             game_over_score       <= 7'd0;
+            game_over_tens        <= 4'd0;
+            game_over_ones        <= 4'd0;
             game_over_flash_phase <= 4'd0;
             game_over_flash_count <= 6'd0;
 
@@ -345,6 +354,8 @@ module snake_wrapper (
 
                         snake_len <= 5'd2;
                         score     <= 7'd0;
+                        score_tens <= 4'd0;
+                        score_ones <= 4'd0;
 
                         food_col  <= 5'd5;
                         food_row  <= 4'd5;
@@ -394,6 +405,8 @@ module snake_wrapper (
 
                             // Capture running score at time of death
                             game_over_score <= score;
+                            game_over_tens  <= score_tens;
+                            game_over_ones  <= score_ones;
                         end
                         else begin
                             if (snake_len >= 5'd28) begin snake_body27_col <= snake_body26_col; snake_body27_row <= snake_body26_row; end
@@ -464,8 +477,17 @@ module snake_wrapper (
                                     snake_len <= snake_len + 5'd1;
 
                                 // Score always increments on food eaten, capped at 99
-                                if (score < 7'd99)
+                                if (score < 7'd99) begin
                                     score <= score + 7'd1;
+                                    // BCD increment: ones first, then carry to tens
+                                    if (score_ones == 4'd9) begin
+                                        score_ones <= 4'd0;
+                                        if (score_tens < 4'd9)
+                                            score_tens <= score_tens + 4'd1;
+                                    end else begin
+                                        score_ones <= score_ones + 4'd1;
+                                    end
+                                end
 
                                 case (food_step)
                                     4'd0:  begin food_col <= 5'd14; food_row <= 4'd5;  food_step <= 4'd1;  end
@@ -492,6 +514,7 @@ module snake_wrapper (
     end
 
     snake_renderer u_renderer (
+        .clk(clk),
         .vga_x(vga_x),
         .vga_y(vga_y),
         .coord_x(coord_x),
@@ -557,7 +580,8 @@ module snake_wrapper (
         .snake_body27_row(snake_body27_row),
 
         .snake_len(snake_len),
-        .score(score),
+        .score_tens(score_tens),
+        .score_ones(score_ones),
 
         .food_col(food_col),
         .food_row(food_row),
@@ -566,7 +590,8 @@ module snake_wrapper (
 
         .game_over_active(game_over_active),
         .game_over_flash_on(game_over_flash_on),
-        .game_over_score(game_over_score),
+        .game_over_tens(game_over_tens),
+        .game_over_ones(game_over_ones),
 
         .R_out(R_out),
         .G_out(G_out),

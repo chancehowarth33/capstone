@@ -1,4 +1,5 @@
 module snake_renderer (
+    input  logic       clk,
     input  logic [9:0] vga_x,
     input  logic [9:0] vga_y,
 
@@ -69,8 +70,9 @@ module snake_renderer (
     // Total snake length including head
     input  logic [4:0] snake_len,
 
-    // Running score (independent of snake length)
-    input  logic [6:0] score,
+    // Pre-computed BCD score digits (no division needed here)
+    input  logic [3:0] score_tens,
+    input  logic [3:0] score_ones,
 
     // Food
     input  logic [4:0] food_col,
@@ -82,7 +84,8 @@ module snake_renderer (
     // Game-over screen support
     input  logic       game_over_active,
     input  logic       game_over_flash_on,
-    input  logic [6:0] game_over_score,
+    input  logic [3:0] game_over_tens,
+    input  logic [3:0] game_over_ones,
 
     output logic [9:0] R_out,
     output logic [9:0] G_out,
@@ -112,13 +115,7 @@ module snake_renderer (
     // ------------------------------------------------------------
     // Score / text overlay signals
     // ------------------------------------------------------------
-
-    // Score comes from the dedicated score port (independent of snake length)
-    logic [6:0] score_value;
-    logic [6:0] score_tens;
-    logic [6:0] score_ones;
-
-    // Score text enable for the current pixel
+    // Score comes in as pre-computed BCD digits – no division here.
     logic score_on;
 
     // Pixel position within the score area
@@ -150,6 +147,7 @@ module snake_renderer (
     logic [4:0] go_big_char_index;
     logic [2:0] go_big_char_px;
     logic [2:0] go_big_char_py;
+    logic [4:0] go_big_slot_x; // intermediate for sub-pixel column computation
 
     logic [4:0] go_small_char_index;
     logic [2:0] go_small_char_px;
@@ -710,13 +708,10 @@ module snake_renderer (
 
         // --------------------------------------------------------
         // Score display setup
-        // Use the dedicated score port (increments every food eaten, capped at 99)
+        // Use the pre-computed BCD digits passed in from the wrapper.
+        // This avoids any division or modulo in the pixel-clock domain.
         // Hide normal score while game-over banner is active
         // --------------------------------------------------------
-        score_value = score;
-        score_tens  = score_value / 7'd10;
-        score_ones  = score_value % 7'd10;
-
         if (!game_over_active) begin
             // Score area: top-left corner
             // Characters:
@@ -727,9 +722,18 @@ module snake_renderer (
                 score_x = vga_x - 10'd8;
                 score_y = vga_y - 10'd8;
 
-                char_index = score_x / 10'd6;
-                char_px    = score_x % 10'd6;
-                char_py    = score_y[2:0];
+                // char_index via boundary comparison (avoids / 6 and % 6)
+                if      (score_x < 10'd6)  begin char_index = 4'd0; char_px = score_x[2:0]; end
+                else if (score_x < 10'd12) begin char_index = 4'd1; char_px = (score_x - 10'd6)[2:0]; end
+                else if (score_x < 10'd18) begin char_index = 4'd2; char_px = (score_x - 10'd12)[2:0]; end
+                else if (score_x < 10'd24) begin char_index = 4'd3; char_px = (score_x - 10'd18)[2:0]; end
+                else if (score_x < 10'd30) begin char_index = 4'd4; char_px = (score_x - 10'd24)[2:0]; end
+                else if (score_x < 10'd36) begin char_index = 4'd5; char_px = (score_x - 10'd30)[2:0]; end
+                else if (score_x < 10'd42) begin char_index = 4'd6; char_px = (score_x - 10'd36)[2:0]; end
+                else if (score_x < 10'd48) begin char_index = 4'd7; char_px = (score_x - 10'd42)[2:0]; end
+                else                       begin char_index = 4'd8; char_px = (score_x - 10'd48)[2:0]; end
+
+                char_py = score_y[2:0];
 
                 case (char_index)
                     4'd0: char_code = CH_S;
@@ -740,6 +744,7 @@ module snake_renderer (
                     4'd5: char_code = CH_COLON;
                     4'd6: char_code = CH_BLANK;
                     4'd7: begin
+                        // Tens digit: blank when zero
                         if (score_tens == 4'd0)
                             char_code = CH_BLANK;
                         else
@@ -783,6 +788,9 @@ module snake_renderer (
             // Big text: GAME OVER
             // Large letters are made by scaling 5x7 glyphs by 5x.
             // 9 slots including the space.
+            // Each character slot is 30px wide (5px glyph * scale-of-5 = 25px + 5px gap).
+            // We map go_x to a char slot by boundary comparison to avoid division.
+            // go_y is scaled by 5 per glyph row; we use boundary comparison for go_big_char_py too.
             // ----------------------------------------------------
             if ((vga_x >= 10'd185) && (vga_x < 10'd455) &&
                 (vga_y >= 10'd178) && (vga_y < 10'd213)) begin
@@ -790,9 +798,36 @@ module snake_renderer (
                 go_x = vga_x - 10'd185;
                 go_y = vga_y - 10'd178;
 
-                go_big_char_index = go_x / 10'd30;
-                go_big_char_px    = (go_x % 10'd30) / 10'd5;
-                go_big_char_py    = go_y / 10'd5;
+                // --- char index via boundary comparison (avoids / 30) ---
+                if      (go_x < 10'd30)  begin go_big_char_index = 5'd0;  go_big_char_px = go_x[2:0]; end
+                else if (go_x < 10'd60)  begin go_big_char_index = 5'd1;  go_big_char_px = (go_x - 10'd30)[2:0]; end
+                else if (go_x < 10'd90)  begin go_big_char_index = 5'd2;  go_big_char_px = (go_x - 10'd60)[2:0]; end
+                else if (go_x < 10'd120) begin go_big_char_index = 5'd3;  go_big_char_px = (go_x - 10'd90)[2:0]; end
+                else if (go_x < 10'd150) begin go_big_char_index = 5'd4;  go_big_char_px = (go_x - 10'd120)[2:0]; end
+                else if (go_x < 10'd180) begin go_big_char_index = 5'd5;  go_big_char_px = (go_x - 10'd150)[2:0]; end
+                else if (go_x < 10'd210) begin go_big_char_index = 5'd6;  go_big_char_px = (go_x - 10'd180)[2:0]; end
+                else if (go_x < 10'd240) begin go_big_char_index = 5'd7;  go_big_char_px = (go_x - 10'd210)[2:0]; end
+                else                     begin go_big_char_index = 5'd8;  go_big_char_px = (go_x - 10'd240)[2:0]; end
+
+                // Each glyph row is 5px tall; use boundary comparison (avoids / 5)
+                if      (go_y < 10'd5)  go_big_char_py = 3'd0;
+                else if (go_y < 10'd10) go_big_char_py = 3'd1;
+                else if (go_y < 10'd15) go_big_char_py = 3'd2;
+                else if (go_y < 10'd20) go_big_char_py = 3'd3;
+                else if (go_y < 10'd25) go_big_char_py = 3'd4;
+                else if (go_y < 10'd30) go_big_char_py = 3'd5;
+                else                    go_big_char_py = 3'd6;
+
+                // Sub-pixel x within the glyph (0..4):
+                // go_big_char_px currently holds the raw x-offset inside the
+                // 30px slot (0..29). We need to divide that by 5 to get the
+                // glyph column (0..4). Use boundary comparison (avoids / 5).
+                go_big_slot_x = {2'b0, go_big_char_px}; // 0..29 in the slot
+                if      (go_big_slot_x < 5'd5)  go_big_char_px = 3'd0;
+                else if (go_big_slot_x < 5'd10) go_big_char_px = 3'd1;
+                else if (go_big_slot_x < 5'd15) go_big_char_px = 3'd2;
+                else if (go_big_slot_x < 5'd20) go_big_char_px = 3'd3;
+                else                            go_big_char_px = 3'd4;
 
                 case (go_big_char_index)
                     5'd0: go_char_code = CH_G;
@@ -820,9 +855,8 @@ module snake_renderer (
                 end
             end
 
-            // ----------------------------------------------------
             // Small text: YOUR SCORE WAS: X
-            // 18 slots total
+            // 18 slots total, each 6px wide
             // ----------------------------------------------------
             if ((vga_x >= 10'd206) && (vga_x < 10'd314) &&
                 (vga_y >= 10'd245) && (vga_y < 10'd253)) begin
@@ -830,9 +864,27 @@ module snake_renderer (
                 go_x = vga_x - 10'd206;
                 go_y = vga_y - 10'd245;
 
-                go_small_char_index = go_x / 10'd6;
-                go_small_char_px    = go_x % 10'd6;
-                go_small_char_py    = go_y[2:0];
+                // Char index via boundary comparison (avoids / 6 and % 6)
+                if      (go_x < 10'd6)   begin go_small_char_index = 5'd0;  go_small_char_px = go_x[2:0]; end
+                else if (go_x < 10'd12)  begin go_small_char_index = 5'd1;  go_small_char_px = (go_x - 10'd6)[2:0]; end
+                else if (go_x < 10'd18)  begin go_small_char_index = 5'd2;  go_small_char_px = (go_x - 10'd12)[2:0]; end
+                else if (go_x < 10'd24)  begin go_small_char_index = 5'd3;  go_small_char_px = (go_x - 10'd18)[2:0]; end
+                else if (go_x < 10'd30)  begin go_small_char_index = 5'd4;  go_small_char_px = (go_x - 10'd24)[2:0]; end
+                else if (go_x < 10'd36)  begin go_small_char_index = 5'd5;  go_small_char_px = (go_x - 10'd30)[2:0]; end
+                else if (go_x < 10'd42)  begin go_small_char_index = 5'd6;  go_small_char_px = (go_x - 10'd36)[2:0]; end
+                else if (go_x < 10'd48)  begin go_small_char_index = 5'd7;  go_small_char_px = (go_x - 10'd42)[2:0]; end
+                else if (go_x < 10'd54)  begin go_small_char_index = 5'd8;  go_small_char_px = (go_x - 10'd48)[2:0]; end
+                else if (go_x < 10'd60)  begin go_small_char_index = 5'd9;  go_small_char_px = (go_x - 10'd54)[2:0]; end
+                else if (go_x < 10'd66)  begin go_small_char_index = 5'd10; go_small_char_px = (go_x - 10'd60)[2:0]; end
+                else if (go_x < 10'd72)  begin go_small_char_index = 5'd11; go_small_char_px = (go_x - 10'd66)[2:0]; end
+                else if (go_x < 10'd78)  begin go_small_char_index = 5'd12; go_small_char_px = (go_x - 10'd72)[2:0]; end
+                else if (go_x < 10'd84)  begin go_small_char_index = 5'd13; go_small_char_px = (go_x - 10'd78)[2:0]; end
+                else if (go_x < 10'd90)  begin go_small_char_index = 5'd14; go_small_char_px = (go_x - 10'd84)[2:0]; end
+                else if (go_x < 10'd96)  begin go_small_char_index = 5'd15; go_small_char_px = (go_x - 10'd90)[2:0]; end
+                else if (go_x < 10'd102) begin go_small_char_index = 5'd16; go_small_char_px = (go_x - 10'd96)[2:0]; end
+                else                     begin go_small_char_index = 5'd17; go_small_char_px = (go_x - 10'd102)[2:0]; end
+
+                go_small_char_py = go_y[2:0];
 
                 case (go_small_char_index)
                     5'd0:  go_char_code = CH_Y;
@@ -852,15 +904,15 @@ module snake_renderer (
                     5'd14: go_char_code = CH_COLON;
                     5'd15: go_char_code = CH_BLANK;
                     5'd16: begin
-                        // Tens digit of game_over_score (0..9, blank if score < 10)
-                        if (game_over_score >= 7'd10)
-                            go_char_code = digit_to_char(game_over_score / 7'd10);
-                        else
+                        // Tens digit – already pre-computed, no division needed
+                        if (game_over_tens == 4'd0)
                             go_char_code = CH_BLANK;
+                        else
+                            go_char_code = digit_to_char(game_over_tens);
                     end
                     5'd17: begin
-                        // Ones digit of game_over_score
-                        go_char_code = digit_to_char(game_over_score % 7'd10);
+                        // Ones digit – already pre-computed
+                        go_char_code = digit_to_char(game_over_ones);
                     end
                     default: go_char_code = CH_BLANK;
                 endcase

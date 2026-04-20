@@ -117,8 +117,36 @@ module color_detect (
         (diffG <= TOL_G) &&
         (diffB <= TOL_B);
 
-    wire [9:0] tracked_x = centroid_sum_x / match_count;
-    wire [9:0] tracked_y = centroid_sum_y / match_count;
+    // ---------------------------------------------------------------
+    // Sequential centroid divider
+    // Replaces: tracked_x = centroid_sum_x / match_count  (single-cycle,
+    // which generates a massive slow combinational divider tree and
+    // almost certainly violates timing at 25 MHz).
+    //
+    // Instead we run a 16-step restoring shift-subtract divider during
+    // the VSYNC blanking interval (thousands of idle cycles available).
+    // Two dividers run back-to-back: X first, then Y.
+    // Results are registered into tracked_x / tracked_y at the end.
+    // ---------------------------------------------------------------
+    reg [9:0] tracked_x;
+    reg [9:0] tracked_y;
+
+    // Latch inputs so the divider can work on stable values while the
+    // next frame accumulates.
+    reg [15:0] div_dividend;
+    reg [10:0] div_divisor;
+
+    // Shift-subtract divider state
+    reg [15:0] div_remainder;
+    reg [9:0]  div_quotient;
+    reg [3:0]  div_step;        // counts 0..15
+    reg        div_active;      // one division in flight
+    reg        div_doing_y;     // 0 = computing X, 1 = computing Y
+
+    // Latch of accumulator values captured at vsync_fall
+    reg [15:0] latch_sum_x;
+    reg [15:0] latch_sum_y;
+    reg [10:0] latch_match;
 
     //========================
     // main logic
@@ -130,6 +158,19 @@ module color_detect (
             coord_x   <= 0;
             coord_y   <= 0;
             detected  <= 0;
+
+            tracked_x    <= 0;
+            tracked_y    <= 0;
+            div_active   <= 1'b0;
+            div_doing_y  <= 1'b0;
+            div_step     <= 4'd0;
+            div_dividend <= 16'd0;
+            div_divisor  <= 11'd0;
+            div_remainder<= 16'd0;
+            div_quotient <= 10'd0;
+            latch_sum_x  <= 16'd0;
+            latch_sum_y  <= 16'd0;
+            latch_match  <= 11'd0;
 
             cal_valid <= 0;
             capture_pending <= 0;
@@ -150,22 +191,33 @@ module color_detect (
             // frame end
             //========================
             if (vsync_fall) begin
+                // Snapshot accumulators into latches.
+                // The divider will run over the coming blanking cycles.
+                // We reset the live accumulators immediately so the next
+                // frame can start accumulating right away.
                 if (!calibrate && match_count >= MIN_MATCH_BLOCKS) begin
-                    detected  <= 1;
-
-                    overlay_x <= tracked_x;
-                    overlay_y <= tracked_y;
-
-                    // mirrored for game
-                    coord_x   <= 10'd639 - tracked_x;
-                    coord_y   <= tracked_y;
-
+                    // Capture bounding box outputs (don't need division)
                     box_left   <= frame_min_x;
                     box_right  <= frame_max_x;
                     box_top    <= frame_min_y;
                     box_bottom <= frame_max_y;
+
+                    // Latch values for the sequential divider
+                    latch_sum_x  <= centroid_sum_x;
+                    latch_sum_y  <= centroid_sum_y;
+                    latch_match  <= match_count;
+
+                    // Kick off X division first
+                    div_dividend <= centroid_sum_x;
+                    div_divisor  <= match_count;
+                    div_remainder <= 16'd0;
+                    div_quotient  <= 10'd0;
+                    div_step      <= 4'd0;
+                    div_active    <= 1'b1;
+                    div_doing_y   <= 1'b0;
                 end else begin
-                    detected <= 0;
+                    detected      <= 0;
+                    div_active    <= 1'b0;
                 end
 
                 centroid_sum_x <= 0;
@@ -181,6 +233,60 @@ module color_detect (
                     sum_R[i] <= 0;
                     sum_G[i] <= 0;
                     sum_B[i] <= 0;
+                end
+            end
+
+            // ---------------------------------------------------------------
+            // Sequential restoring divider — runs in the cycles AFTER vsync.
+            // Uses a standard 16-bit restoring shift-subtract algorithm.
+            // div_step counts 15..0 (MSB first).
+            // ---------------------------------------------------------------
+            else if (div_active) begin
+                // Shift remainder left by 1, bring in next dividend bit
+                div_remainder <= {div_remainder[14:0],
+                                  div_dividend[15 - div_step]};
+
+                // Trial subtraction
+                if ({div_remainder[14:0], div_dividend[15 - div_step]}
+                    >= {5'b0, div_divisor}) begin
+                    div_quotient[9 - div_step] <= 1'b1;
+                    // Subtract divisor from the shifted remainder next cycle
+                    // (we update div_remainder at top of the always block above,
+                    //  so we adjust with a corrected remainder here):
+                    div_remainder <=
+                        {div_remainder[14:0], div_dividend[15 - div_step]}
+                        - {5'b0, div_divisor};
+                end else begin
+                    div_quotient[9 - div_step] <= 1'b0;
+                end
+
+                if (div_step == 4'd15) begin
+                    // Division done for this operand
+                    div_step <= 4'd0;
+
+                    if (!div_doing_y) begin
+                        // X result ready — commit and start Y
+                        tracked_x    <= div_quotient;
+                        overlay_x    <= div_quotient;
+                        coord_x      <= 10'd639 - div_quotient;
+
+                        // Re-load divider for Y
+                        div_dividend  <= latch_sum_y;
+                        div_divisor   <= latch_match;
+                        div_remainder <= 16'd0;
+                        div_quotient  <= 10'd0;
+                        div_doing_y   <= 1'b1;
+                    end else begin
+                        // Y result ready — commit and finish
+                        tracked_y <= div_quotient;
+                        overlay_y <= div_quotient;
+                        coord_y   <= div_quotient;
+                        detected  <= 1'b1;
+
+                        div_active <= 1'b0;
+                    end
+                end else begin
+                    div_step <= div_step + 4'd1;
                 end
             end
 
