@@ -69,7 +69,7 @@ module snake_renderer (
     // Total snake length including head
     input  logic [4:0] snake_len,
 
-    // Running score (independent of snake length)
+    // Running score
     input  logic [6:0] score,
 
     // Food
@@ -78,6 +78,7 @@ module snake_renderer (
 
     // Start screen support
     input  logic       game_running,
+    input  logic [6:0] start_hold_count,
 
     // Game-over screen support
     input  logic       game_over_active,
@@ -89,6 +90,8 @@ module snake_renderer (
     output logic [9:0] B_out
 );
 
+    localparam logic [6:0] START_HOLD_FRAMES = 7'd120;
+
     logic [4:0] cell_col;
     logic [3:0] cell_row;
 
@@ -96,12 +99,9 @@ module snake_renderer (
     logic body_on;
     logic food_on;
     logic hand_on;
-    logic start_box_on;
 
     logic [10:0] hand_dx_mag;
     logic [10:0] hand_dy_mag;
-    logic [10:0] box_dx_mag;
-    logic [10:0] box_dy_mag;
 
     logic body1_on, body2_on, body3_on, body4_on, body5_on, body6_on;
     logic body7_on, body8_on, body9_on, body10_on, body11_on;
@@ -109,31 +109,50 @@ module snake_renderer (
     logic body18_on, body19_on, body20_on, body21_on, body22_on, body23_on;
     logic body24_on, body25_on, body26_on, body27_on;
 
+    // Background / apple sprite helpers
+    logic bg_dark_cell;
+    logic [4:0] cell_px;
+    logic [4:0] cell_py;
+
+    logic apple_body_on;
+    logic apple_leaf_on;
+    logic apple_stem_on;
+
+    // ------------------------------------------------------------
+    // Start button signals
+    // ------------------------------------------------------------
+    logic start_shadow_on;
+    logic start_outer_on;
+    logic start_inner_on;
+    logic start_highlight_on;
+    logic start_progress_bg_on;
+    logic start_progress_fill_on;
+    logic start_text_on;
+
+    logic [9:0] start_x;
+    logic [9:0] start_y;
+    logic [4:0] start_char_index;
+    logic [2:0] start_char_px;
+    logic [2:0] start_char_py;
+    logic [9:0] progress_fill_width;
+
     // ------------------------------------------------------------
     // Score / text overlay signals
     // ------------------------------------------------------------
-
-    // Score comes from the dedicated score port (independent of snake length)
     logic [6:0] score_value;
     logic [6:0] score_tens;
     logic [6:0] score_ones;
 
-    // Score text enable for the current pixel
     logic score_on;
 
-    // Pixel position within the score area
     logic [9:0] score_x;
     logic [9:0] score_y;
 
-    // Which character cell and which pixel inside the character
     logic [3:0] char_index;
     logic [2:0] char_px;
     logic [2:0] char_py;
 
-    // Simple 5x7 font bitmap for current character row
     logic [4:0] glyph_row_bits;
-
-    // Current character code
     logic [4:0] char_code;
 
     // ------------------------------------------------------------
@@ -157,7 +176,6 @@ module snake_renderer (
 
     logic [4:0] go_char_code;
 
-    // Character codes used by the score display and game-over text
     localparam logic [4:0] CH_BLANK = 5'd0;
     localparam logic [4:0] CH_S     = 5'd1;
     localparam logic [4:0] CH_C     = 5'd2;
@@ -182,10 +200,8 @@ module snake_renderer (
     localparam logic [4:0] CH_V     = 5'd21;
     localparam logic [4:0] CH_W     = 5'd22;
     localparam logic [4:0] CH_Y     = 5'd23;
+    localparam logic [4:0] CH_T     = 5'd24;
 
-    // ------------------------------------------------------------
-    // Helper function: map a digit value 0..9 to a character code
-    // ------------------------------------------------------------
     function automatic logic [4:0] digit_to_char(input logic [3:0] digit);
         begin
             case (digit)
@@ -204,10 +220,6 @@ module snake_renderer (
         end
     endfunction
 
-    // ------------------------------------------------------------
-    // Helper function: return one 5-bit row of a 5x7 glyph.
-    // Bit 4 is leftmost pixel, bit 0 is rightmost pixel.
-    // ------------------------------------------------------------
     function automatic logic [4:0] get_glyph_row(
         input logic [4:0] code,
         input logic [2:0] row
@@ -215,7 +227,6 @@ module snake_renderer (
         begin
             case (code)
 
-                // S
                 CH_S: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -229,7 +240,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // C
                 CH_C: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -243,7 +253,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // O
                 CH_O: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -257,7 +266,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // R
                 CH_R: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11110;
@@ -271,7 +279,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // E
                 CH_E: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -285,7 +292,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // :
                 CH_COLON: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b00000;
@@ -299,7 +305,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // 0
                 CH_0: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -313,7 +318,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // 1
                 CH_1: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b00100;
@@ -327,7 +331,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // 2
                 CH_2: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -341,7 +344,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // 3
                 CH_3: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -355,7 +357,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // 4
                 CH_4: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b10001;
@@ -369,7 +370,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // 5
                 CH_5: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -383,7 +383,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // 6
                 CH_6: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -397,7 +396,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // 7
                 CH_7: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -411,7 +409,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // 8
                 CH_8: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -425,7 +422,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // 9
                 CH_9: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -439,7 +435,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // A
                 CH_A: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b01110;
@@ -453,7 +448,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // G
                 CH_G: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b11111;
@@ -467,7 +461,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // M
                 CH_M: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b10001;
@@ -481,7 +474,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // U
                 CH_U: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b10001;
@@ -495,7 +487,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // V
                 CH_V: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b10001;
@@ -509,7 +500,6 @@ module snake_renderer (
                     endcase
                 end
 
-                // W
                 CH_W: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b10001;
@@ -523,12 +513,24 @@ module snake_renderer (
                     endcase
                 end
 
-                // Y
                 CH_Y: begin
                     case (row)
                         3'd0: get_glyph_row = 5'b10001;
                         3'd1: get_glyph_row = 5'b10001;
                         3'd2: get_glyph_row = 5'b01010;
+                        3'd3: get_glyph_row = 5'b00100;
+                        3'd4: get_glyph_row = 5'b00100;
+                        3'd5: get_glyph_row = 5'b00100;
+                        3'd6: get_glyph_row = 5'b00100;
+                        default: get_glyph_row = 5'b00000;
+                    endcase
+                end
+
+                CH_T: begin
+                    case (row)
+                        3'd0: get_glyph_row = 5'b11111;
+                        3'd1: get_glyph_row = 5'b00100;
+                        3'd2: get_glyph_row = 5'b00100;
                         3'd3: get_glyph_row = 5'b00100;
                         3'd4: get_glyph_row = 5'b00100;
                         3'd5: get_glyph_row = 5'b00100;
@@ -545,10 +547,6 @@ module snake_renderer (
     endfunction
 
     always_comb begin
-        // --------------------------------------------------------
-        // Default assignments for combinational safety
-        // This prevents Quartus from inferring latches.
-        // --------------------------------------------------------
         cell_col       = 5'd0;
         cell_row       = 4'd0;
 
@@ -556,12 +554,9 @@ module snake_renderer (
         body_on        = 1'b0;
         food_on        = 1'b0;
         hand_on        = 1'b0;
-        start_box_on   = 1'b0;
 
         hand_dx_mag    = 11'd0;
         hand_dy_mag    = 11'd0;
-        box_dx_mag     = 11'd0;
-        box_dy_mag     = 11'd0;
 
         body1_on       = 1'b0;
         body2_on       = 1'b0;
@@ -590,6 +585,28 @@ module snake_renderer (
         body25_on      = 1'b0;
         body26_on      = 1'b0;
         body27_on      = 1'b0;
+
+        start_shadow_on      = 1'b0;
+        start_outer_on       = 1'b0;
+        start_inner_on       = 1'b0;
+        start_highlight_on   = 1'b0;
+        start_progress_bg_on = 1'b0;
+        start_progress_fill_on = 1'b0;
+        start_text_on        = 1'b0;
+        start_x              = 10'd0;
+        start_y              = 10'd0;
+        start_char_index     = 5'd0;
+        start_char_px        = 3'd0;
+        start_char_py        = 3'd0;
+        progress_fill_width  = 10'd0;
+        // "sprites"
+        bg_dark_cell   = 1'b0;
+        cell_px        = 5'd0;
+        cell_py        = 5'd0;
+
+        apple_body_on  = 1'b0;
+        apple_leaf_on  = 1'b0;
+        apple_stem_on  = 1'b0;
 
         score_value    = 7'd0;
         score_tens     = 7'd0;
@@ -621,20 +638,18 @@ module snake_renderer (
         go_small_char_py    = 3'd0;
         go_char_code        = CH_BLANK;
 
-        // Default output color = black
         R_out          = 10'd0;
         G_out          = 10'd0;
         B_out          = 10'd0;
 
-        // --------------------------------------------------------
-        // Convert VGA pixel to snake grid cell
-        // --------------------------------------------------------
         cell_col = vga_x[9:5];
         cell_row = vga_y[8:5];
 
-        // --------------------------------------------------------
-        // Snake / food checks
-        // --------------------------------------------------------
+        cell_px = vga_x[4:0];
+        cell_py = vga_y[4:0];
+        // Checkerboard grass background
+        bg_dark_cell = cell_col[0] ^ cell_row[0];
+
         head_on = (cell_col == snake_head_col) && (cell_row == snake_head_row);
 
         body1_on  = (snake_len >= 5'd2)  && (cell_col == snake_body1_col)  && (cell_row == snake_body1_row);
@@ -675,8 +690,45 @@ module snake_renderer (
         food_on = (cell_col == food_col) && (cell_row == food_row);
 
         // --------------------------------------------------------
-        // Small cursor at detected hand position
+        // Apple sprite inside the food cell
+        // Rounded red apple + brown stem + green leaf
         // --------------------------------------------------------
+        if (food_on) begin
+            // Stem
+            if ((cell_px >= 5'd14) && (cell_px <= 5'd16) &&
+                (cell_py >= 5'd5)  && (cell_py <= 5'd9))
+                apple_stem_on = 1'b1;
+
+            // Leaf
+            if ((cell_px >= 5'd17) && (cell_px <= 5'd22) &&
+                (cell_py >= 5'd6)  && (cell_py <= 5'd10) &&
+                ((cell_px - 5'd17) + (cell_py - 5'd6) <= 5'd7))
+                apple_leaf_on = 1'b1;
+
+            // Rounded apple body
+            case (cell_py)
+                5'd9:  if ((cell_px >= 5'd13) && (cell_px <= 5'd18)) apple_body_on = 1'b1;
+                5'd10: if ((cell_px >= 5'd10) && (cell_px <= 5'd21)) apple_body_on = 1'b1;
+                5'd11: if ((cell_px >= 5'd8)  && (cell_px <= 5'd23)) apple_body_on = 1'b1;
+                5'd12: if ((cell_px >= 5'd7)  && (cell_px <= 5'd24)) apple_body_on = 1'b1;
+                5'd13: if ((cell_px >= 5'd6)  && (cell_px <= 5'd25)) apple_body_on = 1'b1;
+                5'd14: if ((cell_px >= 5'd6)  && (cell_px <= 5'd25)) apple_body_on = 1'b1;
+                5'd15: if ((cell_px >= 5'd6)  && (cell_px <= 5'd25)) apple_body_on = 1'b1;
+                5'd16: if ((cell_px >= 5'd6)  && (cell_px <= 5'd25)) apple_body_on = 1'b1;
+                5'd17: if ((cell_px >= 5'd7)  && (cell_px <= 5'd24)) apple_body_on = 1'b1;
+                5'd18: if ((cell_px >= 5'd8)  && (cell_px <= 5'd23)) apple_body_on = 1'b1;
+                5'd19: if ((cell_px >= 5'd9)  && (cell_px <= 5'd22)) apple_body_on = 1'b1;
+                5'd20: if ((cell_px >= 5'd11) && (cell_px <= 5'd20)) apple_body_on = 1'b1;
+                5'd21: if ((cell_px >= 5'd13) && (cell_px <= 5'd18)) apple_body_on = 1'b1;
+                default: apple_body_on = 1'b0;
+            endcase
+
+            // Small top notch so it reads more like an apple
+            if ((cell_px >= 5'd14) && (cell_px <= 5'd17) &&
+                (cell_py >= 5'd9)  && (cell_py <= 5'd11))
+                apple_body_on = 1'b0;
+        end
+
         if (vga_x >= coord_x)
             hand_dx_mag = {1'b0, (vga_x - coord_x)};
         else
@@ -692,35 +744,79 @@ module snake_renderer (
                   (hand_dy_mag <= 11'd4);
 
         // --------------------------------------------------------
-        // Yellow start box in center when game is not running
+        // Styled START button with progress bar
         // --------------------------------------------------------
-        if (vga_x >= 10'd320)
-            box_dx_mag = {1'b0, (vga_x - 10'd320)};
-        else
-            box_dx_mag = {1'b0, (10'd320 - vga_x)};
+        if (!game_running && !game_over_active) begin
+            // Shadow
+            if ((vga_x >= 10'd264) && (vga_x < 10'd384) &&
+                (vga_y >= 10'd196) && (vga_y < 10'd260))
+                start_shadow_on = 1'b1;
 
-        if (vga_y >= 10'd240)
-            box_dy_mag = {1'b0, (vga_y - 10'd240)};
-        else
-            box_dy_mag = {1'b0, (10'd240 - vga_y)};
+            // Outer border
+            if ((vga_x >= 10'd260) && (vga_x < 10'd380) &&
+                (vga_y >= 10'd192) && (vga_y < 10'd256))
+                start_outer_on = 1'b1;
 
-        start_box_on = (!game_running) && (!game_over_active) &&
-                       (box_dx_mag <= 11'd48) &&
-                       (box_dy_mag <= 11'd48);
+            // Inner fill
+            if ((vga_x >= 10'd264) && (vga_x < 10'd376) &&
+                (vga_y >= 10'd196) && (vga_y < 10'd252))
+                start_inner_on = 1'b1;
 
-        // --------------------------------------------------------
-        // Score display setup
-        // Use the dedicated score port (increments every food eaten, capped at 99)
-        // Hide normal score while game-over banner is active
-        // --------------------------------------------------------
+            // Highlight strip
+            if ((vga_x >= 10'd268) && (vga_x < 10'd372) &&
+                (vga_y >= 10'd200) && (vga_y < 10'd214))
+                start_highlight_on = 1'b1;
+
+            // Progress bar background
+            if ((vga_x >= 10'd272) && (vga_x < 10'd368) &&
+                (vga_y >= 10'd236) && (vga_y < 10'd246))
+                start_progress_bg_on = 1'b1;
+
+            progress_fill_width = (start_hold_count * 10'd96) / START_HOLD_FRAMES;
+
+            if ((vga_x >= 10'd272) && (vga_x < (10'd272 + progress_fill_width)) &&
+                (vga_y >= 10'd236) && (vga_y < 10'd246))
+                start_progress_fill_on = 1'b1;
+
+            // START text area: 5 chars, 6 pixels each = 30 wide
+            if ((vga_x >= 10'd305) && (vga_x < 10'd335) &&
+                (vga_y >= 10'd214) && (vga_y < 10'd222)) begin
+
+                start_x = vga_x - 10'd305;
+                start_y = vga_y - 10'd214;
+
+                start_char_index = start_x / 10'd6;
+                start_char_px    = start_x % 10'd6;
+                start_char_py    = start_y[2:0];
+
+                case (start_char_index)
+                    5'd0: char_code = CH_S;
+                    5'd1: char_code = CH_T;
+                    5'd2: char_code = CH_A;
+                    5'd3: char_code = CH_R;
+                    5'd4: char_code = CH_T;
+                    default: char_code = CH_BLANK;
+                endcase
+
+                if ((start_char_px < 3'd5) && (start_char_py < 3'd7)) begin
+                    glyph_row_bits = get_glyph_row(char_code, start_char_py);
+                    case (start_char_px)
+                        3'd0: start_text_on = glyph_row_bits[4];
+                        3'd1: start_text_on = glyph_row_bits[3];
+                        3'd2: start_text_on = glyph_row_bits[2];
+                        3'd3: start_text_on = glyph_row_bits[1];
+                        3'd4: start_text_on = glyph_row_bits[0];
+                        default: start_text_on = 1'b0;
+                    endcase
+                end
+            end
+        end
+
         score_value = score;
         score_tens  = score_value / 7'd10;
         score_ones  = score_value % 7'd10;
 
         if (!game_over_active) begin
-            // Score area: top-left corner
-            // Characters:
-            // 0:S 1:C 2:O 3:R 4:E 5:: 6:blank 7:tens 8:ones
             if ((vga_x >= 10'd8) && (vga_x < 10'd62) &&
                 (vga_y >= 10'd8) && (vga_y < 10'd16)) begin
 
@@ -763,13 +859,7 @@ module snake_renderer (
             end
         end
 
-        // --------------------------------------------------------
-        // Game-over banner in the middle of the screen
-        // Big flashing red "GAME OVER"
-        // Smaller white line: "YOUR SCORE WAS: X"
-        // --------------------------------------------------------
         if (game_over_active && game_over_flash_on) begin
-            // Banner background and border
             if ((vga_x >= 10'd100) && (vga_x < 10'd540) &&
                 (vga_y >= 10'd160) && (vga_y < 10'd300)) begin
                 game_over_banner_fill_on = 1'b1;
@@ -779,11 +869,6 @@ module snake_renderer (
                     game_over_banner_border_on = 1'b1;
             end
 
-            // ----------------------------------------------------
-            // Big text: GAME OVER
-            // Large letters are made by scaling 5x7 glyphs by 5x.
-            // 9 slots including the space.
-            // ----------------------------------------------------
             if ((vga_x >= 10'd185) && (vga_x < 10'd455) &&
                 (vga_y >= 10'd178) && (vga_y < 10'd213)) begin
 
@@ -820,10 +905,6 @@ module snake_renderer (
                 end
             end
 
-            // ----------------------------------------------------
-            // Small text: YOUR SCORE WAS: X
-            // 18 slots total
-            // ----------------------------------------------------
             if ((vga_x >= 10'd206) && (vga_x < 10'd314) &&
                 (vga_y >= 10'd245) && (vga_y < 10'd253)) begin
 
@@ -852,14 +933,12 @@ module snake_renderer (
                     5'd14: go_char_code = CH_COLON;
                     5'd15: go_char_code = CH_BLANK;
                     5'd16: begin
-                        // Tens digit of game_over_score (0..9, blank if score < 10)
                         if (game_over_score >= 7'd10)
                             go_char_code = digit_to_char(game_over_score / 7'd10);
                         else
                             go_char_code = CH_BLANK;
                     end
                     5'd17: begin
-                        // Ones digit of game_over_score
                         go_char_code = digit_to_char(game_over_score % 7'd10);
                     end
                     default: go_char_code = CH_BLANK;
@@ -879,74 +958,117 @@ module snake_renderer (
             end
         end
 
-        // --------------------------------------------------------
-        // Final color priority
-        // --------------------------------------------------------
         if (game_over_big_text_on) begin
-            // Bright red game-over text
             R_out = 10'd1023;
             G_out = 10'd80;
             B_out = 10'd80;
         end
         else if (game_over_small_text_on) begin
-            // White score line
             R_out = 10'd1023;
             G_out = 10'd1023;
             B_out = 10'd1023;
         end
         else if (game_over_banner_border_on) begin
-            // Bright red border
             R_out = 10'd900;
             G_out = 10'd0;
             B_out = 10'd0;
         end
         else if (game_over_banner_fill_on) begin
-            // Dark red fill
             R_out = 10'd260;
             G_out = 10'd0;
             B_out = 10'd0;
         end
         else if (score_on) begin
-            // White score text
             R_out = 10'd1023;
             G_out = 10'd1023;
             B_out = 10'd1023;
         end
+        else if (hand_on) begin
+            R_out = 10'd0;
+            G_out = 10'd700;
+            B_out = 10'd1023;
+        end
+        else if (start_text_on) begin
+            R_out = 10'd80;
+            G_out = 10'd40;
+            B_out = 10'd0;
+        end
+        else if (start_progress_fill_on) begin
+            R_out = 10'd0;
+            G_out = 10'd900;
+            B_out = 10'd220;
+        end
+        else if (start_progress_bg_on) begin
+            R_out = 10'd180;
+            G_out = 10'd140;
+            B_out = 10'd0;
+        end
+        else if (start_highlight_on) begin
+            R_out = 10'd1023;
+            G_out = 10'd1023;
+            B_out = 10'd520;
+        end
+        else if (start_inner_on) begin
+            R_out = 10'd1023;
+            G_out = 10'd900;
+            B_out = 10'd140;
+        end
+        else if (start_outer_on) begin
+            R_out = 10'd1023;
+            G_out = 10'd760;
+            B_out = 10'd0;
+        end
+        else if (start_shadow_on) begin
+            R_out = 10'd140;
+            G_out = 10'd90;
+            B_out = 10'd0;
+        end
         else if (head_on && game_running) begin
-            // Green snake head
             R_out = 10'd0;
             G_out = 10'd1023;
             B_out = 10'd0;
         end
         else if (body_on && game_running) begin
-            // White snake body
             R_out = 10'd1023;
             G_out = 10'd1023;
             B_out = 10'd1023;
         end
-        else if (food_on && game_running) begin
-            // Red food
-            R_out = 10'd1023;
-            G_out = 10'd0;
-            B_out = 10'd0;
+        else if (apple_stem_on && game_running) begin
+            R_out = 10'd420;
+            G_out = 10'd220;
+            B_out = 10'd60;
         end
-        else if (hand_on) begin
-            // Light blue hand cursor
-            R_out = 10'd0;
-            G_out = 10'd700;
-            B_out = 10'd1023;
+        else if (apple_leaf_on && game_running) begin
+            R_out = 10'd80;
+            G_out = 10'd760;
+            B_out = 10'd120;
         end
-        else if (start_box_on) begin
-            // Yellow start box
-            R_out = 10'd1023;
-            G_out = 10'd1023;
-            B_out = 10'd0;
+        else if (apple_body_on && game_running) begin
+            // Brighter highlight near upper-left of apple
+            if ((cell_px >= 5'd10) && (cell_px <= 5'd13) &&
+                (cell_py >= 5'd12) && (cell_py <= 5'd15)) begin
+                R_out = 10'd1023;
+                G_out = 10'd260;
+                B_out = 10'd260;
+            end
+            else begin
+                R_out = 10'd920;
+                G_out = 10'd0;
+                B_out = 10'd0;
+            end
         end
         else begin
-            // Black background
-            R_out = 10'd0;
-            G_out = 10'd0;
-            B_out = 10'd0;
+            // Checkerboard grass background
+            if (bg_dark_cell) begin
+                R_out = 10'd70;
+                G_out = 10'd360;
+                B_out = 10'd70;
+            end
+            else begin
+                R_out = 10'd110;
+                G_out = 10'd470;
+                B_out = 10'd110;
+            end
         end
     end
 
