@@ -222,7 +222,12 @@ module catch_game (
                                 obj_type <= lfsr[9];
                             end
                         end else if (obj_missed) begin
-                            if (lives > 3'd1) begin
+                            if (obj_type == 1'b1) begin
+                                // Bomb missed — respawn with no penalty
+                                obj_y    <= 10'd0;
+                                obj_x    <= {1'b0, lfsr[8:0]};
+                                obj_type <= lfsr[9];
+                            end else if (lives > 3'd1) begin
                                 lives    <= lives - 3'd1;
                                 obj_y    <= 10'd0;
                                 obj_x    <= {1'b0, lfsr[8:0]};
