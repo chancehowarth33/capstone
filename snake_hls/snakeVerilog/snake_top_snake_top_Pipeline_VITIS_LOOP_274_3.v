@@ -7,28 +7,24 @@
 `timescale 1 ns / 1 ps 
 
 (* DowngradeIPIdentifiedWarnings="yes" *)
-module snake_top_snake_top_Pipeline_VITIS_LOOP_151_2 (
+module snake_top_snake_top_Pipeline_VITIS_LOOP_274_3 (
         ap_clk,
         ap_rst,
         ap_start,
         ap_done,
         ap_idle,
         ap_ready,
-        snake_len_load,
+        snake_len_loc_4,
+        cell_col,
+        cell_row,
+        snake_on_out,
+        snake_on_out_ap_vld,
         snake_col_address0,
         snake_col_ce0,
-        snake_col_we0,
-        snake_col_d0,
-        snake_col_address1,
-        snake_col_ce1,
-        snake_col_q1,
+        snake_col_q0,
         snake_row_address0,
         snake_row_ce0,
-        snake_row_we0,
-        snake_row_d0,
-        snake_row_address1,
-        snake_row_ce1,
-        snake_row_q1
+        snake_row_q0
 );
 
 parameter    ap_ST_fsm_pp0_stage0 = 1'd1;
@@ -39,23 +35,20 @@ input   ap_start;
 output   ap_done;
 output   ap_idle;
 output   ap_ready;
-input  [2:0] snake_len_load;
+input  [2:0] snake_len_loc_4;
+input  [4:0] cell_col;
+input  [3:0] cell_row;
+output  [0:0] snake_on_out;
+output   snake_on_out_ap_vld;
 output  [2:0] snake_col_address0;
 output   snake_col_ce0;
-output   snake_col_we0;
-output  [4:0] snake_col_d0;
-output  [2:0] snake_col_address1;
-output   snake_col_ce1;
-input  [4:0] snake_col_q1;
+input  [4:0] snake_col_q0;
 output  [2:0] snake_row_address0;
 output   snake_row_ce0;
-output   snake_row_we0;
-output  [3:0] snake_row_d0;
-output  [2:0] snake_row_address1;
-output   snake_row_ce1;
-input  [3:0] snake_row_q1;
+input  [3:0] snake_row_q0;
 
 reg ap_idle;
+reg snake_on_out_ap_vld;
 
 (* fsm_encoding = "none" *) reg   [0:0] ap_CS_fsm;
 wire    ap_CS_fsm_pp0_stage0;
@@ -63,27 +56,29 @@ wire    ap_enable_reg_pp0_iter0;
 reg    ap_enable_reg_pp0_iter1;
 reg    ap_idle_pp0;
 wire    ap_block_pp0_stage0_subdone;
-wire   [0:0] icmp_ln151_fu_104_p2;
+wire   [0:0] icmp_ln274_fu_123_p2;
 reg    ap_condition_exit_pp0_iter0_stage0;
 wire    ap_loop_exit_ready;
 reg    ap_ready_int;
-reg   [2:0] i_reg_145;
+reg   [0:0] snake_on_reg_103;
 wire    ap_block_pp0_stage0_11001;
-wire   [0:0] icmp_ln153_fu_110_p2;
-reg   [0:0] icmp_ln153_reg_153;
-wire   [63:0] zext_ln153_fu_122_p1;
-wire    ap_block_pp0_stage0;
-wire   [63:0] zext_ln151_fu_133_p1;
-reg   [2:0] i_1_fu_34;
-wire   [2:0] i_4_fu_116_p2;
+reg   [0:0] icmp_ln274_reg_196;
+wire   [0:0] icmp_ln276_fu_141_p2;
+reg   [0:0] icmp_ln276_reg_200;
+wire   [0:0] snake_on_1_fu_173_p2;
 wire    ap_loop_init;
-reg   [2:0] ap_sig_allocacmp_i;
-reg    snake_col_ce1_local;
-reg    snake_col_we0_local;
+wire    ap_block_pp0_stage0;
+wire   [63:0] zext_ln274_fu_135_p1;
+reg   [2:0] i_fu_48;
+wire   [2:0] i_3_fu_129_p2;
+reg   [2:0] ap_sig_allocacmp_i_2;
+wire    ap_block_pp0_stage0_01001;
 reg    snake_col_ce0_local;
-reg    snake_row_ce1_local;
-reg    snake_row_we0_local;
 reg    snake_row_ce0_local;
+wire   [0:0] icmp_ln277_fu_152_p2;
+wire   [0:0] and_ln277_fu_162_p2;
+wire   [0:0] icmp_ln278_fu_157_p2;
+wire   [0:0] or_ln276_fu_167_p2;
 reg    ap_done_reg;
 wire    ap_continue_int;
 reg    ap_done_int;
@@ -92,13 +87,14 @@ wire    ap_enable_pp0;
 wire    ap_start_int;
 wire    ap_ready_sig;
 wire    ap_done_sig;
+reg    ap_condition_196;
 wire    ap_ce_reg;
 
 // power-on initialization
 initial begin
 #0 ap_CS_fsm = 1'd1;
 #0 ap_enable_reg_pp0_iter1 = 1'b0;
-#0 i_1_fu_34 = 3'd0;
+#0 i_fu_48 = 3'd0;
 #0 ap_done_reg = 1'b0;
 end
 
@@ -151,23 +147,33 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        if (((icmp_ln151_fu_104_p2 == 1'd0) & (ap_enable_reg_pp0_iter0 == 1'b1))) begin
-            i_1_fu_34 <= i_4_fu_116_p2;
+        if (((icmp_ln274_fu_123_p2 == 1'd0) & (ap_enable_reg_pp0_iter0 == 1'b1))) begin
+            i_fu_48 <= i_3_fu_129_p2;
         end else if ((ap_loop_init == 1'b1)) begin
-            i_1_fu_34 <= 3'd4;
+            i_fu_48 <= 3'd0;
+        end
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_pp0_stage0)) begin
+        if ((1'b1 == ap_condition_196)) begin
+            snake_on_reg_103 <= snake_on_1_fu_173_p2;
+        end else if (((ap_loop_init == 1'b1) & (1'b0 == ap_block_pp0_stage0_subdone))) begin
+            snake_on_reg_103 <= 1'd0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        i_reg_145 <= ap_sig_allocacmp_i;
-        icmp_ln153_reg_153 <= icmp_ln153_fu_110_p2;
+        icmp_ln274_reg_196 <= icmp_ln274_fu_123_p2;
+        icmp_ln276_reg_200 <= icmp_ln276_fu_141_p2;
     end
 end
 
 always @ (*) begin
-    if (((icmp_ln151_fu_104_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+    if (((icmp_ln274_fu_123_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         ap_condition_exit_pp0_iter0_stage0 = 1'b1;
     end else begin
         ap_condition_exit_pp0_iter0_stage0 = 1'b0;
@@ -207,15 +213,15 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0) & (1'b1 == ap_CS_fsm_pp0_stage0) & (ap_loop_init == 1'b1))) begin
-        ap_sig_allocacmp_i = 3'd4;
+    if (((ap_loop_init == 1'b1) & (1'b0 == ap_block_pp0_stage0) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        ap_sig_allocacmp_i_2 = 3'd0;
     end else begin
-        ap_sig_allocacmp_i = i_1_fu_34;
+        ap_sig_allocacmp_i_2 = i_fu_48;
     end
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         snake_col_ce0_local = 1'b1;
     end else begin
         snake_col_ce0_local = 1'b0;
@@ -223,42 +229,18 @@ always @ (*) begin
 end
 
 always @ (*) begin
+    if (((ap_loop_exit_ready == 1'b1) & (icmp_ln274_fu_123_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+        snake_on_out_ap_vld = 1'b1;
+    end else begin
+        snake_on_out_ap_vld = 1'b0;
+    end
+end
+
+always @ (*) begin
     if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        snake_col_ce1_local = 1'b1;
-    end else begin
-        snake_col_ce1_local = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((icmp_ln153_reg_153 == 1'd1) & (1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        snake_col_we0_local = 1'b1;
-    end else begin
-        snake_col_we0_local = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         snake_row_ce0_local = 1'b1;
     end else begin
         snake_row_ce0_local = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        snake_row_ce1_local = 1'b1;
-    end else begin
-        snake_row_ce1_local = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((icmp_ln153_reg_153 == 1'd1) & (1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        snake_row_we0_local = 1'b1;
-    end else begin
-        snake_row_we0_local = 1'b0;
     end
 end
 
@@ -273,13 +255,21 @@ always @ (*) begin
     endcase
 end
 
+assign and_ln277_fu_162_p2 = (icmp_ln277_fu_152_p2 & icmp_ln276_reg_200);
+
 assign ap_CS_fsm_pp0_stage0 = ap_CS_fsm[32'd0];
 
 assign ap_block_pp0_stage0 = ~(1'b1 == 1'b1);
 
+assign ap_block_pp0_stage0_01001 = ~(1'b1 == 1'b1);
+
 assign ap_block_pp0_stage0_11001 = ~(1'b1 == 1'b1);
 
 assign ap_block_pp0_stage0_subdone = ~(1'b1 == 1'b1);
+
+always @ (*) begin
+    ap_condition_196 = ((icmp_ln274_reg_196 == 1'd0) & (1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter1 == 1'b1));
+end
 
 assign ap_done = ap_done_sig;
 
@@ -291,38 +281,30 @@ assign ap_loop_exit_ready = ap_condition_exit_pp0_iter0_stage0;
 
 assign ap_ready = ap_ready_sig;
 
-assign i_4_fu_116_p2 = ($signed(ap_sig_allocacmp_i) + $signed(3'd7));
+assign i_3_fu_129_p2 = (ap_sig_allocacmp_i_2 + 3'd1);
 
-assign icmp_ln151_fu_104_p2 = ((ap_sig_allocacmp_i == 3'd0) ? 1'b1 : 1'b0);
+assign icmp_ln274_fu_123_p2 = ((ap_sig_allocacmp_i_2 == 3'd5) ? 1'b1 : 1'b0);
 
-assign icmp_ln153_fu_110_p2 = ((ap_sig_allocacmp_i < snake_len_load) ? 1'b1 : 1'b0);
+assign icmp_ln276_fu_141_p2 = ((ap_sig_allocacmp_i_2 < snake_len_loc_4) ? 1'b1 : 1'b0);
 
-assign snake_col_address0 = zext_ln151_fu_133_p1;
+assign icmp_ln277_fu_152_p2 = ((cell_col == snake_col_q0) ? 1'b1 : 1'b0);
 
-assign snake_col_address1 = zext_ln153_fu_122_p1;
+assign icmp_ln278_fu_157_p2 = ((cell_row == snake_row_q0) ? 1'b1 : 1'b0);
+
+assign or_ln276_fu_167_p2 = (icmp_ln278_fu_157_p2 & and_ln277_fu_162_p2);
+
+assign snake_col_address0 = zext_ln274_fu_135_p1;
 
 assign snake_col_ce0 = snake_col_ce0_local;
 
-assign snake_col_ce1 = snake_col_ce1_local;
+assign snake_on_1_fu_173_p2 = (snake_on_reg_103 | or_ln276_fu_167_p2);
 
-assign snake_col_d0 = snake_col_q1;
+assign snake_on_out = snake_on_reg_103;
 
-assign snake_col_we0 = snake_col_we0_local;
-
-assign snake_row_address0 = zext_ln151_fu_133_p1;
-
-assign snake_row_address1 = zext_ln153_fu_122_p1;
+assign snake_row_address0 = zext_ln274_fu_135_p1;
 
 assign snake_row_ce0 = snake_row_ce0_local;
 
-assign snake_row_ce1 = snake_row_ce1_local;
+assign zext_ln274_fu_135_p1 = ap_sig_allocacmp_i_2;
 
-assign snake_row_d0 = snake_row_q1;
-
-assign snake_row_we0 = snake_row_we0_local;
-
-assign zext_ln151_fu_133_p1 = i_reg_145;
-
-assign zext_ln153_fu_122_p1 = i_4_fu_116_p2;
-
-endmodule //snake_top_snake_top_Pipeline_VITIS_LOOP_151_2
+endmodule //snake_top_snake_top_Pipeline_VITIS_LOOP_274_3

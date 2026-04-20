@@ -6,7 +6,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="snake_top_snake_top,hls_ip_2025_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xa7z010-clg225-1I,HLS_INPUT_CLOCK=40.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=9.227000,HLS_SYN_LAT=14,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=370,HLS_SYN_LUT=1214,HLS_VERSION=2025_2}" *)
+(* CORE_GENERATION_INFO="snake_top_snake_top,hls_ip_2025_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xa7z010-clg225-1I,HLS_INPUT_CLOCK=40.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=11.428300,HLS_SYN_LAT=12,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=431,HLS_SYN_LUT=1681,HLS_VERSION=2025_2}" *)
 
 (* DowngradeIPIdentifiedWarnings="yes" *)
 module snake_top (
@@ -62,6 +62,8 @@ output  [9:0] B_out;
 reg   [2:0] snake_len;
 reg   [4:0] food_col;
 reg   [3:0] food_row;
+reg   [0:0] game_state;
+reg   [6:0] start_hold_count;
 reg   [2:0] snake_col_address0;
 reg    snake_col_ce0;
 reg    snake_col_we0;
@@ -80,120 +82,147 @@ reg   [1:0] direction;
 reg   [3:0] frame_count;
 reg   [0:0] vsync_prev;
 reg   [7:0] rand_state;
-reg   [4:0] reg_403;
+reg   [4:0] reg_541;
 (* fsm_encoding = "none" *) reg   [20:0] ap_CS_fsm;
 wire    ap_CS_fsm_state4;
 wire    ap_CS_fsm_state18;
-wire   [0:0] rst_n_read_read_fu_170_p2;
-reg   [0:0] rst_n_read_reg_918;
+wire   [0:0] rst_n_read_read_fu_188_p2;
+reg   [0:0] rst_n_read_reg_1451;
 wire    ap_CS_fsm_state1;
-reg   [9:0] vga_y_read_reg_922;
-reg   [9:0] vga_x_read_reg_927;
-reg   [2:0] snake_len_load_reg_941;
-reg   [4:0] food_col_load_reg_954;
-reg   [3:0] food_row_load_reg_962;
-wire   [0:0] vsync_fall_fu_438_p2;
-reg   [0:0] vsync_fall_reg_970;
-wire   [7:0] add_ln95_fu_466_p2;
-reg   [7:0] add_ln95_reg_974;
-wire   [0:0] icmp_ln112_fu_560_p2;
-reg   [0:0] icmp_ln112_reg_980;
-reg   [3:0] snake_row_load_reg_984;
-wire   [3:0] select_ln130_fu_667_p3;
-wire   [3:0] select_ln123_fu_688_p3;
-wire   [0:0] icmp_ln161_fu_727_p2;
-reg   [0:0] icmp_ln161_reg_1003;
+reg   [9:0] vga_y_read_reg_1455;
+reg   [9:0] vga_x_read_reg_1461;
+wire   [0:0] detected_read_read_fu_212_p2;
+reg   [0:0] detected_read_reg_1467;
+reg   [9:0] coord_y_read_reg_1472;
+reg   [9:0] coord_x_read_reg_1477;
+reg   [2:0] snake_len_load_reg_1488;
+reg   [4:0] food_col_load_reg_1503;
+reg   [3:0] food_row_load_reg_1513;
+wire   [0:0] game_state_load_load_fu_560_p1;
+reg   [0:0] game_state_load_reg_1523;
+wire   [0:0] vsync_fall_fu_584_p2;
+reg   [0:0] vsync_fall_reg_1528;
+wire   [7:0] add_ln103_fu_612_p2;
+reg   [7:0] add_ln103_reg_1532;
+wire   [0:0] start_hold_count_flag_0_fu_746_p2;
+wire   [6:0] empty_fu_752_p3;
+wire   [0:0] icmp_ln179_fu_830_p2;
+reg   [0:0] icmp_ln179_reg_1554;
+reg   [3:0] snake_row_load_reg_1558;
+wire   [3:0] select_ln197_fu_943_p3;
+wire   [3:0] select_ln190_fu_964_p3;
+wire   [0:0] icmp_ln228_fu_1003_p2;
+reg   [0:0] icmp_ln228_reg_1577;
 wire    ap_CS_fsm_state6;
-wire   [0:0] and_ln168_fu_743_p2;
-reg   [0:0] and_ln168_reg_1007;
+wire   [0:0] and_ln235_fu_1019_p2;
+reg   [0:0] and_ln235_reg_1581;
 wire    ap_CS_fsm_state7;
-wire   [0:0] icmp_ln170_fu_749_p2;
-reg   [0:0] icmp_ln170_reg_1011;
-wire   [2:0] add_ln174_fu_759_p2;
+wire   [0:0] icmp_ln237_fu_1025_p2;
+reg   [0:0] icmp_ln237_reg_1585;
+wire   [2:0] add_ln241_fu_1035_p2;
 wire    ap_CS_fsm_state8;
-wire   [3:0] grp_fu_784_p2;
-reg   [3:0] urem_ln178_reg_1025;
+wire   [3:0] grp_fu_1060_p2;
+reg   [3:0] urem_ln245_reg_1599;
 wire    ap_CS_fsm_state16;
-wire   [3:0] next_food_row_fu_790_p1;
-reg   [3:0] next_food_row_reg_1030;
-wire   [0:0] icmp_ln180_1_fu_793_p2;
-reg   [0:0] icmp_ln180_1_reg_1035;
-wire   [4:0] storemerge20_fu_840_p3;
+wire   [3:0] next_food_row_fu_1066_p1;
+reg   [3:0] next_food_row_reg_1604;
+wire   [0:0] icmp_ln247_1_fu_1069_p2;
+reg   [0:0] icmp_ln247_1_reg_1609;
+wire   [4:0] storemerge_fu_1116_p3;
 wire    ap_CS_fsm_state19;
-reg   [4:0] cell_col_reg_1045;
-reg   [3:0] cell_row_reg_1051;
-wire   [0:0] icmp_ln216_fu_874_p2;
-reg   [0:0] icmp_ln216_reg_1057;
+reg   [4:0] cell_col_reg_1619;
+reg   [3:0] cell_row_reg_1625;
+wire   [0:0] icmp_ln297_fu_1226_p2;
+reg   [0:0] icmp_ln297_reg_1631;
+wire   [0:0] icmp_ln297_1_fu_1232_p2;
+reg   [0:0] icmp_ln297_1_reg_1636;
+wire   [0:0] icmp_ln309_fu_1302_p2;
+reg   [0:0] icmp_ln309_reg_1641;
+wire   [0:0] icmp_ln310_fu_1308_p2;
+reg   [0:0] icmp_ln310_reg_1646;
+wire   [0:0] food_on_fu_1324_p2;
+reg   [0:0] food_on_reg_1651;
 wire    ap_CS_fsm_state20;
-wire   [0:0] icmp_ln216_1_fu_879_p2;
-reg   [0:0] icmp_ln216_1_reg_1062;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_start;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_done;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_idle;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_ready;
-wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_col_address0;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_col_ce0;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_col_we0;
-wire   [4:0] grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_col_d0;
-wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_row_address0;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_row_ce0;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_row_we0;
-wire   [3:0] grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_row_d0;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_start;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_done;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_idle;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_ready;
-wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_address0;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_ce0;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_we0;
-wire   [4:0] grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_d0;
-wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_address1;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_ce1;
-wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_address0;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_ce0;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_we0;
-wire   [3:0] grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_d0;
-wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_address1;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_ce1;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_start;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_done;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_idle;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_ready;
-wire   [0:0] grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_on_out;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_on_out_ap_vld;
-wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_col_address0;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_col_ce0;
-wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_row_address0;
-wire    grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_row_ce0;
-wire   [4:0] select_ln137_fu_646_p3;
-reg   [4:0] ap_phi_mux_storemerge5_phi_fu_268_p4;
-wire   [1:0] direction_load_load_fu_620_p1;
-wire   [4:0] select_ln144_fu_709_p3;
-reg   [3:0] empty_reg_276;
-reg   [4:0] empty_15_reg_288;
-reg   [2:0] snake_len_loc_0_reg_301;
-reg   [2:0] snake_len_loc_3_reg_310;
-reg   [4:0] food_col_loc_2_reg_325;
-reg   [3:0] food_row_loc_2_reg_338;
-reg   [0:0] ap_phi_mux_storemerge2_phi_fu_355_p4;
-reg   [0:0] storemerge2_reg_351;
-wire    ap_CS_fsm_state3;
-wire   [0:0] or_ln218_fu_892_p2;
+wire   [0:0] and_ln308_1_fu_1341_p2;
+reg   [0:0] and_ln308_1_reg_1657;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_start;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_idle;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_ready;
+wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_col_address0;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_col_ce0;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_col_we0;
+wire   [4:0] grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_col_d0;
+wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_row_address0;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_row_ce0;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_row_we0;
+wire   [3:0] grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_row_d0;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_start;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_done;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_idle;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_ready;
+wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_address0;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_ce0;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_we0;
+wire   [4:0] grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_d0;
+wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_address1;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_ce1;
+wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_address0;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_ce0;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_we0;
+wire   [3:0] grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_d0;
+wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_address1;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_ce1;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_start;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_done;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_idle;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_ready;
+wire   [0:0] grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_on_out;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_on_out_ap_vld;
+wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_col_address0;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_col_ce0;
+wire   [2:0] grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_row_address0;
+wire    grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_row_ce0;
+wire   [4:0] select_ln204_fu_922_p3;
+reg   [4:0] ap_phi_mux_storemerge17_phi_fu_286_p4;
+wire   [1:0] direction_load_load_fu_896_p1;
+wire   [4:0] select_ln211_fu_985_p3;
+reg   [3:0] empty_15_reg_294;
+reg   [4:0] empty_16_reg_306;
+reg   [2:0] snake_len_loc_0_reg_319;
+reg   [2:0] snake_len_loc_4_reg_328;
+wire   [0:0] icmp_ln134_fu_760_p2;
+reg   [4:0] food_col_loc_3_reg_347;
+reg   [3:0] food_row_loc_3_reg_364;
+reg   [0:0] game_state_loc_2_reg_381;
+reg   [0:0] start_hold_count_flag_3_reg_405;
+reg   [6:0] start_hold_count_new_3_reg_429;
+reg   [0:0] ap_phi_mux_start_hold_count_flag_4_phi_fu_457_p4;
+reg   [0:0] start_hold_count_flag_4_reg_453;
 wire    ap_CS_fsm_state21;
-reg   [0:0] ap_phi_mux_storemerge_phi_fu_366_p4;
-reg   [0:0] storemerge_reg_362;
-reg    grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_start_reg;
+wire    ap_CS_fsm_state3;
+reg   [6:0] ap_phi_mux_start_hold_count_new_4_phi_fu_469_p4;
+reg   [6:0] start_hold_count_new_4_reg_465;
+wire   [0:0] select_ln312_1_fu_1403_p3;
+reg   [0:0] ap_phi_mux_storemerge2_phi_fu_481_p4;
+reg   [0:0] storemerge2_reg_477;
+wire   [9:0] select_ln312_2_fu_1411_p3;
+reg   [9:0] ap_phi_mux_storemerge1_phi_fu_492_p4;
+reg   [9:0] storemerge1_reg_488;
+wire   [0:0] and_ln312_fu_1420_p2;
+reg   [0:0] ap_phi_mux_storemerge3_phi_fu_504_p4;
+reg   [0:0] storemerge3_reg_500;
+reg    grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_start_reg;
 wire    ap_CS_fsm_state2;
 wire    snake_col_we0_out;
 wire    snake_row_we0_out;
-reg    grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_start_reg;
+reg    grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_start_reg;
 wire    ap_CS_fsm_state5;
-reg    grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_start_reg;
-wire   [63:0] zext_ln172_fu_754_p1;
-wire   [1:0] storemerge543_0_0_s_fu_530_p9;
-wire   [0:0] detected_read_read_fu_194_p2;
-wire   [3:0] add_ln198_fu_566_p2;
-wire   [9:0] storemerge_cast_fu_899_p3;
+reg    grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_start_reg;
+wire   [63:0] zext_ln239_fu_1030_p1;
+wire   [1:0] select_ln162_fu_812_p3;
+wire   [0:0] in_dead_zone_fu_778_p2;
+wire   [3:0] add_ln265_fu_836_p2;
 reg    snake_col_we0_local;
 reg   [4:0] snake_col_d0_local;
 reg    snake_col_ce0_local;
@@ -203,43 +232,94 @@ reg    snake_row_we0_local;
 reg   [3:0] snake_row_d0_local;
 reg    snake_row_ce0_local;
 reg   [2:0] snake_row_address0_local;
-wire   [0:0] xor_ln89_fu_432_p2;
-wire   [7:0] shl_ln95_fu_454_p2;
-wire   [7:0] add_ln95_1_fu_460_p2;
-wire   [0:0] top_half_fu_478_p2;
-wire   [0:0] icmp_ln102_fu_484_p2;
-wire   [0:0] or_ln106_fu_496_p2;
-wire   [0:0] xor_ln102_1_fu_510_p2;
-wire   [0:0] xor_ln102_fu_490_p2;
-wire   [0:0] and_ln102_fu_516_p2;
-wire   [1:0] storemerge543_0_0_s_fu_530_p2;
-wire   [1:0] storemerge543_0_0_s_fu_530_p7;
-wire   [1:0] storemerge543_0_0_s_fu_530_p8;
-wire   [0:0] icmp_ln137_fu_634_p2;
-wire   [4:0] add_ln140_fu_640_p2;
-wire   [0:0] icmp_ln130_fu_655_p2;
-wire   [3:0] add_ln133_fu_661_p2;
-wire   [0:0] icmp_ln123_fu_676_p2;
-wire   [3:0] add_ln126_fu_682_p2;
-wire   [0:0] icmp_ln144_fu_697_p2;
-wire   [4:0] add_ln147_fu_703_p2;
-wire   [1:0] tmp_fu_718_p4;
-wire   [0:0] icmp_ln168_fu_733_p2;
-wire   [0:0] icmp_ln168_1_fu_738_p2;
-wire   [5:0] grp_fu_770_p1;
-wire   [4:0] grp_fu_784_p0;
-wire   [4:0] grp_fu_770_p2;
-wire   [4:0] next_food_col_fu_805_p1;
-wire   [0:0] icmp_ln180_fu_809_p2;
-wire   [0:0] icmp_ln182_fu_820_p2;
-wire   [4:0] add_ln185_fu_826_p2;
-wire   [0:0] and_ln180_fu_815_p2;
-wire   [4:0] select_ln182_fu_832_p3;
-wire   [0:0] food_on_fu_888_p2;
-reg    grp_fu_770_ap_start;
-wire    grp_fu_770_ap_done;
-reg    grp_fu_784_ap_start;
-wire    grp_fu_784_ap_done;
+wire   [0:0] xor_ln97_fu_578_p2;
+wire   [7:0] shl_ln103_fu_600_p2;
+wire   [7:0] add_ln103_1_fu_606_p2;
+wire   [10:0] zext_ln106_fu_624_p1;
+wire   [10:0] start_dx_fu_628_p2;
+wire   [10:0] zext_ln107_fu_638_p1;
+wire   [10:0] start_dy_fu_642_p2;
+wire   [9:0] trunc_ln106_fu_634_p1;
+wire   [0:0] tmp_fu_652_p3;
+wire   [9:0] sub_ln109_fu_660_p2;
+wire   [9:0] trunc_ln107_fu_648_p1;
+wire   [0:0] tmp_1_fu_674_p3;
+wire   [9:0] sub_ln110_fu_682_p2;
+wire   [9:0] abs_start_dx_fu_666_p3;
+wire   [0:0] icmp_ln118_fu_696_p2;
+wire   [9:0] abs_start_dy_fu_688_p3;
+wire   [0:0] and_ln117_fu_702_p2;
+wire   [0:0] icmp_ln119_fu_708_p2;
+wire   [0:0] icmp_ln126_fu_720_p2;
+wire   [6:0] add_ln127_fu_726_p2;
+wire   [0:0] in_start_box_fu_714_p2;
+wire   [0:0] not_in_start_box_fu_740_p2;
+wire   [6:0] select_ln126_fu_732_p3;
+wire   [0:0] xor_ln164_fu_790_p2;
+wire   [0:0] icmp_ln162_fu_784_p2;
+wire   [1:0] select_ln171_1_fu_796_p3;
+wire   [1:0] select_ln171_fu_804_p3;
+wire   [0:0] icmp_ln204_fu_910_p2;
+wire   [4:0] add_ln207_fu_916_p2;
+wire   [0:0] icmp_ln197_fu_931_p2;
+wire   [3:0] add_ln200_fu_937_p2;
+wire   [0:0] icmp_ln190_fu_952_p2;
+wire   [3:0] add_ln193_fu_958_p2;
+wire   [0:0] icmp_ln211_fu_973_p2;
+wire   [4:0] add_ln214_fu_979_p2;
+wire   [1:0] tmp_2_fu_994_p4;
+wire   [0:0] icmp_ln235_fu_1009_p2;
+wire   [0:0] icmp_ln235_1_fu_1014_p2;
+wire   [5:0] grp_fu_1046_p1;
+wire   [4:0] grp_fu_1060_p0;
+wire   [4:0] grp_fu_1046_p2;
+wire   [4:0] next_food_col_fu_1081_p1;
+wire   [0:0] icmp_ln247_fu_1085_p2;
+wire   [0:0] icmp_ln249_fu_1096_p2;
+wire   [4:0] add_ln252_fu_1102_p2;
+wire   [0:0] and_ln247_fu_1091_p2;
+wire   [4:0] select_ln249_fu_1108_p3;
+wire   [10:0] zext_ln302_fu_1150_p1;
+wire   [10:0] zext_ln290_1_fu_1156_p1;
+wire   [10:0] hand_dx_fu_1159_p2;
+wire   [10:0] zext_ln290_fu_1153_p1;
+wire   [10:0] zext_ln291_fu_1169_p1;
+wire   [10:0] hand_dy_fu_1172_p2;
+wire   [9:0] trunc_ln290_fu_1165_p1;
+wire   [0:0] tmp_3_fu_1182_p3;
+wire   [9:0] sub_ln293_fu_1190_p2;
+wire   [9:0] trunc_ln291_fu_1178_p1;
+wire   [0:0] tmp_4_fu_1204_p3;
+wire   [9:0] sub_ln294_fu_1212_p2;
+wire   [9:0] abs_hand_dx_fu_1196_p3;
+wire   [9:0] abs_hand_dy_fu_1218_p3;
+wire   [10:0] box_dx_fu_1238_p2;
+wire   [10:0] box_dy_fu_1248_p2;
+wire   [9:0] trunc_ln301_fu_1244_p1;
+wire   [0:0] tmp_5_fu_1258_p3;
+wire   [9:0] sub_ln304_fu_1266_p2;
+wire   [9:0] trunc_ln302_fu_1254_p1;
+wire   [0:0] tmp_6_fu_1280_p3;
+wire   [9:0] sub_ln305_fu_1288_p2;
+wire   [9:0] abs_box_dx_fu_1272_p3;
+wire   [9:0] abs_box_dy_fu_1294_p3;
+wire   [0:0] icmp_ln284_fu_1314_p2;
+wire   [0:0] icmp_ln284_1_fu_1319_p2;
+wire   [0:0] xor_ln308_fu_1330_p2;
+wire   [0:0] and_ln308_fu_1336_p2;
+wire   [0:0] hand_on_fu_1349_p2;
+wire   [0:0] or_ln312_fu_1358_p2;
+wire   [0:0] hand_on_1_fu_1353_p2;
+wire   [9:0] select_ln312_3_fu_1363_p3;
+wire   [0:0] xor_ln312_fu_1385_p2;
+wire   [0:0] or_ln312_1_fu_1371_p2;
+wire   [9:0] select_ln312_fu_1377_p3;
+wire   [9:0] select_ln308_fu_1396_p3;
+wire   [0:0] or_ln312_2_fu_1390_p2;
+reg    grp_fu_1046_ap_start;
+wire    grp_fu_1046_ap_done;
+reg    grp_fu_1060_ap_start;
+wire    grp_fu_1060_ap_done;
 reg   [20:0] ap_NS_fsm;
 wire    ap_ST_fsm_state1_blk;
 wire    ap_ST_fsm_state2_blk;
@@ -262,9 +342,7 @@ wire    ap_ST_fsm_state18_blk;
 wire    ap_ST_fsm_state19_blk;
 reg    ap_ST_fsm_state20_blk;
 wire    ap_ST_fsm_state21_blk;
-wire  signed [1:0] storemerge543_0_0_s_fu_530_p1;
-wire   [1:0] storemerge543_0_0_s_fu_530_p3;
-wire   [1:0] storemerge543_0_0_s_fu_530_p5;
+reg    ap_condition_862;
 wire    ap_ce_reg;
 
 // power-on initialization
@@ -272,14 +350,16 @@ initial begin
 #0 snake_len = 3'd1;
 #0 food_col = 5'd5;
 #0 food_row = 4'd5;
+#0 game_state = 1'd0;
+#0 start_hold_count = 7'd0;
 #0 direction = 2'd1;
 #0 frame_count = 4'd0;
 #0 vsync_prev = 1'd0;
 #0 rand_state = 8'd90;
 #0 ap_CS_fsm = 21'd1;
-#0 grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_start_reg = 1'b0;
-#0 grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_start_reg = 1'b0;
-#0 grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_start_reg = 1'b0;
+#0 grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_start_reg = 1'b0;
+#0 grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_start_reg = 1'b0;
+#0 grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_start_reg = 1'b0;
 end
 
 snake_top_snake_col_RAM_AUTO_1R1W #(
@@ -294,7 +374,7 @@ snake_col_U(
     .we0(snake_col_we0),
     .d0(snake_col_d0),
     .q0(snake_col_q0),
-    .address1(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_address1),
+    .address1(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_address1),
     .ce1(snake_col_ce1),
     .q1(snake_col_q1)
 );
@@ -311,91 +391,70 @@ snake_row_U(
     .we0(snake_row_we0),
     .d0(snake_row_d0),
     .q0(snake_row_q0),
-    .address1(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_address1),
+    .address1(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_address1),
     .ce1(snake_row_ce1),
     .q1(snake_row_q1)
 );
 
-snake_top_snake_top_Pipeline_VITIS_LOOP_67_1 grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373(
+snake_top_snake_top_Pipeline_VITIS_LOOP_71_1 grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_start),
-    .ap_done(grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_done),
-    .ap_idle(grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_idle),
-    .ap_ready(grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_ready),
-    .snake_col_address0(grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_col_address0),
-    .snake_col_ce0(grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_col_ce0),
-    .snake_col_we0(grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_col_we0),
-    .snake_col_d0(grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_col_d0),
-    .snake_row_address0(grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_row_address0),
-    .snake_row_ce0(grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_row_ce0),
-    .snake_row_we0(grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_row_we0),
-    .snake_row_d0(grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_row_d0)
+    .ap_start(grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_start),
+    .ap_done(grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done),
+    .ap_idle(grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_idle),
+    .ap_ready(grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_ready),
+    .snake_col_address0(grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_col_address0),
+    .snake_col_ce0(grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_col_ce0),
+    .snake_col_we0(grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_col_we0),
+    .snake_col_d0(grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_col_d0),
+    .snake_row_address0(grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_row_address0),
+    .snake_row_ce0(grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_row_ce0),
+    .snake_row_we0(grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_row_we0),
+    .snake_row_d0(grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_row_d0)
 );
 
-snake_top_snake_top_Pipeline_VITIS_LOOP_151_2 grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381(
+snake_top_snake_top_Pipeline_VITIS_LOOP_218_2 grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_start),
-    .ap_done(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_done),
-    .ap_idle(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_idle),
-    .ap_ready(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_ready),
-    .snake_len_load(snake_len_load_reg_941),
-    .snake_col_address0(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_address0),
-    .snake_col_ce0(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_ce0),
-    .snake_col_we0(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_we0),
-    .snake_col_d0(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_d0),
-    .snake_col_address1(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_address1),
-    .snake_col_ce1(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_ce1),
+    .ap_start(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_start),
+    .ap_done(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_done),
+    .ap_idle(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_idle),
+    .ap_ready(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_ready),
+    .snake_len_load(snake_len_load_reg_1488),
+    .snake_col_address0(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_address0),
+    .snake_col_ce0(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_ce0),
+    .snake_col_we0(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_we0),
+    .snake_col_d0(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_d0),
+    .snake_col_address1(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_address1),
+    .snake_col_ce1(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_ce1),
     .snake_col_q1(snake_col_q1),
-    .snake_row_address0(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_address0),
-    .snake_row_ce0(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_ce0),
-    .snake_row_we0(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_we0),
-    .snake_row_d0(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_d0),
-    .snake_row_address1(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_address1),
-    .snake_row_ce1(grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_ce1),
+    .snake_row_address0(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_address0),
+    .snake_row_ce0(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_ce0),
+    .snake_row_we0(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_we0),
+    .snake_row_d0(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_d0),
+    .snake_row_address1(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_address1),
+    .snake_row_ce1(grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_ce1),
     .snake_row_q1(snake_row_q1)
 );
 
-snake_top_snake_top_Pipeline_VITIS_LOOP_206_3 grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390(
+snake_top_snake_top_Pipeline_VITIS_LOOP_274_3 grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_start),
-    .ap_done(grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_done),
-    .ap_idle(grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_idle),
-    .ap_ready(grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_ready),
-    .snake_len_loc_3(snake_len_loc_3_reg_310),
-    .cell_col(cell_col_reg_1045),
-    .cell_row(cell_row_reg_1051),
-    .snake_on_out(grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_on_out),
-    .snake_on_out_ap_vld(grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_on_out_ap_vld),
-    .snake_col_address0(grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_col_address0),
-    .snake_col_ce0(grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_col_ce0),
+    .ap_start(grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_start),
+    .ap_done(grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_done),
+    .ap_idle(grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_idle),
+    .ap_ready(grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_ready),
+    .snake_len_loc_4(snake_len_loc_4_reg_328),
+    .cell_col(cell_col_reg_1619),
+    .cell_row(cell_row_reg_1625),
+    .snake_on_out(grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_on_out),
+    .snake_on_out_ap_vld(grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_on_out_ap_vld),
+    .snake_col_address0(grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_col_address0),
+    .snake_col_ce0(grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_col_ce0),
     .snake_col_q0(snake_col_q0),
-    .snake_row_address0(grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_row_address0),
-    .snake_row_ce0(grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_row_ce0),
+    .snake_row_address0(grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_row_address0),
+    .snake_row_ce0(grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_row_ce0),
     .snake_row_q0(snake_row_q0)
-);
-
-(* dissolve_hierarchy = "yes" *) snake_top_sparsemux_7_2_2_1_1 #(
-    .ID( 1 ),
-    .NUM_STAGE( 1 ),
-    .CASE0( 2'h2 ),
-    .din0_WIDTH( 2 ),
-    .CASE1( 2'h1 ),
-    .din1_WIDTH( 2 ),
-    .CASE2( 2'h0 ),
-    .din2_WIDTH( 2 ),
-    .def_WIDTH( 2 ),
-    .sel_WIDTH( 2 ),
-    .dout_WIDTH( 2 ))
-sparsemux_7_2_2_1_1_U12(
-    .din0(storemerge543_0_0_s_fu_530_p2),
-    .din1(2'd0),
-    .din2(2'd1),
-    .def(storemerge543_0_0_s_fu_530_p7),
-    .sel(storemerge543_0_0_s_fu_530_p8),
-    .dout(storemerge543_0_0_s_fu_530_p9)
 );
 
 snake_top_urem_8ns_6ns_5_12_seq_1 #(
@@ -404,15 +463,15 @@ snake_top_urem_8ns_6ns_5_12_seq_1 #(
     .din0_WIDTH( 8 ),
     .din1_WIDTH( 6 ),
     .dout_WIDTH( 5 ))
-urem_8ns_6ns_5_12_seq_1_U13(
+urem_8ns_6ns_5_12_seq_1_U12(
     .clk(ap_clk),
     .reset(ap_rst),
-    .start(grp_fu_770_ap_start),
-    .done(grp_fu_770_ap_done),
-    .din0(add_ln95_reg_974),
-    .din1(grp_fu_770_p1),
+    .start(grp_fu_1046_ap_start),
+    .done(grp_fu_1046_ap_done),
+    .din0(add_ln103_reg_1532),
+    .din1(grp_fu_1046_p1),
     .ce(1'b1),
-    .dout(grp_fu_770_p2)
+    .dout(grp_fu_1046_p2)
 );
 
 snake_top_urem_5ns_5ns_4_9_seq_1 #(
@@ -421,15 +480,15 @@ snake_top_urem_5ns_5ns_4_9_seq_1 #(
     .din0_WIDTH( 5 ),
     .din1_WIDTH( 5 ),
     .dout_WIDTH( 4 ))
-urem_5ns_5ns_4_9_seq_1_U14(
+urem_5ns_5ns_4_9_seq_1_U13(
     .clk(ap_clk),
     .reset(ap_rst),
-    .start(grp_fu_784_ap_start),
-    .done(grp_fu_784_ap_done),
-    .din0(grp_fu_784_p0),
+    .start(grp_fu_1060_ap_start),
+    .done(grp_fu_1060_ap_done),
+    .din0(grp_fu_1060_p0),
     .din1(5'd15),
     .ce(1'b1),
-    .dout(grp_fu_784_p2)
+    .dout(grp_fu_1060_p2)
 );
 
 always @ (posedge ap_clk) begin
@@ -442,230 +501,306 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_start_reg <= 1'b0;
+        grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state5)) begin
-            grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_start_reg <= 1'b1;
-        end else if ((grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_ready == 1'b1)) begin
-            grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_start_reg <= 1'b0;
+            grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_start_reg <= 1'b1;
+        end else if ((grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_ready == 1'b1)) begin
+            grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_start_reg <= 1'b0;
+        grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state19)) begin
-            grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_start_reg <= 1'b1;
-        end else if ((grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_ready == 1'b1)) begin
-            grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_start_reg <= 1'b0;
+            grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_start_reg <= 1'b1;
+        end else if ((grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_ready == 1'b1)) begin
+            grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_start_reg <= 1'b0;
+        grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state2)) begin
-            grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_start_reg <= 1'b1;
-        end else if ((grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_ready == 1'b1)) begin
-            grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_start_reg <= 1'b0;
+            grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_start_reg <= 1'b1;
+        end else if ((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_ready == 1'b1)) begin
+            grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((rst_n_read_read_fu_170_p2 == 1'd1) & (detected_read_read_fu_194_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_438_p2 == 1'd1))) begin
-        direction <= storemerge543_0_0_s_fu_530_p9;
-    end else if (((1'b1 == ap_CS_fsm_state3) & (grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_done == 1'b1))) begin
+    if (((rst_n_read_read_fu_188_p2 == 1'd1) & (in_dead_zone_fu_778_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd1) & (detected_read_read_fu_212_p2 == 1'd1))) begin
+        direction <= select_ln162_fu_812_p3;
+    end else if (((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
         direction <= 2'd1;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state4) & ((direction_load_load_fu_620_p1 == 2'd1) | (direction_load_load_fu_620_p1 == 2'd2)))) begin
-        empty_15_reg_288 <= ap_phi_mux_storemerge5_phi_fu_268_p4;
-    end else if ((((direction_load_load_fu_620_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state4)) | ((direction_load_load_fu_620_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state4)))) begin
-        empty_15_reg_288 <= snake_col_q0;
-    end
-end
-
-always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        if (((direction_load_load_fu_620_p1 == 2'd1) | (direction_load_load_fu_620_p1 == 2'd2))) begin
-            empty_reg_276 <= snake_row_q0;
-        end else if ((direction_load_load_fu_620_p1 == 2'd3)) begin
-            empty_reg_276 <= select_ln130_fu_667_p3;
-        end else if ((direction_load_load_fu_620_p1 == 2'd0)) begin
-            empty_reg_276 <= select_ln123_fu_688_p3;
+        if (((direction_load_load_fu_896_p1 == 2'd1) | (direction_load_load_fu_896_p1 == 2'd2))) begin
+            empty_15_reg_294 <= snake_row_q0;
+        end else if ((direction_load_load_fu_896_p1 == 2'd3)) begin
+            empty_15_reg_294 <= select_ln197_fu_943_p3;
+        end else if ((direction_load_load_fu_896_p1 == 2'd0)) begin
+            empty_15_reg_294 <= select_ln190_fu_964_p3;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state3) & (grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_done == 1'b1))) begin
+    if (((1'b1 == ap_CS_fsm_state4) & ((direction_load_load_fu_896_p1 == 2'd1) | (direction_load_load_fu_896_p1 == 2'd2)))) begin
+        empty_16_reg_306 <= ap_phi_mux_storemerge17_phi_fu_286_p4;
+    end else if ((((direction_load_load_fu_896_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state4)) | ((direction_load_load_fu_896_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state4)))) begin
+        empty_16_reg_306 <= snake_col_q0;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
         food_col <= 5'd5;
-    end else if (((1'd1 == and_ln168_reg_1007) & (1'b1 == ap_CS_fsm_state19) & (icmp_ln112_reg_980 == 1'd1) & (vsync_fall_reg_970 == 1'd1))) begin
-        food_col <= storemerge20_fu_840_p3;
+    end else if (((1'd1 == and_ln235_reg_1581) & (1'b1 == ap_CS_fsm_state19) & (icmp_ln179_reg_1554 == 1'd1) & (vsync_fall_reg_1528 == 1'd1) & (game_state_load_reg_1523 == 1'd1))) begin
+        food_col <= storemerge_fu_1116_p3;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'd0 == and_ln168_fu_743_p2) & (1'b1 == ap_CS_fsm_state7))) begin
-        food_col_loc_2_reg_325 <= food_col_load_reg_954;
-    end else if (((1'd1 == and_ln168_reg_1007) & (1'b1 == ap_CS_fsm_state19) & (icmp_ln112_reg_980 == 1'd1) & (vsync_fall_reg_970 == 1'd1))) begin
-        food_col_loc_2_reg_325 <= storemerge20_fu_840_p3;
-    end else if ((((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln112_fu_560_p2 == 1'd0) & (vsync_fall_fu_438_p2 == 1'd1)) | ((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_438_p2 == 1'd0)))) begin
-        food_col_loc_2_reg_325 <= food_col;
+    if (((1'd0 == and_ln235_fu_1019_p2) & (1'b1 == ap_CS_fsm_state7))) begin
+        food_col_loc_3_reg_347 <= food_col_load_reg_1503;
+    end else if (((1'd1 == and_ln235_reg_1581) & (1'b1 == ap_CS_fsm_state19) & (icmp_ln179_reg_1554 == 1'd1) & (vsync_fall_reg_1528 == 1'd1) & (game_state_load_reg_1523 == 1'd1))) begin
+        food_col_loc_3_reg_347 <= storemerge_fu_1116_p3;
+    end else if ((((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln134_fu_760_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln134_fu_760_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln179_fu_830_p2 == 1'd0) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd1)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd0)))) begin
+        food_col_loc_3_reg_347 <= food_col;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state3) & (grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_done == 1'b1))) begin
+    if (((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
         food_row <= 4'd5;
     end else if ((1'b1 == ap_CS_fsm_state18)) begin
-        food_row <= next_food_row_fu_790_p1;
+        food_row <= next_food_row_fu_1066_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'd0 == and_ln168_fu_743_p2) & (1'b1 == ap_CS_fsm_state7))) begin
-        food_row_loc_2_reg_338 <= food_row_load_reg_962;
-    end else if (((1'd1 == and_ln168_reg_1007) & (1'b1 == ap_CS_fsm_state19) & (icmp_ln112_reg_980 == 1'd1) & (vsync_fall_reg_970 == 1'd1))) begin
-        food_row_loc_2_reg_338 <= next_food_row_reg_1030;
-    end else if ((((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln112_fu_560_p2 == 1'd0) & (vsync_fall_fu_438_p2 == 1'd1)) | ((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_438_p2 == 1'd0)))) begin
-        food_row_loc_2_reg_338 <= food_row;
+    if (((1'd0 == and_ln235_fu_1019_p2) & (1'b1 == ap_CS_fsm_state7))) begin
+        food_row_loc_3_reg_364 <= food_row_load_reg_1513;
+    end else if (((1'd1 == and_ln235_reg_1581) & (1'b1 == ap_CS_fsm_state19) & (icmp_ln179_reg_1554 == 1'd1) & (vsync_fall_reg_1528 == 1'd1) & (game_state_load_reg_1523 == 1'd1))) begin
+        food_row_loc_3_reg_364 <= next_food_row_reg_1604;
+    end else if ((((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln134_fu_760_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln134_fu_760_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln179_fu_830_p2 == 1'd0) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd1)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd0)))) begin
+        food_row_loc_3_reg_364 <= food_row;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln112_fu_560_p2 == 1'd0) & (vsync_fall_fu_438_p2 == 1'd1))) begin
-        frame_count <= add_ln198_fu_566_p2;
-    end else if (((1'b1 == ap_CS_fsm_state4) | ((1'b1 == ap_CS_fsm_state3) & (grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_done == 1'b1)))) begin
+    if (((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln179_fu_830_p2 == 1'd0) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd1))) begin
+        frame_count <= add_ln265_fu_836_p2;
+    end else if (((1'b1 == ap_CS_fsm_state4) | ((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln134_fu_760_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0)))) begin
         frame_count <= 4'd0;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_438_p2 == 1'd1))) begin
-        rand_state <= add_ln95_fu_466_p2;
-    end else if (((1'b1 == ap_CS_fsm_state3) & (grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_done == 1'b1))) begin
+    if (((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln134_fu_760_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0))) begin
+        game_state <= 1'd1;
+    end else if (((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        game_state <= 1'd0;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln134_fu_760_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0))) begin
+        game_state_loc_2_reg_381 <= 1'd0;
+    end else if ((((1'd0 == and_ln235_fu_1019_p2) & (1'b1 == ap_CS_fsm_state7)) | ((1'd1 == and_ln235_reg_1581) & (1'b1 == ap_CS_fsm_state19) & (icmp_ln179_reg_1554 == 1'd1) & (vsync_fall_reg_1528 == 1'd1) & (game_state_load_reg_1523 == 1'd1)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln134_fu_760_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln179_fu_830_p2 == 1'd0) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd1)))) begin
+        game_state_loc_2_reg_381 <= 1'd1;
+    end else if (((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd0))) begin
+        game_state_loc_2_reg_381 <= game_state;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1))) begin
+        rand_state <= add_ln103_fu_612_p2;
+    end else if (((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
         rand_state <= 8'd90;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state3) & (grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_done == 1'b1))) begin
+    if (((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
         snake_len <= 3'd1;
-    end else if (((1'b1 == ap_CS_fsm_state8) & (icmp_ln170_reg_1011 == 1'd1))) begin
-        snake_len <= add_ln174_fu_759_p2;
+    end else if (((1'b1 == ap_CS_fsm_state8) & (icmp_ln237_reg_1585 == 1'd1))) begin
+        snake_len <= add_ln241_fu_1035_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'd1 == and_ln168_fu_743_p2) & (1'b1 == ap_CS_fsm_state7) & (icmp_ln170_fu_749_p2 == 1'd0))) begin
-        snake_len_loc_0_reg_301 <= snake_len_load_reg_941;
-    end else if (((1'b1 == ap_CS_fsm_state8) & (icmp_ln170_reg_1011 == 1'd1))) begin
-        snake_len_loc_0_reg_301 <= add_ln174_fu_759_p2;
+    if (((1'd1 == and_ln235_fu_1019_p2) & (1'b1 == ap_CS_fsm_state7) & (icmp_ln237_fu_1025_p2 == 1'd0))) begin
+        snake_len_loc_0_reg_319 <= snake_len_load_reg_1488;
+    end else if (((1'b1 == ap_CS_fsm_state8) & (icmp_ln237_reg_1585 == 1'd1))) begin
+        snake_len_loc_0_reg_319 <= add_ln241_fu_1035_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'd0 == and_ln168_fu_743_p2) & (1'b1 == ap_CS_fsm_state7))) begin
-        snake_len_loc_3_reg_310 <= snake_len_load_reg_941;
-    end else if (((1'd1 == and_ln168_reg_1007) & (1'b1 == ap_CS_fsm_state19) & (icmp_ln112_reg_980 == 1'd1) & (vsync_fall_reg_970 == 1'd1))) begin
-        snake_len_loc_3_reg_310 <= snake_len_loc_0_reg_301;
-    end else if ((((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln112_fu_560_p2 == 1'd0) & (vsync_fall_fu_438_p2 == 1'd1)) | ((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_438_p2 == 1'd0)))) begin
-        snake_len_loc_3_reg_310 <= snake_len;
+    if (((1'd0 == and_ln235_fu_1019_p2) & (1'b1 == ap_CS_fsm_state7))) begin
+        snake_len_loc_4_reg_328 <= snake_len_load_reg_1488;
+    end else if (((1'd1 == and_ln235_reg_1581) & (1'b1 == ap_CS_fsm_state19) & (icmp_ln179_reg_1554 == 1'd1) & (vsync_fall_reg_1528 == 1'd1) & (game_state_load_reg_1523 == 1'd1))) begin
+        snake_len_loc_4_reg_328 <= snake_len_loc_0_reg_319;
+    end else if ((((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln134_fu_760_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln134_fu_760_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln179_fu_830_p2 == 1'd0) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd1)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd0)))) begin
+        snake_len_loc_4_reg_328 <= snake_len;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((rst_n_read_reg_918 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
-        storemerge2_reg_351 <= or_ln218_fu_892_p2;
-    end else if (((1'b1 == ap_CS_fsm_state3) & (grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_done == 1'b1))) begin
-        storemerge2_reg_351 <= 1'd0;
+    if (((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln134_fu_760_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0))) begin
+        start_hold_count_flag_3_reg_405 <= start_hold_count_flag_0_fu_746_p2;
+    end else if (((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln134_fu_760_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0))) begin
+        start_hold_count_flag_3_reg_405 <= 1'd1;
+    end else if ((((1'd0 == and_ln235_fu_1019_p2) & (1'b1 == ap_CS_fsm_state7)) | ((1'd1 == and_ln235_reg_1581) & (1'b1 == ap_CS_fsm_state19) & (icmp_ln179_reg_1554 == 1'd1) & (vsync_fall_reg_1528 == 1'd1) & (game_state_load_reg_1523 == 1'd1)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln179_fu_830_p2 == 1'd0) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd1)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd0)))) begin
+        start_hold_count_flag_3_reg_405 <= 1'd0;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((rst_n_read_reg_918 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
-        storemerge_reg_362 <= grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_on_out;
-    end else if (((1'b1 == ap_CS_fsm_state3) & (grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_done == 1'b1))) begin
-        storemerge_reg_362 <= 1'd0;
+    if (((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        start_hold_count_flag_4_reg_453 <= 1'd1;
+    end else if (((rst_n_read_reg_1451 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
+        start_hold_count_flag_4_reg_453 <= start_hold_count_flag_3_reg_405;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_condition_862)) begin
+        if ((icmp_ln134_fu_760_p2 == 1'd0)) begin
+            start_hold_count_new_3_reg_429 <= empty_fu_752_p3;
+        end else if ((icmp_ln134_fu_760_p2 == 1'd1)) begin
+            start_hold_count_new_3_reg_429 <= 7'd0;
+        end
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        start_hold_count_new_4_reg_465 <= 7'd0;
+    end else if (((rst_n_read_reg_1451 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
+        start_hold_count_new_4_reg_465 <= start_hold_count_new_3_reg_429;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        storemerge1_reg_488 <= 10'd0;
+    end else if (((rst_n_read_reg_1451 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
+        storemerge1_reg_488 <= select_ln312_2_fu_1411_p3;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        storemerge2_reg_477 <= 1'd0;
+    end else if (((rst_n_read_reg_1451 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
+        storemerge2_reg_477 <= select_ln312_1_fu_1403_p3;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
+        storemerge3_reg_500 <= 1'd0;
+    end else if (((rst_n_read_reg_1451 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
+        storemerge3_reg_500 <= and_ln312_fu_1420_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state1)) begin
-        add_ln95_reg_974 <= add_ln95_fu_466_p2;
-        food_col_load_reg_954 <= food_col;
-        food_row_load_reg_962 <= food_row;
-        icmp_ln112_reg_980 <= icmp_ln112_fu_560_p2;
-        rst_n_read_reg_918 <= rst_n;
-        snake_len_load_reg_941 <= snake_len;
-        vga_x_read_reg_927 <= vga_x;
-        vga_y_read_reg_922 <= vga_y;
-        vsync_fall_reg_970 <= vsync_fall_fu_438_p2;
+        add_ln103_reg_1532 <= add_ln103_fu_612_p2;
+        coord_x_read_reg_1477 <= coord_x;
+        coord_y_read_reg_1472 <= coord_y;
+        detected_read_reg_1467 <= detected;
+        food_col_load_reg_1503 <= food_col;
+        food_row_load_reg_1513 <= food_row;
+        game_state_load_reg_1523 <= game_state;
+        icmp_ln179_reg_1554 <= icmp_ln179_fu_830_p2;
+        rst_n_read_reg_1451 <= rst_n;
+        snake_len_load_reg_1488 <= snake_len;
+        vga_x_read_reg_1461 <= vga_x;
+        vga_y_read_reg_1455 <= vga_y;
+        vsync_fall_reg_1528 <= vsync_fall_fu_584_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state7)) begin
-        and_ln168_reg_1007 <= and_ln168_fu_743_p2;
-        icmp_ln170_reg_1011 <= icmp_ln170_fu_749_p2;
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state19)) begin
-        cell_col_reg_1045 <= {{vga_x_read_reg_927[9:5]}};
-        cell_row_reg_1051 <= {{vga_y_read_reg_922[8:5]}};
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state6)) begin
-        icmp_ln161_reg_1003 <= icmp_ln161_fu_727_p2;
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state18)) begin
-        icmp_ln180_1_reg_1035 <= icmp_ln180_1_fu_793_p2;
-        next_food_row_reg_1030 <= next_food_row_fu_790_p1;
+        and_ln235_reg_1581 <= and_ln235_fu_1019_p2;
+        icmp_ln237_reg_1585 <= icmp_ln237_fu_1025_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state20)) begin
-        icmp_ln216_1_reg_1062 <= icmp_ln216_1_fu_879_p2;
-        icmp_ln216_reg_1057 <= icmp_ln216_fu_874_p2;
+        and_ln308_1_reg_1657 <= and_ln308_1_fu_1341_p2;
+        food_on_reg_1651 <= food_on_fu_1324_p2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state19)) begin
+        cell_col_reg_1619 <= {{vga_x_read_reg_1461[9:5]}};
+        cell_row_reg_1625 <= {{vga_y_read_reg_1455[8:5]}};
+        icmp_ln297_1_reg_1636 <= icmp_ln297_1_fu_1232_p2;
+        icmp_ln297_reg_1631 <= icmp_ln297_fu_1226_p2;
+        icmp_ln309_reg_1641 <= icmp_ln309_fu_1302_p2;
+        icmp_ln310_reg_1646 <= icmp_ln310_fu_1308_p2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state6)) begin
+        icmp_ln228_reg_1577 <= icmp_ln228_fu_1003_p2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state18)) begin
+        icmp_ln247_1_reg_1609 <= icmp_ln247_1_fu_1069_p2;
+        next_food_row_reg_1604 <= next_food_row_fu_1066_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((1'b1 == ap_CS_fsm_state18) | (1'b1 == ap_CS_fsm_state4))) begin
-        reg_403 <= snake_col_q0;
+        reg_541 <= snake_col_q0;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        snake_row_load_reg_984 <= snake_row_q0;
+        snake_row_load_reg_1558 <= snake_row_q0;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((ap_phi_mux_start_hold_count_flag_4_phi_fu_457_p4 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
+        start_hold_count <= ap_phi_mux_start_hold_count_new_4_phi_fu_469_p4;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state16)) begin
-        urem_ln178_reg_1025 <= grp_fu_784_p2;
+        urem_ln245_reg_1599 <= grp_fu_1060_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if ((((rst_n_read_read_fu_170_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1)))) begin
+    if ((((rst_n_read_read_fu_188_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1)))) begin
         vsync_prev <= vsync;
     end
 end
@@ -693,7 +828,7 @@ assign ap_ST_fsm_state19_blk = 1'b0;
 assign ap_ST_fsm_state1_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_done == 1'b0)) begin
+    if ((grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_done == 1'b0)) begin
         ap_ST_fsm_state20_blk = 1'b1;
     end else begin
         ap_ST_fsm_state20_blk = 1'b0;
@@ -705,7 +840,7 @@ assign ap_ST_fsm_state21_blk = 1'b0;
 assign ap_ST_fsm_state2_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_done == 1'b0)) begin
+    if ((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b0)) begin
         ap_ST_fsm_state3_blk = 1'b1;
     end else begin
         ap_ST_fsm_state3_blk = 1'b0;
@@ -717,7 +852,7 @@ assign ap_ST_fsm_state4_blk = 1'b0;
 assign ap_ST_fsm_state5_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_done == 1'b0)) begin
+    if ((grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_done == 1'b0)) begin
         ap_ST_fsm_state6_blk = 1'b1;
     end else begin
         ap_ST_fsm_state6_blk = 1'b0;
@@ -731,58 +866,82 @@ assign ap_ST_fsm_state8_blk = 1'b0;
 assign ap_ST_fsm_state9_blk = 1'b0;
 
 always @ (*) begin
-    if (((rst_n_read_reg_918 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
-        ap_phi_mux_storemerge2_phi_fu_355_p4 = or_ln218_fu_892_p2;
+    if (((rst_n_read_reg_1451 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
+        ap_phi_mux_start_hold_count_flag_4_phi_fu_457_p4 = start_hold_count_flag_3_reg_405;
     end else begin
-        ap_phi_mux_storemerge2_phi_fu_355_p4 = storemerge2_reg_351;
+        ap_phi_mux_start_hold_count_flag_4_phi_fu_457_p4 = start_hold_count_flag_4_reg_453;
+    end
+end
+
+always @ (*) begin
+    if (((rst_n_read_reg_1451 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
+        ap_phi_mux_start_hold_count_new_4_phi_fu_469_p4 = start_hold_count_new_3_reg_429;
+    end else begin
+        ap_phi_mux_start_hold_count_new_4_phi_fu_469_p4 = start_hold_count_new_4_reg_465;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state4)) begin
-        if ((direction_load_load_fu_620_p1 == 2'd1)) begin
-            ap_phi_mux_storemerge5_phi_fu_268_p4 = select_ln144_fu_709_p3;
-        end else if ((direction_load_load_fu_620_p1 == 2'd2)) begin
-            ap_phi_mux_storemerge5_phi_fu_268_p4 = select_ln137_fu_646_p3;
+        if ((direction_load_load_fu_896_p1 == 2'd1)) begin
+            ap_phi_mux_storemerge17_phi_fu_286_p4 = select_ln211_fu_985_p3;
+        end else if ((direction_load_load_fu_896_p1 == 2'd2)) begin
+            ap_phi_mux_storemerge17_phi_fu_286_p4 = select_ln204_fu_922_p3;
         end else begin
-            ap_phi_mux_storemerge5_phi_fu_268_p4 = 'bx;
+            ap_phi_mux_storemerge17_phi_fu_286_p4 = 'bx;
         end
     end else begin
-        ap_phi_mux_storemerge5_phi_fu_268_p4 = 'bx;
+        ap_phi_mux_storemerge17_phi_fu_286_p4 = 'bx;
     end
 end
 
 always @ (*) begin
-    if (((rst_n_read_reg_918 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
-        ap_phi_mux_storemerge_phi_fu_366_p4 = grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_on_out;
+    if (((rst_n_read_reg_1451 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
+        ap_phi_mux_storemerge1_phi_fu_492_p4 = select_ln312_2_fu_1411_p3;
     end else begin
-        ap_phi_mux_storemerge_phi_fu_366_p4 = storemerge_reg_362;
+        ap_phi_mux_storemerge1_phi_fu_492_p4 = storemerge1_reg_488;
+    end
+end
+
+always @ (*) begin
+    if (((rst_n_read_reg_1451 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
+        ap_phi_mux_storemerge2_phi_fu_481_p4 = select_ln312_1_fu_1403_p3;
+    end else begin
+        ap_phi_mux_storemerge2_phi_fu_481_p4 = storemerge2_reg_477;
+    end
+end
+
+always @ (*) begin
+    if (((rst_n_read_reg_1451 == 1'd1) & (1'b1 == ap_CS_fsm_state21))) begin
+        ap_phi_mux_storemerge3_phi_fu_504_p4 = and_ln312_fu_1420_p2;
+    end else begin
+        ap_phi_mux_storemerge3_phi_fu_504_p4 = storemerge3_reg_500;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state8)) begin
-        grp_fu_770_ap_start = 1'b1;
+        grp_fu_1046_ap_start = 1'b1;
     end else begin
-        grp_fu_770_ap_start = 1'b0;
+        grp_fu_1046_ap_start = 1'b0;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state8)) begin
-        grp_fu_784_ap_start = 1'b1;
+        grp_fu_1060_ap_start = 1'b1;
     end else begin
-        grp_fu_784_ap_start = 1'b0;
+        grp_fu_1060_ap_start = 1'b0;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state20)) begin
-        snake_col_address0 = grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_col_address0;
+        snake_col_address0 = grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_col_address0;
     end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        snake_col_address0 = grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_address0;
+        snake_col_address0 = grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_address0;
     end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        snake_col_address0 = grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_col_address0;
+        snake_col_address0 = grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_col_address0;
     end else begin
         snake_col_address0 = snake_col_address0_local;
     end
@@ -790,10 +949,10 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state8)) begin
-        snake_col_address0_local = zext_ln172_fu_754_p1;
+        snake_col_address0_local = zext_ln239_fu_1030_p1;
     end else if ((1'b1 == ap_CS_fsm_state7)) begin
         snake_col_address0_local = 3'd1;
-    end else if (((1'b1 == ap_CS_fsm_state4) | (1'b1 == ap_CS_fsm_state17) | ((rst_n_read_read_fu_170_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln112_fu_560_p2 == 1'd1) & (vsync_fall_fu_438_p2 == 1'd1)))) begin
+    end else if (((1'b1 == ap_CS_fsm_state4) | (1'b1 == ap_CS_fsm_state17) | ((rst_n_read_read_fu_188_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln179_fu_830_p2 == 1'd1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd1)))) begin
         snake_col_address0_local = 3'd0;
     end else begin
         snake_col_address0_local = 'bx;
@@ -802,18 +961,18 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state20)) begin
-        snake_col_ce0 = grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_col_ce0;
+        snake_col_ce0 = grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_col_ce0;
     end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        snake_col_ce0 = grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_ce0;
+        snake_col_ce0 = grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_ce0;
     end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        snake_col_ce0 = grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_col_ce0;
+        snake_col_ce0 = grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_col_ce0;
     end else begin
         snake_col_ce0 = snake_col_ce0_local;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state4) | (1'b1 == ap_CS_fsm_state17) | (1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7) | ((rst_n_read_read_fu_170_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln112_fu_560_p2 == 1'd1) & (vsync_fall_fu_438_p2 == 1'd1)))) begin
+    if (((1'b1 == ap_CS_fsm_state4) | (1'b1 == ap_CS_fsm_state17) | (1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7) | ((rst_n_read_read_fu_188_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln179_fu_830_p2 == 1'd1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd1)))) begin
         snake_col_ce0_local = 1'b1;
     end else begin
         snake_col_ce0_local = 1'b0;
@@ -822,7 +981,7 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state6)) begin
-        snake_col_ce1 = grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_ce1;
+        snake_col_ce1 = grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_ce1;
     end else begin
         snake_col_ce1 = 1'b0;
     end
@@ -830,9 +989,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state6)) begin
-        snake_col_d0 = grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_d0;
+        snake_col_d0 = grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_d0;
     end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        snake_col_d0 = grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_col_d0;
+        snake_col_d0 = grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_col_d0;
     end else begin
         snake_col_d0 = snake_col_d0_local;
     end
@@ -840,10 +999,10 @@ end
 
 always @ (*) begin
     if (((1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7))) begin
-        snake_col_d0_local = reg_403;
+        snake_col_d0_local = reg_541;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        snake_col_d0_local = ap_phi_mux_storemerge5_phi_fu_268_p4;
-    end else if (((rst_n_read_read_fu_170_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
+        snake_col_d0_local = ap_phi_mux_storemerge17_phi_fu_286_p4;
+    end else if (((rst_n_read_read_fu_188_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
         snake_col_d0_local = 5'd10;
     end else begin
         snake_col_d0_local = 'bx;
@@ -852,16 +1011,16 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state6)) begin
-        snake_col_we0 = grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_col_we0;
+        snake_col_we0 = grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_col_we0;
     end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        snake_col_we0 = grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_col_we0;
+        snake_col_we0 = grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_col_we0;
     end else begin
         snake_col_we0 = (snake_col_we0_out | 1'b0);
     end
 end
 
 always @ (*) begin
-    if ((((1'b1 == ap_CS_fsm_state4) & ((direction_load_load_fu_620_p1 == 2'd1) | (direction_load_load_fu_620_p1 == 2'd2))) | ((rst_n_read_read_fu_170_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((1'b1 == ap_CS_fsm_state8) & (icmp_ln170_reg_1011 == 1'd1)) | ((1'b1 == ap_CS_fsm_state7) & (icmp_ln161_reg_1003 == 1'd0)))) begin
+    if ((((1'b1 == ap_CS_fsm_state4) & ((direction_load_load_fu_896_p1 == 2'd1) | (direction_load_load_fu_896_p1 == 2'd2))) | ((rst_n_read_read_fu_188_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((1'b1 == ap_CS_fsm_state8) & (icmp_ln237_reg_1585 == 1'd1)) | ((1'b1 == ap_CS_fsm_state7) & (icmp_ln228_reg_1577 == 1'd0)))) begin
         snake_col_we0_local = 1'b1;
     end else begin
         snake_col_we0_local = 1'b0;
@@ -870,11 +1029,11 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state20)) begin
-        snake_row_address0 = grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_row_address0;
+        snake_row_address0 = grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_row_address0;
     end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        snake_row_address0 = grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_address0;
+        snake_row_address0 = grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_address0;
     end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        snake_row_address0 = grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_row_address0;
+        snake_row_address0 = grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_row_address0;
     end else begin
         snake_row_address0 = snake_row_address0_local;
     end
@@ -882,10 +1041,10 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state8)) begin
-        snake_row_address0_local = zext_ln172_fu_754_p1;
+        snake_row_address0_local = zext_ln239_fu_1030_p1;
     end else if ((1'b1 == ap_CS_fsm_state7)) begin
         snake_row_address0_local = 3'd1;
-    end else if (((1'b1 == ap_CS_fsm_state17) | ((rst_n_read_read_fu_170_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln112_fu_560_p2 == 1'd1) & (vsync_fall_fu_438_p2 == 1'd1)) | ((direction_load_load_fu_620_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state4)) | ((direction_load_load_fu_620_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state4)))) begin
+    end else if (((1'b1 == ap_CS_fsm_state17) | ((rst_n_read_read_fu_188_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln179_fu_830_p2 == 1'd1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd1)) | ((direction_load_load_fu_896_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state4)) | ((direction_load_load_fu_896_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state4)))) begin
         snake_row_address0_local = 3'd0;
     end else begin
         snake_row_address0_local = 'bx;
@@ -894,18 +1053,18 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state20)) begin
-        snake_row_ce0 = grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_row_ce0;
+        snake_row_ce0 = grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_row_ce0;
     end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        snake_row_ce0 = grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_ce0;
+        snake_row_ce0 = grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_ce0;
     end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        snake_row_ce0 = grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_row_ce0;
+        snake_row_ce0 = grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_row_ce0;
     end else begin
         snake_row_ce0 = snake_row_ce0_local;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state17) | (1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7) | ((rst_n_read_read_fu_170_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln112_fu_560_p2 == 1'd1) & (vsync_fall_fu_438_p2 == 1'd1)) | ((direction_load_load_fu_620_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state4)) | ((direction_load_load_fu_620_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state4)))) begin
+    if (((1'b1 == ap_CS_fsm_state17) | (1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7) | ((rst_n_read_read_fu_188_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln179_fu_830_p2 == 1'd1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd1)) | ((direction_load_load_fu_896_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state4)) | ((direction_load_load_fu_896_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state4)))) begin
         snake_row_ce0_local = 1'b1;
     end else begin
         snake_row_ce0_local = 1'b0;
@@ -914,7 +1073,7 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state6)) begin
-        snake_row_ce1 = grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_ce1;
+        snake_row_ce1 = grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_ce1;
     end else begin
         snake_row_ce1 = 1'b0;
     end
@@ -922,9 +1081,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state6)) begin
-        snake_row_d0 = grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_d0;
+        snake_row_d0 = grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_d0;
     end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        snake_row_d0 = grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_row_d0;
+        snake_row_d0 = grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_row_d0;
     end else begin
         snake_row_d0 = snake_row_d0_local;
     end
@@ -932,12 +1091,12 @@ end
 
 always @ (*) begin
     if (((1'b1 == ap_CS_fsm_state8) | (1'b1 == ap_CS_fsm_state7))) begin
-        snake_row_d0_local = snake_row_load_reg_984;
-    end else if (((direction_load_load_fu_620_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state4))) begin
-        snake_row_d0_local = select_ln123_fu_688_p3;
-    end else if (((direction_load_load_fu_620_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state4))) begin
-        snake_row_d0_local = select_ln130_fu_667_p3;
-    end else if (((rst_n_read_read_fu_170_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
+        snake_row_d0_local = snake_row_load_reg_1558;
+    end else if (((direction_load_load_fu_896_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state4))) begin
+        snake_row_d0_local = select_ln190_fu_964_p3;
+    end else if (((direction_load_load_fu_896_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state4))) begin
+        snake_row_d0_local = select_ln197_fu_943_p3;
+    end else if (((rst_n_read_read_fu_188_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
         snake_row_d0_local = 4'd7;
     end else begin
         snake_row_d0_local = 'bx;
@@ -946,16 +1105,16 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state6)) begin
-        snake_row_we0 = grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_snake_row_we0;
+        snake_row_we0 = grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_snake_row_we0;
     end else if ((1'b1 == ap_CS_fsm_state3)) begin
-        snake_row_we0 = grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_snake_row_we0;
+        snake_row_we0 = grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_snake_row_we0;
     end else begin
         snake_row_we0 = (snake_row_we0_out | 1'b0);
     end
 end
 
 always @ (*) begin
-    if ((((rst_n_read_read_fu_170_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((direction_load_load_fu_620_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state4)) | ((direction_load_load_fu_620_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state4)) | ((1'b1 == ap_CS_fsm_state8) & (icmp_ln170_reg_1011 == 1'd1)) | ((1'b1 == ap_CS_fsm_state7) & (icmp_ln161_reg_1003 == 1'd0)))) begin
+    if ((((rst_n_read_read_fu_188_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1)) | ((direction_load_load_fu_896_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state4)) | ((direction_load_load_fu_896_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state4)) | ((1'b1 == ap_CS_fsm_state8) & (icmp_ln237_reg_1585 == 1'd1)) | ((1'b1 == ap_CS_fsm_state7) & (icmp_ln228_reg_1577 == 1'd0)))) begin
         snake_row_we0_local = 1'b1;
     end else begin
         snake_row_we0_local = 1'b0;
@@ -965,9 +1124,9 @@ end
 always @ (*) begin
     case (ap_CS_fsm)
         ap_ST_fsm_state1 : begin
-            if (((rst_n_read_read_fu_170_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln112_fu_560_p2 == 1'd1) & (vsync_fall_fu_438_p2 == 1'd1))) begin
+            if (((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (icmp_ln179_fu_830_p2 == 1'd1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd1))) begin
                 ap_NS_fsm = ap_ST_fsm_state4;
-            end else if (((1'b1 == ap_CS_fsm_state1) & (((rst_n_read_read_fu_170_p2 == 1'd1) & (icmp_ln112_fu_560_p2 == 1'd0)) | ((rst_n_read_read_fu_170_p2 == 1'd1) & (vsync_fall_fu_438_p2 == 1'd0))))) begin
+            end else if (((1'b1 == ap_CS_fsm_state1) & ((((rst_n_read_read_fu_188_p2 == 1'd1) & (icmp_ln179_fu_830_p2 == 1'd0)) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0))) | ((rst_n_read_read_fu_188_p2 == 1'd1) & (vsync_fall_fu_584_p2 == 1'd0))))) begin
                 ap_NS_fsm = ap_ST_fsm_state19;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state2;
@@ -977,7 +1136,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state3;
         end
         ap_ST_fsm_state3 : begin
-            if (((1'b1 == ap_CS_fsm_state3) & (grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_done == 1'b1))) begin
+            if (((grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state3))) begin
                 ap_NS_fsm = ap_ST_fsm_state21;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state3;
@@ -990,14 +1149,14 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state6;
         end
         ap_ST_fsm_state6 : begin
-            if (((1'b1 == ap_CS_fsm_state6) & (grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_done == 1'b1))) begin
+            if (((grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state6))) begin
                 ap_NS_fsm = ap_ST_fsm_state7;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state6;
             end
         end
         ap_ST_fsm_state7 : begin
-            if (((1'd1 == and_ln168_fu_743_p2) & (1'b1 == ap_CS_fsm_state7))) begin
+            if (((1'd1 == and_ln235_fu_1019_p2) & (1'b1 == ap_CS_fsm_state7))) begin
                 ap_NS_fsm = ap_ST_fsm_state8;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state19;
@@ -1040,7 +1199,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state20;
         end
         ap_ST_fsm_state20 : begin
-            if (((grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state20))) begin
+            if (((grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state20))) begin
                 ap_NS_fsm = ap_ST_fsm_state21;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state20;
@@ -1055,35 +1214,55 @@ always @ (*) begin
     endcase
 end
 
-assign B_out = storemerge_cast_fu_899_p3;
+assign B_out = ((ap_phi_mux_storemerge3_phi_fu_504_p4[0:0] == 1'b1) ? 10'd1023 : 10'd0);
 
-assign G_out = storemerge_cast_fu_899_p3;
+assign G_out = ap_phi_mux_storemerge1_phi_fu_492_p4;
 
-assign R_out = ((ap_phi_mux_storemerge2_phi_fu_355_p4[0:0] == 1'b1) ? 10'd1023 : 10'd0);
+assign R_out = ((ap_phi_mux_storemerge2_phi_fu_481_p4[0:0] == 1'b1) ? 10'd1023 : 10'd0);
 
-assign add_ln126_fu_682_p2 = ($signed(snake_row_q0) + $signed(4'd15));
+assign abs_box_dx_fu_1272_p3 = ((tmp_5_fu_1258_p3[0:0] == 1'b1) ? sub_ln304_fu_1266_p2 : trunc_ln301_fu_1244_p1);
 
-assign add_ln133_fu_661_p2 = (snake_row_q0 + 4'd1);
+assign abs_box_dy_fu_1294_p3 = ((tmp_6_fu_1280_p3[0:0] == 1'b1) ? sub_ln305_fu_1288_p2 : trunc_ln302_fu_1254_p1);
 
-assign add_ln140_fu_640_p2 = ($signed(snake_col_q0) + $signed(5'd31));
+assign abs_hand_dx_fu_1196_p3 = ((tmp_3_fu_1182_p3[0:0] == 1'b1) ? sub_ln293_fu_1190_p2 : trunc_ln290_fu_1165_p1);
 
-assign add_ln147_fu_703_p2 = (snake_col_q0 + 5'd1);
+assign abs_hand_dy_fu_1218_p3 = ((tmp_4_fu_1204_p3[0:0] == 1'b1) ? sub_ln294_fu_1212_p2 : trunc_ln291_fu_1178_p1);
 
-assign add_ln174_fu_759_p2 = (snake_len_load_reg_941 + 3'd1);
+assign abs_start_dx_fu_666_p3 = ((tmp_fu_652_p3[0:0] == 1'b1) ? sub_ln109_fu_660_p2 : trunc_ln106_fu_634_p1);
 
-assign add_ln185_fu_826_p2 = (next_food_col_fu_805_p1 + 5'd1);
+assign abs_start_dy_fu_688_p3 = ((tmp_1_fu_674_p3[0:0] == 1'b1) ? sub_ln110_fu_682_p2 : trunc_ln107_fu_648_p1);
 
-assign add_ln198_fu_566_p2 = (frame_count + 4'd1);
+assign add_ln103_1_fu_606_p2 = (shl_ln103_fu_600_p2 + rand_state);
 
-assign add_ln95_1_fu_460_p2 = (shl_ln95_fu_454_p2 + rand_state);
+assign add_ln103_fu_612_p2 = (add_ln103_1_fu_606_p2 + 8'd29);
 
-assign add_ln95_fu_466_p2 = (add_ln95_1_fu_460_p2 + 8'd29);
+assign add_ln127_fu_726_p2 = (start_hold_count + 7'd1);
 
-assign and_ln102_fu_516_p2 = (xor_ln102_1_fu_510_p2 & top_half_fu_478_p2);
+assign add_ln193_fu_958_p2 = ($signed(snake_row_q0) + $signed(4'd15));
 
-assign and_ln168_fu_743_p2 = (icmp_ln168_fu_733_p2 & icmp_ln168_1_fu_738_p2);
+assign add_ln200_fu_937_p2 = (snake_row_q0 + 4'd1);
 
-assign and_ln180_fu_815_p2 = (icmp_ln180_fu_809_p2 & icmp_ln180_1_reg_1035);
+assign add_ln207_fu_916_p2 = ($signed(snake_col_q0) + $signed(5'd31));
+
+assign add_ln214_fu_979_p2 = (snake_col_q0 + 5'd1);
+
+assign add_ln241_fu_1035_p2 = (snake_len_load_reg_1488 + 3'd1);
+
+assign add_ln252_fu_1102_p2 = (next_food_col_fu_1081_p1 + 5'd1);
+
+assign add_ln265_fu_836_p2 = (frame_count + 4'd1);
+
+assign and_ln117_fu_702_p2 = (icmp_ln118_fu_696_p2 & detected);
+
+assign and_ln235_fu_1019_p2 = (icmp_ln235_fu_1009_p2 & icmp_ln235_1_fu_1014_p2);
+
+assign and_ln247_fu_1091_p2 = (icmp_ln247_fu_1085_p2 & icmp_ln247_1_reg_1609);
+
+assign and_ln308_1_fu_1341_p2 = (icmp_ln309_reg_1641 & and_ln308_fu_1336_p2);
+
+assign and_ln308_fu_1336_p2 = (xor_ln308_fu_1330_p2 & icmp_ln310_reg_1646);
+
+assign and_ln312_fu_1420_p2 = (or_ln312_2_fu_1390_p2 & or_ln312_1_fu_1371_p2);
 
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
@@ -1113,100 +1292,208 @@ assign ap_CS_fsm_state7 = ap_CS_fsm[32'd6];
 
 assign ap_CS_fsm_state8 = ap_CS_fsm[32'd7];
 
-assign detected_read_read_fu_194_p2 = detected;
+always @ (*) begin
+    ap_condition_862 = ((rst_n_read_read_fu_188_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state1) & (vsync_fall_fu_584_p2 == 1'd1) & (game_state_load_load_fu_560_p1 == 1'd0));
+end
 
-assign direction_load_load_fu_620_p1 = direction;
+assign box_dx_fu_1238_p2 = ($signed(zext_ln302_fu_1150_p1) + $signed(11'd1728));
 
-assign food_on_fu_888_p2 = (icmp_ln216_reg_1057 & icmp_ln216_1_reg_1062);
+assign box_dy_fu_1248_p2 = ($signed(zext_ln290_fu_1153_p1) + $signed(11'd1808));
 
-assign grp_fu_770_p1 = 8'd20;
+assign detected_read_read_fu_212_p2 = detected;
 
-assign grp_fu_784_p0 = {{add_ln95_reg_974[7:3]}};
+assign direction_load_load_fu_896_p1 = direction;
 
-assign grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_start = grp_snake_top_Pipeline_VITIS_LOOP_151_2_fu_381_ap_start_reg;
+assign empty_fu_752_p3 = ((in_start_box_fu_714_p2[0:0] == 1'b1) ? select_ln126_fu_732_p3 : 7'd0);
 
-assign grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_start = grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_ap_start_reg;
+assign food_on_fu_1324_p2 = (icmp_ln284_fu_1314_p2 & icmp_ln284_1_fu_1319_p2);
 
-assign grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_start = grp_snake_top_Pipeline_VITIS_LOOP_67_1_fu_373_ap_start_reg;
+assign game_state_load_load_fu_560_p1 = game_state;
 
-assign icmp_ln102_fu_484_p2 = ((coord_x > 10'd319) ? 1'b1 : 1'b0);
+assign grp_fu_1046_p1 = 8'd20;
 
-assign icmp_ln112_fu_560_p2 = ((frame_count == 4'd14) ? 1'b1 : 1'b0);
+assign grp_fu_1060_p0 = {{add_ln103_reg_1532[7:3]}};
 
-assign icmp_ln123_fu_676_p2 = ((snake_row_q0 == 4'd0) ? 1'b1 : 1'b0);
+assign grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_start = grp_snake_top_Pipeline_VITIS_LOOP_218_2_fu_519_ap_start_reg;
 
-assign icmp_ln130_fu_655_p2 = ((snake_row_q0 == 4'd14) ? 1'b1 : 1'b0);
+assign grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_start = grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_ap_start_reg;
 
-assign icmp_ln137_fu_634_p2 = ((snake_col_q0 == 5'd0) ? 1'b1 : 1'b0);
+assign grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_start = grp_snake_top_Pipeline_VITIS_LOOP_71_1_fu_511_ap_start_reg;
 
-assign icmp_ln144_fu_697_p2 = ((snake_col_q0 == 5'd19) ? 1'b1 : 1'b0);
+assign hand_dx_fu_1159_p2 = (zext_ln302_fu_1150_p1 - zext_ln290_1_fu_1156_p1);
 
-assign icmp_ln161_fu_727_p2 = ((tmp_fu_718_p4 == 2'd0) ? 1'b1 : 1'b0);
+assign hand_dy_fu_1172_p2 = (zext_ln290_fu_1153_p1 - zext_ln291_fu_1169_p1);
 
-assign icmp_ln168_1_fu_738_p2 = ((empty_reg_276 == food_row_load_reg_962) ? 1'b1 : 1'b0);
+assign hand_on_1_fu_1353_p2 = (hand_on_fu_1349_p2 & detected_read_reg_1467);
 
-assign icmp_ln168_fu_733_p2 = ((empty_15_reg_288 == food_col_load_reg_954) ? 1'b1 : 1'b0);
+assign hand_on_fu_1349_p2 = (icmp_ln297_reg_1631 & icmp_ln297_1_reg_1636);
 
-assign icmp_ln170_fu_749_p2 = ((snake_len_load_reg_941 < 3'd5) ? 1'b1 : 1'b0);
+assign icmp_ln118_fu_696_p2 = ((abs_start_dx_fu_666_p3 < 10'd49) ? 1'b1 : 1'b0);
 
-assign icmp_ln180_1_fu_793_p2 = ((next_food_row_fu_790_p1 == snake_row_q0) ? 1'b1 : 1'b0);
+assign icmp_ln119_fu_708_p2 = ((abs_start_dy_fu_688_p3 < 10'd49) ? 1'b1 : 1'b0);
 
-assign icmp_ln180_fu_809_p2 = ((next_food_col_fu_805_p1 == reg_403) ? 1'b1 : 1'b0);
+assign icmp_ln126_fu_720_p2 = ((start_hold_count < 7'd120) ? 1'b1 : 1'b0);
 
-assign icmp_ln182_fu_820_p2 = ((next_food_col_fu_805_p1 == 5'd19) ? 1'b1 : 1'b0);
+assign icmp_ln134_fu_760_p2 = ((empty_fu_752_p3 > 7'd118) ? 1'b1 : 1'b0);
 
-assign icmp_ln216_1_fu_879_p2 = ((cell_row_reg_1051 == food_row_loc_2_reg_338) ? 1'b1 : 1'b0);
+assign icmp_ln162_fu_784_p2 = ((abs_start_dy_fu_688_p3 > abs_start_dx_fu_666_p3) ? 1'b1 : 1'b0);
 
-assign icmp_ln216_fu_874_p2 = ((cell_col_reg_1045 == food_col_loc_2_reg_325) ? 1'b1 : 1'b0);
+assign icmp_ln179_fu_830_p2 = ((frame_count == 4'd14) ? 1'b1 : 1'b0);
 
-assign next_food_col_fu_805_p1 = grp_fu_770_p2[4:0];
+assign icmp_ln190_fu_952_p2 = ((snake_row_q0 == 4'd0) ? 1'b1 : 1'b0);
 
-assign next_food_row_fu_790_p1 = urem_ln178_reg_1025[3:0];
+assign icmp_ln197_fu_931_p2 = ((snake_row_q0 == 4'd14) ? 1'b1 : 1'b0);
 
-assign or_ln106_fu_496_p2 = (top_half_fu_478_p2 | icmp_ln102_fu_484_p2);
+assign icmp_ln204_fu_910_p2 = ((snake_col_q0 == 5'd0) ? 1'b1 : 1'b0);
 
-assign or_ln218_fu_892_p2 = (grp_snake_top_Pipeline_VITIS_LOOP_206_3_fu_390_snake_on_out | food_on_fu_888_p2);
+assign icmp_ln211_fu_973_p2 = ((snake_col_q0 == 5'd19) ? 1'b1 : 1'b0);
 
-assign rst_n_read_read_fu_170_p2 = rst_n;
+assign icmp_ln228_fu_1003_p2 = ((tmp_2_fu_994_p4 == 2'd0) ? 1'b1 : 1'b0);
 
-assign select_ln123_fu_688_p3 = ((icmp_ln123_fu_676_p2[0:0] == 1'b1) ? 4'd14 : add_ln126_fu_682_p2);
+assign icmp_ln235_1_fu_1014_p2 = ((empty_15_reg_294 == food_row_load_reg_1513) ? 1'b1 : 1'b0);
 
-assign select_ln130_fu_667_p3 = ((icmp_ln130_fu_655_p2[0:0] == 1'b1) ? 4'd0 : add_ln133_fu_661_p2);
+assign icmp_ln235_fu_1009_p2 = ((empty_16_reg_306 == food_col_load_reg_1503) ? 1'b1 : 1'b0);
 
-assign select_ln137_fu_646_p3 = ((icmp_ln137_fu_634_p2[0:0] == 1'b1) ? 5'd19 : add_ln140_fu_640_p2);
+assign icmp_ln237_fu_1025_p2 = ((snake_len_load_reg_1488 < 3'd5) ? 1'b1 : 1'b0);
 
-assign select_ln144_fu_709_p3 = ((icmp_ln144_fu_697_p2[0:0] == 1'b1) ? 5'd0 : add_ln147_fu_703_p2);
+assign icmp_ln247_1_fu_1069_p2 = ((next_food_row_fu_1066_p1 == snake_row_q0) ? 1'b1 : 1'b0);
 
-assign select_ln182_fu_832_p3 = ((icmp_ln182_fu_820_p2[0:0] == 1'b1) ? 5'd0 : add_ln185_fu_826_p2);
+assign icmp_ln247_fu_1085_p2 = ((next_food_col_fu_1081_p1 == reg_541) ? 1'b1 : 1'b0);
 
-assign shl_ln95_fu_454_p2 = rand_state << 8'd4;
+assign icmp_ln249_fu_1096_p2 = ((next_food_col_fu_1081_p1 == 5'd19) ? 1'b1 : 1'b0);
+
+assign icmp_ln284_1_fu_1319_p2 = ((cell_row_reg_1625 == food_row_loc_3_reg_364) ? 1'b1 : 1'b0);
+
+assign icmp_ln284_fu_1314_p2 = ((cell_col_reg_1619 == food_col_loc_3_reg_347) ? 1'b1 : 1'b0);
+
+assign icmp_ln297_1_fu_1232_p2 = ((abs_hand_dy_fu_1218_p3 < 10'd5) ? 1'b1 : 1'b0);
+
+assign icmp_ln297_fu_1226_p2 = ((abs_hand_dx_fu_1196_p3 < 10'd5) ? 1'b1 : 1'b0);
+
+assign icmp_ln309_fu_1302_p2 = ((abs_box_dx_fu_1272_p3 < 10'd49) ? 1'b1 : 1'b0);
+
+assign icmp_ln310_fu_1308_p2 = ((abs_box_dy_fu_1294_p3 < 10'd49) ? 1'b1 : 1'b0);
+
+assign in_dead_zone_fu_778_p2 = (icmp_ln119_fu_708_p2 & icmp_ln118_fu_696_p2);
+
+assign in_start_box_fu_714_p2 = (icmp_ln119_fu_708_p2 & and_ln117_fu_702_p2);
+
+assign next_food_col_fu_1081_p1 = grp_fu_1046_p2[4:0];
+
+assign next_food_row_fu_1066_p1 = urem_ln245_reg_1599[3:0];
+
+assign not_in_start_box_fu_740_p2 = (in_start_box_fu_714_p2 ^ 1'd1);
+
+assign or_ln312_1_fu_1371_p2 = (or_ln312_fu_1358_p2 | hand_on_1_fu_1353_p2);
+
+assign or_ln312_2_fu_1390_p2 = (xor_ln312_fu_1385_p2 | grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_on_out);
+
+assign or_ln312_fu_1358_p2 = (grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_on_out | food_on_reg_1651);
+
+assign rst_n_read_read_fu_188_p2 = rst_n;
+
+assign select_ln126_fu_732_p3 = ((icmp_ln126_fu_720_p2[0:0] == 1'b1) ? add_ln127_fu_726_p2 : start_hold_count);
+
+assign select_ln162_fu_812_p3 = ((icmp_ln162_fu_784_p2[0:0] == 1'b1) ? select_ln171_1_fu_796_p3 : select_ln171_fu_804_p3);
+
+assign select_ln171_1_fu_796_p3 = ((xor_ln164_fu_790_p2[0:0] == 1'b1) ? 2'd3 : 2'd0);
+
+assign select_ln171_fu_804_p3 = ((tmp_fu_652_p3[0:0] == 1'b1) ? 2'd2 : 2'd1);
+
+assign select_ln190_fu_964_p3 = ((icmp_ln190_fu_952_p2[0:0] == 1'b1) ? 4'd14 : add_ln193_fu_958_p2);
+
+assign select_ln197_fu_943_p3 = ((icmp_ln197_fu_931_p2[0:0] == 1'b1) ? 4'd0 : add_ln200_fu_937_p2);
+
+assign select_ln204_fu_922_p3 = ((icmp_ln204_fu_910_p2[0:0] == 1'b1) ? 5'd19 : add_ln207_fu_916_p2);
+
+assign select_ln211_fu_985_p3 = ((icmp_ln211_fu_973_p2[0:0] == 1'b1) ? 5'd0 : add_ln214_fu_979_p2);
+
+assign select_ln249_fu_1108_p3 = ((icmp_ln249_fu_1096_p2[0:0] == 1'b1) ? 5'd0 : add_ln252_fu_1102_p2);
+
+assign select_ln308_fu_1396_p3 = ((and_ln308_1_reg_1657[0:0] == 1'b1) ? 10'd1023 : 10'd0);
+
+assign select_ln312_1_fu_1403_p3 = ((or_ln312_1_fu_1371_p2[0:0] == 1'b1) ? or_ln312_fu_1358_p2 : and_ln308_1_reg_1657);
+
+assign select_ln312_2_fu_1411_p3 = ((or_ln312_1_fu_1371_p2[0:0] == 1'b1) ? select_ln312_fu_1377_p3 : select_ln308_fu_1396_p3);
+
+assign select_ln312_3_fu_1363_p3 = ((grp_snake_top_Pipeline_VITIS_LOOP_274_3_fu_528_snake_on_out[0:0] == 1'b1) ? 10'd1023 : 10'd0);
+
+assign select_ln312_fu_1377_p3 = ((or_ln312_fu_1358_p2[0:0] == 1'b1) ? select_ln312_3_fu_1363_p3 : 10'd700);
+
+assign shl_ln103_fu_600_p2 = rand_state << 8'd4;
 
 assign snake_col_we0_out = snake_col_we0_local;
 
 assign snake_row_we0_out = snake_row_we0_local;
 
-assign storemerge20_fu_840_p3 = ((and_ln180_fu_815_p2[0:0] == 1'b1) ? select_ln182_fu_832_p3 : next_food_col_fu_805_p1);
+assign start_dx_fu_628_p2 = ($signed(zext_ln106_fu_624_p1) + $signed(11'd1728));
 
-assign storemerge543_0_0_s_fu_530_p2 = ((or_ln106_fu_496_p2[0:0] == 1'b1) ? 2'd3 : 2'd2);
+assign start_dy_fu_642_p2 = ($signed(zext_ln107_fu_638_p1) + $signed(11'd1808));
 
-assign storemerge543_0_0_s_fu_530_p7 = 'bx;
+assign start_hold_count_flag_0_fu_746_p2 = (not_in_start_box_fu_740_p2 | icmp_ln126_fu_720_p2);
 
-assign storemerge543_0_0_s_fu_530_p8 = {{xor_ln102_fu_490_p2}, {and_ln102_fu_516_p2}};
+assign storemerge_fu_1116_p3 = ((and_ln247_fu_1091_p2[0:0] == 1'b1) ? select_ln249_fu_1108_p3 : next_food_col_fu_1081_p1);
 
-assign storemerge_cast_fu_899_p3 = ((ap_phi_mux_storemerge_phi_fu_366_p4[0:0] == 1'b1) ? 10'd1023 : 10'd0);
+assign sub_ln109_fu_660_p2 = (10'd0 - trunc_ln106_fu_634_p1);
 
-assign tmp_fu_718_p4 = {{snake_len_load_reg_941[2:1]}};
+assign sub_ln110_fu_682_p2 = (10'd0 - trunc_ln107_fu_648_p1);
 
-assign top_half_fu_478_p2 = ((coord_y < 10'd240) ? 1'b1 : 1'b0);
+assign sub_ln293_fu_1190_p2 = (10'd0 - trunc_ln290_fu_1165_p1);
 
-assign vsync_fall_fu_438_p2 = (xor_ln89_fu_432_p2 & vsync_prev);
+assign sub_ln294_fu_1212_p2 = (10'd0 - trunc_ln291_fu_1178_p1);
 
-assign xor_ln102_1_fu_510_p2 = (icmp_ln102_fu_484_p2 ^ 1'd1);
+assign sub_ln304_fu_1266_p2 = (10'd0 - trunc_ln301_fu_1244_p1);
 
-assign xor_ln102_fu_490_p2 = (top_half_fu_478_p2 ^ 1'd1);
+assign sub_ln305_fu_1288_p2 = (10'd0 - trunc_ln302_fu_1254_p1);
 
-assign xor_ln89_fu_432_p2 = (vsync ^ 1'd1);
+assign tmp_1_fu_674_p3 = start_dy_fu_642_p2[32'd10];
 
-assign zext_ln172_fu_754_p1 = snake_len_load_reg_941;
+assign tmp_2_fu_994_p4 = {{snake_len_load_reg_1488[2:1]}};
+
+assign tmp_3_fu_1182_p3 = hand_dx_fu_1159_p2[32'd10];
+
+assign tmp_4_fu_1204_p3 = hand_dy_fu_1172_p2[32'd10];
+
+assign tmp_5_fu_1258_p3 = box_dx_fu_1238_p2[32'd10];
+
+assign tmp_6_fu_1280_p3 = box_dy_fu_1248_p2[32'd10];
+
+assign tmp_fu_652_p3 = start_dx_fu_628_p2[32'd10];
+
+assign trunc_ln106_fu_634_p1 = start_dx_fu_628_p2[9:0];
+
+assign trunc_ln107_fu_648_p1 = start_dy_fu_642_p2[9:0];
+
+assign trunc_ln290_fu_1165_p1 = hand_dx_fu_1159_p2[9:0];
+
+assign trunc_ln291_fu_1178_p1 = hand_dy_fu_1172_p2[9:0];
+
+assign trunc_ln301_fu_1244_p1 = box_dx_fu_1238_p2[9:0];
+
+assign trunc_ln302_fu_1254_p1 = box_dy_fu_1248_p2[9:0];
+
+assign vsync_fall_fu_584_p2 = (xor_ln97_fu_578_p2 & vsync_prev);
+
+assign xor_ln164_fu_790_p2 = (tmp_1_fu_674_p3 ^ 1'd1);
+
+assign xor_ln308_fu_1330_p2 = (game_state_loc_2_reg_381 ^ 1'd1);
+
+assign xor_ln312_fu_1385_p2 = (food_on_reg_1651 ^ 1'd1);
+
+assign xor_ln97_fu_578_p2 = (vsync ^ 1'd1);
+
+assign zext_ln106_fu_624_p1 = coord_x;
+
+assign zext_ln107_fu_638_p1 = coord_y;
+
+assign zext_ln239_fu_1030_p1 = snake_len_load_reg_1488;
+
+assign zext_ln290_1_fu_1156_p1 = coord_x_read_reg_1477;
+
+assign zext_ln290_fu_1153_p1 = vga_y_read_reg_1455;
+
+assign zext_ln291_fu_1169_p1 = coord_y_read_reg_1472;
+
+assign zext_ln302_fu_1150_p1 = vga_x_read_reg_1461;
 
 endmodule //snake_top

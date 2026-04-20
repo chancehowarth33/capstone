@@ -1,18 +1,23 @@
 // DE1_SoC_CAMERA.v
 // Hand tracking PoC — D5M camera feed with color-based centroid detection
 // and crosshair overlay on VGA output.
-//  The camera captures at 25fps and color_detect fires a tracking output every 32 pixel rows (15 times per frame), giving 375 tracking updates   
-// per second, while VGA always reads the latest pixels written to SDRAM with no buffering delay.
-// 375 updates/second — 15 subframe outputs per camera frame × 25fps.
-// Effective frames is at 375 fps
-
+//
 // SW[0]  : exposure direction select
 //          0 = increase exposure when KEY[1] is pressed
 //          1 = decrease exposure when KEY[1] is pressed
 //
-// SW[7]  : game mode
+// SW[4]  : catch game mode
+//          0 = normal mode
+//          1 = catch game — move hand horizontally to control paddle
+//
+// SW[6]  : draw game mode
+//          0 = normal mode (controlled by SW[7])
+//          1 = drawing game — hand leaves a white trail on a black canvas
+//              KEY[3] clears the canvas
+//
+// SW[7]  : snake game mode (ignored when SW[6]=1)
 //          0 = normal camera/overlay view
-//          1 = black screen with white dot at tracked position
+//          1 = snake game
 //
 // SW[8]  : calibration mode enable
 //          0 = normal tracking mode
@@ -189,24 +194,9 @@ wire       oVGA_ACTIVE;
 
 
 // Game logic wires and instantiations
-
-// Raw color_detect outputs (camera clock domain)
-wire [9:0] cd_overlay_x, cd_overlay_y;
-wire [9:0] cd_coord_x,   cd_coord_y;
-wire       cd_hand_detected;
-wire [9:0] cd_box_left, cd_box_right, cd_box_top, cd_box_bottom;
-
-// Synchronized outputs (VGA clock domain)
-reg [9:0] overlay_x, overlay_y;
-reg [9:0] coord_x,   coord_y;
-reg       hand_detected;
-reg [9:0] box_left_sync, box_right_sync, box_top_sync, box_bottom_sync;
-
-// CDC intermediate stage
-reg [9:0] s1_overlay_x, s1_overlay_y;
-reg [9:0] s1_coord_x,   s1_coord_y;
-reg       s1_hand_detected;
-reg [9:0] s1_box_left, s1_box_right, s1_box_top, s1_box_bottom;
+wire [9:0] overlay_x, overlay_y;
+wire [9:0] coord_x, coord_y;
+wire       hand_detected;
 
 wire [9:0] final_R, final_G, final_B;
 wire VGA_CTRL_CLK;
@@ -214,7 +204,7 @@ wire auto_start;
 
 // color detect  and overlay wires
 
-// box_left/right/top/bottom are now reg (CDC'd) — see declarations above
+wire [9:0] box_left, box_right, box_top, box_bottom;
 // when calibrate is high, show a fixed box in the center of the screen for camera calibration. 
 // otherwise, show the tracking box and crosshair based on detected hand position.
 wire calibrate;
@@ -228,7 +218,35 @@ assign game_mode = SW[7];
 
 // Instantiate new RGB values for game mode output from the overlay
 wire [9:0] game_R, game_G, game_B;
+wire [9:0] draw_R, draw_G, draw_B;
+wire [9:0] catch_R, catch_G, catch_B;
 wire [9:0] mux_R, mux_G, mux_B;
+
+wire draw_mode;
+assign draw_mode = SW[6];
+
+// SW[4] = catch game mode
+wire catch_mode;
+assign catch_mode = SW[4];
+
+// Draw game — pen up/down and brush size controls
+wire pen_down;
+assign pen_down = SW[5]; // SW[5]=1 draws, SW[5]=0 lifts the pen
+
+reg  [1:0] brush_size;
+reg        key1_prev;
+wire       key1_fall = key1_prev && !KEY[1]; // falling edge = button press (active-low)
+
+always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
+    if (!DLY_RST_2) begin
+        brush_size <= 2'd0;
+        key1_prev  <= 1'b1;
+    end else begin
+        key1_prev <= KEY[1];
+        if (draw_mode && key1_fall)
+            brush_size <= (brush_size == 2'd2) ? 2'd0 : brush_size + 2'd1;
+    end
+end
 
 
 //=============================================================================
@@ -249,9 +267,10 @@ assign VGA_B = final_B[9:2];
 */
 
 // New overlay bit select to include game mode output
-assign mux_R = game_mode ? game_R : final_R;
-assign mux_G = game_mode ? game_G : final_G;
-assign mux_B = game_mode ? game_B : final_B;
+// Priority: draw (SW[6]) > catch (SW[4]) > snake (SW[7]) > camera
+assign mux_R = draw_mode  ? draw_R  : (catch_mode ? catch_R : (game_mode ? game_R : final_R));
+assign mux_G = draw_mode  ? draw_G  : (catch_mode ? catch_G : (game_mode ? game_G : final_G));
+assign mux_B = draw_mode  ? draw_B  : (catch_mode ? catch_B : (game_mode ? game_B : final_B));
 
 assign VGA_R = mux_R[9:2];
 assign VGA_G = mux_G[9:2];
@@ -266,20 +285,6 @@ always @(posedge D5M_PIXLCLK) begin
     rCCD_LVAL <= D5M_LVAL;
     rCCD_FVAL <= D5M_FVAL;
 end
-
-//=============================================================================
-// Single-buffer SDRAM addressing
-// Camera writes to 0x000000/0x100000; VGA reads from the same region.
-// The SDRAM controller arbitrates: writes are prioritised so the camera always
-// gets through, and VGA reads see the most recently written pixel data.
-// This gives the lowest possible lag with no buffer-swap glitches.
-//=============================================================================
-localparam [22:0] WR1_BASE = 23'h000000;
-localparam [22:0] WR2_BASE = 23'h100000;
-localparam [22:0] RD1_BASE = 23'h000000;
-localparam [22:0] RD2_BASE = 23'h100000;
-
-wire rd_load = !DLY_RST_0;
 
 //=============================================================================
 // u2 — Reset sequencer
@@ -336,24 +341,10 @@ RAW2RGB u4 (
 // HEX5/4 = hand_y, HEX3/2 = hand_x, HEX1 = detected flag, HEX0 = unused
 //=============================================================================
 
-// Calibration signals — raw camera domain
-wire [9:0] cd_center_avgR, cd_center_avgG, cd_center_avgB;
-wire [9:0] cd_cal_sample_R, cd_cal_sample_G, cd_cal_sample_B;
-wire       cd_cal_valid;
-
-// Synchronized to VGA domain
-reg [9:0] center_avgR, center_avgG, center_avgB;
-reg [9:0] cal_sample_R, cal_sample_G, cal_sample_B;
-reg       cal_valid;
-
-// CDC intermediate stage for calibration signals
-reg [9:0] s1_center_avgR, s1_center_avgG, s1_center_avgB;
-reg [9:0] s1_cal_sample_R, s1_cal_sample_G, s1_cal_sample_B;
-reg       s1_cal_valid;
-
-// Camera pixel coordinates derived from CCD_Capture counters
-wire [9:0] cam_x = X_Cont[10:1];
-wire [9:0] cam_y = Y_Cont[10:1];
+// used to show the center average color values for debugging
+wire [9:0] center_avgR, center_avgG, center_avgB;
+wire [9:0] cal_sample_R, cal_sample_G, cal_sample_B;
+wire       cal_valid;
 wire [23:0] hex_data;
 
 assign hex_data = calibrate
@@ -392,34 +383,34 @@ Sdram_Control u7 (
 
     .WR1_DATA     ({1'b0, sCCD_G[11:7], sCCD_B[11:2]}),
     .WR1          (sCCD_DVAL),
-    .WR1_ADDR     (WR1_BASE),
-    .WR1_MAX_ADDR (WR1_BASE + 640*480),
+    .WR1_ADDR     (0),
+    .WR1_MAX_ADDR (640*480),
     .WR1_LENGTH   (8'h50),
     .WR1_LOAD     (!DLY_RST_0),
     .WR1_CLK      (~D5M_PIXLCLK),
 
     .WR2_DATA     ({1'b0, sCCD_G[6:2], sCCD_R[11:2]}),
     .WR2          (sCCD_DVAL),
-    .WR2_ADDR     (WR2_BASE),
-    .WR2_MAX_ADDR (WR2_BASE + 640*480),
+    .WR2_ADDR     (23'h100000),
+    .WR2_MAX_ADDR (23'h100000 + 640*480),
     .WR2_LENGTH   (8'h50),
     .WR2_LOAD     (!DLY_RST_0),
     .WR2_CLK      (~D5M_PIXLCLK),
 
     .RD1_DATA     (Read_DATA1),
     .RD1          (Read),
-    .RD1_ADDR     (RD1_BASE),
-    .RD1_MAX_ADDR (RD1_BASE + 640*480),
+    .RD1_ADDR     (0),
+    .RD1_MAX_ADDR (640*480),
     .RD1_LENGTH   (8'h50),
-    .RD1_LOAD     (rd_load),
+    .RD1_LOAD     (!DLY_RST_0),
     .RD1_CLK      (~VGA_CTRL_CLK),
 
     .RD2_DATA     (Read_DATA2),
     .RD2          (Read),
-    .RD2_ADDR     (RD2_BASE),
-    .RD2_MAX_ADDR (RD2_BASE + 640*480),
+    .RD2_ADDR     (23'h100000),
+    .RD2_MAX_ADDR (23'h100000 + 640*480),
     .RD2_LENGTH   (8'h50),
-    .RD2_LOAD     (rd_load),
+    .RD2_LOAD     (!DLY_RST_0),
     .RD2_CLK      (~VGA_CTRL_CLK),
 
     .SA           (DRAM_ADDR),
@@ -440,7 +431,7 @@ Sdram_Control u7 (
 I2C_CCD_Config u8 (
     .iCLK           (CLOCK2_50),
     .iRST_N         (DLY_RST_2),
-    .iEXPOSURE_ADJ  (calibrate ? 1'b1 : KEY[1]), // calibration mode uses KEY[1] to capture center block RGB values instead of adjusting exposure
+    .iEXPOSURE_ADJ  (calibrate ? 1'b1 : (draw_mode ? 1'b1 : KEY[1])), // calibrate/draw modes block KEY[1] from adjusting exposure
     .iEXPOSURE_DEC_p(SW[0]),
     .iZOOM_MODE_SW  (SW[9]),
     .I2C_SCLK       (D5M_SCLK),
@@ -475,82 +466,36 @@ VGA_Controller u1 (
 // u_detect — color centroid tracker
 //=============================================================================
 
-// color_detect runs directly on the camera pixel clock domain,
-// bypassing the SDRAM/VGA pipeline for lower latency tracking.
 color_detect u_detect (
-    .clk          (D5M_PIXLCLK),
-    .rst_n        (DLY_RST_2),
-    .fval         (rCCD_FVAL),      // camera frame valid: falling edge = frame end
-    .active       (sCCD_DVAL),      // valid pixel from RAW2RGB (even X and Y only)
-    .calibrate    (calibrate),
+    .clk         (VGA_CTRL_CLK),
+    .rst_n       (DLY_RST_2),
+    .vsync       (VGA_VS),
+    .active      (oVGA_ACTIVE),
+    .calibrate   (calibrate),
     .capture_btn_n(KEY[1]),
-    .R            (sCCD_R[11:2]),   // 12-bit → top 10 bits
-    .G            (sCCD_G[11:2]),
-    .B            (sCCD_B[11:2]),
-    .vga_x        (cam_x),          // X_Cont[10:1]: 0–639
-    .vga_y        (cam_y),          // Y_Cont[10:1]: 0–479
-    .overlay_x    (cd_overlay_x),
-    .overlay_y    (cd_overlay_y),
-    .coord_x      (cd_coord_x),
-    .coord_y      (cd_coord_y),
-    .box_left     (cd_box_left),
-    .box_right    (cd_box_right),
-    .box_top      (cd_box_top),
-    .box_bottom   (cd_box_bottom),
-    .detected     (cd_hand_detected),
-    .center_avgR  (cd_center_avgR),
-    .center_avgG  (cd_center_avgG),
-    .center_avgB  (cd_center_avgB),
-    .cal_sample_R (cd_cal_sample_R),
-    .cal_sample_G (cd_cal_sample_G),
-    .cal_sample_B (cd_cal_sample_B),
-    .cal_valid    (cd_cal_valid)
+    .R           (oVGA_R),
+    .G           (oVGA_G),
+    .B           (oVGA_B),
+    .vga_x       (oVGA_X),
+    .vga_y       (oVGA_Y),
+    .overlay_x   (overlay_x),
+    .overlay_y   (overlay_y),
+    .coord_x     (coord_x),
+    .coord_y     (coord_y),
+    .box_left    (box_left),
+    .box_right   (box_right),
+    .box_top     (box_top),
+    .box_bottom  (box_bottom),
+    .detected    (hand_detected),
+    .center_avgR (center_avgR),
+    .center_avgG (center_avgG),
+    .center_avgB (center_avgB),
+    .cal_sample_R(cal_sample_R),
+    .cal_sample_G(cal_sample_G),
+    .cal_sample_B(cal_sample_B),
+    .cal_valid   (cal_valid)
 );
 
-
-//=============================================================================
-// CDC synchronizers: camera clock domain → VGA clock domain
-// Values update once per camera frame and are stable for millions of cycles,
-// so 2-FF synchronizers are sufficient.
-//=============================================================================
-
-always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
-    if (!DLY_RST_2) begin
-        s1_overlay_x   <= 0; overlay_x    <= 0;
-        s1_overlay_y   <= 0; overlay_y    <= 0;
-        s1_coord_x     <= 0; coord_x      <= 0;
-        s1_coord_y     <= 0; coord_y      <= 0;
-        s1_hand_detected <= 0; hand_detected <= 0;
-        s1_box_left    <= 0; box_left_sync  <= 0;
-        s1_box_right   <= 0; box_right_sync <= 0;
-        s1_box_top     <= 0; box_top_sync   <= 0;
-        s1_box_bottom  <= 0; box_bottom_sync<= 0;
-        s1_center_avgR <= 0; center_avgR  <= 0;
-        s1_center_avgG <= 0; center_avgG  <= 0;
-        s1_center_avgB <= 0; center_avgB  <= 0;
-        s1_cal_sample_R <= 0; cal_sample_R <= 0;
-        s1_cal_sample_G <= 0; cal_sample_G <= 0;
-        s1_cal_sample_B <= 0; cal_sample_B <= 0;
-        s1_cal_valid   <= 0; cal_valid    <= 0;
-    end else begin
-        s1_overlay_x   <= cd_overlay_x;    overlay_x    <= s1_overlay_x;
-        s1_overlay_y   <= cd_overlay_y;    overlay_y    <= s1_overlay_y;
-        s1_coord_x     <= cd_coord_x;      coord_x      <= s1_coord_x;
-        s1_coord_y     <= cd_coord_y;      coord_y      <= s1_coord_y;
-        s1_hand_detected <= cd_hand_detected; hand_detected <= s1_hand_detected;
-        s1_box_left    <= cd_box_left;     box_left_sync  <= s1_box_left;
-        s1_box_right   <= cd_box_right;    box_right_sync <= s1_box_right;
-        s1_box_top     <= cd_box_top;      box_top_sync   <= s1_box_top;
-        s1_box_bottom  <= cd_box_bottom;   box_bottom_sync<= s1_box_bottom;
-        s1_center_avgR <= cd_center_avgR;  center_avgR  <= s1_center_avgR;
-        s1_center_avgG <= cd_center_avgG;  center_avgG  <= s1_center_avgG;
-        s1_center_avgB <= cd_center_avgB;  center_avgB  <= s1_center_avgB;
-        s1_cal_sample_R <= cd_cal_sample_R; cal_sample_R <= s1_cal_sample_R;
-        s1_cal_sample_G <= cd_cal_sample_G; cal_sample_G <= s1_cal_sample_G;
-        s1_cal_sample_B <= cd_cal_sample_B; cal_sample_B <= s1_cal_sample_B;
-        s1_cal_valid   <= cd_cal_valid;    cal_valid    <= s1_cal_valid;
-    end
-end
 
 //=============================================================================
 // u_overlay — crosshair renderer
@@ -563,12 +508,12 @@ overlay u_overlay (
     .B_in      (oVGA_B),
     .vga_x     (oVGA_X),
     .vga_y     (oVGA_Y),
-    .overlay_x (overlay_x),
-    .overlay_y (overlay_y),
-    .box_left  (box_left_sync),
-    .box_right (box_right_sync),
-    .box_top   (box_top_sync),
-    .box_bottom(box_bottom_sync),
+    .overlay_x    (overlay_x),
+    .overlay_y    (overlay_y),
+    .box_left  (box_left),
+    .box_right (box_right),
+    .box_top   (box_top),
+    .box_bottom(box_bottom),
     .detected  (hand_detected),
     .calibrate (calibrate),
     .R_out     (final_R),
@@ -577,12 +522,42 @@ overlay u_overlay (
 );
 
 
-// Game mode proof of-concept game where white dot is drawn at the detected hand position on a black background
+// Draw game — hand leaves a white trail; KEY[3] clears the canvas
+// SW[5]=1 pen down (draw), SW[5]=0 pen up (no paint)
+// KEY[1] cycles brush size: small (8px) -> medium (16px) -> large (32px)
+draw_game u_draw (
+    .clk        (VGA_CTRL_CLK),
+    .rst_n      (DLY_RST_2),
+    .vsync      (VGA_VS),
+    .detected   (hand_detected),
+    .overlay_x  (coord_x),
+    .overlay_y  (coord_y),
+    .vga_x      (oVGA_X),
+    .vga_y      (oVGA_Y),
+    .clear_n    (KEY[3]),
+    .pen_down   (pen_down),
+    .brush_size (brush_size),
+    .R_out      (draw_R),
+    .G_out      (draw_G),
+    .B_out      (draw_B)
+);
 
+// Catch game — SW[4]=1 to activate, hand X controls paddle
+catch_game u_catch (
+    .clk       (VGA_CTRL_CLK),
+    .rst_n     (DLY_RST_2),
+    .vsync     (VGA_VS),
+    .detected  (hand_detected),
+    .overlay_x (coord_x),
+    .overlay_y (coord_y),
+    .vga_x     (oVGA_X),
+    .vga_y     (oVGA_Y),
+    .R_out     (catch_R),
+    .G_out     (catch_G),
+    .B_out     (catch_B)
+);
 
-// instantiation of the snake game
-
-
+// Snake game
 snake_wrapper u_game (
     .clk      (VGA_CTRL_CLK),
     .rst_n    (DLY_RST_2),
@@ -590,6 +565,7 @@ snake_wrapper u_game (
     .coord_x   (coord_x),
     .coord_y   (coord_y),
     .detected (hand_detected),
+    .game_mode (game_mode),
 
     .vga_x    (oVGA_X),
     .vga_y    (oVGA_Y),
@@ -599,6 +575,8 @@ snake_wrapper u_game (
     .G_out    (game_G),
     .B_out    (game_B)
 );
+
+
 
 
 
