@@ -565,6 +565,7 @@ snake_wrapper u_game (
     .coord_x   (coord_x),
     .coord_y   (coord_y),
     .detected (hand_detected),
+    .game_mode (game_mode),
 
     .vga_x    (oVGA_X),
     .vga_y    (oVGA_Y),
