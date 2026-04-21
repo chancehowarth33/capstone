@@ -64,6 +64,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "DRAM_CKE",
+					"strict" : false
+				},
+				{
 					"name" : "DRAM_CS_N",
 					"strict" : false
 				},
@@ -113,6 +117,10 @@
 				},
 				{
 					"name" : "VGA_B[7]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_BLANK_N",
 					"strict" : false
 				},
 				{
@@ -188,7 +196,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "DRAM_CKE",
+					"name" : "D5M_RESET_N",
+					"strict" : false
+				},
+				{
+					"name" : "D5M_SCLK",
 					"strict" : false
 				},
 				{
@@ -364,22 +376,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "VGA_BLANK_N",
-					"strict" : false
-				},
-				{
-					"name" : "D5M_RESET_N",
-					"strict" : false
-				},
-				{
-					"name" : "D5M_SCLK",
-					"strict" : false
-				},
-				{
-					"name" : "DRAM_DQ[15]",
-					"strict" : false
-				},
-				{
 					"name" : "DRAM_DQ[0]",
 					"strict" : false
 				},
@@ -440,6 +436,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "DRAM_DQ[15]",
+					"strict" : false
+				},
+				{
 					"name" : "D5M_SDATA",
 					"strict" : false
 				},
@@ -488,11 +488,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[9]",
+					"name" : "D5M_FVAL",
 					"strict" : false
 				},
 				{
-					"name" : "D5M_FVAL",
+					"name" : "SW[9]",
 					"strict" : false
 				},
 				{

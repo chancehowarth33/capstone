@@ -2,6 +2,9 @@
 // Hand tracking PoC — D5M camera feed with color-based centroid detection
 // and crosshair overlay on VGA output.
 //
+// color_detect runs on the camera pixel clock domain and outputs one tracking result per full frame (25 updates/sec).
+// VGA always reads the latest pixels written to SDRAM with no buffering delay.
+//
 // SW[0]  : exposure direction select
 //          0 = increase exposure when KEY[1] is pressed
 //          1 = decrease exposure when KEY[1] is pressed
@@ -194,9 +197,24 @@ wire       oVGA_ACTIVE;
 
 
 // Game logic wires and instantiations
-wire [9:0] overlay_x, overlay_y;
-wire [9:0] coord_x, coord_y;
-wire       hand_detected;
+
+// Raw color_detect outputs (camera clock domain)
+wire [9:0] cd_overlay_x, cd_overlay_y;
+wire [9:0] cd_coord_x,   cd_coord_y;
+wire       cd_hand_detected;
+wire [9:0] cd_box_left, cd_box_right, cd_box_top, cd_box_bottom;
+
+// Synchronized outputs (VGA clock domain)
+reg [9:0] overlay_x, overlay_y;
+reg [9:0] coord_x,   coord_y;
+reg       hand_detected;
+reg [9:0] box_left_sync, box_right_sync, box_top_sync, box_bottom_sync;
+
+// CDC intermediate stage
+reg [9:0] s1_overlay_x, s1_overlay_y;
+reg [9:0] s1_coord_x,   s1_coord_y;
+reg       s1_hand_detected;
+reg [9:0] s1_box_left, s1_box_right, s1_box_top, s1_box_bottom;
 
 wire [9:0] final_R, final_G, final_B;
 wire VGA_CTRL_CLK;
@@ -204,8 +222,8 @@ wire auto_start;
 
 // color detect  and overlay wires
 
-wire [9:0] box_left, box_right, box_top, box_bottom;
-// when calibrate is high, show a fixed box in the center of the screen for camera calibration. 
+// box_left/right/top/bottom are now reg (CDC'd) — see declarations above
+// when calibrate is high, show a fixed box in the center of the screen for camera calibration.
 // otherwise, show the tracking box and crosshair based on detected hand position.
 wire calibrate;
 assign calibrate = SW[8];
@@ -341,10 +359,24 @@ RAW2RGB u4 (
 // HEX5/4 = hand_y, HEX3/2 = hand_x, HEX1 = detected flag, HEX0 = unused
 //=============================================================================
 
-// used to show the center average color values for debugging
-wire [9:0] center_avgR, center_avgG, center_avgB;
-wire [9:0] cal_sample_R, cal_sample_G, cal_sample_B;
-wire       cal_valid;
+// Calibration signals — raw camera domain
+wire [9:0] cd_center_avgR, cd_center_avgG, cd_center_avgB;
+wire [9:0] cd_cal_sample_R, cd_cal_sample_G, cd_cal_sample_B;
+wire       cd_cal_valid;
+
+// Synchronized to VGA domain
+reg [9:0] center_avgR, center_avgG, center_avgB;
+reg [9:0] cal_sample_R, cal_sample_G, cal_sample_B;
+reg       cal_valid;
+
+// CDC intermediate stage for calibration signals
+reg [9:0] s1_center_avgR, s1_center_avgG, s1_center_avgB;
+reg [9:0] s1_cal_sample_R, s1_cal_sample_G, s1_cal_sample_B;
+reg       s1_cal_valid;
+
+// Camera pixel coordinates derived from CCD_Capture counters
+wire [9:0] cam_x = X_Cont[10:1];
+wire [9:0] cam_y = Y_Cont[10:1];
 wire [23:0] hex_data;
 
 assign hex_data = calibrate
@@ -466,35 +498,82 @@ VGA_Controller u1 (
 // u_detect — color centroid tracker
 //=============================================================================
 
+// color_detect runs directly on the camera pixel clock domain,
+// bypassing the SDRAM/VGA pipeline for lower latency tracking.
 color_detect u_detect (
-    .clk         (VGA_CTRL_CLK),
-    .rst_n       (DLY_RST_2),
-    .vsync       (VGA_VS),
-    .active      (oVGA_ACTIVE),
-    .calibrate   (calibrate),
+    .clk          (D5M_PIXLCLK),
+    .rst_n        (DLY_RST_2),
+    .fval         (rCCD_FVAL),      // camera frame valid: falling edge = frame end
+    .active       (sCCD_DVAL),      // valid pixel from RAW2RGB (even X and Y only)
+    .calibrate    (calibrate),
     .capture_btn_n(KEY[1]),
-    .R           (oVGA_R),
-    .G           (oVGA_G),
-    .B           (oVGA_B),
-    .vga_x       (oVGA_X),
-    .vga_y       (oVGA_Y),
-    .overlay_x   (overlay_x),
-    .overlay_y   (overlay_y),
-    .coord_x     (coord_x),
-    .coord_y     (coord_y),
-    .box_left    (box_left),
-    .box_right   (box_right),
-    .box_top     (box_top),
-    .box_bottom  (box_bottom),
-    .detected    (hand_detected),
-    .center_avgR (center_avgR),
-    .center_avgG (center_avgG),
-    .center_avgB (center_avgB),
-    .cal_sample_R(cal_sample_R),
-    .cal_sample_G(cal_sample_G),
-    .cal_sample_B(cal_sample_B),
-    .cal_valid   (cal_valid)
+    .R            (sCCD_R[11:2]),   // 12-bit → top 10 bits
+    .G            (sCCD_G[11:2]),
+    .B            (sCCD_B[11:2]),
+    .vga_x        (cam_x),          // X_Cont[10:1]: 0–639
+    .vga_y        (cam_y),          // Y_Cont[10:1]: 0–479
+    .overlay_x    (cd_overlay_x),
+    .overlay_y    (cd_overlay_y),
+    .coord_x      (cd_coord_x),
+    .coord_y      (cd_coord_y),
+    .box_left     (cd_box_left),
+    .box_right    (cd_box_right),
+    .box_top      (cd_box_top),
+    .box_bottom   (cd_box_bottom),
+    .detected     (cd_hand_detected),
+    .center_avgR  (cd_center_avgR),
+    .center_avgG  (cd_center_avgG),
+    .center_avgB  (cd_center_avgB),
+    .cal_sample_R (cd_cal_sample_R),
+    .cal_sample_G (cd_cal_sample_G),
+    .cal_sample_B (cd_cal_sample_B),
+    .cal_valid    (cd_cal_valid)
 );
+
+
+//=============================================================================
+// CDC synchronizers: camera clock domain → VGA clock domain
+// Values update once per camera frame and are stable for millions of cycles,
+// so 2-FF synchronizers are sufficient.
+//=============================================================================
+
+always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
+    if (!DLY_RST_2) begin
+        s1_overlay_x   <= 0; overlay_x    <= 0;
+        s1_overlay_y   <= 0; overlay_y    <= 0;
+        s1_coord_x     <= 0; coord_x      <= 0;
+        s1_coord_y     <= 0; coord_y      <= 0;
+        s1_hand_detected <= 0; hand_detected <= 0;
+        s1_box_left    <= 0; box_left_sync  <= 0;
+        s1_box_right   <= 0; box_right_sync <= 0;
+        s1_box_top     <= 0; box_top_sync   <= 0;
+        s1_box_bottom  <= 0; box_bottom_sync<= 0;
+        s1_center_avgR <= 0; center_avgR  <= 0;
+        s1_center_avgG <= 0; center_avgG  <= 0;
+        s1_center_avgB <= 0; center_avgB  <= 0;
+        s1_cal_sample_R <= 0; cal_sample_R <= 0;
+        s1_cal_sample_G <= 0; cal_sample_G <= 0;
+        s1_cal_sample_B <= 0; cal_sample_B <= 0;
+        s1_cal_valid   <= 0; cal_valid    <= 0;
+    end else begin
+        s1_overlay_x   <= cd_overlay_x;    overlay_x    <= s1_overlay_x;
+        s1_overlay_y   <= cd_overlay_y;    overlay_y    <= s1_overlay_y;
+        s1_coord_x     <= cd_coord_x;      coord_x      <= s1_coord_x;
+        s1_coord_y     <= cd_coord_y;      coord_y      <= s1_coord_y;
+        s1_hand_detected <= cd_hand_detected; hand_detected <= s1_hand_detected;
+        s1_box_left    <= cd_box_left;     box_left_sync  <= s1_box_left;
+        s1_box_right   <= cd_box_right;    box_right_sync <= s1_box_right;
+        s1_box_top     <= cd_box_top;      box_top_sync   <= s1_box_top;
+        s1_box_bottom  <= cd_box_bottom;   box_bottom_sync<= s1_box_bottom;
+        s1_center_avgR <= cd_center_avgR;  center_avgR  <= s1_center_avgR;
+        s1_center_avgG <= cd_center_avgG;  center_avgG  <= s1_center_avgG;
+        s1_center_avgB <= cd_center_avgB;  center_avgB  <= s1_center_avgB;
+        s1_cal_sample_R <= cd_cal_sample_R; cal_sample_R <= s1_cal_sample_R;
+        s1_cal_sample_G <= cd_cal_sample_G; cal_sample_G <= s1_cal_sample_G;
+        s1_cal_sample_B <= cd_cal_sample_B; cal_sample_B <= s1_cal_sample_B;
+        s1_cal_valid   <= cd_cal_valid;    cal_valid    <= s1_cal_valid;
+    end
+end
 
 
 //=============================================================================
@@ -508,12 +587,12 @@ overlay u_overlay (
     .B_in      (oVGA_B),
     .vga_x     (oVGA_X),
     .vga_y     (oVGA_Y),
-    .overlay_x    (overlay_x),
-    .overlay_y    (overlay_y),
-    .box_left  (box_left),
-    .box_right (box_right),
-    .box_top   (box_top),
-    .box_bottom(box_bottom),
+    .overlay_x (overlay_x),
+    .overlay_y (overlay_y),
+    .box_left  (box_left_sync),
+    .box_right (box_right_sync),
+    .box_top   (box_top_sync),
+    .box_bottom(box_bottom_sync),
     .detected  (hand_detected),
     .calibrate (calibrate),
     .R_out     (final_R),
