@@ -147,11 +147,13 @@ module snake_renderer (
     logic [4:0] go_big_char_index;
     logic [2:0] go_big_char_px;
     logic [2:0] go_big_char_py;
-    logic [4:0] go_big_slot_x; // intermediate for sub-pixel column computation
+
 
     logic [4:0] go_small_char_index;
     logic [2:0] go_small_char_px;
     logic [2:0] go_small_char_py;
+
+    logic [9:0] px_tmp; // temporary used to avoid expression bit-selects
 
     logic [4:0] go_char_code;
 
@@ -589,9 +591,6 @@ module snake_renderer (
         body26_on      = 1'b0;
         body27_on      = 1'b0;
 
-        score_value    = 7'd0;
-        score_tens     = 7'd0;
-        score_ones     = 7'd0;
         score_on       = 1'b0;
 
         score_x        = 10'd0;
@@ -618,6 +617,8 @@ module snake_renderer (
         go_small_char_px    = 3'd0;
         go_small_char_py    = 3'd0;
         go_char_code        = CH_BLANK;
+
+        px_tmp         = 10'd0;
 
         // Default output color = black
         R_out          = 10'd0;
@@ -724,14 +725,14 @@ module snake_renderer (
 
                 // char_index via boundary comparison (avoids / 6 and % 6)
                 if      (score_x < 10'd6)  begin char_index = 4'd0; char_px = score_x[2:0]; end
-                else if (score_x < 10'd12) begin char_index = 4'd1; char_px = (score_x - 10'd6)[2:0]; end
-                else if (score_x < 10'd18) begin char_index = 4'd2; char_px = (score_x - 10'd12)[2:0]; end
-                else if (score_x < 10'd24) begin char_index = 4'd3; char_px = (score_x - 10'd18)[2:0]; end
-                else if (score_x < 10'd30) begin char_index = 4'd4; char_px = (score_x - 10'd24)[2:0]; end
-                else if (score_x < 10'd36) begin char_index = 4'd5; char_px = (score_x - 10'd30)[2:0]; end
-                else if (score_x < 10'd42) begin char_index = 4'd6; char_px = (score_x - 10'd36)[2:0]; end
-                else if (score_x < 10'd48) begin char_index = 4'd7; char_px = (score_x - 10'd42)[2:0]; end
-                else                       begin char_index = 4'd8; char_px = (score_x - 10'd48)[2:0]; end
+                else if (score_x < 10'd12) begin char_index = 4'd1; px_tmp = score_x - 10'd6;  char_px = px_tmp[2:0]; end
+                else if (score_x < 10'd18) begin char_index = 4'd2; px_tmp = score_x - 10'd12; char_px = px_tmp[2:0]; end
+                else if (score_x < 10'd24) begin char_index = 4'd3; px_tmp = score_x - 10'd18; char_px = px_tmp[2:0]; end
+                else if (score_x < 10'd30) begin char_index = 4'd4; px_tmp = score_x - 10'd24; char_px = px_tmp[2:0]; end
+                else if (score_x < 10'd36) begin char_index = 4'd5; px_tmp = score_x - 10'd30; char_px = px_tmp[2:0]; end
+                else if (score_x < 10'd42) begin char_index = 4'd6; px_tmp = score_x - 10'd36; char_px = px_tmp[2:0]; end
+                else if (score_x < 10'd48) begin char_index = 4'd7; px_tmp = score_x - 10'd42; char_px = px_tmp[2:0]; end
+                else                       begin char_index = 4'd8; px_tmp = score_x - 10'd48; char_px = px_tmp[2:0]; end
 
                 char_py = score_y[2:0];
 
@@ -800,14 +801,14 @@ module snake_renderer (
 
                 // --- char index via boundary comparison (avoids / 30) ---
                 if      (go_x < 10'd30)  begin go_big_char_index = 5'd0;  go_big_char_px = go_x[2:0]; end
-                else if (go_x < 10'd60)  begin go_big_char_index = 5'd1;  go_big_char_px = (go_x - 10'd30)[2:0]; end
-                else if (go_x < 10'd90)  begin go_big_char_index = 5'd2;  go_big_char_px = (go_x - 10'd60)[2:0]; end
-                else if (go_x < 10'd120) begin go_big_char_index = 5'd3;  go_big_char_px = (go_x - 10'd90)[2:0]; end
-                else if (go_x < 10'd150) begin go_big_char_index = 5'd4;  go_big_char_px = (go_x - 10'd120)[2:0]; end
-                else if (go_x < 10'd180) begin go_big_char_index = 5'd5;  go_big_char_px = (go_x - 10'd150)[2:0]; end
-                else if (go_x < 10'd210) begin go_big_char_index = 5'd6;  go_big_char_px = (go_x - 10'd180)[2:0]; end
-                else if (go_x < 10'd240) begin go_big_char_index = 5'd7;  go_big_char_px = (go_x - 10'd210)[2:0]; end
-                else                     begin go_big_char_index = 5'd8;  go_big_char_px = (go_x - 10'd240)[2:0]; end
+                else if (go_x < 10'd60)  begin go_big_char_index = 5'd1;  px_tmp = go_x - 10'd30;  go_big_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd90)  begin go_big_char_index = 5'd2;  px_tmp = go_x - 10'd60;  go_big_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd120) begin go_big_char_index = 5'd3;  px_tmp = go_x - 10'd90;  go_big_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd150) begin go_big_char_index = 5'd4;  px_tmp = go_x - 10'd120; go_big_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd180) begin go_big_char_index = 5'd5;  px_tmp = go_x - 10'd150; go_big_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd210) begin go_big_char_index = 5'd6;  px_tmp = go_x - 10'd180; go_big_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd240) begin go_big_char_index = 5'd7;  px_tmp = go_x - 10'd210; go_big_char_px = px_tmp[2:0]; end
+                else                     begin go_big_char_index = 5'd8;  px_tmp = go_x - 10'd240; go_big_char_px = px_tmp[2:0]; end
 
                 // Each glyph row is 5px tall; use boundary comparison (avoids / 5)
                 if      (go_y < 10'd5)  go_big_char_py = 3'd0;
@@ -819,15 +820,13 @@ module snake_renderer (
                 else                    go_big_char_py = 3'd6;
 
                 // Sub-pixel x within the glyph (0..4):
-                // go_big_char_px currently holds the raw x-offset inside the
-                // 30px slot (0..29). We need to divide that by 5 to get the
-                // glyph column (0..4). Use boundary comparison (avoids / 5).
-                go_big_slot_x = {2'b0, go_big_char_px}; // 0..29 in the slot
-                if      (go_big_slot_x < 5'd5)  go_big_char_px = 3'd0;
-                else if (go_big_slot_x < 5'd10) go_big_char_px = 3'd1;
-                else if (go_big_slot_x < 5'd15) go_big_char_px = 3'd2;
-                else if (go_big_slot_x < 5'd20) go_big_char_px = 3'd3;
-                else                            go_big_char_px = 3'd4;
+                // px_tmp holds the raw x-offset inside the 30px slot (0..29).
+                // Divide by 5 via boundary comparison (avoids / 5, no feedback).
+                if      (px_tmp < 10'd5)  go_big_char_px = 3'd0;
+                else if (px_tmp < 10'd10) go_big_char_px = 3'd1;
+                else if (px_tmp < 10'd15) go_big_char_px = 3'd2;
+                else if (px_tmp < 10'd20) go_big_char_px = 3'd3;
+                else                     go_big_char_px = 3'd4;
 
                 case (go_big_char_index)
                     5'd0: go_char_code = CH_G;
@@ -866,23 +865,23 @@ module snake_renderer (
 
                 // Char index via boundary comparison (avoids / 6 and % 6)
                 if      (go_x < 10'd6)   begin go_small_char_index = 5'd0;  go_small_char_px = go_x[2:0]; end
-                else if (go_x < 10'd12)  begin go_small_char_index = 5'd1;  go_small_char_px = (go_x - 10'd6)[2:0]; end
-                else if (go_x < 10'd18)  begin go_small_char_index = 5'd2;  go_small_char_px = (go_x - 10'd12)[2:0]; end
-                else if (go_x < 10'd24)  begin go_small_char_index = 5'd3;  go_small_char_px = (go_x - 10'd18)[2:0]; end
-                else if (go_x < 10'd30)  begin go_small_char_index = 5'd4;  go_small_char_px = (go_x - 10'd24)[2:0]; end
-                else if (go_x < 10'd36)  begin go_small_char_index = 5'd5;  go_small_char_px = (go_x - 10'd30)[2:0]; end
-                else if (go_x < 10'd42)  begin go_small_char_index = 5'd6;  go_small_char_px = (go_x - 10'd36)[2:0]; end
-                else if (go_x < 10'd48)  begin go_small_char_index = 5'd7;  go_small_char_px = (go_x - 10'd42)[2:0]; end
-                else if (go_x < 10'd54)  begin go_small_char_index = 5'd8;  go_small_char_px = (go_x - 10'd48)[2:0]; end
-                else if (go_x < 10'd60)  begin go_small_char_index = 5'd9;  go_small_char_px = (go_x - 10'd54)[2:0]; end
-                else if (go_x < 10'd66)  begin go_small_char_index = 5'd10; go_small_char_px = (go_x - 10'd60)[2:0]; end
-                else if (go_x < 10'd72)  begin go_small_char_index = 5'd11; go_small_char_px = (go_x - 10'd66)[2:0]; end
-                else if (go_x < 10'd78)  begin go_small_char_index = 5'd12; go_small_char_px = (go_x - 10'd72)[2:0]; end
-                else if (go_x < 10'd84)  begin go_small_char_index = 5'd13; go_small_char_px = (go_x - 10'd78)[2:0]; end
-                else if (go_x < 10'd90)  begin go_small_char_index = 5'd14; go_small_char_px = (go_x - 10'd84)[2:0]; end
-                else if (go_x < 10'd96)  begin go_small_char_index = 5'd15; go_small_char_px = (go_x - 10'd90)[2:0]; end
-                else if (go_x < 10'd102) begin go_small_char_index = 5'd16; go_small_char_px = (go_x - 10'd96)[2:0]; end
-                else                     begin go_small_char_index = 5'd17; go_small_char_px = (go_x - 10'd102)[2:0]; end
+                else if (go_x < 10'd12)  begin go_small_char_index = 5'd1;  px_tmp = go_x - 10'd6;   go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd18)  begin go_small_char_index = 5'd2;  px_tmp = go_x - 10'd12;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd24)  begin go_small_char_index = 5'd3;  px_tmp = go_x - 10'd18;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd30)  begin go_small_char_index = 5'd4;  px_tmp = go_x - 10'd24;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd36)  begin go_small_char_index = 5'd5;  px_tmp = go_x - 10'd30;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd42)  begin go_small_char_index = 5'd6;  px_tmp = go_x - 10'd36;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd48)  begin go_small_char_index = 5'd7;  px_tmp = go_x - 10'd42;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd54)  begin go_small_char_index = 5'd8;  px_tmp = go_x - 10'd48;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd60)  begin go_small_char_index = 5'd9;  px_tmp = go_x - 10'd54;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd66)  begin go_small_char_index = 5'd10; px_tmp = go_x - 10'd60;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd72)  begin go_small_char_index = 5'd11; px_tmp = go_x - 10'd66;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd78)  begin go_small_char_index = 5'd12; px_tmp = go_x - 10'd72;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd84)  begin go_small_char_index = 5'd13; px_tmp = go_x - 10'd78;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd90)  begin go_small_char_index = 5'd14; px_tmp = go_x - 10'd84;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd96)  begin go_small_char_index = 5'd15; px_tmp = go_x - 10'd90;  go_small_char_px = px_tmp[2:0]; end
+                else if (go_x < 10'd102) begin go_small_char_index = 5'd16; px_tmp = go_x - 10'd96;  go_small_char_px = px_tmp[2:0]; end
+                else                     begin go_small_char_index = 5'd17; px_tmp = go_x - 10'd102; go_small_char_px = px_tmp[2:0]; end
 
                 go_small_char_py = go_y[2:0];
 
