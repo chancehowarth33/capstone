@@ -35,6 +35,12 @@ module snake_wrapper (
     localparam logic [5:0] GAME_OVER_FLASH_FRAMES = 6'd30;
     localparam logic [3:0] GAME_OVER_TOTAL_PHASES = 4'd10;
 
+    // First-to-5 win target
+    localparam logic [6:0] SCORE_GOAL = 7'd5;
+
+    // AI moves every AI_SPEED_DIV player-ticks (2x slower than player)
+    localparam int AI_SPEED_DIV = 2;
+
     // ----------------------------------------------------------------
     // Player snake registers
     // ----------------------------------------------------------------
@@ -111,6 +117,12 @@ module snake_wrapper (
     logic       ai_alive;
     logic [6:0] ai_respawn_count;
     logic [6:0] game_over_ai_score;
+
+    // AI throttle counter (counts player-ticks; AI steps every AI_SPEED_DIV ticks)
+    logic [3:0] ai_frame_count;
+
+    // Set when the player (not AI) reached SCORE_GOAL first
+    logic       player_won;
 
     // ----------------------------------------------------------------
     // Food
@@ -512,6 +524,8 @@ module snake_wrapper (
             ai_alive        <= 1'b0;
             ai_respawn_count <= 7'd0;
             game_over_ai_score <= 7'd0;
+            ai_frame_count  <= 4'd0;
+            player_won      <= 1'b0;
 
             // Food
             food_col  <= 5'd5;
@@ -743,6 +757,8 @@ module snake_wrapper (
                                 ai_alive        <= 1'b0;  // solo mode
                                 ai_respawn_count <= 7'd0;
                                 game_over_ai_score <= 7'd0;
+                                ai_frame_count  <= 4'd0;
+                                player_won      <= 1'b0;
 
                                 food_col  <= 5'd5;
                                 food_row  <= 4'd5;
@@ -838,6 +854,8 @@ module snake_wrapper (
                                 ai_alive        <= 1'b1;  // AI mode — AI starts alive
                                 ai_respawn_count <= 7'd0;
                                 game_over_ai_score <= 7'd0;
+                                ai_frame_count  <= 4'd0;
+                                player_won      <= 1'b0;
 
                                 food_col  <= 5'd5;
                                 food_row  <= 4'd5;
@@ -888,8 +906,8 @@ module snake_wrapper (
                         end
                     end
 
-                    // AI greedy direction update (every vsync)
-                    if (ai_mode && ai_alive) begin
+                    // AI greedy direction update — only on the AI's own slower tick
+                    if (ai_mode && ai_alive && (ai_frame_count == AI_SPEED_DIV - 1)) begin
                         // Compute signed distances
                         // Prefer the axis with larger distance; move toward food;
                         // never reverse. Fall back to other axis if needed.
@@ -978,8 +996,14 @@ module snake_wrapper (
                     if (frame_count == SPEED_DIV - 1) begin
                         frame_count <= 4'd0;
 
-                        // ------ Player collision check ------
-                        if (self_collision || (player_hits_ai && ai_alive) || head_on_collision) begin
+                        // Advance the AI throttle counter
+                        if (ai_frame_count == AI_SPEED_DIV - 1)
+                            ai_frame_count <= 4'd0;
+                        else
+                            ai_frame_count <= ai_frame_count + 4'd1;
+
+                        // ------ Score-goal win check ------
+                        if (ai_mode && (score == SCORE_GOAL || ai_score == SCORE_GOAL)) begin
                             game_running          <= 1'b0;
                             game_over_active      <= 1'b1;
                             game_over_flash_phase <= 4'd0;
@@ -989,6 +1013,20 @@ module snake_wrapper (
                             frame_count           <= 4'd0;
                             game_over_score       <= score;
                             game_over_ai_score    <= ai_score;
+                            player_won            <= (score == SCORE_GOAL) ? 1'b1 : 1'b0;
+                        end
+                        // ------ Player collision check ------
+                        else if (self_collision || (player_hits_ai && ai_alive) || head_on_collision) begin
+                            game_running          <= 1'b0;
+                            game_over_active      <= 1'b1;
+                            game_over_flash_phase <= 4'd0;
+                            game_over_flash_count <= 6'd0;
+                            start_hold_count      <= 7'd0;
+                            start_armed           <= 1'b0;
+                            frame_count           <= 4'd0;
+                            game_over_score       <= score;
+                            game_over_ai_score    <= ai_score;
+                            player_won            <= 1'b0;
                         end
                         else begin
                             // ------ Player body shift ------
@@ -1063,8 +1101,8 @@ module snake_wrapper (
                                     score <= score + 7'd1;
                             end
 
-                            // ------ AI movement ------
-                            if (ai_mode) begin
+                            // ------ AI movement (half-speed: every AI_SPEED_DIV player ticks) ------
+                            if (ai_mode && (ai_frame_count == 4'd0)) begin
                                 if (ai_alive) begin
                                     if (ai_self_collision || ai_hits_player || head_on_collision) begin
                                         ai_alive         <= 1'b0;
@@ -1266,6 +1304,7 @@ module snake_wrapper (
         .game_over_active(game_over_active),
         .game_over_flash_on(game_over_flash_on),
         .game_over_score(game_over_score),
+        .player_won(player_won),
 
         // AI ports
         .ai_head_col(ai_head_col),
