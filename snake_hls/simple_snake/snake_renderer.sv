@@ -83,6 +83,7 @@ module snake_renderer (
     input  logic       game_over_flash_on,
     input  logic [6:0] game_over_score,
     input  logic       player_won,
+    input  logic [6:0] lb0, lb1, lb2, lb3, lb4,
 
     // AI snake head
     input  logic [4:0] ai_head_col,
@@ -235,6 +236,8 @@ module snake_renderer (
     logic game_over_big_text_on;
     logic game_over_small_text_on;
     logic game_over_small2_text_on;
+    logic lb_title_on;
+    logic lb_row_on;
 
     logic [9:0] go_x;
     logic [9:0] go_y;
@@ -280,6 +283,7 @@ module snake_renderer (
     localparam logic [4:0] CH_N     = 5'd27;
     localparam logic [4:0] CH_L     = 5'd28;
     localparam logic [4:0] CH_SLASH = 5'd29;
+    localparam logic [4:0] CH_H     = 5'd30;
 
     function automatic logic [4:0] digit_to_char(input logic [3:0] digit);
         begin
@@ -683,6 +687,20 @@ module snake_renderer (
                     endcase
                 end
 
+
+                CH_H: begin
+                    case (row)
+                        3'd0: get_glyph_row = 5'b10001;
+                        3'd1: get_glyph_row = 5'b10001;
+                        3'd2: get_glyph_row = 5'b10001;
+                        3'd3: get_glyph_row = 5'b11111;
+                        3'd4: get_glyph_row = 5'b10001;
+                        3'd5: get_glyph_row = 5'b10001;
+                        3'd6: get_glyph_row = 5'b10001;
+                        default: get_glyph_row = 5'b00000;
+                    endcase
+                end
+
                 default: begin
                     get_glyph_row = 5'b00000;
                 end
@@ -775,6 +793,8 @@ module snake_renderer (
         game_over_big_text_on       = 1'b0;
         game_over_small_text_on     = 1'b0;
         game_over_small2_text_on    = 1'b0;
+        lb_title_on                 = 1'b0;
+        lb_row_on                   = 1'b0;
 
         go_x                = 10'd0;
         go_y                = 10'd0;
@@ -1168,11 +1188,11 @@ module snake_renderer (
         // --------------------------------------------------------
         if (game_over_active && game_over_flash_on) begin
             if ((vga_x >= 10'd100) && (vga_x < 10'd540) &&
-                (vga_y >= 10'd160) && (vga_y < 10'd300)) begin
+                (vga_y >= 10'd160) && (vga_y < 10'd395)) begin
                 game_over_banner_fill_on = 1'b1;
 
                 if ((vga_x < 10'd104) || (vga_x >= 10'd536) ||
-                    (vga_y < 10'd164) || (vga_y >= 10'd296))
+                    (vga_y < 10'd164) || (vga_y >= 10'd391))
                     game_over_banner_border_on = 1'b1;
             end
 
@@ -1328,13 +1348,131 @@ module snake_renderer (
             end
         end
 
+
+        // --------------------------------------------------------
+        // Leaderboard (shown during game-over flash)
+        // --------------------------------------------------------
+        if (game_over_active && game_over_flash_on) begin
+
+            // "HIGH SCORES" title — 11 chars x 6px = 66px, centered at x=320 => x 287-353
+            // vga_y 278-286
+            if ((vga_x >= 10'd287) && (vga_x < 10'd353) &&
+                (vga_y >= 10'd278) && (vga_y < 10'd286)) begin
+
+                go_x = vga_x - 10'd287;
+                go_y = vga_y - 10'd278;
+                go_small_char_index = go_x / 10'd6;
+                go_small_char_px    = go_x % 10'd6;
+                go_small_char_py    = go_y[2:0];
+
+                case (go_small_char_index)
+                    5'd0:  go_char_code = CH_H;
+                    5'd1:  go_char_code = CH_I;
+                    5'd2:  go_char_code = CH_G;
+                    5'd3:  go_char_code = CH_H;
+                    5'd4:  go_char_code = CH_BLANK;
+                    5'd5:  go_char_code = CH_S;
+                    5'd6:  go_char_code = CH_C;
+                    5'd7:  go_char_code = CH_O;
+                    5'd8:  go_char_code = CH_R;
+                    5'd9:  go_char_code = CH_E;
+                    5'd10: go_char_code = CH_S;
+                    default: go_char_code = CH_BLANK;
+                endcase
+
+                if ((go_small_char_px < 3'd5) && (go_small_char_py < 3'd7)) begin
+                    glyph_row_bits = get_glyph_row(go_char_code, go_small_char_py);
+                    case (go_small_char_px)
+                        3'd0: lb_title_on = glyph_row_bits[4];
+                        3'd1: lb_title_on = glyph_row_bits[3];
+                        3'd2: lb_title_on = glyph_row_bits[2];
+                        3'd3: lb_title_on = glyph_row_bits[1];
+                        3'd4: lb_title_on = glyph_row_bits[0];
+                        default: lb_title_on = 1'b0;
+                    endcase
+                end
+            end
+
+            // Rows 1-5 — "N: XX", 5 chars x 6px = 30px, centered => x 305-335
+            // vga_y 292-381, 18px per row (8px glyph + 10px gap)
+            if ((vga_x >= 10'd305) && (vga_x < 10'd335) &&
+                (vga_y >= 10'd292) && (vga_y < 10'd382)) begin
+
+                go_x = vga_x - 10'd305;
+                go_y = vga_y - 10'd292;
+
+                go_big_char_index   = go_y / 10'd18;     // row 0-4
+                go_small_char_index = go_x / 10'd6;      // char col 0-4
+                go_small_char_px    = go_x % 10'd6;
+                go_small_char_py    = (go_y % 10'd18)[2:0];
+
+                if ((go_y % 10'd18) < 10'd8) begin
+                    case (go_big_char_index)
+                        5'd0: case (go_small_char_index)
+                                  5'd0: go_char_code = CH_1;
+                                  5'd1: go_char_code = CH_COLON;
+                                  5'd2: go_char_code = CH_BLANK;
+                                  5'd3: go_char_code = (lb0 >= 7'd10) ? digit_to_char(lb0 / 7'd10) : CH_BLANK;
+                                  5'd4: go_char_code = digit_to_char(lb0 % 7'd10);
+                                  default: go_char_code = CH_BLANK;
+                              endcase
+                        5'd1: case (go_small_char_index)
+                                  5'd0: go_char_code = CH_2;
+                                  5'd1: go_char_code = CH_COLON;
+                                  5'd2: go_char_code = CH_BLANK;
+                                  5'd3: go_char_code = (lb1 >= 7'd10) ? digit_to_char(lb1 / 7'd10) : CH_BLANK;
+                                  5'd4: go_char_code = digit_to_char(lb1 % 7'd10);
+                                  default: go_char_code = CH_BLANK;
+                              endcase
+                        5'd2: case (go_small_char_index)
+                                  5'd0: go_char_code = CH_3;
+                                  5'd1: go_char_code = CH_COLON;
+                                  5'd2: go_char_code = CH_BLANK;
+                                  5'd3: go_char_code = (lb2 >= 7'd10) ? digit_to_char(lb2 / 7'd10) : CH_BLANK;
+                                  5'd4: go_char_code = digit_to_char(lb2 % 7'd10);
+                                  default: go_char_code = CH_BLANK;
+                              endcase
+                        5'd3: case (go_small_char_index)
+                                  5'd0: go_char_code = CH_4;
+                                  5'd1: go_char_code = CH_COLON;
+                                  5'd2: go_char_code = CH_BLANK;
+                                  5'd3: go_char_code = (lb3 >= 7'd10) ? digit_to_char(lb3 / 7'd10) : CH_BLANK;
+                                  5'd4: go_char_code = digit_to_char(lb3 % 7'd10);
+                                  default: go_char_code = CH_BLANK;
+                              endcase
+                        5'd4: case (go_small_char_index)
+                                  5'd0: go_char_code = CH_5;
+                                  5'd1: go_char_code = CH_COLON;
+                                  5'd2: go_char_code = CH_BLANK;
+                                  5'd3: go_char_code = (lb4 >= 7'd10) ? digit_to_char(lb4 / 7'd10) : CH_BLANK;
+                                  5'd4: go_char_code = digit_to_char(lb4 % 7'd10);
+                                  default: go_char_code = CH_BLANK;
+                              endcase
+                        default: go_char_code = CH_BLANK;
+                    endcase
+
+                    if ((go_small_char_px < 3'd5) && (go_small_char_py < 3'd7)) begin
+                        glyph_row_bits = get_glyph_row(go_char_code, go_small_char_py);
+                        case (go_small_char_px)
+                            3'd0: lb_row_on = glyph_row_bits[4];
+                            3'd1: lb_row_on = glyph_row_bits[3];
+                            3'd2: lb_row_on = glyph_row_bits[2];
+                            3'd3: lb_row_on = glyph_row_bits[1];
+                            3'd4: lb_row_on = glyph_row_bits[0];
+                            default: lb_row_on = 1'b0;
+                        endcase
+                    end
+                end
+            end
+        end
+
         // --------------------------------------------------------
         // Color priority chain
         // --------------------------------------------------------
         if (game_over_big_text_on) begin
             R_out = 10'd1023; G_out = 10'd80;   B_out = 10'd80;
         end
-        else if (game_over_small_text_on || game_over_small2_text_on) begin
+        else if (game_over_small_text_on || game_over_small2_text_on || lb_title_on || lb_row_on) begin
             R_out = 10'd1023; G_out = 10'd1023; B_out = 10'd1023;
         end
         else if (game_over_banner_border_on) begin
