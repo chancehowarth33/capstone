@@ -466,6 +466,7 @@ module draw_game (
     reg [9:0]  bt_x;
     reg [9:0]  bt_y;
     reg [4:0]  bt_char_index;
+    reg [9:0]  bt_x_in_char;
     reg [2:0]  bt_char_px;
     reg [2:0]  bt_char_py;
     reg [4:0]  bt_char_code;
@@ -474,6 +475,7 @@ module draw_game (
     reg [9:0]  st_x;
     reg [9:0]  st_y;
     reg [4:0]  st_char_index;
+    reg [9:0]  st_x_in_char;
     reg [2:0]  st_char_px;
     reg [2:0]  st_char_py;
     reg [4:0]  st_char_code;
@@ -494,13 +496,13 @@ module draw_game (
         vga_box_dx    = 11'd0;
         vga_box_dy    = 11'd0;
         bt_x          = 10'd0; bt_y          = 10'd0;
-        bt_char_index = 5'd0;  bt_char_px    = 3'd0;
-        bt_char_py    = 3'd0;  bt_char_code  = CH_BLANK;
-        bt_glyph_bits = 5'b00000;
+        bt_char_index = 5'd0;  bt_x_in_char  = 10'd0;
+        bt_char_px    = 3'd0;  bt_char_py    = 3'd0;
+        bt_char_code  = CH_BLANK; bt_glyph_bits = 5'b00000;
         st_x          = 10'd0; st_y          = 10'd0;
-        st_char_index = 5'd0;  st_char_px    = 3'd0;
-        st_char_py    = 3'd0;  st_char_code  = CH_BLANK;
-        st_glyph_bits = 5'b00000;
+        st_char_index = 5'd0;  st_x_in_char  = 10'd0;
+        st_char_px    = 3'd0;  st_char_py    = 3'd0;
+        st_char_code  = CH_BLANK; st_glyph_bits = 5'b00000;
         R_out         = 10'h000;
         G_out         = 10'h000;
         B_out         = 10'h000;
@@ -533,9 +535,26 @@ module draw_game (
                 (vga_y >= 10'd138) && (vga_y < 10'd173)) begin
                 bt_x          = vga_x - 10'd185;
                 bt_y          = vga_y - 10'd138;
-                bt_char_index = bt_x / 10'd30;
-                bt_char_px    = (bt_x % 10'd30) / 10'd5;
-                bt_char_py    = bt_y / 10'd5;
+                if      (bt_x < 10'd30)  begin bt_char_index = 5'd0; bt_x_in_char = bt_x; end
+                else if (bt_x < 10'd60)  begin bt_char_index = 5'd1; bt_x_in_char = bt_x - 10'd30; end
+                else if (bt_x < 10'd90)  begin bt_char_index = 5'd2; bt_x_in_char = bt_x - 10'd60; end
+                else if (bt_x < 10'd120) begin bt_char_index = 5'd3; bt_x_in_char = bt_x - 10'd90; end
+                else if (bt_x < 10'd150) begin bt_char_index = 5'd4; bt_x_in_char = bt_x - 10'd120; end
+                else if (bt_x < 10'd180) begin bt_char_index = 5'd5; bt_x_in_char = bt_x - 10'd150; end
+                else if (bt_x < 10'd210) begin bt_char_index = 5'd6; bt_x_in_char = bt_x - 10'd180; end
+                else if (bt_x < 10'd240) begin bt_char_index = 5'd7; bt_x_in_char = bt_x - 10'd210; end
+                else                     begin bt_char_index = 5'd8; bt_x_in_char = bt_x - 10'd240; end
+                bt_char_px = (bt_x_in_char < 10'd5)  ? 3'd0 :
+                             (bt_x_in_char < 10'd10) ? 3'd1 :
+                             (bt_x_in_char < 10'd15) ? 3'd2 :
+                             (bt_x_in_char < 10'd20) ? 3'd3 :
+                             (bt_x_in_char < 10'd25) ? 3'd4 : 3'd5;
+                bt_char_py = (bt_y < 10'd5)  ? 3'd0 :
+                             (bt_y < 10'd10) ? 3'd1 :
+                             (bt_y < 10'd15) ? 3'd2 :
+                             (bt_y < 10'd20) ? 3'd3 :
+                             (bt_y < 10'd25) ? 3'd4 :
+                             (bt_y < 10'd30) ? 3'd5 : 3'd6;
                 case (bt_char_index)
                     5'd0: bt_char_code = CH_D;
                     5'd1: bt_char_code = CH_R;
@@ -566,9 +585,21 @@ module draw_game (
                 (vga_y >= 10'd296) && (vga_y < 10'd304)) begin
                 st_x          = vga_x - 10'd281;
                 st_y          = vga_y - 10'd296;
-                st_char_index = st_x / 10'd6;
-                st_char_px    = st_x % 10'd6;
-                st_char_py    = st_y[2:0];
+                if      (st_x < 10'd6)  begin st_char_index = 5'd0;  st_x_in_char = st_x; end
+                else if (st_x < 10'd12) begin st_char_index = 5'd1;  st_x_in_char = st_x - 10'd6; end
+                else if (st_x < 10'd18) begin st_char_index = 5'd2;  st_x_in_char = st_x - 10'd12; end
+                else if (st_x < 10'd24) begin st_char_index = 5'd3;  st_x_in_char = st_x - 10'd18; end
+                else if (st_x < 10'd30) begin st_char_index = 5'd4;  st_x_in_char = st_x - 10'd24; end
+                else if (st_x < 10'd36) begin st_char_index = 5'd5;  st_x_in_char = st_x - 10'd30; end
+                else if (st_x < 10'd42) begin st_char_index = 5'd6;  st_x_in_char = st_x - 10'd36; end
+                else if (st_x < 10'd48) begin st_char_index = 5'd7;  st_x_in_char = st_x - 10'd42; end
+                else if (st_x < 10'd54) begin st_char_index = 5'd8;  st_x_in_char = st_x - 10'd48; end
+                else if (st_x < 10'd60) begin st_char_index = 5'd9;  st_x_in_char = st_x - 10'd54; end
+                else if (st_x < 10'd66) begin st_char_index = 5'd10; st_x_in_char = st_x - 10'd60; end
+                else if (st_x < 10'd72) begin st_char_index = 5'd11; st_x_in_char = st_x - 10'd66; end
+                else                    begin st_char_index = 5'd12; st_x_in_char = st_x - 10'd72; end
+                st_char_px = st_x_in_char[2:0];
+                st_char_py = st_y[2:0];
                 case (st_char_index)
                     5'd0:  st_char_code = CH_H;
                     5'd1:  st_char_code = CH_O;

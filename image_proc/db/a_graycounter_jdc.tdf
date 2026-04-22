@@ -1,5 +1,5 @@
 --a_graycounter DEVICE_FAMILY="Cyclone V" PVALUE=1 WIDTH=10 aclr clock cnt_en q ALTERA_INTERNAL_OPTIONS=suppress_da_rule_internal=S102
---VERSION_BEGIN 25.1 cbx_a_gray2bin 2025:10:22:10:31:27:SC cbx_a_graycounter 2025:10:22:10:31:27:SC cbx_cycloneii 2025:10:22:10:31:27:SC cbx_mgl 2025:10:22:10:31:44:SC cbx_stratix 2025:10:22:10:31:27:SC cbx_stratixii 2025:10:22:10:31:26:SC  VERSION_END
+--VERSION_BEGIN 24.1 cbx_a_gray2bin 2025:03:05:20:06:36:SC cbx_a_graycounter 2025:03:05:20:06:36:SC cbx_cycloneii 2025:03:05:20:06:36:SC cbx_mgl 2025:03:05:20:07:01:SC cbx_stratix 2025:03:05:20:06:36:SC cbx_stratixii 2025:03:05:20:06:36:SC  VERSION_END
 
 
 -- Copyright (C) 2025  Altera Corporation. All rights reserved.

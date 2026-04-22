@@ -9,11 +9,20 @@
 //          0 = increase exposure when KEY[1] is pressed
 //          1 = decrease exposure when KEY[1] is pressed
 //
-// SW[4]  : catch game mode
+// SW[1]  : pong player calibration select (only active in calibration mode SW[8]=1)
+//          0 = KEY[1] calibrates Player 1 color
+//          1 = KEY[1] calibrates Player 2 color
+//
+// SW[3]  : pong game mode (ignored when SW[4], SW[6], or SW[7] are active)
+//          0 = normal mode
+//          1 = pong game — two players control paddles with independently
+//              calibrated colors; hold both hands in centre box to start
+//
+// SW[4]  : catch game mode (overrides SW[3])
 //          0 = normal mode
 //          1 = catch game — move hand horizontally to control paddle
 //
-// SW[6]  : draw game mode
+// SW[6]  : draw game mode (overrides all other game modes)
 //          0 = normal mode (controlled by SW[7])
 //          1 = drawing game — hand leaves a white trail on a black canvas
 //              KEY[3] clears the canvas
@@ -27,7 +36,7 @@
 //          1 = calibration mode
 //              - draw a fixed 32x32 box in the center of the screen
 //              - HEX displays the average RGB value of that center block
-//              - KEY[1] captures the current RGB values for calibration
+//              - KEY[1] captures color for the player selected by SW[1]
 //
 // SW[9]  : camera zoom mode
 //          0 = normal sensor window
@@ -40,9 +49,17 @@
 //              adjust exposure step in the direction selected by SW[0]
 //          calibration mode (SW[8] = 1):
 //              capture the RGB value of the center 32x32 block
+//              (captures for P1 when SW[1]=0, P2 when SW[1]=1)
 //
 // KEY[2] : stop camera capture
-// KEY[3] : start camera capture
+// KEY[3] : start camera capture (draw game: clears the canvas)
+//
+// VGA mux priority (highest to lowest):
+//      SW[6]=1 → draw game
+//      SW[4]=1 → catch game
+//      SW[3]=1 → pong game
+//      SW[7]=1 → snake game
+//      default → camera feed with crosshair overlay
 //
 // HEX display behavior:
 //
@@ -198,23 +215,54 @@ wire       oVGA_ACTIVE;
 
 // Game logic wires and instantiations
 
-// Raw color_detect outputs (camera clock domain)
+// SW[1]=0 calibrates P1, SW[1]=1 calibrates P2
+wire p1_capture = SW[1] ? 1'b1 : KEY[1];
+wire p2_capture = SW[1] ? KEY[1] : 1'b1;
+
+// Raw color_detect outputs — player 1 (camera clock domain)
 wire [9:0] cd_overlay_x, cd_overlay_y;
 wire [9:0] cd_coord_x,   cd_coord_y;
 wire       cd_hand_detected;
 wire [9:0] cd_box_left, cd_box_right, cd_box_top, cd_box_bottom;
 
-// Synchronized outputs (VGA clock domain)
+// Raw color_detect outputs — player 2 (camera clock domain)
+wire [9:0] cd2_overlay_x, cd2_overlay_y;
+wire [9:0] cd2_coord_x,   cd2_coord_y;
+wire       cd2_hand_detected;
+wire [9:0] cd2_center_avgR, cd2_center_avgG, cd2_center_avgB;
+wire [9:0] cd2_cal_sample_R, cd2_cal_sample_G, cd2_cal_sample_B;
+wire       cd2_cal_valid;
+wire [9:0] cd2_box_left, cd2_box_right, cd2_box_top, cd2_box_bottom;
+
+// Synchronized outputs — player 1 (VGA clock domain)
 reg [9:0] overlay_x, overlay_y;
 reg [9:0] coord_x,   coord_y;
 reg       hand_detected;
 reg [9:0] box_left_sync, box_right_sync, box_top_sync, box_bottom_sync;
 
-// CDC intermediate stage
+// CDC intermediate stage — player 1
 reg [9:0] s1_overlay_x, s1_overlay_y;
 reg [9:0] s1_coord_x,   s1_coord_y;
 reg       s1_hand_detected;
 reg [9:0] s1_box_left, s1_box_right, s1_box_top, s1_box_bottom;
+
+// Synchronized outputs — player 2 (VGA clock domain)
+reg [9:0] p2_coord_y;
+reg       p2_detected;
+reg [9:0] s1_p2_coord_y;
+reg       s1_p2_detected;
+
+// P2 calibration / center-block values synced to VGA domain (for HEX display)
+reg [9:0] p2_center_avgR,  p2_center_avgG,  p2_center_avgB;
+reg [9:0] p2_cal_sample_R, p2_cal_sample_G, p2_cal_sample_B;
+reg       p2_cal_valid;
+reg [9:0] s1_p2_center_avgR, s1_p2_center_avgG, s1_p2_center_avgB;
+reg [9:0] s1_p2_cal_sample_R, s1_p2_cal_sample_G, s1_p2_cal_sample_B;
+reg       s1_p2_cal_valid;
+
+// P2 overlay position synced to VGA domain (for pong cursor)
+reg [9:0] p2_overlay_x, p2_overlay_y;
+reg [9:0] s1_p2_overlay_x, s1_p2_overlay_y;
 
 wire [9:0] final_R, final_G, final_B;
 wire VGA_CTRL_CLK;
@@ -242,6 +290,11 @@ wire [9:0] mux_R, mux_G, mux_B;
 
 wire draw_mode;
 assign draw_mode = SW[6];
+
+// SW[3] = pong game mode
+wire pong_mode;
+assign pong_mode = SW[3];
+wire [9:0] pong_R, pong_G, pong_B;
 
 // SW[4] = catch game mode
 wire catch_mode;
@@ -284,11 +337,10 @@ assign VGA_G = final_G[9:2];
 assign VGA_B = final_B[9:2];
 */
 
-// New overlay bit select to include game mode output
-// Priority: draw (SW[6]) > catch (SW[4]) > snake (SW[7]) > camera
-assign mux_R = draw_mode  ? draw_R  : (catch_mode ? catch_R : (game_mode ? game_R : final_R));
-assign mux_G = draw_mode  ? draw_G  : (catch_mode ? catch_G : (game_mode ? game_G : final_G));
-assign mux_B = draw_mode  ? draw_B  : (catch_mode ? catch_B : (game_mode ? game_B : final_B));
+// Priority: draw (SW[6]) > catch (SW[4]) > pong (SW[3]) > snake (SW[7]) > camera
+assign mux_R = draw_mode ? draw_R : (catch_mode ? catch_R : (pong_mode ? pong_R : (game_mode ? game_R : final_R)));
+assign mux_G = draw_mode ? draw_G : (catch_mode ? catch_G : (pong_mode ? pong_G : (game_mode ? game_G : final_G)));
+assign mux_B = draw_mode ? draw_B : (catch_mode ? catch_B : (pong_mode ? pong_B : (game_mode ? game_B : final_B)));
 
 assign VGA_R = mux_R[9:2];
 assign VGA_G = mux_G[9:2];
@@ -379,10 +431,15 @@ wire [9:0] cam_x = X_Cont[10:1];
 wire [9:0] cam_y = Y_Cont[10:1];
 wire [23:0] hex_data;
 
+// In calibration mode, show whichever player is selected by SW[1]
 assign hex_data = calibrate
-                ? (cal_valid
-                    ? {cal_sample_R[9:2], cal_sample_G[9:2], cal_sample_B[9:2]}
-                    : {center_avgR[9:2],  center_avgG[9:2],  center_avgB[9:2]})
+                ? (SW[1]
+                    ? (p2_cal_valid
+                        ? {p2_cal_sample_R[9:2], p2_cal_sample_G[9:2], p2_cal_sample_B[9:2]}
+                        : {p2_center_avgR[9:2],  p2_center_avgG[9:2],  p2_center_avgB[9:2]})
+                    : (cal_valid
+                        ? {cal_sample_R[9:2], cal_sample_G[9:2], cal_sample_B[9:2]}
+                        : {center_avgR[9:2],  center_avgG[9:2],  center_avgB[9:2]}))
                 : {2'b00, overlay_y, 2'b00, overlay_x};
 
 SEG7_LUT_6 u5 (
@@ -506,7 +563,7 @@ color_detect u_detect (
     .fval         (rCCD_FVAL),      // camera frame valid: falling edge = frame end
     .active       (sCCD_DVAL),      // valid pixel from RAW2RGB (even X and Y only)
     .calibrate    (calibrate),
-    .capture_btn_n(KEY[1]),
+    .capture_btn_n(p1_capture),
     .R            (sCCD_R[11:2]),   // 12-bit → top 10 bits
     .G            (sCCD_G[11:2]),
     .B            (sCCD_B[11:2]),
@@ -575,6 +632,68 @@ always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
     end
 end
 
+//=============================================================================
+// u_detect2 — player 2 color tracker (independent calibration via p2_capture)
+//=============================================================================
+
+color_detect u_detect2 (
+    .clk          (D5M_PIXLCLK),
+    .rst_n        (DLY_RST_2),
+    .fval         (rCCD_FVAL),
+    .active       (sCCD_DVAL),
+    .calibrate    (calibrate),
+    .capture_btn_n(p2_capture),
+    .R            (sCCD_R[11:2]),
+    .G            (sCCD_G[11:2]),
+    .B            (sCCD_B[11:2]),
+    .vga_x        (cam_x),
+    .vga_y        (cam_y),
+    .overlay_x    (cd2_overlay_x),
+    .overlay_y    (cd2_overlay_y),
+    .coord_x      (cd2_coord_x),
+    .coord_y      (cd2_coord_y),
+    .box_left     (cd2_box_left),
+    .box_right    (cd2_box_right),
+    .box_top      (cd2_box_top),
+    .box_bottom   (cd2_box_bottom),
+    .detected     (cd2_hand_detected),
+    .center_avgR  (cd2_center_avgR),
+    .center_avgG  (cd2_center_avgG),
+    .center_avgB  (cd2_center_avgB),
+    .cal_sample_R (cd2_cal_sample_R),
+    .cal_sample_G (cd2_cal_sample_G),
+    .cal_sample_B (cd2_cal_sample_B),
+    .cal_valid    (cd2_cal_valid)
+);
+
+// CDC for player 2 (coord_y, detected, and calibration signals for HEX display)
+always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
+    if (!DLY_RST_2) begin
+        s1_p2_coord_y      <= 0; p2_coord_y      <= 0;
+        s1_p2_detected     <= 0; p2_detected     <= 0;
+        s1_p2_overlay_x    <= 0; p2_overlay_x    <= 0;
+        s1_p2_overlay_y    <= 0; p2_overlay_y    <= 0;
+        s1_p2_center_avgR  <= 0; p2_center_avgR  <= 0;
+        s1_p2_center_avgG  <= 0; p2_center_avgG  <= 0;
+        s1_p2_center_avgB  <= 0; p2_center_avgB  <= 0;
+        s1_p2_cal_sample_R <= 0; p2_cal_sample_R <= 0;
+        s1_p2_cal_sample_G <= 0; p2_cal_sample_G <= 0;
+        s1_p2_cal_sample_B <= 0; p2_cal_sample_B <= 0;
+        s1_p2_cal_valid    <= 0; p2_cal_valid    <= 0;
+    end else begin
+        s1_p2_coord_y      <= cd2_coord_y;       p2_coord_y      <= s1_p2_coord_y;
+        s1_p2_detected     <= cd2_hand_detected;  p2_detected     <= s1_p2_detected;
+        s1_p2_overlay_x    <= cd2_overlay_x;      p2_overlay_x    <= s1_p2_overlay_x;
+        s1_p2_overlay_y    <= cd2_overlay_y;      p2_overlay_y    <= s1_p2_overlay_y;
+        s1_p2_center_avgR  <= cd2_center_avgR;    p2_center_avgR  <= s1_p2_center_avgR;
+        s1_p2_center_avgG  <= cd2_center_avgG;    p2_center_avgG  <= s1_p2_center_avgG;
+        s1_p2_center_avgB  <= cd2_center_avgB;    p2_center_avgB  <= s1_p2_center_avgB;
+        s1_p2_cal_sample_R <= cd2_cal_sample_R;   p2_cal_sample_R <= s1_p2_cal_sample_R;
+        s1_p2_cal_sample_G <= cd2_cal_sample_G;   p2_cal_sample_G <= s1_p2_cal_sample_G;
+        s1_p2_cal_sample_B <= cd2_cal_sample_B;   p2_cal_sample_B <= s1_p2_cal_sample_B;
+        s1_p2_cal_valid    <= cd2_cal_valid;       p2_cal_valid    <= s1_p2_cal_valid;
+    end
+end
 
 //=============================================================================
 // u_overlay — crosshair renderer
@@ -634,6 +753,24 @@ catch_game u_catch (
     .R_out     (catch_R),
     .G_out     (catch_G),
     .B_out     (catch_B)
+);
+
+// Pong — SW[3]=1 to activate; SW[1] selects which player to calibrate
+pong_game u_pong (
+    .clk        (VGA_CTRL_CLK),
+    .rst_n      (DLY_RST_2),
+    .vsync      (VGA_VS),
+    .p1_x       (overlay_x),
+    .p1_y       (coord_y),
+    .p2_x       (p2_overlay_x),
+    .p2_y       (p2_coord_y),
+    .p1_detected(hand_detected),
+    .p2_detected(p2_detected),
+    .vga_x      (oVGA_X),
+    .vga_y      (oVGA_Y),
+    .R_out      (pong_R),
+    .G_out      (pong_G),
+    .B_out      (pong_B)
 );
 
 // Snake game
