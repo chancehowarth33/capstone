@@ -99,6 +99,8 @@ module pong_game (
     reg        start_armed;
     reg [7:0]  win_count;
     reg        winner;                // 0 = P1, 1 = P2
+    reg        vy_flip;               // toggles each serve to alternate up/down spawn
+    reg [2:0]  cur_speed;             // ball speed, resets to 3 each serve, +1 per paddle hit
 
     reg vsync_prev;
     wire vsync_fall = vsync_prev && !vsync;
@@ -107,12 +109,6 @@ module pong_game (
     wire [10:0] p1_box_dx = (p1_x >= 10'd320) ? {1'b0, p1_x - 10'd320} : {1'b0, 10'd320 - p1_x};
     wire [10:0] p1_box_dy = (p1_y >= 10'd240) ? {1'b0, p1_y - 10'd240} : {1'b0, 10'd240 - p1_y};
     wire in_start_box = p1_detected && (p1_box_dx <= 11'd48) && (p1_box_dy <= 11'd48);
-
-    // Ball speed: starts at 3, increases every 5 points
-    wire [3:0] total_score = score1 + score2;
-    wire [2:0] ball_speed  = (total_score >= 4'd15) ? 3'd6 :
-                             (total_score >= 4'd10) ? 3'd5 :
-                             (total_score >= 4'd5)  ? 3'd4 : 3'd3;
 
     // -----------------------------------------------------------------------
     // Paddle tracking — remap camera y range to full screen height
@@ -177,6 +173,8 @@ module pong_game (
             start_armed      <= 1'b0;
             win_count        <= 8'd0;
             winner           <= 1'b0;
+            vy_flip          <= 1'b0;
+            cur_speed        <= 3'd3;
         end else begin
             vsync_prev <= vsync;
 
@@ -205,6 +203,8 @@ module pong_game (
                             ball_y           <= (SCREEN_H - BALL_H) >> 1;
                             ball_vx          <= 5'sd3;
                             ball_vy          <= 5'sd2;
+                            vy_flip          <= 1'b1;
+                            cur_speed        <= 3'd3;
                         end
                     end
 
@@ -229,7 +229,8 @@ module pong_game (
                             ball_y + BALL_H >= paddle1_y &&
                             ball_y <= paddle1_y + PADDLE_H &&
                             ball_vx < 0) begin
-                            ball_vx <= $signed({1'b0, ball_speed});
+                            ball_vx   <= $signed({1'b0, cur_speed});
+                            cur_speed <= (cur_speed < 3'd7) ? cur_speed + 3'd1 : 3'd7;
                         end
 
                         // P2 paddle (right) collision
@@ -238,33 +239,38 @@ module pong_game (
                             ball_y + BALL_H >= paddle2_y &&
                             ball_y <= paddle2_y + PADDLE_H &&
                             ball_vx > 0) begin
-                            ball_vx <= -$signed({1'b0, ball_speed});
+                            ball_vx   <= -$signed({1'b0, cur_speed});
+                            cur_speed <= (cur_speed < 3'd7) ? cur_speed + 3'd1 : 3'd7;
                         end
 
                         // P2 scores (ball exits left)
                         if (ball_x <= 10'd2) begin
-                            score2 <= score2 + 4'd1;
-                            ball_x <= (SCREEN_W - BALL_W) >> 1;
-                            ball_y <= (SCREEN_H - BALL_H) >> 1;
-                            ball_vx <= 5'sd3;
-                            ball_vy <= 5'sd2;
+                            score2    <= score2 + 4'd1;
+                            ball_x    <= (SCREEN_W - BALL_W) >> 1;
+                            ball_y    <= (SCREEN_H - BALL_H) >> 1;
+                            ball_vx   <= 5'sd3;
+                            ball_vy   <= vy_flip ? -5'sd2 : 5'sd2;
+                            vy_flip   <= !vy_flip;
+                            cur_speed <= 3'd3;
                             if (score2 + 4'd1 >= WIN_SCORE) begin
-                                state   <= S_WIN;
-                                winner  <= 1'b1;
+                                state     <= S_WIN;
+                                winner    <= 1'b1;
                                 win_count <= 8'd0;
                             end
                         end
 
                         // P1 scores (ball exits right)
                         if (ball_x + BALL_W >= SCREEN_W - 10'd2) begin
-                            score1 <= score1 + 4'd1;
-                            ball_x <= (SCREEN_W - BALL_W) >> 1;
-                            ball_y <= (SCREEN_H - BALL_H) >> 1;
-                            ball_vx <= -5'sd3;
-                            ball_vy <= 5'sd2;
+                            score1    <= score1 + 4'd1;
+                            ball_x    <= (SCREEN_W - BALL_W) >> 1;
+                            ball_y    <= (SCREEN_H - BALL_H) >> 1;
+                            ball_vx   <= -5'sd3;
+                            ball_vy   <= vy_flip ? -5'sd2 : 5'sd2;
+                            vy_flip   <= !vy_flip;
+                            cur_speed <= 3'd3;
                             if (score1 + 4'd1 >= WIN_SCORE) begin
-                                state   <= S_WIN;
-                                winner  <= 1'b0;
+                                state     <= S_WIN;
+                                winner    <= 1'b0;
                                 win_count <= 8'd0;
                             end
                         end
@@ -281,6 +287,8 @@ module pong_game (
                             win_count        <= 8'd0;
                             start_hold_count <= 7'd0;
                             start_armed      <= 1'b0;
+                            score1           <= 4'd0;
+                            score2           <= 4'd0;
                         end
                     end
 
