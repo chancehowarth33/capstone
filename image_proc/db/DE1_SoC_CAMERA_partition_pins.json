@@ -192,7 +192,15 @@
 					"strict" : false
 				},
 				{
+					"name" : "VGA_BLANK_N",
+					"strict" : false
+				},
+				{
 					"name" : "D5M_RESET_N",
+					"strict" : false
+				},
+				{
+					"name" : "D5M_SCLK",
 					"strict" : false
 				},
 				{
@@ -296,10 +304,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "VGA_BLANK_N",
-					"strict" : false
-				},
-				{
 					"name" : "VGA_G[0]",
 					"strict" : false
 				},
@@ -372,7 +376,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "D5M_SCLK",
+					"name" : "D5M_SDATA",
 					"strict" : false
 				},
 				{
@@ -440,10 +444,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "D5M_SDATA",
-					"strict" : false
-				},
-				{
 					"name" : "SW[8]",
 					"strict" : false
 				},
@@ -480,11 +480,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY[3]",
+					"name" : "CLOCK2_50",
 					"strict" : false
 				},
 				{
-					"name" : "CLOCK2_50",
+					"name" : "KEY[3]",
 					"strict" : false
 				},
 				{
