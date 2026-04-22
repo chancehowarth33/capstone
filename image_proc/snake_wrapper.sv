@@ -124,6 +124,9 @@ module snake_wrapper (
     // Set when the player (not AI) reached SCORE_GOAL first
     logic       player_won;
 
+    // Top-5 leaderboard (persists across games; Quartus infers M10K)
+    reg [6:0] leaderboard [0:4];
+
     // ----------------------------------------------------------------
     // Food
     // ----------------------------------------------------------------
@@ -526,6 +529,12 @@ module snake_wrapper (
             game_over_ai_score <= 7'd0;
             ai_frame_count  <= 4'd0;
             player_won      <= 1'b0;
+
+            leaderboard[0] <= 7'd0;
+            leaderboard[1] <= 7'd0;
+            leaderboard[2] <= 7'd0;
+            leaderboard[3] <= 7'd0;
+            leaderboard[4] <= 7'd0;
 
             // Food
             food_col  <= 5'd5;
@@ -1014,6 +1023,12 @@ module snake_wrapper (
                             game_over_score       <= score;
                             game_over_ai_score    <= ai_score;
                             player_won            <= (score == SCORE_GOAL) ? 1'b1 : 1'b0;
+                            // Sorted leaderboard insert
+                            if      (score >= leaderboard[0]) begin leaderboard[4]<=leaderboard[3]; leaderboard[3]<=leaderboard[2]; leaderboard[2]<=leaderboard[1]; leaderboard[1]<=leaderboard[0]; leaderboard[0]<=score; end
+                            else if (score >= leaderboard[1]) begin leaderboard[4]<=leaderboard[3]; leaderboard[3]<=leaderboard[2]; leaderboard[2]<=leaderboard[1]; leaderboard[1]<=score; end
+                            else if (score >= leaderboard[2]) begin leaderboard[4]<=leaderboard[3]; leaderboard[3]<=leaderboard[2]; leaderboard[2]<=score; end
+                            else if (score >= leaderboard[3]) begin leaderboard[4]<=leaderboard[3]; leaderboard[3]<=score; end
+                            else if (score >= leaderboard[4]) begin leaderboard[4]<=score; end
                         end
                         // ------ Player collision check ------
                         else if (self_collision || (player_hits_ai && ai_alive) || head_on_collision) begin
@@ -1027,6 +1042,12 @@ module snake_wrapper (
                             game_over_score       <= score;
                             game_over_ai_score    <= ai_score;
                             player_won            <= 1'b0;
+                            // Sorted leaderboard insert
+                            if      (score >= leaderboard[0]) begin leaderboard[4]<=leaderboard[3]; leaderboard[3]<=leaderboard[2]; leaderboard[2]<=leaderboard[1]; leaderboard[1]<=leaderboard[0]; leaderboard[0]<=score; end
+                            else if (score >= leaderboard[1]) begin leaderboard[4]<=leaderboard[3]; leaderboard[3]<=leaderboard[2]; leaderboard[2]<=leaderboard[1]; leaderboard[1]<=score; end
+                            else if (score >= leaderboard[2]) begin leaderboard[4]<=leaderboard[3]; leaderboard[3]<=leaderboard[2]; leaderboard[2]<=score; end
+                            else if (score >= leaderboard[3]) begin leaderboard[4]<=leaderboard[3]; leaderboard[3]<=score; end
+                            else if (score >= leaderboard[4]) begin leaderboard[4]<=score; end
                         end
                         else begin
                             // ------ Player body shift ------
@@ -1305,6 +1326,8 @@ module snake_wrapper (
         .game_over_flash_on(game_over_flash_on),
         .game_over_score(game_over_score),
         .player_won(player_won),
+        .lb0(leaderboard[0]), .lb1(leaderboard[1]), .lb2(leaderboard[2]),
+        .lb3(leaderboard[3]), .lb4(leaderboard[4]),
 
         // AI ports
         .ai_head_col(ai_head_col),
