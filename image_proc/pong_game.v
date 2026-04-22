@@ -115,28 +115,47 @@ module pong_game (
                              (total_score >= 4'd5)  ? 3'd4 : 3'd3;
 
     // -----------------------------------------------------------------------
-    // Paddle tracking — clamp to screen edges
+    // Paddle tracking — remap camera y range to full screen height
+    //
+    // The camera often doesn't track reliably at the very top/bottom of the
+    // frame.  Remapping [CAM_Y_MIN..CAM_Y_MAX] → [0..SCREEN_H-1] makes the
+    // full paddle travel reachable with normal hand movement.
+    // Scale = 480 / 320 = 3/2  (multiply by 3, shift right 1 — no divider).
+    // Tune CAM_Y_MIN / CAM_Y_MAX if the extremes are still hard to reach.
     // -----------------------------------------------------------------------
+    localparam [9:0] CAM_Y_MIN = 10'd60;
+    localparam [9:0] CAM_Y_MAX = 10'd420;
+
+    wire [9:0]  p1_yc = (p1_y < CAM_Y_MIN) ? CAM_Y_MIN :
+                        (p1_y > CAM_Y_MAX) ? CAM_Y_MAX : p1_y;
+    wire [10:0] p1_ym = (({1'b0, p1_yc} - {1'b0, CAM_Y_MIN}) * 11'd3) >> 1;
+    wire [9:0]  p1_yf = (p1_ym >= 11'd480) ? 10'd479 : p1_ym[9:0];
+
+    wire [9:0]  p2_yc = (p2_y < CAM_Y_MIN) ? CAM_Y_MIN :
+                        (p2_y > CAM_Y_MAX) ? CAM_Y_MAX : p2_y;
+    wire [10:0] p2_ym = (({1'b0, p2_yc} - {1'b0, CAM_Y_MIN}) * 11'd3) >> 1;
+    wire [9:0]  p2_yf = (p2_ym >= 11'd480) ? 10'd479 : p2_ym[9:0];
+
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             paddle1_y <= (SCREEN_H - PADDLE_H) >> 1;
             paddle2_y <= (SCREEN_H - PADDLE_H) >> 1;
         end else if (state == S_PLAY) begin
             if (p1_detected) begin
-                if (p1_y < PADDLE_HALF)
+                if (p1_yf < PADDLE_HALF)
                     paddle1_y <= 10'd0;
-                else if (p1_y > SCREEN_H - PADDLE_HALF)
+                else if (p1_yf > SCREEN_H - PADDLE_HALF)
                     paddle1_y <= SCREEN_H - PADDLE_H;
                 else
-                    paddle1_y <= p1_y - PADDLE_HALF;
+                    paddle1_y <= p1_yf - PADDLE_HALF;
             end
             if (p2_detected) begin
-                if (p2_y < PADDLE_HALF)
+                if (p2_yf < PADDLE_HALF)
                     paddle2_y <= 10'd0;
-                else if (p2_y > SCREEN_H - PADDLE_HALF)
+                else if (p2_yf > SCREEN_H - PADDLE_HALF)
                     paddle2_y <= SCREEN_H - PADDLE_H;
                 else
-                    paddle2_y <= p2_y - PADDLE_HALF;
+                    paddle2_y <= p2_yf - PADDLE_HALF;
             end
         end
     end
@@ -197,10 +216,11 @@ module pong_game (
                         ball_x <= ball_x + {{5{ball_vx[4]}}, ball_vx};
                         ball_y <= ball_y + {{5{ball_vy[4]}}, ball_vy};
 
-                        // Top / bottom wall bounce
-                        if (ball_y <= 10'd2)
+                        // Top / bottom wall bounce — direction guard prevents
+                        // double-negation if ball overshoots the boundary zone
+                        if (ball_y <= 10'd4 && ball_vy < 5'sd0)
                             ball_vy <= -ball_vy;
-                        if (ball_y + BALL_H >= SCREEN_H - 10'd2)
+                        if (ball_y + BALL_H >= SCREEN_H - 10'd4 && ball_vy > 5'sd0)
                             ball_vy <= -ball_vy;
 
                         // P1 paddle (left) collision

@@ -247,9 +247,9 @@ reg       s1_hand_detected;
 reg [9:0] s1_box_left, s1_box_right, s1_box_top, s1_box_bottom;
 
 // Synchronized outputs — player 2 (VGA clock domain)
-reg [9:0] p2_coord_y;
+reg [9:0] p2_coord_x, p2_coord_y;
 reg       p2_detected;
-reg [9:0] s1_p2_coord_y;
+reg [9:0] s1_p2_coord_x, s1_p2_coord_y;
 reg       s1_p2_detected;
 
 // P2 calibration / center-block values synced to VGA domain (for HEX display)
@@ -263,6 +263,10 @@ reg       s1_p2_cal_valid;
 // P2 overlay position synced to VGA domain (for pong cursor)
 reg [9:0] p2_overlay_x, p2_overlay_y;
 reg [9:0] s1_p2_overlay_x, s1_p2_overlay_y;
+
+// P2 bounding box synced to VGA domain (for overlay when SW[1]=1)
+reg [9:0] p2_box_left, p2_box_right, p2_box_top, p2_box_bottom;
+reg [9:0] s1_p2_box_left, s1_p2_box_right, s1_p2_box_top, s1_p2_box_bottom;
 
 wire [9:0] final_R, final_G, final_B;
 wire VGA_CTRL_CLK;
@@ -634,9 +638,15 @@ end
 
 //=============================================================================
 // u_detect2 — player 2 color tracker (independent calibration via p2_capture)
+// Tolerances tuned for blue objects: tighter on B (the key channel),
+// looser on R/G which vary more under lighting for blue hues.
 //=============================================================================
 
-color_detect u_detect2 (
+color_detect #(
+    .TOL_R (10'd60),   // blue: R is low, some room for ambient light
+    .TOL_G (10'd60),   // blue: G is low, some room for ambient light
+    .TOL_B (10'd50)    // blue: B is the key channel, keep tighter
+) u_detect2 (
     .clk          (D5M_PIXLCLK),
     .rst_n        (DLY_RST_2),
     .fval         (rCCD_FVAL),
@@ -669,10 +679,15 @@ color_detect u_detect2 (
 // CDC for player 2 (coord_y, detected, and calibration signals for HEX display)
 always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
     if (!DLY_RST_2) begin
+        s1_p2_coord_x      <= 0; p2_coord_x      <= 0;
         s1_p2_coord_y      <= 0; p2_coord_y      <= 0;
         s1_p2_detected     <= 0; p2_detected     <= 0;
         s1_p2_overlay_x    <= 0; p2_overlay_x    <= 0;
         s1_p2_overlay_y    <= 0; p2_overlay_y    <= 0;
+        s1_p2_box_left     <= 0; p2_box_left     <= 0;
+        s1_p2_box_right    <= 0; p2_box_right    <= 0;
+        s1_p2_box_top      <= 0; p2_box_top      <= 0;
+        s1_p2_box_bottom   <= 0; p2_box_bottom   <= 0;
         s1_p2_center_avgR  <= 0; p2_center_avgR  <= 0;
         s1_p2_center_avgG  <= 0; p2_center_avgG  <= 0;
         s1_p2_center_avgB  <= 0; p2_center_avgB  <= 0;
@@ -681,10 +696,15 @@ always @(posedge VGA_CTRL_CLK or negedge DLY_RST_2) begin
         s1_p2_cal_sample_B <= 0; p2_cal_sample_B <= 0;
         s1_p2_cal_valid    <= 0; p2_cal_valid    <= 0;
     end else begin
-        s1_p2_coord_y      <= cd2_coord_y;       p2_coord_y      <= s1_p2_coord_y;
+        s1_p2_coord_x      <= cd2_coord_x;        p2_coord_x      <= s1_p2_coord_x;
+        s1_p2_coord_y      <= cd2_coord_y;        p2_coord_y      <= s1_p2_coord_y;
         s1_p2_detected     <= cd2_hand_detected;  p2_detected     <= s1_p2_detected;
         s1_p2_overlay_x    <= cd2_overlay_x;      p2_overlay_x    <= s1_p2_overlay_x;
         s1_p2_overlay_y    <= cd2_overlay_y;      p2_overlay_y    <= s1_p2_overlay_y;
+        s1_p2_box_left     <= cd2_box_left;       p2_box_left     <= s1_p2_box_left;
+        s1_p2_box_right    <= cd2_box_right;      p2_box_right    <= s1_p2_box_right;
+        s1_p2_box_top      <= cd2_box_top;        p2_box_top      <= s1_p2_box_top;
+        s1_p2_box_bottom   <= cd2_box_bottom;     p2_box_bottom   <= s1_p2_box_bottom;
         s1_p2_center_avgR  <= cd2_center_avgR;    p2_center_avgR  <= s1_p2_center_avgR;
         s1_p2_center_avgG  <= cd2_center_avgG;    p2_center_avgG  <= s1_p2_center_avgG;
         s1_p2_center_avgB  <= cd2_center_avgB;    p2_center_avgB  <= s1_p2_center_avgB;
@@ -697,8 +717,17 @@ end
 
 //=============================================================================
 // u_overlay — crosshair renderer
+// When SW[1]=1 (P2 calibration select), show P2's tracking on the overlay
+// so the user can verify P2's color is being detected correctly.
 //=============================================================================
 
+wire [9:0] ov_overlay_x = SW[1] ? p2_overlay_x  : overlay_x;
+wire [9:0] ov_overlay_y = SW[1] ? p2_overlay_y  : overlay_y;
+wire       ov_detected  = SW[1] ? p2_detected   : hand_detected;
+wire [9:0] ov_box_left   = SW[1] ? p2_box_left   : box_left_sync;
+wire [9:0] ov_box_right  = SW[1] ? p2_box_right  : box_right_sync;
+wire [9:0] ov_box_top    = SW[1] ? p2_box_top    : box_top_sync;
+wire [9:0] ov_box_bottom = SW[1] ? p2_box_bottom : box_bottom_sync;
 
 overlay u_overlay (
     .R_in      (oVGA_R),
@@ -706,13 +735,13 @@ overlay u_overlay (
     .B_in      (oVGA_B),
     .vga_x     (oVGA_X),
     .vga_y     (oVGA_Y),
-    .overlay_x (overlay_x),
-    .overlay_y (overlay_y),
-    .box_left  (box_left_sync),
-    .box_right (box_right_sync),
-    .box_top   (box_top_sync),
-    .box_bottom(box_bottom_sync),
-    .detected  (hand_detected),
+    .overlay_x (ov_overlay_x),
+    .overlay_y (ov_overlay_y),
+    .box_left  (ov_box_left),
+    .box_right (ov_box_right),
+    .box_top   (ov_box_top),
+    .box_bottom(ov_box_bottom),
+    .detected  (ov_detected),
     .calibrate (calibrate),
     .R_out     (final_R),
     .G_out     (final_G),
