@@ -31,3 +31,9 @@ Name mSetup_ST.0000 mSetup_ST.0010 mSetup_ST.0001
 mSetup_ST.0000 0 0 0 
 mSetup_ST.0001 1 0 1 
 mSetup_ST.0010 1 1 0 
+
+State Machine - |DE1_SoC_CAMERA|pong_game:u_pong|state
+Name state.S_IDLE state.S_WIN state.S_PLAY 
+state.S_IDLE 0 0 0 
+state.S_PLAY 1 0 1 
+state.S_WIN 1 1 0 
