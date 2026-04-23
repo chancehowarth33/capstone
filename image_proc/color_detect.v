@@ -42,11 +42,6 @@ module color_detect (
     parameter TOL_G = 10'd100;
     parameter TOL_B = 10'd120;
 
-    // ROI: when detected last frame, only count blocks within this many pixels
-    // of the previous centroid. Rejects stray blocks far from the hand.
-    // Falls back to full-screen search when detected=0 (acquisition / reacquire).
-    parameter ROI_RADIUS = 10'd128;  // 4 blocks @ 32px each
-
 
     integer i;
 
@@ -122,13 +117,6 @@ module color_detect (
         (diffR <= TOL_R) &&
         (diffG <= TOL_G) &&
         (diffB <= TOL_B);
-
-    // ROI gate: overlay_x/y hold last frame's centroid (updated only at fval_fall),
-    // so they are stable throughout the current frame's scan.
-    // When detected=0 (acquiring or reacquiring), in_roi is always true → full-screen search.
-    wire [9:0] roi_dx = (block_center_x >= overlay_x) ? (block_center_x - overlay_x) : (overlay_x - block_center_x);
-    wire [9:0] roi_dy = (block_center_y >= overlay_y) ? (block_center_y - overlay_y) : (overlay_y - block_center_y);
-    wire in_roi = !detected || (roi_dx <= ROI_RADIUS && roi_dy <= ROI_RADIUS);
 
     wire [9:0] tracked_x = centroid_sum_x / match_count;
     wire [9:0] tracked_y = centroid_sum_y / match_count;
@@ -228,7 +216,7 @@ module color_detect (
                     end
 
                     // detection
-                    if (!calibrate && color_match && in_roi) begin
+                    if (!calibrate && color_match) begin
                         centroid_sum_x <= centroid_sum_x + block_center_x;
                         centroid_sum_y <= centroid_sum_y + block_center_y;
                         match_count    <= match_count + 1;
