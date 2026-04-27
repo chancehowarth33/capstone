@@ -638,15 +638,10 @@ end
 
 //=============================================================================
 // u_detect2 — player 2 color tracker (independent calibration via p2_capture)
-// Tolerances tuned for blue objects: tighter on B (the key channel),
-// looser on R/G which vary more under lighting for blue hues.
+// Uses same ratio-based matching as u_detect — no parameter overrides needed.
 //=============================================================================
 
-color_detect #(
-    .TOL_R (10'd60),   // blue: R is low, some room for ambient light
-    .TOL_G (10'd60),   // blue: G is low, some room for ambient light
-    .TOL_B (10'd50)    // blue: B is the key channel, keep tighter
-) u_detect2 (
+color_detect u_detect2 (
     .clk          (D5M_PIXLCLK),
     .rst_n        (DLY_RST_2),
     .fval         (rCCD_FVAL),
