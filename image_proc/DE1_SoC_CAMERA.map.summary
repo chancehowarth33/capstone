@@ -1,4 +1,4 @@
-Analysis & Synthesis Status : Successful - Wed Apr 22 19:34:57 2026
+Analysis & Synthesis Status : Successful - Mon Apr 27 14:58:58 2026
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : DE1_SoC_CAMERA
 Top-level Entity Name : DE1_SoC_CAMERA
@@ -8,7 +8,7 @@ Total registers : 9596
 Total pins : 226
 Total virtual pins : 0
 Total block memory bits : 59,344
-Total DSP Blocks : 0
+Total DSP Blocks : 14
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
 Total HSSI TX PCSs : 0

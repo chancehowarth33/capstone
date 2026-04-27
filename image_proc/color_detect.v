@@ -37,10 +37,15 @@ module color_detect (
     parameter NUM_BLOCK_COLS   = 20;   // 640px / 32px per block
     parameter MIN_MATCH_BLOCKS = 1;
 
-    // tuned for orange object
-    parameter TOL_R = 10'd60;
-    parameter TOL_G = 10'd100;
-    parameter TOL_B = 10'd120;
+    // Ratio-based color matching — lighting-invariant for neon colors.
+    // Checks that each channel's fraction of total brightness matches
+    // the calibrated fraction, using cross-multiplication (no division).
+    // RATIO_TOL_SHIFT: tolerance = 1/2^N of (cal_sum * avg_sum)
+    //   4 → ~6% per channel  (separates adjacent neons e.g. orange vs yellow)
+    //   3 → ~12% per channel (more forgiving, may confuse nearby hues)
+    parameter RATIO_TOL_SHIFT  = 5;
+    // MIN_BRIGHT: at least one channel must exceed this to reject near-black blocks
+    parameter MIN_BRIGHT       = 10'd100;
 
 
     integer i;
@@ -108,15 +113,33 @@ module color_detect (
     wire [9:0] avgG = next_sum_G[19:10];
     wire [9:0] avgB = next_sum_B[19:10];
 
-    wire [9:0] diffR = (avgR > cal_R) ? avgR - cal_R : cal_R - avgR;
-    wire [9:0] diffG = (avgG > cal_G) ? avgG - cal_G : cal_G - avgG;
-    wire [9:0] diffB = (avgB > cal_B) ? avgB - cal_B : cal_B - avgB;
+    // Ratio-based matching: avgR/avg_sum ≈ cal_R/cal_sum for each channel.
+    // Cross-multiply: |avgR*cal_sum - cal_R*avg_sum| <= (cal_sum*avg_sum)>>SHIFT
+    // Threshold scales with both brightnesses so it works across lighting levels.
+    wire [11:0] cal_sum = {2'b0, cal_R} + {2'b0, cal_G} + {2'b0, cal_B};
+    wire [11:0] avg_sum = {2'b0, avgR} + {2'b0, avgG} + {2'b0, avgB};
+
+    wire bright_enough = (avgR >= MIN_BRIGHT) || (avgG >= MIN_BRIGHT) || (avgB >= MIN_BRIGHT);
+
+    wire [23:0] ratio_thresh = (cal_sum * avg_sum) >> RATIO_TOL_SHIFT;
+
+    wire [21:0] r_lhs  = avgR * cal_sum;
+    wire [21:0] r_rhs  = cal_R * avg_sum;
+    wire [21:0] r_diff = (r_lhs >= r_rhs) ? r_lhs - r_rhs : r_rhs - r_lhs;
+
+    wire [21:0] g_lhs  = avgG * cal_sum;
+    wire [21:0] g_rhs  = cal_G * avg_sum;
+    wire [21:0] g_diff = (g_lhs >= g_rhs) ? g_lhs - g_rhs : g_rhs - g_lhs;
+
+    wire [21:0] b_lhs  = avgB * cal_sum;
+    wire [21:0] b_rhs  = cal_B * avg_sum;
+    wire [21:0] b_diff = (b_lhs >= b_rhs) ? b_lhs - b_rhs : b_rhs - b_lhs;
 
     wire color_match =
-        cal_valid &&
-        (diffR <= TOL_R) &&
-        (diffG <= TOL_G) &&
-        (diffB <= TOL_B);
+        cal_valid && bright_enough &&
+        (r_diff <= ratio_thresh) &&
+        (g_diff <= ratio_thresh) &&
+        (b_diff <= ratio_thresh);
 
     wire [9:0] tracked_x = centroid_sum_x / match_count;
     wire [9:0] tracked_y = centroid_sum_y / match_count;
