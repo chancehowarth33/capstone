@@ -745,15 +745,20 @@ overlay u_overlay (
 
 
 // Draw game — hand leaves a white trail; KEY[3] clears the canvas
+// SW[1] selects which player's tracking feeds the single-player games
+wire [9:0] active_coord_x  = SW[1] ? p2_coord_x  : coord_x;
+wire [9:0] active_coord_y  = SW[1] ? p2_coord_y  : coord_y;
+wire       active_detected = SW[1] ? p2_detected : hand_detected;
+
 // SW[5]=1 pen down (draw), SW[5]=0 pen up (no paint)
 // KEY[1] cycles brush size: small (8px) -> medium (16px) -> large (32px)
 draw_game u_draw (
     .clk        (VGA_CTRL_CLK),
     .rst_n      (DLY_RST_2),
     .vsync      (VGA_VS),
-    .detected   (hand_detected),
-    .overlay_x  (coord_x),
-    .overlay_y  (coord_y),
+    .detected   (active_detected),
+    .overlay_x  (active_coord_x),
+    .overlay_y  (active_coord_y),
     .vga_x      (oVGA_X),
     .vga_y      (oVGA_Y),
     .clear_n    (KEY[3]),
@@ -769,9 +774,9 @@ catch_game u_catch (
     .clk       (VGA_CTRL_CLK),
     .rst_n     (DLY_RST_2),
     .vsync     (VGA_VS),
-    .detected  (hand_detected),
-    .overlay_x (coord_x),
-    .overlay_y (coord_y),
+    .detected  (active_detected),
+    .overlay_x (active_coord_x),
+    .overlay_y (active_coord_y),
     .vga_x     (oVGA_X),
     .vga_y     (oVGA_Y),
     .R_out     (catch_R),
@@ -802,9 +807,9 @@ snake_wrapper u_game (
     .clk      (VGA_CTRL_CLK),
     .rst_n    (DLY_RST_2),
 
-    .coord_x   (coord_x),
-    .coord_y   (coord_y),
-    .detected (hand_detected),
+    .coord_x   (active_coord_x),
+    .coord_y   (active_coord_y),
+    .detected  (active_detected),
     .game_mode (game_mode),
 
     .vga_x    (oVGA_X),

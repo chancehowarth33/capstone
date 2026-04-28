@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC_CAMERA
-Mon Apr 27 14:58:58 2026
+Tue Apr 28 14:49:42 2026
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -16,11 +16,11 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   8. Analysis & Synthesis RAM Summary
   9. Analysis & Synthesis DSP Block Usage Summary
  10. Analysis & Synthesis IP Cores Summary
- 11. State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|food_step
- 12. State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|direction
- 13. State Machine - |DE1_SoC_CAMERA|catch_game:u_catch|state
- 14. State Machine - |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mSetup_ST
- 15. State Machine - |DE1_SoC_CAMERA|pong_game:u_pong|state
+ 11. State Machine - |DE1_SoC_CAMERA|catch_game:u_catch|state
+ 12. State Machine - |DE1_SoC_CAMERA|pong_game:u_pong|state
+ 13. State Machine - |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mSetup_ST
+ 14. State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|food_step
+ 15. State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|direction
  16. Registers Protected by Synthesis
  17. Registers Removed During Synthesis
  18. Removed Registers Triggering Further Register Optimizations
@@ -169,7 +169,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Apr 27 14:58:58 2026           ;
+; Analysis & Synthesis Status     ; Successful - Tue Apr 28 14:49:41 2026           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; DE1_SoC_CAMERA                                  ;
 ; Top-level Entity Name           ; DE1_SoC_CAMERA                                  ;
@@ -284,14 +284,14 @@ on the Quartus Prime software download page.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 12          ;
 ;                            ;             ;
-; Average used               ; 1.07        ;
+; Average used               ; 1.08        ;
 ; Maximum used               ; 12          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
 ;     Processor 2            ;   3.0%      ;
-;     Processor 3            ;   2.2%      ;
-;     Processor 4            ;   1.7%      ;
+;     Processor 3            ;   3.0%      ;
+;     Processor 4            ;   1.8%      ;
 ;     Processor 5            ;   0.0%      ;
 ;     Processor 6            ;   0.0%      ;
 ;     Processor 7            ;   0.0%      ;
@@ -391,14 +391,14 @@ on the Quartus Prime software download page.
 +---------------------------------------------+-----------------------------+
 ; Resource                                    ; Usage                       ;
 +---------------------------------------------+-----------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 24090                       ;
+; Estimate of Logic utilization (ALMs needed) ; 26773                       ;
 ;                                             ;                             ;
-; Combinational ALUT usage for logic          ; 43136                       ;
-;     -- 7 input functions                    ; 112                         ;
-;     -- 6 input functions                    ; 4527                        ;
-;     -- 5 input functions                    ; 13598                       ;
-;     -- 4 input functions                    ; 19068                       ;
-;     -- <=3 input functions                  ; 5831                        ;
+; Combinational ALUT usage for logic          ; 43446                       ;
+;     -- 7 input functions                    ; 80                          ;
+;     -- 6 input functions                    ; 9617                        ;
+;     -- 5 input functions                    ; 3106                        ;
+;     -- 4 input functions                    ; 24780                       ;
+;     -- <=3 input functions                  ; 5863                        ;
 ;                                             ;                             ;
 ; Dedicated logic registers                   ; 9596                        ;
 ;                                             ;                             ;
@@ -412,9 +412,9 @@ on the Quartus Prime software download page.
 ;     -- PLLs                                 ; 4                           ;
 ;                                             ;                             ;
 ; Maximum fan-out node                        ; draw_game:u_draw|line_state ;
-; Maximum fan-out                             ; 9541                        ;
-; Total fan-out                               ; 238908                      ;
-; Average fan-out                             ; 4.48                        ;
+; Maximum fan-out                             ; 9481                        ;
+; Total fan-out                               ; 239571                      ;
+; Average fan-out                             ; 4.47                        ;
 +---------------------------------------------+-----------------------------+
 
 
@@ -423,7 +423,7 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node                                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                        ; Entity Name         ; Library Name ;
 +--------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |DE1_SoC_CAMERA                                              ; 43136 (277)         ; 9596 (425)                ; 59344             ; 14         ; 226  ; 0            ; |DE1_SoC_CAMERA                                                                                                                                                                            ; DE1_SoC_CAMERA      ; work         ;
+; |DE1_SoC_CAMERA                                              ; 43446 (292)         ; 9596 (425)                ; 59344             ; 14         ; 226  ; 0            ; |DE1_SoC_CAMERA                                                                                                                                                                            ; DE1_SoC_CAMERA      ; work         ;
 ;    |CCD_Capture:u3|                                          ; 35 (35)             ; 42 (42)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|CCD_Capture:u3                                                                                                                                                             ; CCD_Capture         ; work         ;
 ;    |I2C_CCD_Config:u8|                                       ; 197 (141)           ; 133 (95)                  ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8                                                                                                                                                          ; I2C_CCD_Config      ; work         ;
 ;       |I2C_Controller:u0|                                    ; 56 (56)             ; 38 (38)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0                                                                                                                                        ; I2C_Controller      ; work         ;
@@ -442,7 +442,7 @@ on the Quartus Prime software download page.
 ;       |SEG7_LUT:u3|                                          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|SEG7_LUT_6:u5|SEG7_LUT:u3                                                                                                                                                  ; SEG7_LUT            ; work         ;
 ;       |SEG7_LUT:u4|                                          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|SEG7_LUT_6:u5|SEG7_LUT:u4                                                                                                                                                  ; SEG7_LUT            ; work         ;
 ;       |SEG7_LUT:u5|                                          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|SEG7_LUT_6:u5|SEG7_LUT:u5                                                                                                                                                  ; SEG7_LUT            ; work         ;
-;    |Sdram_Control:u7|                                        ; 644 (214)           ; 713 (157)                 ; 28672             ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7                                                                                                                                                           ; Sdram_Control       ; work         ;
+;    |Sdram_Control:u7|                                        ; 643 (214)           ; 713 (157)                 ; 28672             ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7                                                                                                                                                           ; Sdram_Control       ; work         ;
 ;       |Sdram_RD_FIFO:u_read1_fifo|                           ; 75 (0)              ; 112 (0)                   ; 6656              ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo                                                                                                                                ; Sdram_RD_FIFO       ; work         ;
 ;          |dcfifo_mixed_widths:dcfifo_mixed_widths_component| ; 75 (0)              ; 112 (0)                   ; 6656              ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component                                                                              ; dcfifo_mixed_widths ; work         ;
 ;             |dcfifo_ahp1:auto_generated|                     ; 75 (14)             ; 112 (30)                  ; 6656              ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|Sdram_RD_FIFO:u_read1_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ahp1:auto_generated                                                   ; dcfifo_ahp1         ; work         ;
@@ -507,10 +507,10 @@ on the Quartus Prime software download page.
 ;                |cmpr_906:wrfull_eq_comp|                     ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|cmpr_906:wrfull_eq_comp                          ; cmpr_906            ; work         ;
 ;                |dffpipe_oe9:rs_brp|                          ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_brp                               ; dffpipe_oe9         ; work         ;
 ;                |dffpipe_oe9:rs_bwp|                          ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|Sdram_WR_FIFO:u_write2_fifo|dcfifo_mixed_widths:dcfifo_mixed_widths_component|dcfifo_ngp1:auto_generated|dffpipe_oe9:rs_bwp                               ; dffpipe_oe9         ; work         ;
-;       |command:u_command|                                    ; 54 (54)             ; 49 (49)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command                                                                                                                                         ; command             ; work         ;
+;       |command:u_command|                                    ; 53 (53)             ; 49 (49)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command                                                                                                                                         ; command             ; work         ;
 ;       |control_interface:u_control_interface|                ; 74 (74)             ; 59 (59)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|Sdram_Control:u7|control_interface:u_control_interface                                                                                                                     ; control_interface   ; work         ;
-;    |VGA_Controller:u1|                                       ; 65 (65)             ; 76 (76)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|VGA_Controller:u1                                                                                                                                                          ; VGA_Controller      ; work         ;
-;    |catch_game:u_catch|                                      ; 1599 (664)          ; 75 (75)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|catch_game:u_catch                                                                                                                                                         ; catch_game          ; work         ;
+;    |VGA_Controller:u1|                                       ; 66 (66)             ; 76 (76)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|VGA_Controller:u1                                                                                                                                                          ; VGA_Controller      ; work         ;
+;    |catch_game:u_catch|                                      ; 1604 (669)          ; 75 (75)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|catch_game:u_catch                                                                                                                                                         ; catch_game          ; work         ;
 ;       |lpm_divide:Div0|                                      ; 72 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|catch_game:u_catch|lpm_divide:Div0                                                                                                                                         ; lpm_divide          ; work         ;
 ;          |lpm_divide_fbm:auto_generated|                     ; 72 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|catch_game:u_catch|lpm_divide:Div0|lpm_divide_fbm:auto_generated                                                                                                           ; lpm_divide_fbm      ; work         ;
 ;             |sign_div_unsign_llh:divider|                    ; 72 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|catch_game:u_catch|lpm_divide:Div0|lpm_divide_fbm:auto_generated|sign_div_unsign_llh:divider                                                                               ; sign_div_unsign_llh ; work         ;
@@ -593,14 +593,14 @@ on the Quartus Prime software download page.
 ;          |lpm_divide_tcm:auto_generated|                     ; 397 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div1|lpm_divide_tcm:auto_generated                                                                                                        ; lpm_divide_tcm      ; work         ;
 ;             |sign_div_unsign_3nh:divider|                    ; 397 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div1|lpm_divide_tcm:auto_generated|sign_div_unsign_3nh:divider                                                                            ; sign_div_unsign_3nh ; work         ;
 ;                |alt_u_div_c2f:divider|                       ; 397 (397)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|color_detect:u_detect|lpm_divide:Div1|lpm_divide_tcm:auto_generated|sign_div_unsign_3nh:divider|alt_u_div_c2f:divider                                                      ; alt_u_div_c2f       ; work         ;
-;    |draw_game:u_draw|                                        ; 33696 (33696)       ; 4880 (4880)               ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|draw_game:u_draw                                                                                                                                                           ; draw_game           ; work         ;
-;    |overlay:u_overlay|                                       ; 140 (140)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|overlay:u_overlay                                                                                                                                                          ; overlay             ; work         ;
-;    |pong_game:u_pong|                                        ; 861 (861)           ; 78 (78)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|pong_game:u_pong                                                                                                                                                           ; pong_game           ; work         ;
+;    |draw_game:u_draw|                                        ; 33919 (33919)       ; 4880 (4880)               ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|draw_game:u_draw                                                                                                                                                           ; draw_game           ; work         ;
+;    |overlay:u_overlay|                                       ; 124 (124)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|overlay:u_overlay                                                                                                                                                          ; overlay             ; work         ;
+;    |pong_game:u_pong|                                        ; 913 (913)           ; 78 (78)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|pong_game:u_pong                                                                                                                                                           ; pong_game           ; work         ;
 ;    |sdram_pll:u6|                                            ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|sdram_pll:u6                                                                                                                                                               ; sdram_pll           ; sdram_pll    ;
 ;       |sdram_pll_0002:sdram_pll_inst|                        ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|sdram_pll:u6|sdram_pll_0002:sdram_pll_inst                                                                                                                                 ; sdram_pll_0002      ; sdram_pll    ;
 ;          |altera_pll:altera_pll_i|                           ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|sdram_pll:u6|sdram_pll_0002:sdram_pll_inst|altera_pll:altera_pll_i                                                                                                         ; altera_pll          ; work         ;
-;    |snake_wrapper:u_game|                                    ; 1948 (560)          ; 320 (320)                 ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game                                                                                                                                                       ; snake_wrapper       ; work         ;
-;       |snake_renderer:u_renderer|                            ; 1388 (560)          ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer                                                                                                                             ; snake_renderer      ; work         ;
+;    |snake_wrapper:u_game|                                    ; 1979 (571)          ; 320 (320)                 ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game                                                                                                                                                       ; snake_wrapper       ; work         ;
+;       |snake_renderer:u_renderer|                            ; 1408 (580)          ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer                                                                                                                             ; snake_renderer      ; work         ;
 ;          |lpm_divide:Div0|                                   ; 44 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0                                                                                                             ; lpm_divide          ; work         ;
 ;             |lpm_divide_hbm:auto_generated|                  ; 44 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0|lpm_divide_hbm:auto_generated                                                                               ; lpm_divide_hbm      ; work         ;
 ;                |sign_div_unsign_nlh:divider|                 ; 44 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|lpm_divide:Div0|lpm_divide_hbm:auto_generated|sign_div_unsign_nlh:divider                                                   ; sign_div_unsign_nlh ; work         ;
@@ -705,6 +705,42 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 
 
 Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------+
+; State Machine - |DE1_SoC_CAMERA|catch_game:u_catch|state                             ;
++----------------------+------------------+----------------------+---------------------+
+; Name                 ; state.STATE_IDLE ; state.STATE_GAMEOVER ; state.STATE_PLAYING ;
++----------------------+------------------+----------------------+---------------------+
+; state.STATE_IDLE     ; 0                ; 0                    ; 0                   ;
+; state.STATE_PLAYING  ; 1                ; 0                    ; 1                   ;
+; state.STATE_GAMEOVER ; 1                ; 1                    ; 0                   ;
++----------------------+------------------+----------------------+---------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------+
+; State Machine - |DE1_SoC_CAMERA|pong_game:u_pong|state   ;
++--------------+--------------+-------------+--------------+
+; Name         ; state.S_IDLE ; state.S_WIN ; state.S_PLAY ;
++--------------+--------------+-------------+--------------+
+; state.S_IDLE ; 0            ; 0           ; 0            ;
+; state.S_PLAY ; 1            ; 0           ; 1            ;
+; state.S_WIN  ; 1            ; 1           ; 0            ;
++--------------+--------------+-------------+--------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------+
+; State Machine - |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mSetup_ST       ;
++----------------+----------------+----------------+----------------+
+; Name           ; mSetup_ST.0000 ; mSetup_ST.0010 ; mSetup_ST.0001 ;
++----------------+----------------+----------------+----------------+
+; mSetup_ST.0000 ; 0              ; 0              ; 0              ;
+; mSetup_ST.0001 ; 1              ; 0              ; 1              ;
+; mSetup_ST.0010 ; 1              ; 1              ; 0              ;
++----------------+----------------+----------------+----------------+
+
+
+Encoding Type:  One-Hot
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; State Machine - |DE1_SoC_CAMERA|snake_wrapper:u_game|food_step                                                                                                                                            ;
 +----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
@@ -735,42 +771,6 @@ Encoding Type:  One-Hot
 ; direction.DIR_LEFT  ; 0                  ; 1                  ; 0                ; 1                   ;
 ; direction.DIR_DOWN  ; 1                  ; 0                  ; 0                ; 1                   ;
 +---------------------+--------------------+--------------------+------------------+---------------------+
-
-
-Encoding Type:  One-Hot
-+--------------------------------------------------------------------------------------+
-; State Machine - |DE1_SoC_CAMERA|catch_game:u_catch|state                             ;
-+----------------------+------------------+----------------------+---------------------+
-; Name                 ; state.STATE_IDLE ; state.STATE_GAMEOVER ; state.STATE_PLAYING ;
-+----------------------+------------------+----------------------+---------------------+
-; state.STATE_IDLE     ; 0                ; 0                    ; 0                   ;
-; state.STATE_PLAYING  ; 1                ; 0                    ; 1                   ;
-; state.STATE_GAMEOVER ; 1                ; 1                    ; 0                   ;
-+----------------------+------------------+----------------------+---------------------+
-
-
-Encoding Type:  One-Hot
-+-------------------------------------------------------------------+
-; State Machine - |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mSetup_ST       ;
-+----------------+----------------+----------------+----------------+
-; Name           ; mSetup_ST.0000 ; mSetup_ST.0010 ; mSetup_ST.0001 ;
-+----------------+----------------+----------------+----------------+
-; mSetup_ST.0000 ; 0              ; 0              ; 0              ;
-; mSetup_ST.0001 ; 1              ; 0              ; 1              ;
-; mSetup_ST.0010 ; 1              ; 1              ; 0              ;
-+----------------+----------------+----------------+----------------+
-
-
-Encoding Type:  One-Hot
-+----------------------------------------------------------+
-; State Machine - |DE1_SoC_CAMERA|pong_game:u_pong|state   ;
-+--------------+--------------+-------------+--------------+
-; Name         ; state.S_IDLE ; state.S_WIN ; state.S_PLAY ;
-+--------------+--------------+-------------+--------------+
-; state.S_IDLE ; 0            ; 0           ; 0            ;
-; state.S_PLAY ; 1            ; 0           ; 1            ;
-; state.S_WIN  ; 1            ; 1           ; 0            ;
-+--------------+--------------+-------------+--------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1185,14 +1185,14 @@ Encoding Type:  One-Hot
 ; Sdram_Control:u7|mLENGTH[7]                                                                                                                               ; Stuck at GND due to stuck port data_in                                      ;
 ; Sdram_Control:u7|mADDR[3]                                                                                                                                 ; Stuck at GND due to stuck port data_in                                      ;
 ; Sdram_Control:u7|control_interface:u_control_interface|SADDR[3]                                                                                           ; Stuck at GND due to stuck port data_in                                      ;
+; I2C_CCD_Config:u8|mSetup_ST~9                                                                                                                             ; Lost fanout                                                                 ;
+; I2C_CCD_Config:u8|mSetup_ST~10                                                                                                                            ; Lost fanout                                                                 ;
 ; snake_wrapper:u_game|food_step~15                                                                                                                         ; Lost fanout                                                                 ;
 ; snake_wrapper:u_game|food_step~16                                                                                                                         ; Lost fanout                                                                 ;
 ; snake_wrapper:u_game|food_step~17                                                                                                                         ; Lost fanout                                                                 ;
 ; snake_wrapper:u_game|food_step~18                                                                                                                         ; Lost fanout                                                                 ;
 ; snake_wrapper:u_game|direction~5                                                                                                                          ; Lost fanout                                                                 ;
 ; snake_wrapper:u_game|direction~6                                                                                                                          ; Lost fanout                                                                 ;
-; I2C_CCD_Config:u8|mSetup_ST~9                                                                                                                             ; Lost fanout                                                                 ;
-; I2C_CCD_Config:u8|mSetup_ST~10                                                                                                                            ; Lost fanout                                                                 ;
 ; pong_game:u_pong|ball_vy[0,1]                                                                                                                             ; Stuck at GND due to stuck port data_in                                      ;
 ; pong_game:u_pong|ball_vy[2,3]                                                                                                                             ; Merged with pong_game:u_pong|ball_vy[4]                                     ;
 ; I2C_CCD_Config:u8|LUT_INDEX[5]                                                                                                                            ; Stuck at GND due to stuck port data_in                                      ;
@@ -1244,11 +1244,11 @@ Encoding Type:  One-Hot
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
 ; Total registers                              ; 9596  ;
-; Number of registers using Synchronous Clear  ; 7938  ;
+; Number of registers using Synchronous Clear  ; 7937  ;
 ; Number of registers using Synchronous Load   ; 4858  ;
 ; Number of registers using Asynchronous Clear ; 9183  ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 3633  ;
+; Number of registers using Clock Enable       ; 3632  ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -1258,9 +1258,9 @@ Encoding Type:  One-Hot
 +-------------------------------------------+---------+
 ; Inverted Register                         ; Fan out ;
 +-------------------------------------------+---------+
-; snake_wrapper:u_game|snake_head_row[2]    ; 26      ;
-; snake_wrapper:u_game|snake_head_row[0]    ; 11      ;
-; snake_wrapper:u_game|snake_head_row[1]    ; 10      ;
+; snake_wrapper:u_game|snake_head_row[2]    ; 37      ;
+; snake_wrapper:u_game|snake_head_row[0]    ; 37      ;
+; snake_wrapper:u_game|snake_head_row[1]    ; 11      ;
 ; snake_wrapper:u_game|snake_head_col[1]    ; 11      ;
 ; snake_wrapper:u_game|snake_head_col[3]    ; 10      ;
 ; snake_wrapper:u_game|food_row[2]          ; 2       ;
@@ -1276,48 +1276,48 @@ Encoding Type:  One-Hot
 ; snake_wrapper:u_game|snake_body26_row[1]  ; 3       ;
 ; snake_wrapper:u_game|snake_body26_row[2]  ; 3       ;
 ; snake_wrapper:u_game|snake_body26_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body20_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body20_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body20_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body25_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body25_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body25_row[0]  ; 3       ;
 ; snake_wrapper:u_game|snake_body24_row[1]  ; 3       ;
 ; snake_wrapper:u_game|snake_body24_row[2]  ; 3       ;
 ; snake_wrapper:u_game|snake_body24_row[0]  ; 3       ;
-; snake_wrapper:u_game|snake_body22_row[1]  ; 3       ;
-; snake_wrapper:u_game|snake_body22_row[2]  ; 3       ;
-; snake_wrapper:u_game|snake_body22_row[0]  ; 3       ;
 ; snake_wrapper:u_game|snake_body18_row[1]  ; 3       ;
 ; snake_wrapper:u_game|snake_body18_row[2]  ; 3       ;
 ; snake_wrapper:u_game|snake_body18_row[0]  ; 3       ;
-; snake_wrapper:u_game|snake_body17_row[1]  ; 3       ;
-; snake_wrapper:u_game|snake_body17_row[2]  ; 3       ;
-; snake_wrapper:u_game|snake_body17_row[0]  ; 3       ;
 ; snake_wrapper:u_game|snake_body15_row[1]  ; 3       ;
 ; snake_wrapper:u_game|snake_body15_row[2]  ; 3       ;
 ; snake_wrapper:u_game|snake_body15_row[0]  ; 3       ;
 ; snake_wrapper:u_game|snake_body16_row[1]  ; 3       ;
 ; snake_wrapper:u_game|snake_body16_row[2]  ; 3       ;
 ; snake_wrapper:u_game|snake_body16_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body19_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body19_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body19_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body22_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body22_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body22_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body17_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body17_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body17_row[0]  ; 3       ;
 ; snake_wrapper:u_game|snake_body21_row[1]  ; 3       ;
 ; snake_wrapper:u_game|snake_body21_row[2]  ; 3       ;
 ; snake_wrapper:u_game|snake_body21_row[0]  ; 3       ;
-; snake_wrapper:u_game|snake_body25_row[2]  ; 3       ;
-; snake_wrapper:u_game|snake_body25_row[1]  ; 3       ;
-; snake_wrapper:u_game|snake_body25_row[0]  ; 3       ;
-; snake_wrapper:u_game|snake_body19_row[1]  ; 3       ;
-; snake_wrapper:u_game|snake_body19_row[2]  ; 3       ;
-; snake_wrapper:u_game|snake_body19_row[0]  ; 3       ;
-; snake_wrapper:u_game|snake_body20_row[1]  ; 3       ;
-; snake_wrapper:u_game|snake_body20_row[2]  ; 3       ;
-; snake_wrapper:u_game|snake_body20_row[0]  ; 3       ;
-; snake_wrapper:u_game|snake_body7_row[1]   ; 3       ;
 ; snake_wrapper:u_game|snake_body7_row[2]   ; 3       ;
 ; snake_wrapper:u_game|snake_body7_row[0]   ; 3       ;
+; snake_wrapper:u_game|snake_body7_row[1]   ; 3       ;
 ; snake_wrapper:u_game|snake_body7_col[0]   ; 3       ;
 ; snake_wrapper:u_game|snake_body7_col[1]   ; 3       ;
 ; snake_wrapper:u_game|snake_body9_row[2]   ; 3       ;
 ; snake_wrapper:u_game|snake_body9_row[1]   ; 3       ;
 ; snake_wrapper:u_game|snake_body9_row[0]   ; 3       ;
 ; snake_wrapper:u_game|snake_body9_col[0]   ; 3       ;
-; snake_wrapper:u_game|snake_body10_row[1]  ; 3       ;
-; snake_wrapper:u_game|snake_body10_row[2]  ; 3       ;
-; snake_wrapper:u_game|snake_body10_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body11_row[1]  ; 3       ;
+; snake_wrapper:u_game|snake_body11_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body11_row[0]  ; 3       ;
 ; snake_wrapper:u_game|snake_body8_row[1]   ; 3       ;
 ; snake_wrapper:u_game|snake_body8_row[2]   ; 3       ;
 ; snake_wrapper:u_game|snake_body8_row[0]   ; 3       ;
@@ -1345,15 +1345,15 @@ Encoding Type:  One-Hot
 ; snake_wrapper:u_game|snake_body5_row[0]   ; 3       ;
 ; snake_wrapper:u_game|snake_body5_col[0]   ; 3       ;
 ; snake_wrapper:u_game|snake_body5_col[2]   ; 3       ;
+; snake_wrapper:u_game|snake_body10_row[2]  ; 3       ;
+; snake_wrapper:u_game|snake_body10_row[0]  ; 3       ;
+; snake_wrapper:u_game|snake_body10_row[1]  ; 3       ;
 ; snake_wrapper:u_game|snake_body14_row[1]  ; 3       ;
 ; snake_wrapper:u_game|snake_body14_row[2]  ; 3       ;
 ; snake_wrapper:u_game|snake_body14_row[0]  ; 3       ;
 ; snake_wrapper:u_game|snake_body13_row[1]  ; 3       ;
 ; snake_wrapper:u_game|snake_body13_row[2]  ; 3       ;
 ; snake_wrapper:u_game|snake_body13_row[0]  ; 3       ;
-; snake_wrapper:u_game|snake_body12_row[1]  ; 3       ;
-; snake_wrapper:u_game|snake_body12_row[2]  ; 3       ;
-; snake_wrapper:u_game|snake_body12_row[0]  ; 3       ;
 ; snake_wrapper:u_game|snake_body3_row[1]   ; 3       ;
 ; snake_wrapper:u_game|snake_body3_row[2]   ; 3       ;
 ; snake_wrapper:u_game|snake_body3_row[0]   ; 3       ;
@@ -1363,192 +1363,192 @@ Encoding Type:  One-Hot
 * Table truncated at 100 items. To change the number of inverted registers reported, set the "Number of Inverted Registers Reported" option under Assignments->Settings->Analysis and Synthesis Settings->More Settings
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|game_over_score[0]                         ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|food_col[4]                                ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_len[4]                               ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_head_col[4]                          ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|score[0]                                   ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|draw_game:u_draw|bx[0]                                          ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|draw_game:u_draw|by[1]                                          ;
-; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|draw_game:u_draw|b_err[2]                                       ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|game_over_flash_phase[3]                   ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|frame_count[3]                             ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|game_over_count[3]                           ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|game_over_flash_count[0]                   ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body1_col[4]                         ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body2_row[3]                         ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body3_row[3]                         ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body4_col[0]                         ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body5_col[4]                         ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body6_col[4]                         ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body7_col[4]                         ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body8_row[3]                         ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body9_col[4]                         ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body10_col[1]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body11_col[0]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body12_col[0]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body13_col[2]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body14_col[0]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body15_col[0]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body16_col[0]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body17_row[3]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body18_col[3]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body19_col[4]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body20_col[1]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body21_row[3]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body22_row[3]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body23_row[3]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body24_col[4]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body25_row[3]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body26_col[4]                        ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body27_col[3]                        ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 0 LEs                ; 15 LEs                 ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|obj_x[1]                                     ;
-; 5:1                ; 7 bits    ; 21 LEs        ; 7 LEs                ; 14 LEs                 ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|score[0]                                     ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|ball_vy[3]                                     ;
-; 7:1                ; 7 bits    ; 28 LEs        ; 21 LEs               ; 7 LEs                  ; Yes        ; |DE1_SoC_CAMERA|draw_game:u_draw|start_hold_count[6]                            ;
-; 7:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|start_hold_count[0]                            ;
-; 8:1                ; 7 bits    ; 35 LEs        ; 21 LEs               ; 14 LEs                 ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|start_hold_count[4]                          ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|ball_vx[3]                                     ;
-; 9:1                ; 10 bits   ; 60 LEs        ; 0 LEs                ; 60 LEs                 ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|obj_y[3]                                     ;
-; 10:1               ; 7 bits    ; 42 LEs        ; 28 LEs               ; 14 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|start_hold_count[2]                        ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|food_row[0]                                ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_head_row[1]                          ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body1_row[1]                         ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body2_row[2]                         ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body3_row[0]                         ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body4_row[0]                         ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body5_row[0]                         ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body6_col[2]                         ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body7_row[0]                         ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body8_col[1]                         ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body9_row[1]                         ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body10_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body11_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body12_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body13_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body14_row[1]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body15_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body16_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body17_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body18_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body19_row[0]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body20_row[1]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body21_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body22_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body23_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body24_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body25_row[1]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body26_row[2]                        ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body27_row[2]                        ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 0 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|obj_x[8]                                     ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|lives[1]                                     ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|cur_speed[0]                                   ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|catch_game:u_catch|bomb_body_on                                 ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|catch_game:u_catch|Selector70                                   ;
-; 4:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|food_step                                  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|R_out            ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|B_out            ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|Selector83                                     ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|R_out                                          ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|tpx                                            ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|tpx                                            ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|catch_game:u_catch|drop_speed[1]                                ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|R_out                                          ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|tpy                                            ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|tpy                                            ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; No         ; |DE1_SoC_CAMERA|draw_game:u_draw|R_out[2]                                       ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |DE1_SoC_CAMERA|catch_game:u_catch|state                                        ;
-; 12:1               ; 2 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|ti                                             ;
-; 17:1               ; 2 bits    ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|mux_B                                                           ;
-; 20:1               ; 2 bits    ; 26 LEs        ; 26 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|mux_R                                                           ;
-; 22:1               ; 2 bits    ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|mux_G                                                           ;
-; 21:1               ; 2 bits    ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|mux_R                                                           ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|paddle1_y[9]                                   ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|paddle2_y[8]                                   ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|paddle_center[7]                             ;
-; 3:1                ; 43 bits   ; 86 LEs        ; 0 LEs                ; 86 LEs                 ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|match_count[10]                          ;
-; 3:1                ; 43 bits   ; 86 LEs        ; 0 LEs                ; 86 LEs                 ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|match_count[6]                            ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|command_delay[4]             ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|BA[1]                        ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|Y_Cont[7]                                        ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[0][5]                               ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[1][15]                              ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_B[2][17]                             ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[3][12]                              ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_R[4][4]                              ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_B[5][18]                             ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_B[6][10]                             ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_G[7][13]                             ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[8][3]                               ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_G[9][13]                             ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[10][6]                              ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_B[11][17]                            ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[12][16]                             ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_G[13][13]                            ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[14][1]                              ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_G[15][12]                            ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[16][1]                              ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_G[17][4]                             ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[18][7]                              ;
-; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[19][2]                              ;
-; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|control_interface:u_control_interface|timer[2] ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[9]                            ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[8]                            ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|frame_min_x[9]                           ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|frame_min_x[8]                           ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_y[7]                            ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|frame_min_y[7]                           ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_y[7]                            ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|frame_max_y[6]                           ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_x[9]                            ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|frame_max_x[9]                           ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[14]                           ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[9]                        ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[3]                        ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|X_Cont[14]                                       ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|rp_shift[2]                  ;
-; 5:1                ; 20 bits   ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|RAW2RGB:u4|mCCD_B[6]                                            ;
-; 64:1               ; 4 bits    ; 168 LEs       ; 52 LEs               ; 116 LEs                ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mI2C_DATA[15]                                 ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[2]               ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|paddle1_y[6]                                   ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|paddle2_y[4]                                   ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|paddle_center[6]                             ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[10]                           ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|p1_yc[1]                                       ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|p2_yc[2]                                       ;
-; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |DE1_SoC_CAMERA|RAW2RGB:u4|Add0                                                 ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|draw_game:u_draw|bt_char_px                                     ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[10]                                                    ;
-; 5:1                ; 20 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[16]                                                    ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|Selector8                                  ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|Selector3                                  ;
-; 17:1               ; 5 bits    ; 55 LEs        ; 40 LEs               ; 15 LEs                 ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|Mux9             ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|draw_game:u_draw|bt_char_py                                     ;
-; 20:1               ; 120 bits  ; 1560 LEs      ; 1560 LEs             ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|color_detect:u_detect|Mux59                                     ;
-; 33:1               ; 5 bits    ; 110 LEs       ; 70 LEs               ; 40 LEs                 ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|Mux26            ;
-; 9:1                ; 6 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|draw_game:u_draw|bt_x_in_char                                   ;
-; 5:1                ; 19 bits   ; 57 LEs        ; 38 LEs               ; 19 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mADDR[7]                                       ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|score1[2]                                      ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|score2[1]                                      ;
-; 6:1                ; 8 bits    ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|win_count[7]                                   ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|CMD[0]                                         ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mWR                                            ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mRD                                            ;
-; 6:1                ; 10 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|ball_y[9]                                      ;
-; 7:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|ST[3]                                          ;
-; 6:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|ball_y[6]                                      ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|ti                                             ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|tx_in_char                                     ;
-; 16:1               ; 4 bits    ; 40 LEs        ; 32 LEs               ; 8 LEs                  ; No         ; |DE1_SoC_CAMERA|catch_game:u_catch|Mux14                                        ;
-; 16:1               ; 4 bits    ; 40 LEs        ; 32 LEs               ; 8 LEs                  ; No         ; |DE1_SoC_CAMERA|catch_game:u_catch|Mux33                                        ;
-; 8:1                ; 7 bits    ; 35 LEs        ; 35 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|tx_in_char                                     ;
-; 8:1                ; 3 bits    ; 15 LEs        ; 9 LEs                ; 6 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|state                                          ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|draw_game:u_draw|bx[2]                                           ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|draw_game:u_draw|by[1]                                           ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|draw_game:u_draw|b_err[8]                                        ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|game_over_count[0]                            ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 0 LEs                ; 15 LEs                 ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|obj_x[6]                                      ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 7 LEs                ; 14 LEs                 ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|score[2]                                      ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|ball_vy[2]                                      ;
+; 7:1                ; 7 bits    ; 28 LEs        ; 21 LEs               ; 7 LEs                  ; Yes        ; |DE1_SoC_CAMERA|draw_game:u_draw|start_hold_count[5]                             ;
+; 7:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|start_hold_count[6]                             ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|ball_vx[3]                                      ;
+; 9:1                ; 10 bits   ; 60 LEs        ; 0 LEs                ; 60 LEs                 ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|obj_y[3]                                      ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 0 LEs                ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|obj_x[3]                                      ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|lives[1]                                      ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|cur_speed[1]                                    ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|catch_game:u_catch|bomb_fuse_on                                  ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|catch_game:u_catch|Selector59                                    ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|R_out             ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|B_out             ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|Selector83                                      ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|G_out                                           ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|tpx                                             ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|tpx                                             ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|catch_game:u_catch|drop_speed[0]                                 ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|G_out                                           ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|tpy                                             ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|tpy                                             ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; No         ; |DE1_SoC_CAMERA|draw_game:u_draw|R_out[2]                                        ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |DE1_SoC_CAMERA|catch_game:u_catch|state                                         ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|ti                                              ;
+; 17:1               ; 2 bits    ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|mux_B                                                            ;
+; 20:1               ; 2 bits    ; 26 LEs        ; 26 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|mux_G                                                            ;
+; 22:1               ; 2 bits    ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|mux_G                                                            ;
+; 21:1               ; 2 bits    ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|mux_R                                                            ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|paddle1_y[3]                                    ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|paddle2_y[2]                                    ;
+; 3:1                ; 43 bits   ; 86 LEs        ; 0 LEs                ; 86 LEs                 ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|centroid_sum_y[13]                        ;
+; 3:1                ; 43 bits   ; 86 LEs        ; 0 LEs                ; 86 LEs                 ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|centroid_sum_y[7]                          ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|command_delay[6]              ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|BA[0]                         ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|Y_Cont[13]                                        ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[0][14]                               ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[1][8]                                ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[2][3]                                ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[3][1]                                ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_B[4][15]                              ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[5][11]                               ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[6][16]                               ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_B[7][2]                                ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[8][1]                                ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_B[9][13]                              ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_R[10][11]                             ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_G[11][15]                             ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_G[12][15]                             ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_G[13][7]                               ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_G[14][11]                             ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|sum_R[15][12]                              ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_G[16][4]                              ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_G[17][5]                              ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_B[18][3]                              ;
+; 3:1                ; 120 bits  ; 240 LEs       ; 0 LEs                ; 240 LEs                ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|sum_R[19][10]                             ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|control_interface:u_control_interface|timer[13] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[9]                             ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_x[7]                             ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|frame_min_x[6]                            ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|frame_min_x[8]                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_min_y[8]                             ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|frame_min_y[8]                            ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_y[5]                             ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|frame_max_y[6]                            ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect|frame_max_x[5]                             ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1_SoC_CAMERA|color_detect:u_detect2|frame_max_x[8]                            ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[15]                            ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[8]                         ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|SA[1]                         ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|CCD_Capture:u3|X_Cont[8]                                         ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|command:u_command|rp_done                       ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|RAW2RGB:u4|mCCD_B[4]                                             ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|score1[2]                                       ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|score2[0]                                       ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|win_count[0]                                    ;
+; 64:1               ; 4 bits    ; 168 LEs       ; 52 LEs               ; 116 LEs                ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mI2C_DATA[14]                                  ;
+; 6:1                ; 10 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|ball_x[1]                                       ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|I2C_Controller:u0|SD_COUNTER[2]                ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|paddle1_y[4]                                    ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|paddle2_y[7]                                    ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|I2C_CCD_Config:u8|senosr_exposure[7]                             ;
+; 6:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|pong_game:u_pong|ball_y[6]                                       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|p1_yc[8]                                        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|p2_yc[3]                                        ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |DE1_SoC_CAMERA|RAW2RGB:u4|Add0                                                  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|draw_game:u_draw|bt_char_px                                      ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[10]                                                     ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|hex_data[5]                                                      ;
+; 17:1               ; 5 bits    ; 55 LEs        ; 40 LEs               ; 15 LEs                 ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|Mux7              ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|draw_game:u_draw|bt_char_py                                      ;
+; 20:1               ; 120 bits  ; 1560 LEs      ; 1560 LEs             ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|color_detect:u_detect|Mux2                                       ;
+; 33:1               ; 5 bits    ; 110 LEs       ; 70 LEs               ; 40 LEs                 ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_renderer:u_renderer|Mux26             ;
+; 8:1                ; 7 bits    ; 35 LEs        ; 35 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|tx_in_char                                      ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 9 LEs                ; 6 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|state                                           ;
+; 9:1                ; 6 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|draw_game:u_draw|bt_x_in_char                                    ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|game_over_score[4]                          ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|paddle_center[7]                              ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|food_row[1]                                 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_head_col[4]                           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_len[0]                                ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|score[4]                                    ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|game_over_flash_phase[0]                    ;
+; 5:1                ; 19 bits   ; 57 LEs        ; 38 LEs               ; 19 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|mADDR[17]                                       ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body15_col[4]                         ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body1_col[2]                          ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body3_col[4]                          ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body7_row[3]                          ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|frame_count[2]                              ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|game_over_flash_count[5]                    ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body2_col[0]                          ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body4_col[0]                          ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body5_col[3]                          ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body6_row[3]                          ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body8_row[3]                          ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body9_row[3]                          ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body10_row[3]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body11_col[4]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body12_col[4]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body13_row[3]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body14_col[0]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body16_col[4]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body17_row[3]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body18_col[0]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body19_col[2]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body20_col[1]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body21_col[2]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body22_col[4]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body23_row[3]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body24_col[3]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body25_col[4]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body26_col[0]                         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body27_col[2]                         ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|WR_MASK[1]                                      ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|RD_MASK[0]                                      ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|CMD[1]                                          ;
+; 7:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |DE1_SoC_CAMERA|Sdram_Control:u7|ST[9]                                           ;
+; 8:1                ; 7 bits    ; 35 LEs        ; 21 LEs               ; 14 LEs                 ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|start_hold_count[0]                           ;
+; 10:1               ; 7 bits    ; 42 LEs        ; 28 LEs               ; 14 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|start_hold_count[4]                         ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|catch_game:u_catch|paddle_center[6]                              ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|food_col[2]                                 ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_head_row[0]                           ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body15_row[0]                         ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body1_col[3]                          ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body3_row[2]                          ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body7_row[2]                          ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body2_row[0]                          ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body4_col[2]                          ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body5_row[2]                          ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body6_col[2]                          ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body8_row[1]                          ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body9_row[2]                          ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body10_row[0]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body11_row[0]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body12_row[2]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body13_row[1]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body14_row[2]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body16_row[1]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body17_row[2]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body18_row[2]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body19_row[1]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body20_row[2]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body21_row[0]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body22_row[0]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body23_row[2]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body24_row[1]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body25_row[0]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body26_row[2]                         ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |DE1_SoC_CAMERA|snake_wrapper:u_game|snake_body27_row[2]                         ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|ti                                              ;
+; 4:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|food_step                                   ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE1_SoC_CAMERA|pong_game:u_pong|tx_in_char                                      ;
+; 16:1               ; 4 bits    ; 40 LEs        ; 32 LEs               ; 8 LEs                  ; No         ; |DE1_SoC_CAMERA|catch_game:u_catch|Mux17                                         ;
+; 16:1               ; 4 bits    ; 40 LEs        ; 32 LEs               ; 8 LEs                  ; No         ; |DE1_SoC_CAMERA|catch_game:u_catch|Mux30                                         ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|Selector4                                   ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |DE1_SoC_CAMERA|snake_wrapper:u_game|Selector0                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -3634,13 +3634,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; arriav_ff             ; 9596                        ;
-;     CLR               ; 947                         ;
+;     CLR               ; 948                         ;
 ;     CLR SCLR          ; 147                         ;
 ;     CLR SCLR SLD      ; 4800                        ;
 ;     CLR SLD           ; 1                           ;
 ;     ENA               ; 240                         ;
 ;     ENA CLR           ; 372                         ;
-;     ENA CLR SCLR      ; 2877                        ;
+;     ENA CLR SCLR      ; 2876                        ;
 ;     ENA CLR SLD       ; 39                          ;
 ;     ENA SCLR          ; 92                          ;
 ;     ENA SLD           ; 13                          ;
@@ -3649,24 +3649,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     SLD               ; 4                           ;
 ;     plain             ; 42                          ;
 ; arriav_io_obuf        ; 62                          ;
-; arriav_lcell_comb     ; 43143                       ;
-;     arith             ; 3275                        ;
+; arriav_lcell_comb     ; 43453                       ;
+;     arith             ; 3315                        ;
 ;         0 data inputs ; 455                         ;
-;         1 data inputs ; 1187                        ;
-;         2 data inputs ; 350                         ;
-;         3 data inputs ; 464                         ;
-;         4 data inputs ; 454                         ;
+;         1 data inputs ; 1211                        ;
+;         2 data inputs ; 340                         ;
+;         3 data inputs ; 480                         ;
+;         4 data inputs ; 464                         ;
 ;         5 data inputs ; 365                         ;
-;     extend            ; 112                         ;
-;         7 data inputs ; 112                         ;
-;     normal            ; 39213                       ;
+;     extend            ; 80                          ;
+;         7 data inputs ; 80                          ;
+;     normal            ; 39515                       ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 100                         ;
-;         2 data inputs ; 1221                        ;
-;         3 data inputs ; 1528                        ;
-;         4 data inputs ; 18602                       ;
-;         5 data inputs ; 13233                       ;
-;         6 data inputs ; 4527                        ;
+;         2 data inputs ; 1354                        ;
+;         3 data inputs ; 1397                        ;
+;         4 data inputs ; 24304                       ;
+;         5 data inputs ; 2741                        ;
+;         6 data inputs ; 9617                        ;
 ;     shared            ; 543                         ;
 ;         0 data inputs ; 40                          ;
 ;         1 data inputs ; 91                          ;
@@ -3678,7 +3678,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; stratixv_ram_block    ; 80                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 43.20                       ;
-; Average LUT depth     ; 11.03                       ;
+; Average LUT depth     ; 10.34                       ;
 +-----------------------+-----------------------------+
 
 
@@ -3687,7 +3687,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:06:05     ;
+; Top            ; 00:07:12     ;
 +----------------+--------------+
 
 
@@ -3697,7 +3697,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Mon Apr 27 14:52:34 2026
+    Info: Processing started: Tue Apr 28 14:42:07 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC_CAMERA -c DE1_SoC_CAMERA
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -4017,10 +4017,10 @@ Warning (10230): Verilog HDL assignment warning at color_detect.v(144): truncate
 Warning (10230): Verilog HDL assignment warning at color_detect.v(145): truncated value with size 20 to match size of target (10) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 145
 Warning (10230): Verilog HDL assignment warning at color_detect.v(245): truncated value with size 32 to match size of target (11) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/color_detect.v Line: 245
 Info (12128): Elaborating entity "overlay" for hierarchy "overlay:u_overlay" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 744
-Info (12128): Elaborating entity "draw_game" for hierarchy "draw_game:u_draw" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 765
+Info (12128): Elaborating entity "draw_game" for hierarchy "draw_game:u_draw" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 770
 Warning (10230): Verilog HDL assignment warning at draw_game.v(308): truncated value with size 10 to match size of target (4) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/draw_game.v Line: 308
 Warning (10230): Verilog HDL assignment warning at draw_game.v(309): truncated value with size 10 to match size of target (4) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/draw_game.v Line: 309
-Info (12128): Elaborating entity "catch_game" for hierarchy "catch_game:u_catch" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 780
+Info (12128): Elaborating entity "catch_game" for hierarchy "catch_game:u_catch" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 785
 Warning (10036): Verilog HDL or VHDL warning at catch_game.v(723): object "go_small_char_index" assigned a value but never read File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/catch_game.v Line: 723
 Warning (10036): Verilog HDL or VHDL warning at catch_game.v(724): object "go_small_char_px" assigned a value but never read File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/catch_game.v Line: 724
 Warning (10036): Verilog HDL or VHDL warning at catch_game.v(724): object "go_small_char_py" assigned a value but never read File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/catch_game.v Line: 724
@@ -4036,12 +4036,12 @@ Warning (10230): Verilog HDL assignment warning at catch_game.v(1023): truncated
 Warning (10230): Verilog HDL assignment warning at catch_game.v(1024): truncated value with size 10 to match size of target (3) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/catch_game.v Line: 1024
 Warning (10230): Verilog HDL assignment warning at catch_game.v(1055): truncated value with size 10 to match size of target (4) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/catch_game.v Line: 1055
 Warning (10230): Verilog HDL assignment warning at catch_game.v(1056): truncated value with size 10 to match size of target (3) File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/catch_game.v Line: 1056
-Info (12128): Elaborating entity "pong_game" for hierarchy "pong_game:u_pong" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 798
+Info (12128): Elaborating entity "pong_game" for hierarchy "pong_game:u_pong" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 803
 Info (10264): Verilog HDL Case Statement information at pong_game.v(436): all case item expressions in this case statement are onehot File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/pong_game.v Line: 436
 Info (10264): Verilog HDL Case Statement information at pong_game.v(532): all case item expressions in this case statement are onehot File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/pong_game.v Line: 532
 Info (10264): Verilog HDL Case Statement information at pong_game.v(561): all case item expressions in this case statement are onehot File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/pong_game.v Line: 561
 Info (10264): Verilog HDL Case Statement information at pong_game.v(637): all case item expressions in this case statement are onehot File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/pong_game.v Line: 637
-Info (12128): Elaborating entity "snake_wrapper" for hierarchy "snake_wrapper:u_game" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 817
+Info (12128): Elaborating entity "snake_wrapper" for hierarchy "snake_wrapper:u_game" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 822
 Info (10264): Verilog HDL Case Statement information at snake_wrapper.sv(167): all case item expressions in this case statement are onehot File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/snake_wrapper.sv Line: 167
 Info (10264): Verilog HDL Case Statement information at snake_wrapper.sv(682): all case item expressions in this case statement are onehot File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/snake_wrapper.sv Line: 682
 Info (12128): Elaborating entity "snake_renderer" for hierarchy "snake_wrapper:u_game|snake_renderer:u_renderer" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/snake_wrapper.sv Line: 787
@@ -4317,18 +4317,18 @@ Warning (21074): Design contains 18 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "TD_HS" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 159
     Warning (15610): No output dependent on input pin "TD_VS" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 161
     Warning (15610): No output dependent on input pin "D5M_STROBE" File: C:/Users/Patron/Documents/ECE554/capstone/image_proc/DE1_SoC_CAMERA.v Line: 181
-Info (21057): Implemented 47232 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 47536 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 48 input pins
     Info (21059): Implemented 116 output pins
     Info (21060): Implemented 62 bidirectional pins
-    Info (21061): Implemented 46908 logic cells
+    Info (21061): Implemented 47212 logic cells
     Info (21064): Implemented 80 RAM segments
     Info (21065): Implemented 4 PLLs
     Info (21062): Implemented 14 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 175 warnings
     Info: Peak virtual memory: 6158 megabytes
-    Info: Processing ended: Mon Apr 27 14:58:59 2026
-    Info: Elapsed time: 00:06:25
-    Info: Total CPU time (on all processors): 00:06:43
+    Info: Processing ended: Tue Apr 28 14:49:42 2026
+    Info: Elapsed time: 00:07:35
+    Info: Total CPU time (on all processors): 00:07:58
 
 
