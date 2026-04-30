@@ -6,6 +6,8 @@
 
 **Team:** Anirudh Kompella · Chance Howarth · Amer Salem · Munasib Ilham
 
+**Website:** [kingcoder2806.github.io/ECE554-Capstone-Website](https://kingcoder2806.github.io/ECE554-Capstone-Website/)
+
 ---
 
 ## What It Does
