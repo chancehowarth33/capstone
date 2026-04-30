@@ -27,24 +27,7 @@ A **calibration mode** (`SW[8]`) displays the average RGB of a 32×32 center box
 
 ## System Architecture
 
-```
-DSM Camera (25 fps)
-       │  RAW Bayer pixels
-       ▼
-  CCD_Capture ──► RAW2RGB ──► color_detect
-  (camera clk)                      │
-                                     │ centroid (x, y), detected
-                                     │ [synchronized to VGA clk via 2-FF CDC]
-  SDRAM Frame Buffer                 │
-  (Avalon-MM, 16-bit, 640×480)      ▼
-       ▲                      Game Engines
-  Pixel writes ◄──────────   Snake / Draw / Catch / Pong
-  (camera clk)                      │
-                                     │ RGB (10-bit/channel)
-       │ Pixel reads                 ▼
-       └──────────────────►  VGA Controller + MUX
-                             640×480 @ 60 Hz analog output
-```
+![System Architecture Diagram](System-architecture-Diagram.png)
 
 **Three clock domains:**
 - `DSM_PXLCLK` (~24 MHz) — camera pixel clock; runs CCD_Capture, RAW2RGB, color_detect, SDRAM writes
